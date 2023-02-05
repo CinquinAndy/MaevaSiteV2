@@ -1,0 +1,17 @@
+.idea
+node_modules
+public/languages
+public/themes/undefined
+public/wordpress
+vendor
+.editorconfig
+.env-exemple
+.env
+.gitignore
+.git
+composer.lock
+ExplicationInterfaceAdmin.docx
+lighthouse.gif
+package-lock.json
+README.md
+*.iml
