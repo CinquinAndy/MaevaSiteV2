@@ -6,7 +6,6 @@ public/wordpress
 vendor
 .editorconfig
 .env-exemple
-.env
 .gitignore
 .git
 composer.lock
@@ -15,3 +14,4 @@ lighthouse.gif
 package-lock.json
 README.md
 *.iml
+.env
