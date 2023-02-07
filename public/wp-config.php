@@ -55,7 +55,7 @@ define('WP_CONTENT_DIR', env('WP_CONTENT_DIR', __DIR__));
 define('WP_CONTENT_URL', env('WP_CONTENT_URL', WP_HOME));
 
 // Disable WordPress auto updates.
-define('AUTOMATIC_UPDATER_DISABLED', env('AUTOMATIC_UPDATER_DISABLED', true));
+define('AUTOMATIC_UPDATER_DISABLED', env('AUTOMATIC_UPDATER_DISABLED', false));
 
 // Disable WP-Cron (wp-cron.php) for faster performance.
 define('DISABLE_WP_CRON', env('DISABLE_WP_CRON', false));
@@ -64,7 +64,7 @@ define('DISABLE_WP_CRON', env('DISABLE_WP_CRON', false));
 define('DISALLOW_FILE_EDIT', env('DISALLOW_FILE_EDIT', true));
 
 // Disable plugin and theme updates and installation from the dashboard.
-define('DISALLOW_FILE_MODS', env('DISALLOW_FILE_MODS', true));
+define('DISALLOW_FILE_MODS', env('DISALLOW_FILE_MODS', false));
 
 // Cleanup WordPress image edits.
 define('IMAGE_EDIT_OVERWRITE', env('IMAGE_EDIT_OVERWRITE', true));
