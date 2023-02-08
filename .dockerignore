@@ -3,6 +3,7 @@ node_modules
 public/languages
 public/themes/undefined
 public/wordpress
+public/plugins
 vendor
 .editorconfig
 .env-exemple
@@ -14,4 +15,5 @@ lighthouse.gif
 package-lock.json
 README.md
 *.iml
-.env
+#.env
+public/uploads
