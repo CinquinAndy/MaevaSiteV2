@@ -3,6 +3,9 @@ FROM debian:bookworm-20230202 as builder
 WORKDIR /usr/app
 COPY ./ ./
 
+# change shell
+SHELL ["/bin/bash", "-c"]
+
 RUN apt update\
     && apt upgrade -y\
     && apt update\
@@ -21,12 +24,19 @@ RUN apt install -y lsb-release ca-certificates apt-transport-https software-prop
     && php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 
 RUN apt install postfix -y
-RUN echo '\nsmtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination\nmyhostname = vmi469907.contaboserver.net\nalias_maps = hash:/etc/aliases\nalias_database = hash:/etc/aliases\nmyorigin = /etc/mailname\nmydestination = $myhostname, mail@andy-cinquin.fr, vmi469907.contaboserver.net, localhost.contaboserver.net, localhost\nrelayhost = [smtp.gmail.com]:587\nmynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128\nmailbox_size_limit = 0\nrecipient_delimiter = +\ninet_interfaces = all\ninet_protocols = all\nsmtp_sasl_auth_enable = yes\nsmtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd\nsmtp_sasl_security_options = noanonymous\nsmtp_tls_CAfile = /etc/postfix/cacert.pem\nsmtp_use_tls = yes' >> /etc/postfix/main.cf
-RUN echo "[smtp.gmail.com]:587 $MAIL_NAME:$MAIL_PASSWORD" > /etc/postfix/sasl_passwd
+# change shell
+SHELL ["/bin/bash", "-c"]
+RUN echo -e "\nsmtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination\nmyhostname = vmi469907.contaboserver.net\nalias_maps = hash:/etc/aliases\nalias_database = hash:/etc/aliases\nmyorigin = /etc/mailname\nmydestination = $myhostname, mail@andy-cinquin.fr, vmi469907.contaboserver.net, localhost.contaboserver.net, localhost\nrelayhost = [smtp.gmail.com]:587\nmynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128\nmailbox_size_limit = 0\nrecipient_delimiter = +\ninet_interfaces = all\ninet_protocols = all\nsmtp_sasl_auth_enable = yes\nsmtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd\nsmtp_sasl_security_options = noanonymous\nsmtp_tls_CAfile = /etc/postfix/cacert.pem\nsmtp_use_tls = yes" >> /etc/postfix/main.cf
+SHELL ["/bin/sh", "-c"]
+RUN echo "[smtp.gmail.com]:587 serveur.debian.andy.cinquin@gmail.com:wvlygungmmsoyypt" > /etc/postfix/sasl_passwd
 RUN chown root:root /etc/postfix/sasl_passwd
 RUN chmod 0600 /etc/postfix/sasl_passwd
 RUN echo "contact@andy-cinquin.fr" > /etc/mailname
 RUN postmap /etc/postfix/sasl_passwd
+RUN mkfifo /var/spool/postfix/public/pickup
+RUN chown postfix:postdrop /var/spool/postfix/public/pickup
+RUN chmod 775 /var/spool/postfix/public/pickup
+RUN service postfix restart
 
 RUN npm install
 RUN composer install
