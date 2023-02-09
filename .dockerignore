@@ -15,5 +15,5 @@ lighthouse.gif
 package-lock.json
 README.md
 *.iml
-#.env
+.env
 public/uploads
