@@ -25,6 +25,7 @@ RUN echo '\nsmtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticat
 RUN echo "[smtp.gmail.com]:587 $MAIL_NAME:$MAIL_PASSWORD" > /etc/postfix/sasl_passwd
 RUN chown root:root /etc/postfix/sasl_passwd
 RUN chmod 0600 /etc/postfix/sasl_passwd
+RUN echo "contact@andy-cinquin.fr" > /etc/mailname
 RUN postmap /etc/postfix/sasl_passwd
 
 RUN npm install
