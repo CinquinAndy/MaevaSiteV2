@@ -117,52 +117,73 @@ function traitement_formulaire_contact() {
                         }
 
                         $email_message = "
-                <html>
-                <head>
-                    <title>" . $email_subject . "</title>
-                </head>
-                <body>
-                <b>Détail du mail en provenance de https://cinquin-maeva.com</b>
-                <ul>
-                    <li>
-                        <b>Sujet</b>
-                        <p>" . $sujet . "</p>
-                    </li>
-                    <br>
-                    <li>
-                        <b>Nom - Prenom</b>
-                        <p>" . $name . " - " . $prenom . "</p>
-                    </li>
-                    <br>
-                    <li>
-                        <b>Email</b>
-                        <p>" . $mail . "</p>
-                    </li>
-                    <br>
-                    <li>
-                        <b>Telephone</b>
-                        <p>" . $tel . "</p>
-                    </li>
-                    <br>
-                    <li>
-                        <b>Commentaire</b>
-                        <p>" . $message . "</p>
-                    </li>
-                    <br>
-                </ul>
-                </body>
-                </html>";
+                            <html>
+                            <body>
+                            <div style = 'overflow: hidden;' >
+                            <font size = '-1' >
+                            <u ></u >
+                            <div style = 'margin:0;padding:10px 0' bgcolor = '#ffffff' marginwidth = '0' marginheight = '0' >
+                            <br >
+                            <table border = '0' width = '100%' height = '100%' cellpadding = '0' cellspacing = '0' bgcolor = '#ffffff' >
+                            <tbody ><tr > <td align = 'center' valign = 'top' bgcolor = '#ffffff' style = 'background-color:#ffffff' >
+                            <table border = '0' width = '600' cellpadding = '0' cellspacing = '0' bgcolor = '#ffffff' > <tbody ><tr >
+                            <td bgcolor = '#ffffff' style = 'background-color:#ffffff;padding-left:30px;padding-right:30px;font-size:14px;line-height:20px;font-family:Helvetica,sans-serif;color:#333' >
+                            <div style = 'text-align:center;margin-bottom:10px;margin-top:20px' >
+                            <img alt = ' ' height = '60' width = '250' style = 'height:60px;width:250px'
+                            src = 'https://cinquin-maeva.com/themes/maeva/assets/images/icons/logo.png' >
+                            </a >
+                            </div >
+                            Récapitulatif du mail en provenance de https://cinquin-maeva.com/ :
+                            <br ><br >
+                            Nom / Prénom : " . $name . "
+                            <br>
+                            mail : <a style = 'font-style:italic;color:#627BDF'
+                            href = 'mailto:" . $mail . "'>
+                            " . $mail . "
+                            </a >
+                            <br>
+                            Tél : " . $tel . "
+                            <br>
+                            <br>
+                            Message :
+                            <br>
+                            <div style = 'text-align:center' >
+                            <font color = '#888888' >
+                            " . $message . "
+                            <br></font>
+                            <br>
+                            <br>
+                            </td>
+                            </tr>
+                            </tbody>
+                            </table>
+                            </td>
+                            </tr>
+                            </tbody>
+                            </table>
+                            <br>
+                            <br>
+                            </div>
+                            </font>
+                            </div>
+                            </body>
+                            </html>";
 
-                        // create email headers
-                        // To send HTML mail, the Content-type header must be set
-                        $headers[] = 'MIME-Version: 1.0';
-                        $headers[] = 'Content-type: text/html; charset=utf-8';
+                        $secret_mail_private = env("WP_MAILGUN_PRIVATE", "");
+                        $secret_mail_public = env("WP_MAILGUN_PUBLIC", "");
+                        $secret_mail_webhook = env("WP_MAILGUN_WEBHOOK", "");
 
-                        // Additional headers
-                        $headers[] = 'To: ' . $mail;
-                        $headers[] = 'From: ' . $mail;
+                        $mg = Mailgun::create($secret_mail_private, 'https://api.mailgun.net');
 
-                        mail( $email_to, $email_subject, $email_message, implode( "\r\n", $headers ) );
+                        // Now, compose and send your message.
+                        // $mg->messages()->send($domain, $params);
+                        $mg->messages()->send('sandbox4a143b58cf0a4ccdbfff1e1f410de28d.mailgun.org', [
+                            'from' => 'postmaster@sandbox4a143b58cf0a4ccdbfff1e1f410de28d.mailgun.org',
+                            'to' => 'maevacinquin1@gmail.com',
+                            'subject' => 'Message de ' . $name . ' depuis le site cinquin-maeva.com',
+                            'text' => $email_message
+                        ]);
+
                         $url = add_query_arg( 'fine', 'message-valide', wp_get_referer() );
                         wp_safe_redirect( $url );
                         exit();

@@ -17,17 +17,20 @@
     "license": "MIT",
     "require": {
         "php": "8.2.2",
-        "vinkla/extended-acf": "13.2.0",
+        "ext-curl": "*",
+        "ext-json": "*",
         "composer/installers": "2.1",
-        "johnpbloch/wordpress-core-installer": "2.0",
         "johnpbloch/wordpress-core": "6.1.1",
+        "johnpbloch/wordpress-core-installer": "2.0",
+        "mailgun/mailgun-php": "^3.5",
+        "nyholm/psr7": "^1.5",
         "roots/bedrock-autoloader": "1.0.4",
         "roots/wp-password-bcrypt": "1.1.0",
+        "symfony/http-client": "^6.2",
         "symfony/http-foundation": "v6.2.6",
         "symfony/var-dumper": "v6.2.5",
-        "vlucas/phpdotenv": "v5.5.0",
-        "ext-curl": "*",
-        "ext-json": "*"
+        "vinkla/extended-acf": "13.2.0",
+        "vlucas/phpdotenv": "v5.5.0"
     }
     ,
     "require-dev": {
@@ -39,7 +42,8 @@
         "sort-packages": true,
         "allow-plugins": {
             "johnpbloch/wordpress-core-installer": true,
-            "composer/installers": true
+            "composer/installers": true,
+            "php-http/discovery": true
         }
     },
     "extra": {
