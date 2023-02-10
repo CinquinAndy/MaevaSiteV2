@@ -6,6 +6,9 @@ use App\Blocs\BlocHero;
 use App\Blocs\BlocInGalery;
 use App\Blocs\BlocPresta;
 
+use Mailgun\Mailgun;
+
+
 // call api func
 function callAPI( $token ) {
     $curl = curl_init();
