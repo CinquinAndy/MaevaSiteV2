@@ -1,0 +1,1 @@
+#social li:before{content:'';position:absolute;top:0;left:0;width:80%;height:100%;background:rgba(255,255,255,.5);transform:skewX(45deg) translateX(150px);transition:.5s}#social li:hover:before{transform:skewX(45deg) translateX(-150px)}
