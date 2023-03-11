@@ -5,7 +5,7 @@
     "dev": "mix watch"
   },
   "dependencies": {
-    "css-what": "5.1.0",
+    "css-what": "6.1.0",
     "dotenv": "16.0.3",
     "laravel-mix": "6.0.49"
   },
