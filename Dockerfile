@@ -33,6 +33,12 @@ RUN sed -ri -e 's!/var/www/html!/usr/app/public!g' /etc/apache2/sites-available/
 RUN sed -ri -e 's!/var/www/!/usr/app/public!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 RUN sed -ri -e 's!AllowOverride None!AllowOverride All!g' /etc/apache2/apache2.conf
 
+# Set the new configuration values
+RUN sed -i 's/memory_limit = .*/memory_limit = 128M/' /etc/php/8.2/apache2/php.ini \
+    && sed -i 's/upload_max_filesize = .*/upload_max_filesize = 128M/' /etc/php/8.2/apache2/php.ini \
+    && sed -i 's/post_max_size = .*/post_max_size = 128M/' /etc/php/8.2/apache2/php.ini \
+    && sed -i 's/max_execution_time = .*/max_execution_time = 1200/' /etc/php/8.2/apache2/php.ini
+
 RUN chmod -R 755 /usr/app
 RUN chown -R www-data:www-data /usr/app
 
