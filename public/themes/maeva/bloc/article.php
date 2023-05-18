@@ -35,6 +35,7 @@
                         if (!$compteur % 2):
                             ?>
                             <div id="gap-2"
+                                 style="gap: 0.5rem"
                                 class="flex flex-col flex-reverse justify-center items-center lg:items-start text-left">
                                 <?= $article['contentArticle']['description'] ?>
                                 <?php if ($linkFlag):
