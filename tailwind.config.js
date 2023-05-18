@@ -65,6 +65,8 @@ module.exports = {
     'xl:col-maeva-span-8',
     'xl:col-maeva-span-9',
     'xl:col-maeva-span-10',
+
+    'gap-2'
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
