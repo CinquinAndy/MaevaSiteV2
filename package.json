@@ -18,7 +18,7 @@
     "autoprefixer": "10.4.16",
     "laravel-mix-purgecss": "6.0.0",
     "postcss": "8.4.32",
-    "sass": "1.69.5",
+    "sass": "1.69.6",
     "sass-loader": "13.3.3",
     "tailwindcss": "3.4.0",
     "tailwindcss-filters": "3.0.0"
