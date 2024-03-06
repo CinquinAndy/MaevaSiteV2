@@ -16,6 +16,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css">
     <?php endif; ?>
+
+    <script defer src="https://umami.wadefade.fr/script.js" data-website-id="e8f25e84-b2f1-43c6-b574-5d9d3a65c75b"></script>
 </head>
 <body <?php body_class([
     "bg-maeva-g800",
