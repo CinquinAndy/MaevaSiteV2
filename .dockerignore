@@ -1,9 +1,6 @@
 .idea
 node_modules
-public/languages
 public/themes/undefined
-public/wordpress
-public/plugins
 vendor
 .editorconfig
 .env-exemple
@@ -16,4 +13,3 @@ package-lock.json
 README.md
 *.iml
 .env
-public/uploads
