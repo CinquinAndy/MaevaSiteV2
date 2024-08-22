@@ -31,14 +31,18 @@ RUN sed -ri -e 's!/var/www/html!/usr/app/public!g' /etc/apache2/sites-available/
 RUN sed -ri -e 's!/var/www/!/usr/app/public!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 RUN sed -ri -e 's!AllowOverride None!AllowOverride All!g' /etc/apache2/apache2.conf
 
-# Set the new configuration values
-RUN sed -i 's/memory_limit = .*/memory_limit = 128M/' /etc/php/8.2/apache2/php.ini \
-    && sed -i 's/upload_max_filesize = .*/upload_max_filesize = 128M/' /etc/php/8.2/apache2/php.ini \
-    && sed -i 's/post_max_size = .*/post_max_size = 128M/' /etc/php/8.2/apache2/php.ini \
-    && sed -i 's/max_execution_time = .*/max_execution_time = 1200/' /etc/php/8.2/apache2/php.ini
 
-RUN chmod -R 755 /usr/app
-RUN chown -R www-data:www-data /usr/app
+# run if not exist /usr/app/public/plugins
+RUN mkdir -p /usr/app/public/plugins
+
+# run if not exist /usr/app/public/uploads
+RUN mkdir -p /usr/app/public/uploads
+
+# run if not exist /usr/app/public/mu-plugins
+RUN mkdir -p /usr/app/public/mu-plugins
+
+RUN chown www-data:www-data /usr/app/public -R
+RUN chmod -R 755 /usr/app/public
 
 RUN a2enmod rewrite
 RUN a2enmod headers
