@@ -15,7 +15,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "autoprefixer": "10.4.20",
+    "autoprefixer": "10.4.21",
     "laravel-mix-purgecss": "6.0.0",
     "postcss": "8.5.3",
     "sass": "1.85.1",
