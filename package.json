@@ -20,7 +20,7 @@
     "postcss": "8.5.5",
     "sass": "1.89.2",
     "sass-loader": "13.3.3",
-    "tailwindcss": "3.4.17",
+    "tailwindcss": "4.1.10",
     "tailwindcss-filters": "3.0.0"
   }
 }
