@@ -3,9 +3,6 @@ import localFont from 'next/font/local'
 import type React from 'react'
 import '@/app/(frontend)/global.css'
 import Script from 'next/script'
-import { Footer } from '@/components/global/footer'
-import { NavigationBar } from '@/components/global/navigationbar'
-import { Toaster } from '@/components/ui/sonner'
 
 // Apple Garamond pour les titres
 const appleGaramond = localFont({
@@ -62,9 +59,9 @@ const baskerville = localFont({
 })
 
 export const metadata: Metadata = {
-	metadataBase: new URL('https://nature-paysage-laheux.fr'),
+	metadataBase: new URL('https://cinquin-maeva.com'),
 	appleWebApp: {
-		title: 'Nature Paysage Laheux',
+		title: 'Maeva Cinquin',
 	},
 	manifest: '/manifest.json',
 }
@@ -77,20 +74,16 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 			<head>
 				{/* Preconnect for third-party domains */}
 				<link rel="preconnect" href="https://umami.wadefade.fr" />
-
 				{/* DNS Prefetch for better performance */}
 				<link rel="dns-prefetch" href="https://umami.wadefade.fr" />
 			</head>
 			<body>
 				<Script
 					src="https://umami.wadefade.fr/script.js"
-					data-website-id="42b0ae21-43c1-425c-b6a6-36268746ad2b"
+					data-website-id="e8f25e84-b2f1-43c6-b574-5d9d3a65c75b"
 					strategy="afterInteractive"
 				/>
-				<NavigationBar />
 				<main>{children}</main>
-				<Footer />
-				<Toaster />
 			</body>
 		</html>
 	)

@@ -8,18 +8,9 @@ import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { s3Storage } from '@payloadcms/storage-s3'
 import { buildConfig } from 'payload'
 import sharp from 'sharp'
-import { FAQ } from './collections/FAQ'
 import { Media } from './collections/Media'
-import { Realisations } from './collections/Realisations'
-import { Services } from './collections/Services'
 import { Users } from './collections/Users'
-import { ContactPage } from './globals/ContactPage'
-import { FaqPage } from './globals/FaqPage'
 import { Homepage } from './globals/Homepage'
-import { MentionsLegalesPage } from './globals/MentionsLegalesPage'
-import { PrestationsPage } from './globals/PrestationsPage'
-import { RealisationsPage } from './globals/RealisationsPage'
-import { SiteSettings } from './globals/SiteSettings'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -28,8 +19,8 @@ export default buildConfig({
 	serverURL: process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000',
 	admin: {
 		meta: {
-			title: 'Nature Paysage Laheux - Administration',
-			description: 'Nature Paysage Laheux - Administration',
+			title: 'Maeva Cinquin - Administration',
+			description: 'Maeva Cinquin - Administration',
 			icons: [{ rel: 'icon', url: '/web-app-manifest-192x192.png', type: 'image/png' }],
 		},
 		user: Users.slug,
@@ -37,8 +28,8 @@ export default buildConfig({
 			baseDir: path.resolve(dirname),
 		},
 	},
-	collections: [Users, Media, Services, Realisations, FAQ],
-	globals: [Homepage, PrestationsPage, RealisationsPage, FaqPage, ContactPage, MentionsLegalesPage, SiteSettings],
+	collections: [Users, Media],
+	globals: [Homepage],
 	editor: lexicalEditor(),
 	secret: process.env.PAYLOAD_SECRET || '',
 	typescript: {
