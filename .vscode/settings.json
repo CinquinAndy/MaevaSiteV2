@@ -1,0 +1,48 @@
+{
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/**": true,
+    "**/.next/**": true,
+    "**/.turbo/**": true,
+    "**/dist/**": true,
+    "**/.cache/**": true,
+    "**/*.node": true,
+    "**/*.wasm": true,
+    "**/public/raw_photos/**": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/.next": true,
+    "**/dist": true,
+    "**/.turbo": true,
+    "**/public/raw_photos": true,
+    "**/*.node": true,
+    "**/*.wasm": true
+  },
+  "files.exclude": {
+    "**/.git": false,
+    "**/.DS_Store": true,
+    "tsconfig.tsbuildinfo": true
+  },
+  "typescript.tsserver.maxTsServerMemory": 8192,
+  "typescript.tsserver.experimental.enableProjectDiagnostics": false,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "biomejs.biome",
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "svg.preview.background": "black"
+}
