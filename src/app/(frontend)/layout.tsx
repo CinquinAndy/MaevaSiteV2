@@ -27,7 +27,6 @@ interface MenuItem {
 }
 
 const navigationMenu: MenuItem[] = [
-	{ title: 'Accueil', url: '/' },
 	{ title: 'Blog', url: '/blog' },
 	{ title: 'Prestations', url: '/prestations' },
 	{ title: 'Galerie', url: '/galerie' },
