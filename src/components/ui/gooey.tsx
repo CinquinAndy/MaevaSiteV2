@@ -193,14 +193,14 @@ export const Gooey: React.FC<GooeyNavProps> = ({
 			<nav className="flex relative" style={{ transform: 'translate3d(0,0,0.01px)' }}>
 				<ul
 					ref={navRef}
-					className={cn('flex gap-x-2 sm:gap-x-4 list-none p-0 px-2 sm:px-4 m-0 relative z-[3]')}
+					className={cn('flex gap-x-1 sm:gap-x-2 lg:gap-x-4 list-none p-0 px-2 sm:px-3 lg:px-4 m-0 relative z-[3]')}
 					aria-label="Main navigation"
 				>
 					{items.map((item, index) => (
 						<li
 							key={index}
 							className={cn(
-								`py-2 my-2 px-3 sm:py-3 sm:px-5 rounded-full relative cursor-pointer`,
+								`py-1.5 my-1 px-2.5 sm:py-2 sm:my-2 sm:px-3 lg:py-3 lg:px-5 rounded-full relative cursor-pointer`,
 								activeIndex === index ? 'active' : ''
 							)}
 							onClick={e => handleClick(e, index)}
@@ -212,9 +212,19 @@ export const Gooey: React.FC<GooeyNavProps> = ({
 							}}
 							aria-current={activeIndex === index ? 'page' : undefined}
 						>
-							<Link href={item.href} className="outline-none no-underline flex items-center gap-2" tabIndex={-1}>
+							<Link
+								href={item.href}
+								className="outline-none no-underline flex items-center gap-1 sm:gap-2 text-xs sm:text-sm lg:text-base"
+								tabIndex={-1}
+							>
 								{item.isLogo ? (
-									<Image src="/icons/logo.png" alt="Logo" width={28} height={28} className="h-8 w-8" />
+									<Image
+										src="/icons/logo.png"
+										alt="Logo"
+										width={150}
+										height={150}
+										className="h-5 w-5 sm:h-6 sm:w-6 lg:h-8 lg:w-8 scale-125"
+									/>
 								) : (
 									item.label
 								)}

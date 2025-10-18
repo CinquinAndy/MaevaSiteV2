@@ -54,9 +54,9 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 					strategy="afterInteractive"
 				/>
 				<nav className="sticky top-10 z-0">
-					<div className="container mx-auto px-4 sm:px-6 lg:px-8">
-						{/* Desktop Navbar - Centré */}
-						<div className="hidden lg:flex items-center justify-center h-16">
+					<div className="container mx-auto px-2 sm:px-4 lg:px-8">
+						{/* Mobile + Desktop Navbar - Centré */}
+						<div className="flex items-center justify-center h-12 sm:h-14 lg:h-16">
 							<Gooey
 								items={[
 									{ label: 'Logo', href: '/', isLogo: true },
