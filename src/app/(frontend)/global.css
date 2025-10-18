@@ -41,8 +41,8 @@
 	--color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
 	--color-sidebar-border: var(--sidebar-border);
 	--color-sidebar-ring: var(--sidebar-ring);
-	--font-sans: var(--font-baskerville), Georgia, serif;
-	--font-serif: var(--font-garamond), "Times New Roman", serif;
+	--font-sans: urw-form, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+	--font-serif: var(--font-satisfy), satisfy, cursive;
 	--font-mono: "Source Code Pro", monospace;
 	--radius: 0.5rem;
 	--tracking-tighter: calc(var(--tracking-normal) - 0.05em);
@@ -129,36 +129,6 @@
 	--tracking-normal: 0em;
 }
 
-@layer utilities {
-	.delay-100 {
-		animation-delay: 100ms;
-	}
-	.delay-200 {
-		animation-delay: 200ms;
-	}
-	.delay-300 {
-		animation-delay: 300ms;
-	}
-	.delay-500 {
-		animation-delay: 500ms;
-	}
-	.delay-700 {
-		animation-delay: 700ms;
-	}
-
-	.fade-top-lg {
-		mask-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 1) 8rem);
-	}
-
-	.animate-fade-in-up {
-		animation: fade-in-up 0.5s ease-out forwards;
-	}
-
-	.animate-scale-in {
-		animation: scale-in 0.5s ease-out forwards;
-	}
-}
-
 @layer base {
 	* {
 		@apply border-border outline-ring/50;
@@ -168,7 +138,7 @@
 		letter-spacing: var(--tracking-normal);
 	}
 
-	/* Application des fonts: Garamond pour les titres, Baskerville pour le texte */
+	/* Application des fonts: Satisfy pour les titres, urw-form pour le texte (matching old WordPress site) */
 	h1,
 	h2,
 	h3,
@@ -176,16 +146,8 @@
 	h5,
 	h6 {
 		@apply font-serif;
-		font-weight: 400;
+		font-weight: 400 !important;
 		letter-spacing: 0.01em;
-	}
-
-	h1 {
-		font-weight: 700;
-	}
-
-	h2 {
-		font-weight: 600;
 	}
 
 	p,
@@ -198,143 +160,6 @@
 	select,
 	label {
 		@apply font-sans;
-	}
-
-	@keyframes fade-in-up {
-		0% {
-			opacity: 0;
-			transform: translateY(10px);
-		}
-		100% {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
-
-	@keyframes scale-in {
-		0% {
-			opacity: 0;
-			transform: scale(0.95);
-		}
-		100% {
-			opacity: 1;
-			transform: scale(1);
-		}
-	}
-	.leaflet-container {
-		@apply !bg-card !font-[inherit];
-	}
-	.leaflet-container a {
-		@apply !text-inherit;
-	}
-	.leaflet-div-icon {
-		@apply !bg-transparent !border-none;
-	}
-	.leaflet-popup-content-wrapper,
-	.leaflet-popup-content,
-	.leaflet-popup-content p {
-		@apply ![all:unset];
-	}
-	.leaflet-popup {
-		@apply !animate-none;
-	}
-	.leaflet-popup-close-button {
-		@apply ring-offset-background focus:ring-ring bg-secondary rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:outline-hidden;
-	}
-	.leaflet-tooltip,
-	.leaflet-draw-tooltip {
-		@apply !bg-foreground !text-background !animate-none !rounded-md !border-none !p-0 !px-3 !py-1.5 !shadow-none;
-	}
-	.leaflet-draw-tooltip:before {
-		@apply bg-foreground !top-1/2 !right-0.5 size-2.5 translate-x-1/2 -translate-y-1/2 rotate-45 rounded-[2px] !border-none;
-	}
-	.leaflet-error-draw-tooltip {
-		@apply !bg-destructive !text-white;
-	}
-	.leaflet-error-draw-tooltip:before {
-		@apply bg-destructive;
-	}
-	.leaflet-draw-tooltip-subtext {
-		@apply !text-background;
-	}
-	.leaflet-popup-tip-container,
-	.leaflet-tooltip-top:before,
-	.leaflet-tooltip-bottom:before,
-	.leaflet-tooltip-left:before,
-	.leaflet-tooltip-right:before {
-		@apply hidden;
-	}
-	.leaflet-control-attribution {
-		@apply !bg-muted rounded-md !px-[4px] !py-[2px] text-[10px] !leading-none !text-inherit;
-	}
-	.leaflet-draw-guide-dash {
-		@apply rounded-full;
-	}
-	.leaflet-edit-marker-selected {
-		@apply !border-transparent !bg-transparent;
-	}
-
-	/* Map Glow Effects */
-	.map-circle-glow path {
-		filter: drop-shadow(0 0 12px hsl(var(--primary) / 0.6)) drop-shadow(0 0 24px hsl(var(--primary) / 0.4))
-			drop-shadow(0 0 36px hsl(var(--primary) / 0.2));
-		animation: pulse-glow 3s ease-in-out infinite;
-	}
-
-	.map-marker-glow path {
-		filter: drop-shadow(0 0 8px hsl(var(--primary) / 0.8)) drop-shadow(0 0 16px hsl(var(--primary) / 0.5))
-			drop-shadow(0 0 24px hsl(var(--primary) / 0.3));
-		animation: pulse-glow 2.5s ease-in-out infinite;
-	}
-
-	.map-polygon-glow path {
-		filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4)) drop-shadow(0 0 12px rgba(255, 255, 255, 0.3))
-			drop-shadow(0 0 16px rgba(255, 255, 255, 0.2));
-		animation: pulse-glow-polygon 5s ease-in-out infinite;
-	}
-
-	/* Style des tooltips des communes */
-	.commune-tooltip {
-		@apply !bg-white/90 !text-gray-700 !font-medium !text-xs !px-2 !py-0.5 !rounded !shadow-sm;
-		@apply !border !border-gray-200;
-		backdrop-filter: blur(4px);
-	}
-
-	@keyframes pulse-glow {
-		0%,
-		100% {
-			filter: drop-shadow(0 0 8px hsl(var(--primary) / 0.8)) drop-shadow(0 0 16px hsl(var(--primary) / 0.5))
-				drop-shadow(0 0 24px hsl(var(--primary) / 0.3));
-		}
-		50% {
-			filter: drop-shadow(0 0 12px hsl(var(--primary) / 1)) drop-shadow(0 0 24px hsl(var(--primary) / 0.7))
-				drop-shadow(0 0 36px hsl(var(--primary) / 0.4));
-		}
-	}
-
-	@keyframes pulse-glow-polygon {
-		0%,
-		100% {
-			filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4)) drop-shadow(0 0 12px rgba(255, 255, 255, 0.3))
-				drop-shadow(0 0 16px rgba(255, 255, 255, 0.2));
-		}
-		50% {
-			filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5)) drop-shadow(0 0 15px rgba(255, 255, 255, 0.4))
-				drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
-		}
-	}
-
-	/* Style minimaliste pour la carte */
-	.map-minimal-style {
-		filter: grayscale(0.3) contrast(1.1);
-	}
-
-	/* Responsive blob mask - use vertical blob on mobile, horizontal on desktop */
-	@media (min-width: 768px) {
-		.blob-mask-responsive {
-			mask-image: var(--blob-mask-desktop) !important;
-			-webkit-mask-image: var(--blob-mask-desktop) !important;
-		}
 	}
 }
 

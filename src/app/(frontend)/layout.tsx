@@ -1,60 +1,14 @@
 import type { Metadata } from 'next'
-import localFont from 'next/font/local'
+import { Satisfy } from 'next/font/google'
 import type React from 'react'
 import '@/app/(frontend)/global.css'
 import Script from 'next/script'
 
-// Apple Garamond pour les titres
-const appleGaramond = localFont({
-	src: [
-		{
-			path: '../../../public/font/AppleGaramond-Light.ttf',
-			weight: '300',
-			style: 'normal',
-		},
-		{
-			path: '../../../public/font/AppleGaramond-LightItalic.ttf',
-			weight: '300',
-			style: 'italic',
-		},
-		{
-			path: '../../../public/font/AppleGaramond.ttf',
-			weight: '400',
-			style: 'normal',
-		},
-		{
-			path: '../../../public/font/AppleGaramond-Italic.ttf',
-			weight: '400',
-			style: 'italic',
-		},
-		{
-			path: '../../../public/font/AppleGaramond-Bold.ttf',
-			weight: '700',
-			style: 'normal',
-		},
-		{
-			path: '../../../public/font/AppleGaramond-BoldItalic.ttf',
-			weight: '700',
-			style: 'italic',
-		},
-	],
-	variable: '--font-garamond',
-	display: 'swap',
-})
-
-// Baskerville pour les textes
-const baskerville = localFont({
-	src: [
-		{
-			path: '../../../public/font/Baskervville-VariableFont_wght.ttf',
-			style: 'normal',
-		},
-		{
-			path: '../../../public/font/Baskervville-Italic-VariableFont_wght.ttf',
-			style: 'italic',
-		},
-	],
-	variable: '--font-baskerville',
+// Satisfy font for titles (from Google Fonts - matches old site)
+const satisfy = Satisfy({
+	weight: '400',
+	subsets: ['latin'],
+	variable: '--font-satisfy',
 	display: 'swap',
 })
 
@@ -70,8 +24,11 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 	const { children } = props
 
 	return (
-		<html lang="fr" className={`${appleGaramond.variable} ${baskerville.variable}`}>
+		<html lang="fr" className={satisfy.variable}>
 			<head>
+				{/* Adobe Fonts (Typekit) - urw-form font */}
+				<link rel="preconnect" href="https://use.typekit.net" />
+				<link rel="stylesheet" href="https://use.typekit.net/ayg0khv.css" />
 				{/* Preconnect for third-party domains */}
 				<link rel="preconnect" href="https://umami.wadefade.fr" />
 				{/* DNS Prefetch for better performance */}
