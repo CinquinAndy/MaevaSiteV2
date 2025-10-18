@@ -3,6 +3,7 @@ import { Satisfy } from 'next/font/google'
 import type React from 'react'
 import '@/app/(frontend)/global.css'
 import Script from 'next/script'
+import { Navbar } from '@/components/global/navbar'
 
 // Satisfy font for titles (from Google Fonts - matches old site)
 const satisfy = Satisfy({
@@ -40,6 +41,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 					data-website-id="e8f25e84-b2f1-43c6-b574-5d9d3a65c75b"
 					strategy="afterInteractive"
 				/>
+				<Navbar />
 				<main>{children}</main>
 			</body>
 		</html>
