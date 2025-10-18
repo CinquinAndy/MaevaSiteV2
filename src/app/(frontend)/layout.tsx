@@ -3,7 +3,7 @@ import { Satisfy } from 'next/font/google'
 import type React from 'react'
 import '@/app/(frontend)/global.css'
 import Script from 'next/script'
-import { Navbar } from '@/components/global/navbar'
+import { Gooey } from '@/components/ui/gooey'
 
 // Satisfy font for titles (from Google Fonts - matches old site)
 const satisfy = Satisfy({
@@ -20,6 +20,19 @@ export const metadata: Metadata = {
 	},
 	manifest: '/manifest.json',
 }
+
+interface MenuItem {
+	title: string
+	url: string
+}
+
+const navigationMenu: MenuItem[] = [
+	{ title: 'Accueil', url: '/' },
+	{ title: 'Blog', url: '/blog' },
+	{ title: 'Prestations', url: '/prestations' },
+	{ title: 'Galerie', url: '/galerie' },
+	{ title: 'Contact', url: '/contact' },
+]
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
 	const { children } = props
@@ -41,8 +54,26 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 					data-website-id="e8f25e84-b2f1-43c6-b574-5d9d3a65c75b"
 					strategy="afterInteractive"
 				/>
-				<Navbar />
-				<main>{children}</main>
+				<nav className="sticky top-10 z-0">
+					<div className="container mx-auto px-4 sm:px-6 lg:px-8">
+						{/* Desktop Navbar - Centré */}
+						<div className="hidden lg:flex items-center justify-center h-16">
+							<Gooey
+								items={navigationMenu.map(item => ({
+									label: item.title,
+									href: item.url,
+								}))}
+								particleCount={15}
+								particleDistances={[90, 10]}
+								particleR={100}
+								initialActiveIndex={1}
+								animationTime={600}
+								timeVariance={300}
+							/>
+						</div>
+					</div>
+				</nav>
+				<main className="z-10 bg-background h-screen">{children}</main>
 			</body>
 		</html>
 	)
