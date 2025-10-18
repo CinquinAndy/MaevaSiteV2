@@ -59,14 +59,17 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 						{/* Desktop Navbar - Centré */}
 						<div className="hidden lg:flex items-center justify-center h-16">
 							<Gooey
-								items={navigationMenu.map(item => ({
-									label: item.title,
-									href: item.url,
-								}))}
+								items={[
+									{ label: 'Logo', href: '/', isLogo: true },
+									...navigationMenu.map(item => ({
+										label: item.title,
+										href: item.url,
+									})),
+								]}
 								particleCount={15}
 								particleDistances={[90, 10]}
 								particleR={100}
-								initialActiveIndex={1}
+								initialActiveIndex={0}
 								animationTime={600}
 								timeVariance={300}
 							/>

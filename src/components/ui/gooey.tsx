@@ -2,11 +2,15 @@
 
 import type React from 'react'
 import { useEffect, useRef, useState } from 'react'
+import { usePathname } from 'next/navigation'
+import Link from 'next/link'
+import Image from 'next/image'
 import { cn } from '@/lib/utils'
 
 interface GooeyNavItem {
 	label: string
 	href: string
+	isLogo?: boolean
 }
 
 export interface GooeyNavProps {
@@ -33,6 +37,15 @@ export const Gooey: React.FC<GooeyNavProps> = ({
 	const filterRef = useRef<HTMLSpanElement>(null)
 	const textRef = useRef<HTMLSpanElement>(null)
 	const [activeIndex, setActiveIndex] = useState<number>(initialActiveIndex)
+	const pathname = usePathname()
+
+	// Mettre à jour l'index actif basé sur le pathname
+	useEffect(() => {
+		const index = items.findIndex(item => item.href === pathname)
+		if (index >= 0 && index !== activeIndex) {
+			setActiveIndex(index)
+		}
+	}, [pathname, items, activeIndex])
 
 	const noise = (n = 1) => n / 2 - Math.random() * n
 
@@ -111,7 +124,14 @@ export const Gooey: React.FC<GooeyNavProps> = ({
 		}
 		Object.assign(filterRef.current.style, styles)
 		Object.assign(textRef.current.style, styles)
-		textRef.current.innerText = element.innerText
+
+		// Clone le contenu (texte ou image du Link)
+		textRef.current.innerHTML = ''
+		const linkElement = element.querySelector('a')
+		if (linkElement) {
+			const clone = linkElement.cloneNode(true) as HTMLElement
+			textRef.current.appendChild(clone)
+		}
 	}
 
 	const handleClick = (e: React.MouseEvent<HTMLLIElement> | React.KeyboardEvent<HTMLLIElement>, index: number) => {
@@ -131,15 +151,6 @@ export const Gooey: React.FC<GooeyNavProps> = ({
 		}
 	}
 
-	const handleLinkKeyDown = (e: React.KeyboardEvent<HTMLAnchorElement>, index: number) => {
-		if (e.key === 'Enter' || e.key === ' ') {
-			e.preventDefault()
-			const liEl = e.currentTarget.parentElement as HTMLLIElement
-			if (liEl) {
-				handleClick({ currentTarget: liEl } as unknown as React.KeyboardEvent<HTMLLIElement>, index)
-			}
-		}
-	}
 
 	useEffect(() => {
 		if (!navRef.current || !containerRef.current || !textRef.current || !filterRef.current) return
@@ -335,16 +346,18 @@ export const Gooey: React.FC<GooeyNavProps> = ({
 								}}
 								aria-current={activeIndex === index ? 'page' : undefined}
 							>
-								<a
+								<Link
 									href={item.href}
-									onClick={e => e.preventDefault()}
-									onKeyDown={e => handleLinkKeyDown(e, index)}
-									className="outline-none no-underline"
+									className="outline-none no-underline flex items-center gap-2"
 									style={{ color: 'inherit' }}
 									tabIndex={-1}
 								>
-									{item.label}
-								</a>
+									{item.isLogo ? (
+										<Image src="/icons/logo.png" alt="Logo" width={28} height={28} className="h-7 w-7" />
+									) : (
+										item.label
+									)}
+								</Link>
 							</li>
 						))}
 					</ul>
