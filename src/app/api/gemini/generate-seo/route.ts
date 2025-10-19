@@ -107,9 +107,8 @@ export async function POST(req: NextRequest) {
 				})
 			}
 		} else if (updateTarget.collection && updateTarget.id) {
-			const collectionSlug = updateTarget.collection as 'services' | 'realisations' | 'faq' | 'media' | 'users'
 			await payload.update({
-				collection: collectionSlug,
+				collection: updateTarget.collection as any,
 				id: updateTarget.id,
 				data: {
 					seo_title: seoContent.title,
