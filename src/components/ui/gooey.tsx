@@ -191,7 +191,7 @@ export const Gooey: React.FC<GooeyNavProps> = ({
 	}, [activeIndex, items])
 
 	return (
-		<div className="gooey-nav-container relative" ref={containerRef}>
+		<div className="gooey-nav-container relative z-50" ref={containerRef}>
 			<nav className="flex relative" style={{ transform: 'translate3d(0,0,0.01px)' }}>
 				<ul
 					ref={navRef}

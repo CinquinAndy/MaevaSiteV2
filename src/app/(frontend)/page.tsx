@@ -2,7 +2,7 @@ import HeroAltSection from '@/components/home/heroAlt'
 
 export default async function HomePage() {
 	return (
-		<div className="w-full min-h-screen">
+		<div className="w-full h-full relative">
 			<HeroAltSection />
 			<div className="h-screen w-full z-30 relative bg-card">
 				<h1>Hello</h1>

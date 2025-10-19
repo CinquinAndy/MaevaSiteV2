@@ -43,10 +43,9 @@
 	--color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
 	--color-sidebar-border: var(--sidebar-border);
 	--color-sidebar-ring: var(--sidebar-ring);
-	--font-sans: urw-form, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-	--font-serif: var(--font-satisfy), satisfy, cursive;
+	--font-corinthia: var(--font-corinthia), corinthia, cursive;
 	--font-libre-caslon-display: var(--font-libre-caslon-display), libre-caslon-display, serif;
-	--font-mono: "Source Code Pro", monospace;
+	--font-kalam: var(--font-kalam), kalam, cursive;
 	--radius: 0.5rem;
 	--tracking-tighter: calc(var(--tracking-normal) - 0.05em);
 	--tracking-tight: calc(var(--tracking-normal) - 0.025em);
@@ -73,6 +72,7 @@
 	--shadow-opacity: var(--shadow-opacity);
 	--color-shadow-color: var(--shadow-color);
 	--color-destructive-foreground: var(--destructive-foreground);
+	--breakpoint-3xl: 120rem;
 }
 
 :root {
@@ -279,19 +279,29 @@
 		@apply border-border outline-ring/50;
 	}
 	body {
-		@apply bg-background text-foreground font-sans;
+		@apply bg-background text-foreground font-kalam;
 		letter-spacing: var(--tracking-normal);
 	}
 
 	/* Application des fonts: Satisfy pour les titres, urw-form pour le texte (matching old WordPress site) */
 	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6,
 	h1 span {
 		@apply font-libre-caslon-display;
+		font-weight: 400 !important;
+		letter-spacing: 0.01em;
+	}
+
+	h2,
+	h2 *,
+	h3,
+	h3 *,
+	h4,
+	h4 *,
+	h5,
+	h5 *,
+	h6,
+	h6 * {
+		@apply font-corinthia;
 		font-weight: 400 !important;
 		letter-spacing: 0.01em;
 	}
@@ -305,7 +315,7 @@
 	textarea,
 	select,
 	label {
-		@apply font-sans;
+		@apply font-kalam;
 	}
 }
 
@@ -331,29 +341,30 @@ html {
 	width: 100vw;
 }
 
-html {
+html,
+body {
 	overflow-x: hidden;
 	scroll-behavior: smooth;
 }
 
+/* Cacher la scrollbar tout en gardant le scroll fonctionnel */
 body::-webkit-scrollbar {
-	width: var(--sb-size);
+	width: 0;
+	height: 0;
+	display: none;
 }
 
-body::-webkit-scrollbar-track {
-	background: var(--sb-track-color);
-	border-radius: 20px;
+html::-webkit-scrollbar {
+	width: 0;
+	height: 0;
+	display: none;
 }
 
-body::-webkit-scrollbar-thumb {
-	background: var(--sb-thumb-color);
-	border-radius: 20px;
-}
-
-@supports not selector(::-webkit-scrollbar) {
-	body {
-		scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
-	}
+/* Pour Firefox */
+html,
+body {
+	scrollbar-width: none;
+	-ms-overflow-style: none;
 }
 
 @keyframes accordion-down {

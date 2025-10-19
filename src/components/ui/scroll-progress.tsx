@@ -39,25 +39,13 @@ export function ScrollProgress({
 		...(springOptions ?? DEFAULT_SPRING_OPTIONS),
 	})
 
-	// 🔍 DEBUG LOGS
-	useEffect(() => {
-		console.log('📊 ScrollProgress Debug:')
-		console.log('  - Orientation:', orientation)
-		console.log('  - Has containerRef:', !!containerRef)
-
-		const unsubscribe = scrollYProgress.on('change', latest => {
-			console.log('  - scrollYProgress:', latest)
-		})
-
-		const unsubscribeScale = scale.on('change', latest => {
-			console.log('  - scale value:', latest)
-		})
-
-		return () => {
-			unsubscribe()
-			unsubscribeScale()
-		}
-	}, [scrollYProgress, scale, orientation, containerRef])
+	// DEBUG: Décommentez pour voir les valeurs dans la console
+	// useEffect(() => {
+	// 	const unsubscribe = scrollYProgress.on('change', latest => {
+	// 		console.log('scrollYProgress:', latest)
+	// 	})
+	// 	return () => unsubscribe()
+	// }, [scrollYProgress])
 
 	// Configuration basée sur l'orientation
 	const isVertical = orientation === 'vertical'
