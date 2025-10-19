@@ -531,3 +531,12 @@ html.dark .gooey-nav-container {
 .text-stroke-display {
 	-webkit-text-stroke: 2px var(--color-foreground);
 }
+
+.custom-bg,
+.custom-bg * {
+	pointer-events: none !important;
+	user-select: none !important;
+	-webkit-user-select: none !important;
+	-moz-user-select: none !important;
+	-ms-user-select: none !important;
+}

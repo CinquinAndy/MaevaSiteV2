@@ -6,6 +6,7 @@ import { Libre_Caslon_Display } from 'next/font/google'
 import Script from 'next/script'
 import GlitterFinal from '@/components/ui/glitter-final'
 import { Gooey } from '@/components/ui/gooey'
+import { ScrollProgress } from '@/components/ui/scroll-progress'
 
 // Satisfy font for titles (from Google Fonts - matches old site)
 const satisfy = Satisfy({
@@ -58,13 +59,29 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 				<link rel="dns-prefetch" href="https://umami.wadefade.fr" />
 			</head>
 			<body className={`relative bg-background`}>
-				<GlitterFinal speed={1} />
 				{/* <PatternBackground /> */}
 				<Script
 					src="https://umami.wadefade.fr/script.js"
 					data-website-id="e8f25e84-b2f1-43c6-b574-5d9d3a65c75b"
 					strategy="afterInteractive"
 				/>
+
+				{/* Vertical Scroll Progress Indicator - Positioned Right Center */}
+				<div className="fixed right-8 top-1/2 -translate-y-1/2 z-[100] h-[40vh] w-1 pointer-events-none">
+					{/* Background track */}
+					<div className="absolute inset-0 bg-neutral-200/30 dark:bg-neutral-800/30 rounded-full" />
+					{/* Progress indicator */}
+					<ScrollProgress
+						orientation="vertical"
+						className="absolute top-0 left-0 w-full rounded-full bg-gradient-to-b from-pink-400/80 via-rose-500/80 to-pink-600/80 backdrop-blur-sm shadow-lg shadow-pink-500/20"
+						springOptions={{
+							stiffness: 280,
+							damping: 18,
+							mass: 0.3,
+						}}
+					/>
+				</div>
+
 				<nav className="fixed top-10 w-full h-full z-50">
 					<div className="container mx-auto px-2 sm:px-4 lg:px-8">
 						{/* Mobile + Desktop Navbar - Centré */}
@@ -88,6 +105,9 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 					</div>
 				</nav>
 				<main className="z-10 bg-background h-screen">{children}</main>
+				<div>
+					<GlitterFinal speed={0.75} />
+				</div>
 			</body>
 		</html>
 	)

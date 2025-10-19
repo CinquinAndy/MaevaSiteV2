@@ -119,7 +119,7 @@ interface GlitterFinalProps {
 export default function GlitterFinal({ speed = 1, intensity = 5.0, className = '' }: GlitterFinalProps) {
 	return (
 		<div
-			className={`fixed z-[100] scale-125 pointer-events-none select-none inset-0 w-full h-full opacity-25 ${className}`}
+			className={`fixed z-[20] scale-125 custom-bg inset-0 w-full h-full opacity-50 mix-blend-lighten ${className}`}
 			style={{ width: '100vw', height: '100vh' }}
 		>
 			<Canvas
@@ -127,7 +127,7 @@ export default function GlitterFinal({ speed = 1, intensity = 5.0, className = '
 				style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
 				gl={{ powerPreference: 'high-performance' }}
 			>
-				<color attach="background" args={['#000000']} />
+				<color attach="background" args={['#111111']} />
 				<SparklesPlane speed={speed} intensity={intensity} />
 			</Canvas>
 		</div>

@@ -216,7 +216,7 @@ export const Gooey: React.FC<GooeyNavProps> = ({
 						>
 							<Link
 								href={item.href}
-								className="outline-none no-underline flex items-center gap-1 sm:gap-2 text-xs sm:text-sm lg:text-base"
+								className="outline-none no-underline flex items-center cursor-pointer gap-1 sm:gap-2 text-xs sm:text-sm lg:text-base"
 								tabIndex={-1}
 							>
 								{item.isLogo ? (
