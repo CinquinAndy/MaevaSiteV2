@@ -1,22 +1,6 @@
 # Robots.txt for cinquin-maeva.com
+# Block all bots and indexing
 
-# Allow all search engines
 User-agent: *
-
-# Block admin panel (Payload CMS)
-Disallow: /admin
-Disallow: /admin/
-
-# Block API routes (except media files)
-Disallow: /api/
-Allow: /api/media/file/
-
-# Block internal Next.js routes
-Disallow: /api/graphql
-Disallow: /api/graphql-playground
-
-# Allow all public pages
-Allow: /
-
-# Sitemap location
-Sitemap: https://cinquin-maeva.com/sitemap.xml
+Disallow: /
+Noindex: /
