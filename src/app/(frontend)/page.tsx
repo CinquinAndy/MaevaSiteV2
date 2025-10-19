@@ -1,3 +1,9 @@
+import HeroAltSection from '@/components/home/heroAlt'
+
 export default async function HomePage() {
-	return <div className="">Homepage Maeva Cinquin</div>
+	return (
+		<div className="h-screen w-screen relative">
+			<HeroAltSection />
+		</div>
+	)
 }
