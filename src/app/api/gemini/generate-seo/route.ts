@@ -94,19 +94,12 @@ export async function POST(req: NextRequest) {
 
 		// Update the document/global with generated SEO
 		if (updateTarget.global) {
-			const globalSlug = updateTarget.global as
-				| 'homepage'
-				| 'site-settings'
-				| 'prestations-page'
-				| 'realisations-page'
-				| 'faq-page'
-				| 'contact-page'
-				| 'mentions-legales-page'
+			const globalSlug = updateTarget.global
 
 			// Only update globals that have SEO fields (not site-settings)
 			if (globalSlug !== 'site-settings') {
 				await payload.updateGlobal({
-					slug: globalSlug,
+					slug: globalSlug as any,
 					data: {
 						seo_title: seoContent.title,
 						seo_description: seoContent.description,
