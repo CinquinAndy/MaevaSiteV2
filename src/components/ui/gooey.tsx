@@ -72,7 +72,9 @@ export const Gooey: React.FC<GooeyNavProps> = ({
 		element.style.setProperty('--time', `${bubbleTime}ms`)
 
 		const existingParticles = element.querySelectorAll('.particle')
-		existingParticles.forEach(p => p.remove())
+		existingParticles.forEach(p => {
+			p.remove()
+		})
 
 		element.classList.remove('active')
 

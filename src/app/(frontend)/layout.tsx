@@ -4,6 +4,7 @@ import type React from 'react'
 import '@/app/(frontend)/global.css'
 import { Libre_Caslon_Display } from 'next/font/google'
 import Script from 'next/script'
+import GlitterFinal from '@/components/ui/glitter-final'
 import { Gooey } from '@/components/ui/gooey'
 
 // Satisfy font for titles (from Google Fonts - matches old site)
@@ -57,6 +58,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 				<link rel="dns-prefetch" href="https://umami.wadefade.fr" />
 			</head>
 			<body className={`relative bg-background`}>
+				<GlitterFinal speed={1} />
 				{/* <PatternBackground /> */}
 				<Script
 					src="https://umami.wadefade.fr/script.js"

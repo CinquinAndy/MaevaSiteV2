@@ -118,9 +118,12 @@ interface GlitterFinalProps {
 
 export default function GlitterFinal({ speed = 1, intensity = 5.0, className = '' }: GlitterFinalProps) {
 	return (
-		<div className={`fixed inset-0 w-full h-full bg-black ${className}`} style={{ width: '100vw', height: '100vh' }}>
+		<div
+			className={`fixed z-[100] scale-125 pointer-events-none select-none inset-0 w-full h-full opacity-25 ${className}`}
+			style={{ width: '100vw', height: '100vh' }}
+		>
 			<Canvas
-				camera={{ position: [0, 0, 8], fov: 95 }}
+				camera={{ position: [0, 0, 8], fov: 35 }}
 				style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
 				gl={{ powerPreference: 'high-performance' }}
 			>

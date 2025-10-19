@@ -1,14 +1,8 @@
 import Image from 'next/image'
-import GlitterBackground from '@/components/ui/glitter-background'
 
 export default function HeroAltSection() {
 	return (
 		<div className="w-full h-full grid grid-cols-2 relative -translate-y-20">
-			{/* Glitter/Sparkles overlay - positioned above everything */}
-			<div className="absolute inset-0 z-50 pointer-events-none">
-				<GlitterBackground speed={1.5} blur={0} opacity={0.8} />
-			</div>
-
 			<div className="ml-10 absolute top-10 left-0 text-left z-20 opacity-100 h-full flex items-center">
 				<h1 className="text-[285px]/55 uppercase text-white">Makeup Artist</h1>
 			</div>
