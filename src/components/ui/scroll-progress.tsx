@@ -2,7 +2,7 @@
 
 import { motion, type SpringOptions, useScroll, useSpring } from 'motion/react'
 import { cn } from '@/lib/utils'
-import type { RefObject } from 'react'
+import { useEffect, type RefObject } from 'react'
 
 interface ScrollProgressProps {
 	className?: string
@@ -23,10 +23,17 @@ export function ScrollProgress({
 	containerRef,
 	orientation = 'horizontal',
 }: ScrollProgressProps) {
-	const { scrollYProgress } = useScroll({
-		container: containerRef,
-		layoutEffect: containerRef?.current !== null,
-	})
+	// Si pas de containerRef, on track le scroll de la fenêtre
+	const { scrollYProgress } = useScroll(
+		containerRef
+			? {
+					container: containerRef,
+					layoutEffect: false,
+				}
+			: {
+					layoutEffect: false,
+				},
+	)
 
 	const scale = useSpring(scrollYProgress, {
 		...(springOptions ?? DEFAULT_SPRING_OPTIONS),

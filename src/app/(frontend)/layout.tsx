@@ -82,7 +82,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 					/>
 				</div>
 
-				<nav className="fixed top-10 w-full h-full z-50">
+				<nav className="fixed top-10 w-full h-full z-[100]">
 					<div className="container mx-auto px-2 sm:px-4 lg:px-8">
 						{/* Mobile + Desktop Navbar - Centré */}
 						<div className="flex items-center justify-center h-12 sm:h-14 lg:h-16">
@@ -104,8 +104,8 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 						</div>
 					</div>
 				</nav>
-				<main className="z-10 bg-background h-screen">{children}</main>
-				<div>
+				<main>{children}</main>
+				<div className="">
 					<GlitterFinal speed={0.75} />
 				</div>
 			</body>

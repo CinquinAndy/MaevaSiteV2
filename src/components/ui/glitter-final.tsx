@@ -124,7 +124,7 @@ export default function GlitterFinal({ speed = 1, intensity = 5.0, className = '
 		>
 			<Canvas
 				camera={{ position: [0, 0, 8], fov: 35 }}
-				style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+				style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: 10 }}
 				gl={{ powerPreference: 'high-performance' }}
 			>
 				<color attach="background" args={['#111111']} />
