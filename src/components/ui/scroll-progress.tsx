@@ -32,22 +32,37 @@ export function ScrollProgress({
 				}
 			: {
 					layoutEffect: false,
-				},
+				}
 	)
 
 	const scale = useSpring(scrollYProgress, {
 		...(springOptions ?? DEFAULT_SPRING_OPTIONS),
 	})
 
+	// 🔍 DEBUG LOGS
+	useEffect(() => {
+		console.log('📊 ScrollProgress Debug:')
+		console.log('  - Orientation:', orientation)
+		console.log('  - Has containerRef:', !!containerRef)
+
+		const unsubscribe = scrollYProgress.on('change', latest => {
+			console.log('  - scrollYProgress:', latest)
+		})
+
+		const unsubscribeScale = scale.on('change', latest => {
+			console.log('  - scale value:', latest)
+		})
+
+		return () => {
+			unsubscribe()
+			unsubscribeScale()
+		}
+	}, [scrollYProgress, scale, orientation, containerRef])
+
 	// Configuration basée sur l'orientation
 	const isVertical = orientation === 'vertical'
 	const scaleProperty = isVertical ? { scaleY: scale } : { scaleX: scale }
 	const originClass = isVertical ? 'origin-top' : 'origin-left'
 
-	return (
-		<motion.div
-			className={cn(originClass, className)}
-			style={scaleProperty}
-		/>
-	)
+	return <motion.div className={cn(originClass, className)} style={scaleProperty} />
 }

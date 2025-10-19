@@ -67,13 +67,13 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 				/>
 
 				{/* Vertical Scroll Progress Indicator - Positioned Right Center */}
-				<div className="fixed right-8 top-1/2 -translate-y-1/2 z-[100] h-[40vh] w-1 pointer-events-none">
-					{/* Background track */}
-					<div className="absolute inset-0 bg-neutral-200/30 dark:bg-neutral-800/30 rounded-full" />
-					{/* Progress indicator */}
+				<div className="fixed right-8 top-1/2 -translate-y-1/2 z-[200] h-[40vh] w-2 pointer-events-none">
+					{/* Background track - TEST VISIBLE */}
+					<div className="absolute inset-0 bg-white/50 rounded-full border-2 border-red-500" />
+					{/* Progress indicator - TEST VISIBLE */}
 					<ScrollProgress
 						orientation="vertical"
-						className="absolute top-0 left-0 w-full rounded-full bg-gradient-to-b from-pink-400/80 via-rose-500/80 to-pink-600/80 backdrop-blur-sm shadow-lg shadow-pink-500/20"
+						className="absolute top-0 left-0 w-full h-full rounded-full bg-pink-500"
 						springOptions={{
 							stiffness: 280,
 							damping: 18,
