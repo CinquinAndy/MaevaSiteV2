@@ -1,3 +1,5 @@
+import GlitterFinal from '@/components/ui/glitter-final'
+
 export default function BlogPage() {
-	return <div>Blog</div>
+	return <GlitterFinal speed={1} />
 }
