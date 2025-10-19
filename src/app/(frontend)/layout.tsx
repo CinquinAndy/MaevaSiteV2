@@ -69,7 +69,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 				/>
 
 				{/* Vertical Scroll Progress Indicator - Positioned Right Center */}
-				<div className="fixed right-6 top-1/2 -translate-y-1/2 z-[200] h-[45vh] w-1 pointer-events-none">
+				<div className="fixed left-6 sm:left-auto sm:right-6 top-1/2 -translate-y-1/2 z-[200] h-[45vh] w-1 pointer-events-none">
 					{/* Background track */}
 					<div className="absolute inset-0 bg-border/40 rounded-full" />
 

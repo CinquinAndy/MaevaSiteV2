@@ -1,8 +1,8 @@
 'use client'
 
 import { motion, type SpringOptions, useScroll, useSpring } from 'motion/react'
+import type { RefObject } from 'react'
 import { cn } from '@/lib/utils'
-import { useEffect, type RefObject } from 'react'
 
 interface ScrollProgressProps {
 	className?: string
@@ -28,24 +28,13 @@ export function ScrollProgress({
 		containerRef
 			? {
 					container: containerRef,
-					layoutEffect: false,
 				}
-			: {
-					layoutEffect: false,
-				}
+			: undefined
 	)
 
 	const scale = useSpring(scrollYProgress, {
 		...(springOptions ?? DEFAULT_SPRING_OPTIONS),
 	})
-
-	// DEBUG: Décommentez pour voir les valeurs dans la console
-	// useEffect(() => {
-	// 	const unsubscribe = scrollYProgress.on('change', latest => {
-	// 		console.log('scrollYProgress:', latest)
-	// 	})
-	// 	return () => unsubscribe()
-	// }, [scrollYProgress])
 
 	// Configuration basée sur l'orientation
 	const isVertical = orientation === 'vertical'

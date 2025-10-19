@@ -72,7 +72,7 @@
 	--shadow-opacity: var(--shadow-opacity);
 	--color-shadow-color: var(--shadow-color);
 	--color-destructive-foreground: var(--destructive-foreground);
-	--breakpoint-3xl: 120rem;
+	--breakpoint-3xl: 140rem;
 }
 
 :root {
