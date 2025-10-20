@@ -14,8 +14,8 @@ export const metadata = {
 
 export default async function HomePage() {
 	return (
-		<div className="w-full h-full relative">
-			{/* Hero Section - Ne pas toucher */}
+		<div className="w-full h-full">
+			{/* Hero Section */}
 			<HeroAltSection />
 
 			{/* Section About */}

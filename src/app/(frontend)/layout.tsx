@@ -118,7 +118,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 						/>
 					</div>
 				</nav>
-				<main className="w-full h-full">{children}</main>
+				<main className="w-full h-full relative">{children}</main>
 				<div className="">
 					<GlitterFinal speed={0.75} />
 				</div>

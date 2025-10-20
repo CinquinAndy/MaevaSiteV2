@@ -15,7 +15,7 @@ export default function HeroAltSection() {
 			<div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex justify-center items-center z-40">
 				<MoveDown />
 			</div>
-			<div className="w-full h-full col-span-1 lg:col-start-2 relative">
+			<div className="w-full h-full col-span-1 lg:col-start-2 relative z-5">
 				<Image
 					src="/image00001.jpeg"
 					alt="Hero Section"

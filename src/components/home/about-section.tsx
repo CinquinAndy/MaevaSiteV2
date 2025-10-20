@@ -5,7 +5,7 @@ import { Section } from '@/components/ui/section'
 
 export function AboutSection() {
 	return (
-		<Section variant="muted">
+		<Section variant="muted" className="relative">
 			<Container>
 				<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 					{/* Colonne gauche - Image */}
