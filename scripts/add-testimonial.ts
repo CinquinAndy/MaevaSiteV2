@@ -30,7 +30,8 @@ async function main() {
 	const content = await question('Testimonial content: ')
 	const ratingStr = await question('Rating (1-5): ')
 	const rating = Number.parseInt(ratingStr) || 5
-	const source = await question('Source (google/facebook/instagram/email/other) [google]: ')
+	const sourceInput = await question('Source (google/facebook/instagram/email/other) [google]: ')
+	const source = sourceInput.trim() || 'google'
 	const sourceUrl = await question('Source URL (optional, press Enter to skip): ')
 	const featuredStr = await question('Featured? (y/n) [n]: ')
 	const featured = featuredStr.toLowerCase() === 'y'
@@ -49,13 +50,17 @@ async function main() {
 	console.log('\n📤 Creating testimonial...')
 
 	try {
+		// Validate source type
+		const validSources = ['google', 'facebook', 'instagram', 'email', 'other'] as const
+		const sourceValue = validSources.includes(source as any) ? source : 'google'
+
 		const result = await payload.create({
 			collection: 'testimonials',
 			data: {
 				name: name.trim(),
 				content: content.trim(),
 				rating: Math.max(1, Math.min(5, rating)),
-				source: source.trim() || 'google',
+				source: sourceValue as 'google' | 'facebook' | 'instagram' | 'email' | 'other',
 				sourceUrl: sourceUrl.trim() || undefined,
 				featured,
 				order,

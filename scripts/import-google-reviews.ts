@@ -77,13 +77,19 @@ async function main() {
 		try {
 			console.log(`📤 Importing: ${review.name}`)
 			
+			// Validate source type
+			const validSources = ['google', 'facebook', 'instagram', 'email', 'other'] as const
+			const sourceValue = review.source && validSources.includes(review.source as any) 
+				? review.source 
+				: 'google'
+
 			await payload.create({
 				collection: 'testimonials',
 				data: {
 					name: review.name,
 					content: review.content,
 					rating: Math.max(1, Math.min(5, review.rating)),
-					source: review.source || 'google',
+					source: sourceValue as 'google' | 'facebook' | 'instagram' | 'email' | 'other',
 					sourceUrl: review.sourceUrl,
 					featured: review.featured || false,
 					order: review.order || 0,

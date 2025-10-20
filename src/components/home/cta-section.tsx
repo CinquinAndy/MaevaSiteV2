@@ -32,17 +32,17 @@ export function CtaSection() {
 
 					<div className="flex flex-col sm:flex-row items-center justify-center gap-3">
 						<Button asChild size="lg">
-							<Link href="/contact">
+							<Link href="/contact" className="flex items-center gap-2">
 								<Mail className="size-4" />
 								Demander un devis
 								<ArrowRight className="size-4" />
 							</Link>
 						</Button>
 						<Button asChild variant="outline" size="lg">
-							<a href="tel:+33616625137">
+							<Link href="tel:+33616625137" className="flex items-center gap-2">
 								<Phone className="size-4" />
 								06 16 62 51 37
-							</a>
+							</Link>
 						</Button>
 					</div>
 				</div>
