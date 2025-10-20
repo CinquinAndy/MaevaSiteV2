@@ -1,0 +1,198 @@
+{
+  "generatedAt": "2025-10-20T18:36:13.516Z",
+  "baseLocation": {
+    "name": "Thonon-les-Bains",
+    "lat": 46.3708,
+    "lon": 6.4792
+  },
+  "searchRadius": 50,
+  "totalCitiesFound": 43,
+  "topCities": [
+    {
+      "rank": 1,
+      "name": "Lausanne",
+      "country": "Suisse",
+      "population": 133521,
+      "distance": 20.5,
+      "coordinates": {
+        "lat": 46.5218269,
+        "lon": 6.6327025
+      },
+      "score": 7844.7
+    },
+    {
+      "rank": 2,
+      "name": "Genève",
+      "country": "France",
+      "population": 191557,
+      "distance": 31.7,
+      "coordinates": {
+        "lat": 46.2017559,
+        "lon": 6.1466014
+      },
+      "score": 6937.7
+    },
+    {
+      "rank": 3,
+      "name": "Thonon-les-Bains",
+      "country": "France",
+      "population": 37027,
+      "distance": 0.3,
+      "coordinates": {
+        "lat": 46.3731303,
+        "lon": 6.4779448
+      },
+      "score": 3680.3
+    },
+    {
+      "rank": 4,
+      "name": "Annemasse",
+      "country": "France",
+      "population": 37918,
+      "distance": 27.3,
+      "coordinates": {
+        "lat": 46.1934005,
+        "lon": 6.2341093
+      },
+      "score": 1709
+    },
+    {
+      "rank": 5,
+      "name": "Renens VD",
+      "country": "Suisse",
+      "population": 21408,
+      "distance": 20.2,
+      "coordinates": {
+        "lat": 46.5349093,
+        "lon": 6.5928442
+      },
+      "score": 1270.7
+    },
+    {
+      "rank": 6,
+      "name": "Nyon",
+      "country": "France",
+      "population": 19738,
+      "distance": 18.4,
+      "coordinates": {
+        "lat": 46.3820585,
+        "lon": 6.2402791
+      },
+      "score": 1243.1
+    },
+    {
+      "rank": 7,
+      "name": "Morges",
+      "country": "France",
+      "population": 15228,
+      "distance": 15.5,
+      "coordinates": {
+        "lat": 46.5093268,
+        "lon": 6.498317
+      },
+      "score": 1047.9
+    },
+    {
+      "rank": 8,
+      "name": "Pully",
+      "country": "Suisse",
+      "population": 17624,
+      "distance": 20.8,
+      "coordinates": {
+        "lat": 46.5098019,
+        "lon": 6.6617476
+      },
+      "score": 1024.8
+    },
+    {
+      "rank": 9,
+      "name": "Vernier",
+      "country": "France",
+      "population": 34477,
+      "distance": 35.2,
+      "coordinates": {
+        "lat": 46.2131843,
+        "lon": 6.0815756
+      },
+      "score": 1005.9
+    },
+    {
+      "rank": 10,
+      "name": "Montreux",
+      "country": "Suisse",
+      "population": 26208,
+      "distance": 33.9,
+      "coordinates": {
+        "lat": 46.4310831,
+        "lon": 6.9129921
+      },
+      "score": 833.2
+    },
+    {
+      "rank": 11,
+      "name": "Ecublens VD",
+      "country": "Suisse",
+      "population": 13214,
+      "distance": 18.4,
+      "coordinates": {
+        "lat": 46.5258,
+        "lon": 6.5621137
+      },
+      "score": 832.2
+    },
+    {
+      "rank": 12,
+      "name": "Vevey",
+      "country": "Suisse",
+      "population": 19220,
+      "distance": 29.5,
+      "coordinates": {
+        "lat": 46.4602978,
+        "lon": 6.8418655
+      },
+      "score": 781.2
+    },
+    {
+      "rank": 13,
+      "name": "Gland",
+      "country": "France",
+      "population": 11947,
+      "distance": 17.4,
+      "coordinates": {
+        "lat": 46.4239425,
+        "lon": 6.2655115
+      },
+      "score": 776.4
+    },
+    {
+      "rank": 14,
+      "name": "Évian-les-Bains",
+      "country": "Suisse",
+      "population": 9214,
+      "distance": 9.1,
+      "coordinates": {
+        "lat": 46.400979,
+        "lon": 6.5897931
+      },
+      "score": 752.7
+    },
+    {
+      "rank": 15,
+      "name": "Carouge",
+      "country": "France",
+      "population": 20910,
+      "distance": 33.3,
+      "coordinates": {
+        "lat": 46.1846691,
+        "lon": 6.1396839
+      },
+      "score": 690
+    }
+  ],
+  "statistics": {
+    "frenchCities": 8,
+    "swissCities": 7,
+    "averageDistance": 22.1,
+    "averagePopulation": 40614
+  }
+}

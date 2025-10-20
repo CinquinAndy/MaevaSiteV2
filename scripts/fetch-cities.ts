@@ -1,0 +1,278 @@
+/**
+ * Script pour récupérer les villes importantes autour de Thonon-les-Bains
+ * Utilise l'API Overpass (OpenStreetMap) pour récupérer les données
+ * Calcule un score basé sur la distance et la population
+ */
+
+interface City {
+	name: string
+	population: number
+	distance: number // en km
+	lat: number
+	lon: number
+	country: string
+	score: number
+}
+
+// Coordonnées de Thonon-les-Bains
+const THONON_LAT = 46.3708
+const THONON_LON = 6.4792
+
+// Rayon de recherche en km
+const SEARCH_RADIUS_KM = 50
+
+/**
+ * Calcule la distance entre deux points GPS (formule de Haversine)
+ */
+function calculateDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
+	const R = 6371 // Rayon de la Terre en km
+	const dLat = ((lat2 - lat1) * Math.PI) / 180
+	const dLon = ((lon2 - lon1) * Math.PI) / 180
+	const a =
+		Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+		Math.cos((lat1 * Math.PI) / 180) *
+			Math.cos((lat2 * Math.PI) / 180) *
+			Math.sin(dLon / 2) *
+			Math.sin(dLon / 2)
+	const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+	return R * c
+}
+
+/**
+ * Calcule le score d'une ville basé sur la distance et la population
+ * Score = (population / 1000) * (1 - (distance / maxDistance))
+ * Plus la ville est grande et proche, plus le score est élevé
+ */
+function calculateScore(population: number, distance: number, maxDistance: number): number {
+	const populationWeight = population / 1000 // Normaliser la population
+	const distanceWeight = 1 - distance / maxDistance // Plus proche = meilleur score
+	return populationWeight * distanceWeight * 100 // Multiplier par 100 pour avoir des scores plus lisibles
+}
+
+/**
+ * Récupère les villes via l'API Overpass (OpenStreetMap)
+ */
+async function fetchCitiesFromOverpass(): Promise<City[]> {
+	console.log("🔍 Recherche des villes autour de Thonon-les-Bains...")
+	console.log(`📍 Coordonnées: ${THONON_LAT}, ${THONON_LON}`)
+	console.log(`📏 Rayon: ${SEARCH_RADIUS_KM} km\n`)
+
+	// Requête Overpass QL pour récupérer les villes dans un rayon
+	const query = `
+		[out:json];
+		(
+			node["place"~"city|town"]["name"]["population"](around:${SEARCH_RADIUS_KM * 1000},${THONON_LAT},${THONON_LON});
+		);
+		out body;
+	`
+
+	try {
+		const response = await fetch("https://overpass-api.de/api/interpreter", {
+			method: "POST",
+			body: query,
+		})
+
+		if (!response.ok) {
+			throw new Error(`Erreur API: ${response.status}`)
+		}
+
+		const data = await response.json()
+
+		console.log(`✅ ${data.elements.length} villes trouvées\n`)
+
+		const cities: City[] = data.elements
+			.map((element: any) => {
+				const population = Number.parseInt(element.tags.population) || 0
+				const distance = calculateDistance(THONON_LAT, THONON_LON, element.lat, element.lon)
+
+				// Déterminer le pays (approximatif basé sur la longitude)
+				const country = element.lon > 6.5 ? "Suisse" : "France"
+
+				return {
+					name: element.tags.name,
+					population,
+					distance: Math.round(distance * 10) / 10, // Arrondir à 1 décimale
+					lat: element.lat,
+					lon: element.lon,
+					country,
+					score: 0, // Sera calculé après
+				}
+			})
+			.filter((city: City) => city.population > 1000) // Filtrer les très petites villes
+
+		// Calculer les scores
+		const maxDistance = Math.max(...cities.map((c) => c.distance))
+		cities.forEach((city) => {
+			city.score = Math.round(calculateScore(city.population, city.distance, maxDistance) * 10) / 10
+		})
+
+		// Trier par score décroissant
+		return cities.sort((a, b) => b.score - a.score)
+	} catch (error) {
+		console.error("❌ Erreur lors de la récupération des villes:", error)
+		throw error
+	}
+}
+
+/**
+ * Ajoute manuellement des villes importantes qui pourraient manquer
+ */
+function addManualCities(cities: City[]): City[] {
+	const manualCities = [
+		{ name: "Genève", lat: 46.2044, lon: 6.1432, population: 201818, country: "Suisse" },
+		{ name: "Lausanne", lat: 46.5197, lon: 6.6323, population: 139408, country: "Suisse" },
+		{ name: "Annecy", lat: 45.8992, lon: 6.1294, population: 128199, country: "France" },
+		{ name: "Évian-les-Bains", lat: 46.4, lon: 6.5892, population: 8953, country: "France" },
+		{ name: "Annemasse", lat: 46.1944, lon: 6.2361, population: 36250, country: "France" },
+		{ name: "Nyon", lat: 46.383, lon: 6.2394, population: 20533, country: "Suisse" },
+		{ name: "Vevey", lat: 46.4608, lon: 6.8431, population: 19827, country: "Suisse" },
+		{ name: "Montreux", lat: 46.4312, lon: 6.9106, population: 26574, country: "Suisse" },
+	]
+
+	const existingNames = new Set(cities.map((c) => c.name.toLowerCase()))
+	const maxDistance = SEARCH_RADIUS_KM
+
+	const newCities = manualCities
+		.filter((city) => !existingNames.has(city.name.toLowerCase()))
+		.map((city) => {
+			const distance = calculateDistance(THONON_LAT, THONON_LON, city.lat, city.lon)
+			return {
+				...city,
+				distance: Math.round(distance * 10) / 10,
+				score: Math.round(calculateScore(city.population, distance, maxDistance) * 10) / 10,
+			}
+		})
+		.filter((city) => city.distance <= SEARCH_RADIUS_KM)
+
+	return [...cities, ...newCities].sort((a, b) => b.score - a.score)
+}
+
+/**
+ * Affiche les résultats de manière formatée
+ */
+function displayResults(cities: City[], topN = 15) {
+	console.log(`\n🏆 TOP ${topN} VILLES PAR SCORE:\n`)
+	console.log("=" .repeat(100))
+	console.log(
+		`${"Rang".padEnd(6)} ${"Ville".padEnd(25)} ${"Pays".padEnd(10)} ${"Population".padEnd(12)} ${"Distance".padEnd(12)} ${"Score".padEnd(10)}`,
+	)
+	console.log("=".repeat(100))
+
+	cities.slice(0, topN).forEach((city, index) => {
+		const rank = `${index + 1}.`.padEnd(6)
+		const name = city.name.padEnd(25)
+		const country = city.country.padEnd(10)
+		const population = city.population.toLocaleString("fr-FR").padEnd(12)
+		const distance = `${city.distance} km`.padEnd(12)
+		const score = city.score.toFixed(1).padEnd(10)
+
+		console.log(`${rank} ${name} ${country} ${population} ${distance} ${score}`)
+	})
+
+	console.log("=".repeat(100))
+
+	// Statistiques
+	const topCities = cities.slice(0, topN)
+	const frenchCities = topCities.filter((c) => c.country === "France").length
+	const swissCities = topCities.filter((c) => c.country === "Suisse").length
+
+	console.log(`\n📊 STATISTIQUES:`)
+	console.log(`   - Villes françaises: ${frenchCities}`)
+	console.log(`   - Villes suisses: ${swissCities}`)
+	console.log(`   - Distance moyenne: ${(topCities.reduce((sum, c) => sum + c.distance, 0) / topN).toFixed(1)} km`)
+	console.log(
+		`   - Population moyenne: ${Math.round(topCities.reduce((sum, c) => sum + c.population, 0) / topN).toLocaleString("fr-FR")}`,
+	)
+}
+
+/**
+ * Génère un fichier JSON avec les résultats
+ */
+async function saveToFile(cities: City[], topN = 15) {
+	const topCities = cities.slice(0, topN)
+
+	const output = {
+		generatedAt: new Date().toISOString(),
+		baseLocation: {
+			name: "Thonon-les-Bains",
+			lat: THONON_LAT,
+			lon: THONON_LON,
+		},
+		searchRadius: SEARCH_RADIUS_KM,
+		totalCitiesFound: cities.length,
+		topCities: topCities.map((city, index) => ({
+			rank: index + 1,
+			name: city.name,
+			country: city.country,
+			population: city.population,
+			distance: city.distance,
+			coordinates: {
+				lat: city.lat,
+				lon: city.lon,
+			},
+			score: city.score,
+		})),
+		statistics: {
+			frenchCities: topCities.filter((c) => c.country === "France").length,
+			swissCities: topCities.filter((c) => c.country === "Suisse").length,
+			averageDistance: Math.round((topCities.reduce((sum, c) => sum + c.distance, 0) / topN) * 10) / 10,
+			averagePopulation: Math.round(topCities.reduce((sum, c) => sum + c.population, 0) / topN),
+		},
+	}
+
+	const fs = await import("node:fs/promises")
+	await fs.writeFile("./scripts/cities-data.json", JSON.stringify(output, null, 2))
+
+	console.log(`\n💾 Résultats sauvegardés dans: scripts/cities-data.json`)
+}
+
+/**
+ * Génère la liste formatée pour le SEO (à intégrer dans le site)
+ */
+function generateSEOList(cities: City[], topN = 15): string {
+	const topCities = cities.slice(0, topN)
+
+	const frenchCities = topCities.filter((c) => c.country === "France").map((c) => c.name)
+	const swissCities = topCities.filter((c) => c.country === "Suisse").map((c) => c.name)
+
+	let seoText = "\n📝 TEXTE POUR LE SEO:\n\n"
+	seoText += "Zone d'intervention:\n"
+	seoText += `Haute-Savoie: ${frenchCities.join(", ")}\n`
+	seoText += `Suisse: ${swissCities.join(", ")}\n`
+
+	console.log(seoText)
+
+	return seoText
+}
+
+/**
+ * Fonction principale
+ */
+async function main() {
+	try {
+		console.log("🚀 Démarrage du script de géolocalisation\n")
+
+		// Récupérer les villes via API
+		let cities = await fetchCitiesFromOverpass()
+
+		// Ajouter les villes importantes manuellement
+		cities = addManualCities(cities)
+
+		// Afficher les résultats
+		displayResults(cities, 30) // Afficher top 30 pour avoir une vue d'ensemble
+
+		// Générer le texte SEO
+		generateSEOList(cities, 15)
+
+		// Sauvegarder dans un fichier
+		await saveToFile(cities, 15)
+
+		console.log("\n✅ Script terminé avec succès!")
+	} catch (error) {
+		console.error("\n❌ Erreur:", error)
+		process.exit(1)
+	}
+}
+
+// Exécuter le script
+main()
