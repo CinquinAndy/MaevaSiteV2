@@ -15,7 +15,16 @@
 		"format": "biome format --write",
 		"payload": "payload",
 		"start": "next start",
-		"fetch:cities": "tsx scripts/fetch-cities.ts"
+		"fetch:cities": "tsx scripts/fetch-cities.ts",
+		"scrape:wordpress": "tsx scripts/scrape-wordpress.ts",
+		"scrape:wordpress-api": "tsx scripts/scrape-wordpress-api.ts",
+		"scrape:galleries-exact": "tsx scripts/scrape-galleries-exact.ts",
+		"get:galleries": "tsx scripts/get-wordpress-galleries.ts",
+		"analyze:galleries": "tsx scripts/analyze-wordpress-galleries.ts",
+		"list:media": "tsx scripts/list-media-files.ts",
+		"delete:galleries": "tsx scripts/delete-all-galleries.ts",
+		"import:galleries": "tsx scripts/import-galleries-to-payload.ts",
+		"inspect:site": "tsx scripts/inspect-site.ts"
 	},
 	"dependencies": {
 		"@ai-sdk/google": "2.0.23",
@@ -40,6 +49,7 @@
 		"@tabler/icons-react": "3.35.0",
 		"@tailwindcss/postcss": "4.1.14",
 		"ai": "5.0.76",
+		"cheerio": "^1.1.2",
 		"class-variance-authority": "0.7.1",
 		"clsx": "2.1.1",
 		"cmdk": "^1.1.1",
