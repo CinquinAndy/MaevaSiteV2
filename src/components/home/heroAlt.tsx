@@ -1,3 +1,4 @@
+import { MoveDown } from 'lucide-react'
 import Image from 'next/image'
 
 export default function HeroAltSection() {
@@ -11,13 +12,16 @@ export default function HeroAltSection() {
 					Maeva Cinquin - Maquilleuse Professionnelle
 				</h2>
 			</div>
+			<div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex justify-center items-center z-40">
+				<MoveDown />
+			</div>
 			<div className="w-full h-full col-span-1 lg:col-start-2 relative">
 				<Image
 					src="/image00001.jpeg"
 					alt="Hero Section"
 					width={1920}
 					height={1080}
-					className="w-full h-full object-cover z-5 -scale-x-100"
+					className="w-full h-full object-cover z-5 -scale-x-100 "
 				/>
 				{/* Gradient overlay pour transition smooth vers la gauche */}
 				<div className="absolute z-5 inset-0 bg-gradient-to-r from-background via-background/15 via-background/25 to-transparent pointer-events-none" />
