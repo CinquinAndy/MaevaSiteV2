@@ -78,7 +78,7 @@ export const Homepage: GlobalConfig = {
 				{
 					name: 'subtitle',
 					type: 'text',
-					defaultValue: "Des services personnalisés pour sublimer votre beauté à chaque occasion",
+					defaultValue: 'Des services personnalisés pour sublimer votre beauté à chaque occasion',
 					label: 'Sous-titre',
 				},
 			],
@@ -101,7 +101,7 @@ export const Homepage: GlobalConfig = {
 				{
 					name: 'subtitle',
 					type: 'text',
-					defaultValue: "Découvrez mes conseils, astuces et actualités sur le maquillage et le nail art",
+					defaultValue: 'Découvrez mes conseils, astuces et actualités sur le maquillage et le nail art',
 					label: 'Sous-titre',
 				},
 				{
@@ -132,7 +132,7 @@ export const Homepage: GlobalConfig = {
 				{
 					name: 'subtitle',
 					type: 'text',
-					defaultValue: "Découvrez mes réalisations récentes en maquillage et nail art",
+					defaultValue: 'Découvrez mes réalisations récentes en maquillage et nail art',
 					label: 'Sous-titre',
 				},
 				{
@@ -169,7 +169,7 @@ export const Homepage: GlobalConfig = {
 				{
 					name: 'subtitle',
 					type: 'text',
-					defaultValue: "Découvrez les témoignages de mes clientes satisfaites",
+					defaultValue: 'Découvrez les témoignages de mes clientes satisfaites',
 					label: 'Sous-titre',
 				},
 				{
@@ -220,14 +220,14 @@ export const Homepage: GlobalConfig = {
 				{
 					name: 'title',
 					type: 'text',
-					defaultValue: "Prête à révéler votre beauté ?",
+					defaultValue: 'Prête à révéler votre beauté ?',
 					label: 'Titre',
 				},
 				{
 					name: 'subtitle',
 					type: 'textarea',
 					defaultValue:
-						"Que ce soit pour votre mariage, un événement spécial ou simplement pour vous faire plaisir, je suis là pour sublimer votre beauté naturelle.",
+						'Que ce soit pour votre mariage, un événement spécial ou simplement pour vous faire plaisir, je suis là pour sublimer votre beauté naturelle.',
 					label: 'Sous-titre',
 				},
 			],

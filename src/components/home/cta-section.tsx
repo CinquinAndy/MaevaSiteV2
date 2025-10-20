@@ -1,6 +1,7 @@
 import { IconMail, IconPhone } from '@tabler/icons-react'
 import Link from 'next/link'
 import { Container } from '@/components/ui/container'
+import { GradientButton } from '@/components/ui/gradient-button'
 import { Section } from '@/components/ui/section'
 
 export function CtaSection() {
@@ -22,21 +23,19 @@ export function CtaSection() {
 						</p>
 
 						<div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-							<Link
-								href="/contact"
-								className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-all hover:scale-105 font-medium shadow-lg"
-							>
-								<IconMail className="w-5 h-5" />
-								Demander un devis
-							</Link>
+							<GradientButton asChild>
+								<Link href="/contact" className="z-20 text-foreground">
+									<IconMail className="w-5 h-5" />
+									Demander un devis
+								</Link>
+							</GradientButton>
 
-							<a
-								href="tel:+33616625137"
-								className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-foreground text-background rounded-lg hover:bg-foreground/90 transition-all hover:scale-105 font-medium shadow-lg"
-							>
-								<IconPhone className="w-5 h-5" />
-								06 16 62 51 37
-							</a>
+							<GradientButton asChild variant="secondary">
+								<a href="tel:+33616625137" className="z-20 text-foreground">
+									<IconPhone className="w-5 h-5" />
+									06 16 62 51 37
+								</a>
+							</GradientButton>
 						</div>
 
 						<div className="pt-6 flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground">

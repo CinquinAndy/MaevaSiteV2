@@ -1,9 +1,9 @@
-import Link from 'next/link'
 import Image from 'next/image'
+import Link from 'next/link'
+import { BentoGrid, BentoGridItem } from '@/components/ui/bento-grid'
 import { Container } from '@/components/ui/container'
 import { GradientButton } from '@/components/ui/gradient-button'
 import { Section } from '@/components/ui/section'
-import { BentoGrid, BentoGridItem } from '@/components/ui/bento-grid'
 
 const services = [
 	{
@@ -51,6 +51,14 @@ const services = [
 		image: 'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=900&auto=format&fit=crop&q=80',
 		className: 'md:col-span-1',
 	},
+	{
+		id: 'enfants',
+		title: 'Maquillage Enfants',
+		description:
+			'Maquillage pour les enfants de tous âges. Un look qui dure toute la journée et sublime leur beauté naturelle.',
+		image: 'https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=900&auto=format&fit=crop&q=80',
+		className: 'md:col-span-2',
+	},
 ]
 
 export function ServicesSection() {
@@ -90,7 +98,9 @@ export function ServicesSection() {
 					{/* CTA */}
 					<div className="pt-4">
 						<GradientButton asChild>
-							<Link href="/prestations">Découvrir toutes mes prestations</Link>
+							<Link href="/prestations" className="z-20 text-foreground">
+								Découvrir toutes mes prestations
+							</Link>
 						</GradientButton>
 					</div>
 				</div>

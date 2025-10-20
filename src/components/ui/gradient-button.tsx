@@ -8,18 +8,17 @@ import { cn } from '@/lib/utils'
 const gradientButtonVariants = cva(
 	[
 		'gradient-button',
-		'inline-flex items-center justify-center',
-		'rounded-[11px] min-w-[132px] px-9 py-4',
-		'text-base leading-[19px] font-[500] text-white',
-		'font-bold',
-		'focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring',
-		'disabled:pointer-events-none disabled:opacity-50',
+		'inline-flex items-center justify-center gap-2',
+		'rounded-lg min-w-[132px] px-8 py-4',
+		'text-base leading-[19px] font-medium text-white',
+		'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+		'transition-all duration-300',
 	],
 	{
 		variants: {
 			variant: {
 				default: '',
-				variant: 'gradient-button-variant',
+				secondary: 'gradient-button-secondary',
 			},
 		},
 		defaultVariants: {
@@ -35,9 +34,13 @@ export interface GradientButtonProps
 }
 
 const GradientButton = React.forwardRef<HTMLButtonElement, GradientButtonProps>(
-	({ className, variant, asChild = false, ...props }, ref) => {
+	({ className, variant, asChild = false, children, ...props }, ref) => {
 		const Comp = asChild ? Slot : 'button'
-		return <Comp className={cn(gradientButtonVariants({ variant, className }))} ref={ref} {...props} />
+		return (
+			<Comp className={cn(gradientButtonVariants({ variant, className }))} ref={ref} {...props}>
+				<span className="relative z-20 text-white flex items-center justify-center gap-2">{children}</span>
+			</Comp>
+		)
 	}
 )
 GradientButton.displayName = 'GradientButton'

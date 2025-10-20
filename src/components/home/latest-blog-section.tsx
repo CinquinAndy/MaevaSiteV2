@@ -48,7 +48,7 @@ export async function LatestBlogSection() {
 					{/* CTA */}
 					<div className="pt-4">
 						<GradientButton asChild>
-							<Link href="/blog">
+							<Link href="/blog" className="z-20 text-foreground">
 								Voir tous les articles
 								<IconArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
 							</Link>

@@ -44,6 +44,7 @@ const nextConfig = {
 			{ protocol: 'https', hostname: 'cinquin-maeva.com' },
 			{ protocol: 'https', hostname: '*.andy-cinquin.fr' },
 			{ protocol: 'https', hostname: 'cdnjs.cloudflare.com' },
+			{ protocol: 'https', hostname: '*.unsplash.com' },
 		],
 		qualities: [75, 90, 100], // Add quality configurations
 	},

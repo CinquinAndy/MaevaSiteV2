@@ -1,6 +1,8 @@
 import { IconAward, IconBriefcase, IconHeart, IconMapPin } from '@tabler/icons-react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { Container } from '@/components/ui/container'
+import { GradientButton } from '@/components/ui/gradient-button'
 import { Section } from '@/components/ui/section'
 
 export function AboutSection() {
@@ -9,24 +11,31 @@ export function AboutSection() {
 			<Container>
 				<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 					{/* Colonne gauche - Image */}
-					<div className="order-2 lg:order-1">
+					<div className="order-2 lg:order-1 rotate-6">
 						<div className="relative aspect-[4/5] rounded-lg overflow-hidden bg-gradient-to-br from-primary/20 to-accent/20">
 							{/* Placeholder pour l'image de Maeva */}
-							<div className="absolute inset-0 flex items-center justify-center">
+							{/* <div className="absolute inset-0 flex items-center justify-center">
 								<div className="text-center space-y-4">
 									<div className="w-32 h-32 mx-auto rounded-full bg-primary/10 flex items-center justify-center">
 										<IconHeart className="w-16 h-16 text-primary" stroke={1.5} />
 									</div>
 									<p className="text-sm text-muted-foreground">Photo de profil à venir</p>
 								</div>
-							</div>
+							</div> */}
+							<Image
+								src="/image00002.jpeg"
+								alt="Maeva Cinquin"
+								width={1200}
+								height={1600}
+								className="w-full h-full object-cover -rotate-6 scale-115"
+							/>
 						</div>
 					</div>
 
 					{/* Colonne droite - Contenu */}
 					<div className="order-1 lg:order-2 space-y-6">
 						<div className="space-y-3">
-							<h2 className="text-4xl md:text-5xl font-bold text-foreground">Qui est Maeva ?</h2>
+							<h2 className="text-4xl md:text-5xl font-bold text-foreground">Qui suis-je ?</h2>
 							<div className="h-1 w-20 bg-primary rounded-full" />
 						</div>
 
@@ -55,7 +64,7 @@ export function AboutSection() {
 									<IconAward className="w-5 h-5 text-primary" />
 								</div>
 								<div>
-									<h3 className="font-semibold text-foreground text-sm">Formation d'excellence</h3>
+									<h3 className="font-semibold text-foreground text-sm font-kalam">Formation d'excellence</h3>
 									<p className="text-sm text-muted-foreground">Make Up For Ever Academy</p>
 								</div>
 							</div>
@@ -65,7 +74,7 @@ export function AboutSection() {
 									<IconBriefcase className="w-5 h-5 text-primary" />
 								</div>
 								<div>
-									<h3 className="font-semibold text-foreground text-sm">Double expertise</h3>
+									<h3 className="font-semibold text-foreground text-sm font-kalam">Double expertise</h3>
 									<p className="text-sm text-muted-foreground">Maquillage & Nail Art</p>
 								</div>
 							</div>
@@ -75,7 +84,7 @@ export function AboutSection() {
 									<IconMapPin className="w-5 h-5 text-primary" />
 								</div>
 								<div>
-									<h3 className="font-semibold text-foreground text-sm">Zone d'intervention</h3>
+									<h3 className="font-semibold text-foreground text-sm font-kalam">Zone d'intervention</h3>
 									<p className="text-sm text-muted-foreground">Haute-Savoie & Suisse</p>
 								</div>
 							</div>
@@ -85,7 +94,7 @@ export function AboutSection() {
 									<IconHeart className="w-5 h-5 text-primary" />
 								</div>
 								<div>
-									<h3 className="font-semibold text-foreground text-sm">Approche personnalisée</h3>
+									<h3 className="font-semibold text-foreground text-sm font-kalam">Approche personnalisée</h3>
 									<p className="text-sm text-muted-foreground">À votre écoute</p>
 								</div>
 							</div>
@@ -93,18 +102,16 @@ export function AboutSection() {
 
 						{/* CTA */}
 						<div className="flex flex-col sm:flex-row gap-4 pt-4">
-							<Link
-								href="/prestations"
-								className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium"
-							>
-								Découvrir mes prestations
-							</Link>
-							<Link
-								href="/contact"
-								className="inline-flex items-center justify-center px-6 py-3 border border-border rounded-lg hover:bg-muted transition-colors font-medium"
-							>
-								Me contacter
-							</Link>
+							<GradientButton asChild>
+								<Link href="/prestations" className="z-20 text-white">
+									Découvrir mes prestations
+								</Link>
+							</GradientButton>
+							<GradientButton asChild variant="secondary">
+								<Link href="/contact" className="z-20 text-white">
+									Me contacter
+								</Link>
+							</GradientButton>
 						</div>
 					</div>
 				</div>
