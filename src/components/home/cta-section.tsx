@@ -1,75 +1,49 @@
-import { IconMail, IconPhone } from '@tabler/icons-react'
+import { ArrowRight, CheckCircle2, Mail, Phone, Plus } from 'lucide-react'
 import Link from 'next/link'
+import { Button } from '@/components/ui/button'
 import { Container } from '@/components/ui/container'
-import { GradientButton } from '@/components/ui/gradient-button'
 import { Section } from '@/components/ui/section'
 
 export function CtaSection() {
 	return (
 		<Section>
 			<Container>
-				<div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/20 via-accent/20 to-secondary/20 p-8 md:p-12 lg:p-16">
-					{/* Background decoration */}
-					<div className="absolute inset-0 bg-grid-white/10 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.5))]" />
+				<div className="relative mx-auto flex w-full max-w-3xl flex-col justify-between gap-y-6 border-y bg-[radial-gradient(35%_80%_at_25%_0%,hsl(var(--primary)/.08),transparent)] px-4 py-12 md:py-16">
+					{/* Corner Plus Icons */}
+					<Plus className="absolute top-[-12.5px] left-[-11.5px] z-10 size-6" strokeWidth={1} />
+					<Plus className="absolute top-[-12.5px] right-[-11.5px] z-10 size-6" strokeWidth={1} />
+					<Plus className="absolute bottom-[-12.5px] left-[-11.5px] z-10 size-6" strokeWidth={1} />
+					<Plus className="absolute right-[-11.5px] bottom-[-12.5px] z-10 size-6" strokeWidth={1} />
 
-					<div className="relative z-10 max-w-3xl mx-auto text-center space-y-6">
-						<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
-							Prête à révéler votre beauté ?
-						</h2>
+					{/* Side Borders */}
+					<div className="-inset-y-6 pointer-events-none absolute left-0 w-px border-l" />
+					<div className="-inset-y-6 pointer-events-none absolute right-0 w-px border-r" />
 
-						<p className="text-lg md:text-xl text-muted-foreground">
+					{/* Center Dashed Line */}
+					<div className="-z-10 absolute top-0 left-1/2 h-full border-l border-dashed" />
+
+					<div className="space-y-3">
+						<h2 className="text-center font-bold text-3xl md:text-4xl lg:text-5xl">Prête à révéler votre beauté ?</h2>
+						<p className="text-center text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
 							Que ce soit pour votre mariage, un événement spécial ou simplement pour vous faire plaisir, je suis là
 							pour sublimer votre beauté naturelle.
 						</p>
+					</div>
 
-						<div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-							<GradientButton asChild>
-								<Link href="/contact" className="z-20 text-foreground">
-									<IconMail className="w-5 h-5" />
-									Demander un devis
-								</Link>
-							</GradientButton>
-
-							<GradientButton asChild variant="secondary">
-								<a href="tel:+33616625137" className="z-20 text-foreground">
-									<IconPhone className="w-5 h-5" />
-									06 16 62 51 37
-								</a>
-							</GradientButton>
-						</div>
-
-						<div className="pt-6 flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground">
-							<div className="flex items-center gap-2">
-								<svg className="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
-									<path
-										fillRule="evenodd"
-										d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-										clipRule="evenodd"
-									/>
-								</svg>
-								<span>Diplômée MUFE Academy</span>
-							</div>
-							<div className="flex items-center gap-2">
-								<svg className="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
-									<path
-										fillRule="evenodd"
-										d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-										clipRule="evenodd"
-									/>
-								</svg>
-								<span>Prestations personnalisées</span>
-							</div>
-							<div className="flex items-center gap-2">
-								<svg className="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
-									<path
-										fillRule="evenodd"
-										d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-										clipRule="evenodd"
-									/>
-								</svg>
-								<span>Haute-Savoie & Suisse</span>
-							</div>
-						</div>
+					<div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+						<Button asChild size="lg">
+							<Link href="/contact">
+								<Mail className="size-4" />
+								Demander un devis
+								<ArrowRight className="size-4" />
+							</Link>
+						</Button>
+						<Button asChild variant="outline" size="lg">
+							<a href="tel:+33616625137">
+								<Phone className="size-4" />
+								06 16 62 51 37
+							</a>
+						</Button>
 					</div>
 				</div>
 			</Container>

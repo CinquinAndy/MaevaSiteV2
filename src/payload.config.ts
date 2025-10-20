@@ -12,6 +12,7 @@ import { Blog } from './collections/Blog'
 import { Gallery } from './collections/Gallery'
 import { Media } from './collections/Media'
 import { Services } from './collections/Services'
+import { Testimonials } from './collections/Testimonials'
 import { Users } from './collections/Users'
 import { Homepage } from './globals/Homepage'
 
@@ -31,7 +32,7 @@ export default buildConfig({
 			baseDir: path.resolve(dirname),
 		},
 	},
-	collections: [Users, Media, Blog, Gallery, Services],
+	collections: [Users, Media, Blog, Gallery, Services, Testimonials],
 	globals: [Homepage],
 	editor: lexicalEditor(),
 	secret: process.env.PAYLOAD_SECRET || '',

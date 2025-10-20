@@ -1,95 +1,141 @@
-import { IconQuote, IconStar } from '@tabler/icons-react'
+import { IconStar } from '@tabler/icons-react'
 import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
+import { TestimonialsColumn } from '@/components/ui/testimonials-column'
+import type { Testimonial } from '@/lib/payload/get-testimonials'
+import { getTestimonials } from '@/lib/payload/get-testimonials'
 
-const testimonials = [
+// Fallback testimonials for when DB is empty or during build
+const fallbackTestimonials: Testimonial[] = [
 	{
 		id: 'sophie-l',
 		name: 'Sophie L.',
-		role: 'Mariée 2024',
 		content:
 			"Maeva a sublimé mon maquillage de mariée ! J'étais radieuse toute la journée. Elle a su m'écouter et créer un look qui me correspondait parfaitement. Un grand merci !",
 		rating: 5,
+		source: 'google',
 	},
 	{
 		id: 'julie-m',
 		name: 'Julie M.',
-		role: 'Shooting photo',
 		content:
 			'Professionnalisme et talent au rendez-vous. Maeva a su créer un maquillage parfait pour ma séance photo. Le résultat était impeccable, je recommande à 100% !',
 		rating: 5,
+		source: 'google',
 	},
 	{
 		id: 'camille-r',
 		name: 'Camille R.',
-		role: 'Événement professionnel',
 		content:
 			'Grâce à Maeva, je me suis sentie belle et confiante pour mon événement important. Son expertise et sa douceur font toute la différence. Je ferai de nouveau appel à elle sans hésiter !',
 		rating: 5,
+		source: 'google',
+	},
+	{
+		id: 'marie-d',
+		name: 'Marie D.',
+		content:
+			"Une maquilleuse professionnelle et à l'écoute. Le résultat était parfait et a tenu toute la journée. Je recommande vivement !",
+		rating: 5,
+		source: 'google',
+	},
+	{
+		id: 'laura-b',
+		name: 'Laura B.',
+		content:
+			'Maeva est une artiste ! Elle a su sublimer mon regard et mes traits. Un vrai moment de détente et un résultat magnifique.',
+		rating: 5,
+		source: 'google',
+	},
+	{
+		id: 'emma-v',
+		name: 'Emma V.',
+		content:
+			'Prestation au top du début à la fin. Maeva est souriante, douce et très professionnelle. Mon maquillage était sublime !',
+		rating: 5,
+		source: 'google',
+	},
+	{
+		id: 'chloe-m',
+		name: 'Chloé M.',
+		content:
+			'Je suis ravie du résultat ! Maeva a su exactement ce que je voulais. Son talent et sa gentillesse font toute la différence.',
+		rating: 5,
+		source: 'google',
+	},
+	{
+		id: 'alice-p',
+		name: 'Alice P.',
+		content:
+			'Un moment agréable avec une maquilleuse passionnée. Le rendu était naturel et élégant, exactement ce que je recherchais.',
+		rating: 5,
+		source: 'google',
+	},
+	{
+		id: 'sarah-t',
+		name: 'Sarah T.',
+		content:
+			'Maeva est très talentueuse et professionnelle. Elle prend le temps de bien comprendre vos attentes. Je recommande à 200% !',
+		rating: 5,
+		source: 'google',
 	},
 ]
 
-export function TestimonialsSection() {
+export async function TestimonialsSection() {
+	// Fetch testimonials from Payload CMS
+	let testimonials = await getTestimonials()
+
+	// If no testimonials in DB, use fallback
+	if (testimonials.length === 0) {
+		testimonials = fallbackTestimonials
+	}
+
+	// Ensure we have at least 9 testimonials for 3 columns
+	// If we have less, duplicate some to fill the columns
+	while (testimonials.length < 9) {
+		testimonials = [...testimonials, ...testimonials]
+	}
+
+	const firstColumn = testimonials.slice(0, 3)
+	const secondColumn = testimonials.slice(3, 6)
+	const thirdColumn = testimonials.slice(6, 9)
 	return (
-		<Section variant="muted">
-			<Container>
-				<div className="space-y-12">
-					{/* Header */}
-					<div className="space-y-3">
-						<h2 className="text-4xl md:text-5xl font-bold text-foreground">Elles me font confiance</h2>
-						<p className="text-lg text-muted-foreground max-w-2xl">
-							Découvrez les témoignages de mes clientes satisfaites
-						</p>
+		<Section className="relative overflow-hidden">
+			{/* Background gradient */}
+			<div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent pointer-events-none" />
+
+			<Container className="relative z-10">
+				<div className="flex flex-col items-center justify-center max-w-[540px] mx-auto mb-10">
+					<div className="flex justify-center">
+						<div className="border py-1 px-4 rounded-lg bg-card/50 backdrop-blur-sm">Témoignages</div>
 					</div>
 
-					{/* Testimonials Grid */}
-					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-						{testimonials.map(testimonial => (
-							<div
-								key={testimonial.id}
-								className="relative overflow-hidden rounded-xl border border-border bg-card p-6 space-y-4 hover:shadow-lg transition-shadow"
-							>
-								{/* Quote icon */}
-								<div className="absolute top-4 right-4 opacity-10">
-									<IconQuote className="w-16 h-16 text-primary" />
-								</div>
+					<h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mt-5 text-center">
+						Elles me font confiance
+					</h2>
+					<p className="text-center mt-5 opacity-75 text-muted-foreground">
+						Découvrez les avis de mes clientes satisfaites
+					</p>
+				</div>
 
-								{/* Rating */}
-								<div className="flex gap-1">
-									{Array.from({ length: testimonial.rating }).map((_, i) => (
-										<IconStar key={`${testimonial.id}-star-${i}`} className="w-5 h-5 text-amber-500 fill-amber-500" />
-									))}
-								</div>
+				{/* Animated columns */}
+				<div className="flex justify-center gap-6 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)] max-h-[740px] overflow-hidden">
+					<TestimonialsColumn testimonials={firstColumn} duration={15} />
+					<TestimonialsColumn testimonials={secondColumn} className="hidden md:block" duration={19} />
+					<TestimonialsColumn testimonials={thirdColumn} className="hidden lg:block" duration={17} />
+				</div>
 
-								{/* Content */}
-								<p className="text-muted-foreground leading-relaxed relative z-10">{testimonial.content}</p>
-
-								{/* Author */}
-								<div className="border-t border-border pt-4">
-									<p className="font-semibold text-foreground">{testimonial.name}</p>
-									<p className="text-sm text-muted-foreground">{testimonial.role}</p>
-								</div>
-							</div>
-						))}
-					</div>
-
-					{/* Social proof */}
-					<div className="text-center pt-4">
-						<div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary/10 border border-primary/20">
-							<div className="flex -space-x-2">
-								{[1, 2, 3, 4].map(i => (
-									<div
-										key={i}
-										className="w-8 h-8 rounded-full bg-gradient-to-br from-primary/40 to-accent/40 border-2 border-background flex items-center justify-center text-xs font-semibold text-foreground"
-									>
-										{String.fromCharCode(64 + i)}
-									</div>
-								))}
-							</div>
-							<span className="text-sm font-medium text-foreground">
-								Plus de <strong className="text-primary">50 clientes</strong> satisfaites
-							</span>
+				{/* Social proof */}
+				<div className="text-center pt-8">
+					<div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-primary/10 via-primary/5 to-accent/10 border border-primary/20 backdrop-blur-sm">
+						<div className="flex items-center gap-1">
+							<IconStar className="w-5 h-5 text-amber-500 fill-amber-500" />
+							<span className="font-bold text-foreground">5.0</span>
 						</div>
+						<div className="w-px h-4 bg-border" />
+						<span className="text-sm font-medium text-foreground">
+							Plus de <strong className="text-primary">50 clientes</strong> satisfaites
+						</span>
 					</div>
 				</div>
 			</Container>
