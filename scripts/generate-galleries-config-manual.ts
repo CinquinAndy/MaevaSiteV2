@@ -75,7 +75,7 @@ const galleriesManual: GalleryConfigManual[] = [
 		title: 'Maquillage Événementiel - Halloween',
 		slug: 'maquillage-evenementiel-halloween',
 		description:
-			'Maquillages créatifs pour événements spéciaux. Des créations uniques adaptées à chaque occasion, d'Halloween aux fêtes costumées.',
+			"Maquillages créatifs pour événements spéciaux. Des créations uniques adaptées à chaque occasion, d'Halloween aux fêtes costumées.",
 		category: 'evenementiel',
 		imageFilenames: [
 			'Maquillage_Halloween_1',

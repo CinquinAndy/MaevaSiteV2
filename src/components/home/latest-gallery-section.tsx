@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { getPayload } from 'payload'
 import { Container } from '@/components/ui/container'
 import { GalleryCard } from '@/components/ui/gallery-card'
+import { GradientButton } from '@/components/ui/gradient-button'
 import { Section } from '@/components/ui/section'
 import type { Gallery } from '@/payload-types'
 
@@ -30,9 +31,9 @@ export async function LatestGallerySection() {
 			<Container>
 				<div className="space-y-12">
 					{/* Header */}
-					<div className="text-center space-y-4">
+					<div className="space-y-3">
 						<h2 className="text-4xl md:text-5xl font-bold text-foreground">Mes Dernières Créations</h2>
-						<p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+						<p className="text-lg text-muted-foreground max-w-2xl">
 							Découvrez mes réalisations récentes en maquillage et nail art
 						</p>
 					</div>
@@ -45,14 +46,13 @@ export async function LatestGallerySection() {
 					</div>
 
 					{/* CTA */}
-					<div className="text-center pt-4">
-						<Link
-							href="/galerie"
-							className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium group"
-						>
-							Voir toute la galerie
-							<IconArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-						</Link>
+					<div className="pt-4">
+						<GradientButton asChild>
+							<Link href="/galerie">
+								Voir toute la galerie
+								<IconArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+							</Link>
+						</GradientButton>
 					</div>
 				</div>
 			</Container>

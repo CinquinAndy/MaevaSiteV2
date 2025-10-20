@@ -4,6 +4,7 @@ import { Section } from '@/components/ui/section'
 
 const testimonials = [
 	{
+		id: 'sophie-l',
 		name: 'Sophie L.',
 		role: 'Mariée 2024',
 		content:
@@ -11,17 +12,19 @@ const testimonials = [
 		rating: 5,
 	},
 	{
+		id: 'julie-m',
 		name: 'Julie M.',
 		role: 'Shooting photo',
 		content:
-			"Professionnalisme et talent au rendez-vous. Maeva a su créer un maquillage parfait pour ma séance photo. Le résultat était impeccable, je recommande à 100% !",
+			'Professionnalisme et talent au rendez-vous. Maeva a su créer un maquillage parfait pour ma séance photo. Le résultat était impeccable, je recommande à 100% !',
 		rating: 5,
 	},
 	{
+		id: 'camille-r',
 		name: 'Camille R.',
 		role: 'Événement professionnel',
 		content:
-			"Grâce à Maeva, je me suis sentie belle et confiante pour mon événement important. Son expertise et sa douceur font toute la différence. Je ferai de nouveau appel à elle sans hésiter !",
+			'Grâce à Maeva, je me suis sentie belle et confiante pour mon événement important. Son expertise et sa douceur font toute la différence. Je ferai de nouveau appel à elle sans hésiter !',
 		rating: 5,
 	},
 ]
@@ -32,18 +35,18 @@ export function TestimonialsSection() {
 			<Container>
 				<div className="space-y-12">
 					{/* Header */}
-					<div className="text-center space-y-4">
+					<div className="space-y-3">
 						<h2 className="text-4xl md:text-5xl font-bold text-foreground">Elles me font confiance</h2>
-						<p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+						<p className="text-lg text-muted-foreground max-w-2xl">
 							Découvrez les témoignages de mes clientes satisfaites
 						</p>
 					</div>
 
 					{/* Testimonials Grid */}
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-						{testimonials.map((testimonial, index) => (
+						{testimonials.map(testimonial => (
 							<div
-								key={index}
+								key={testimonial.id}
 								className="relative overflow-hidden rounded-xl border border-border bg-card p-6 space-y-4 hover:shadow-lg transition-shadow"
 							>
 								{/* Quote icon */}
@@ -54,7 +57,7 @@ export function TestimonialsSection() {
 								{/* Rating */}
 								<div className="flex gap-1">
 									{Array.from({ length: testimonial.rating }).map((_, i) => (
-										<IconStar key={i} className="w-5 h-5 text-amber-500 fill-amber-500" />
+										<IconStar key={`${testimonial.id}-star-${i}`} className="w-5 h-5 text-amber-500 fill-amber-500" />
 									))}
 								</div>
 
