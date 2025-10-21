@@ -32,14 +32,14 @@ export function CtaSection() {
 
 					<div className="flex flex-col sm:flex-row items-center justify-center gap-4">
 						<GradientButton asChild variant="default">
-							<Link href="/contact">
+							<Link href="/contact" className="flex items-center gap-2 text-foreground relative z-20">
 								<Mail className="size-5" />
 								Demander un devis
 								<ArrowRight className="size-5" />
 							</Link>
 						</GradientButton>
 						<GradientButton asChild variant="secondary">
-							<Link href="tel:+33616625137">
+							<Link href="tel:+33616625137" className="flex items-center gap-2 text-foreground relative z-20">
 								<Phone className="size-5" />
 								06 16 62 51 37
 							</Link>

@@ -79,18 +79,18 @@ export async function Footer() {
 
 	return (
 		<section className="py-16 lg:py-24">
-			<div className="container">
+			<div className="container mx-auto">
 				<footer>
 					<div className="grid grid-cols-2 gap-8 lg:grid-cols-6">
 						{/* Brand Section */}
 						<div className="col-span-2 mb-8 lg:mb-0">
 							<Link href="/" className="flex items-center gap-3 lg:justify-start mb-4">
 								<Image
-									src="/icons/logo.svg"
+									src="/icons/logo.png"
 									alt="Maeva Cinquin - Maquilleuse Professionnelle"
-									width={40}
-									height={40}
-									className="h-10 w-10"
+									width={64}
+									height={64}
+									className="h-16 w-16"
 								/>
 								<div className="flex flex-col">
 									<p className="text-lg font-semibold font-libre-caslon">Maeva Cinquin</p>
@@ -109,7 +109,7 @@ export async function Footer() {
 						{/* Navigation Sections */}
 						{navigationSections.map(section => (
 							<div key={section.title} className="col-span-1">
-								<h3 className="mb-4 font-bold text-sm">{section.title}</h3>
+								<h3 className="mb-4 font-bold text-sm font-kalam">{section.title}</h3>
 								<ul className="space-y-3 text-sm text-muted-foreground">
 									{section.links.map(link => (
 										<li key={link.url} className="font-medium hover:text-primary transition-colors">
