@@ -3,6 +3,7 @@ import type React from 'react'
 import '@/app/(frontend)/global.css'
 import { Corinthia, Kalam, Libre_Caslon_Display } from 'next/font/google'
 import Script from 'next/script'
+import { Footer } from '@/components/global/footer'
 import GlitterFinal from '@/components/ui/glitter-final'
 import { Gooey } from '@/components/ui/gooey'
 import { ScrollProgress } from '@/components/ui/scroll-progress'
@@ -119,6 +120,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 					</div>
 				</nav>
 				<main className="w-full h-full relative">{children}</main>
+				<Footer />
 				<div className="">
 					<GlitterFinal speed={0.75} />
 				</div>

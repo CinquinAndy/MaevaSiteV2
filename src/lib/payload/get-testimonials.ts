@@ -33,7 +33,7 @@ export async function getTestimonials(): Promise<Testimonial[]> {
 		const avatar = testimonial.avatar && typeof testimonial.avatar === 'object' ? testimonial.avatar : null
 
 		return {
-			id: testimonial.id,
+			id: String(testimonial.id),
 			name: testimonial.name,
 			content: testimonial.content,
 			rating: testimonial.rating,
@@ -77,7 +77,7 @@ export async function getFeaturedTestimonials(): Promise<Testimonial[]> {
 		const avatar = testimonial.avatar && typeof testimonial.avatar === 'object' ? testimonial.avatar : null
 
 		return {
-			id: testimonial.id,
+			id: String(testimonial.id),
 			name: testimonial.name,
 			content: testimonial.content,
 			rating: testimonial.rating,
