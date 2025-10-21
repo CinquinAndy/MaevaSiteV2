@@ -50,7 +50,12 @@ export default async function PrestationsPage() {
 
 	return (
 		<>
-			<Hero title="Prestations" backgroundImage="/Maquilleuse_Professionnelle_Maeva-scaled.jpg" />
+			<Hero
+				title="Prestations"
+				backgroundImage="/Maquilleuse_Professionnelle_Maeva-scaled.jpg"
+				fontSize={480}
+				lineHeight={0.5}
+			/>
 
 			{/* Introduction */}
 			<Section className="py-12">

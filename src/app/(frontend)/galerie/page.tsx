@@ -28,7 +28,12 @@ export default async function GaleriePage() {
 
 	return (
 		<>
-			<Hero title="Galerie" backgroundImage="/Maquilleuse_Professionnelle_Maeva-scaled.jpg" />
+			<Hero
+				title="Galerie"
+				backgroundImage="/Maquilleuse_Professionnelle_Maeva-scaled.jpg"
+				fontSize={600}
+				lineHeight={0.5}
+			/>
 
 			{/* Galleries Section */}
 			<Section>

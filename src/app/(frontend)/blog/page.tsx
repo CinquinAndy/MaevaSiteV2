@@ -28,7 +28,7 @@ export default async function BlogPage() {
 
 	return (
 		<>
-			<Hero title="Blog" />
+			<Hero title="Blog" fontSize={700} lineHeight={0.5} />
 
 			{/* Articles Section */}
 			<Section className="py-12 md:py-16 lg:py-20">

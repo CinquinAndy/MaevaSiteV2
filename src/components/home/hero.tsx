@@ -6,13 +6,23 @@ import CurvedText from './curved-text'
 interface HeroProps {
 	title: string
 	backgroundImage?: string
+    fontSize?: number
+    lineHeight?: number
 }
 
-export default function Hero({ title, backgroundImage = '/Maquilleuse_Professionnelle_Maeva-scaled.jpg' }: HeroProps) {
+
+export default function Hero({ title, fontSize = 700, backgroundImage = '/Maquilleuse_Professionnelle_Maeva-scaled.jpg', lineHeight = 0.5 }: HeroProps) {
+
 	return (
 		<div className="h-screen w-screen relative overflow-hidden">
 			<Image src={backgroundImage} alt="Hero" fill className="object-cover grayscale brightness-75" />
-			<h1 className="text-[700px]/50 font-bold absolute top-40 -left-20 z-10 font-corinthia text-foreground">
+			<h1
+				className="font-bold absolute top-20 -left-20 z-10 font-corinthia text-foreground"
+				style={{
+					fontSize: `${fontSize}px`,
+					lineHeight: `${lineHeight}`,
+				}}
+			>
 				{title}
 			</h1>
 

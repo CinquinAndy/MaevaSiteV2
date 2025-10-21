@@ -13,7 +13,12 @@ export const metadata = {
 export default function ContactPage() {
 	return (
 		<>
-			<Hero title="Contact" backgroundImage="/Maquilleuse_Professionnelle_Maeva-scaled.jpg" />
+			<Hero
+				title="Contact"
+				backgroundImage="/Maquilleuse_Professionnelle_Maeva-scaled.jpg"
+				fontSize={600}
+				lineHeight={0.5}
+			/>
 
 			{/* Contact Section */}
 			<Section>

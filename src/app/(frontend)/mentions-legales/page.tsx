@@ -10,7 +10,12 @@ export const metadata = {
 export default function MentionsLegalesPage() {
 	return (
 		<>
-			<Hero title="Mentions Légales" backgroundImage="/Maquilleuse_Professionnelle_Maeva-scaled.jpg" />
+			<Hero
+				title="Mentions Légales"
+				backgroundImage="/Maquilleuse_Professionnelle_Maeva-scaled.jpg"
+				fontSize={400}
+				lineHeight={0.7}
+			/>
 
 			<Section>
 				<Container>
