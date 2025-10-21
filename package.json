@@ -19,7 +19,9 @@
 		"scrape:reviews": "tsx scripts/scrape-google-reviews-simple.ts",
 		"clean:reviews": "tsx scripts/clean-reviews.ts",
 		"import:reviews": "tsx scripts/import-google-reviews-to-payload.ts",
-		"sync:reviews": "pnpm scrape:reviews && pnpm clean:reviews && pnpm import:reviews sync"
+		"download:avatars": "tsx scripts/download-review-avatars.ts",
+		"upload:avatars": "tsx scripts/upload-avatars-to-payload.ts",
+		"sync:reviews": "pnpm scrape:reviews && pnpm clean:reviews && pnpm import:reviews sync && pnpm download:avatars && pnpm upload:avatars"
 	},
 	"dependencies": {
 		"@ai-sdk/google": "2.0.23",

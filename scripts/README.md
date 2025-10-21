@@ -85,9 +85,46 @@ pnpm import:reviews update
 
 ---
 
-### 5. Workflow complet (`sync:reviews`)
+### 5. Téléchargement des avatars (`download-review-avatars.ts`)
 
-Exécute toute la chaîne : extraction → nettoyage → import.
+Télécharge les photos de profil Google des avis localement.
+
+```bash
+pnpm download:avatars
+```
+
+**Fonctionnalités :**
+- Télécharge depuis Google (résolution améliorée : 200x200)
+- Nomme les fichiers selon le nom d'auteur
+- Sauvegarde dans `public/avatars/`
+- Crée un mapping JSON
+
+**Sortie :** `public/avatars/*.jpg` + `reviews-data/avatars-mapping.json`
+
+---
+
+### 6. Upload des avatars sur S3 (`upload-avatars-to-payload.ts`)
+
+Upload les avatars dans Payload Media (stockage S3) et lie aux témoignages.
+
+```bash
+pnpm upload:avatars
+```
+
+**Fonctionnalités :**
+- Upload chaque avatar dans la collection Media
+- Envoi automatique sur S3 via Payload
+- Lie le media au témoignage (champ `avatar`)
+- Nettoie l'ancien champ `avatarUrl`
+- Détection des doublons
+
+**Résultat :** Avatars sur S3 + relation Media → Testimonial
+
+---
+
+### 7. Workflow complet (`sync:reviews`)
+
+Exécute toute la chaîne : extraction → nettoyage → import → avatars.
 
 ```bash
 pnpm sync:reviews
@@ -95,12 +132,14 @@ pnpm sync:reviews
 
 Équivalent à :
 ```bash
-pnpm scrape:reviews
-pnpm clean:reviews
-pnpm import:reviews sync
+pnpm scrape:reviews       # Extraction avis Google
+pnpm clean:reviews        # Nettoyage + conversion dates
+pnpm import:reviews sync  # Import Payload
+pnpm download:avatars     # Téléchargement avatars
+pnpm upload:avatars       # Upload sur S3
 ```
 
-**Utilisation recommandée :** 1 fois par mois pour mise à jour.
+**Utilisation recommandée :** 1 fois par mois pour mise à jour complète.
 
 ---
 
@@ -114,7 +153,9 @@ pnpm import:reviews sync
 ### Avis Google
 
 - `reviews-data/google-reviews.json` - Avis extraits et nettoyés
-- Format : nom, image URL, note, date, texte
+- Format : nom, image URL, note, date ISO, texte
+- `reviews-data/avatars-mapping.json` - Mapping auteur → URL Google → chemin local
+- `public/avatars/*.jpg` - 19 avatars téléchargés (backup, uploadés sur S3)
 
 ### Galeries (archive)
 

@@ -4,7 +4,6 @@
 
 import config from '@payload-config'
 import { getPayload } from 'payload'
-import type { Testimonial } from '@/payload-types'
 
 export interface TestimonialData {
 	id: string

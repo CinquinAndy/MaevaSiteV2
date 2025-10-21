@@ -34,7 +34,7 @@ export const Testimonials: CollectionConfig = {
 			required: false,
 			label: 'Date de publication',
 			admin: {
-				description: 'Date de publication de l\'avis',
+				description: "Date de publication de l'avis",
 				date: {
 					pickerAppearance: 'dayAndTime',
 				},
