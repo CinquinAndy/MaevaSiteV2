@@ -1,93 +1,168 @@
-import { getPayload } from 'payload'
-import configPromise from '@/payload.config'
+/**
+ * Fonctions utilitaires pour récupérer les témoignages depuis Payload CMS
+ */
 
-export interface Testimonial {
-	id: string
-	name: string
-	content: string
-	rating: number
+import { getPayload } from "payload";
+import config from "@payload-config";
+import type { Testimonial } from "@/payload-types";
+
+export interface TestimonialData {
+	id: string;
+	name: string;
+	content: string;
+	date?: string;
+	rating: number;
+	source: "google" | "facebook" | "instagram" | "email" | "other";
+	sourceUrl?: string;
+	avatarUrl?: string;
 	avatar?: {
-		url?: string | null
-		alt?: string | null
-	} | null
-	source?: string
+		url: string;
+		alt?: string;
+	};
+	featured: boolean;
+	status: "draft" | "published";
+	order: number;
+	createdAt: string;
+	updatedAt: string;
 }
 
-export async function getTestimonials(): Promise<Testimonial[]> {
-	const payload = await getPayload({
-		config: configPromise,
-	})
+/**
+ * Récupérer tous les témoignages publiés
+ */
+export async function getPublishedTestimonials(): Promise<TestimonialData[]> {
+	const payload = await getPayload({ config });
 
-	const { docs } = await payload.find({
-		collection: 'testimonials',
+	const result = await payload.find({
+		collection: "testimonials",
 		where: {
-			status: {
-				equals: 'published',
-			},
+			status: { equals: "published" },
 		},
-		sort: '-order',
-		limit: 50,
-	})
+		sort: "-order", // Trier par ordre décroissant (plus récents en premier)
+		limit: 100,
+	});
 
-	return docs.map(testimonial => {
-		const avatar = testimonial.avatar && typeof testimonial.avatar === 'object' ? testimonial.avatar : null
-
-		return {
-			id: String(testimonial.id),
-			name: testimonial.name,
-			content: testimonial.content,
-			rating: testimonial.rating,
-			avatar: avatar
-				? {
-						url: avatar.url || null,
-						alt: avatar.alt || null,
-					}
-				: null,
-			source: testimonial.source,
-		}
-	})
+	return result.docs as unknown as TestimonialData[];
 }
 
-export async function getFeaturedTestimonials(): Promise<Testimonial[]> {
-	const payload = await getPayload({
-		config: configPromise,
-	})
+/**
+ * Récupérer les témoignages mis en avant
+ */
+export async function getFeaturedTestimonials(limit = 3): Promise<TestimonialData[]> {
+	const payload = await getPayload({ config });
 
-	const { docs } = await payload.find({
-		collection: 'testimonials',
+	const result = await payload.find({
+		collection: "testimonials",
 		where: {
-			and: [
-				{
-					status: {
-						equals: 'published',
-					},
-				},
-				{
-					featured: {
-						equals: true,
-					},
-				},
-			],
+			and: [{ status: { equals: "published" } }, { featured: { equals: true } }],
 		},
-		sort: '-order',
-		limit: 20,
-	})
+		sort: "-order",
+		limit,
+	});
 
-	return docs.map(testimonial => {
-		const avatar = testimonial.avatar && typeof testimonial.avatar === 'object' ? testimonial.avatar : null
+	return result.docs as unknown as TestimonialData[];
+}
 
-		return {
-			id: String(testimonial.id),
-			name: testimonial.name,
-			content: testimonial.content,
-			rating: testimonial.rating,
-			avatar: avatar
-				? {
-						url: avatar.url || null,
-						alt: avatar.alt || null,
-					}
-				: null,
-			source: testimonial.source,
-		}
-	})
+/**
+ * Récupérer les témoignages par source (ex: Google)
+ */
+export async function getTestimonialsBySource(
+	source: "google" | "facebook" | "instagram" | "email" | "other",
+	limit = 50,
+): Promise<TestimonialData[]> {
+	const payload = await getPayload({ config });
+
+	const result = await payload.find({
+		collection: "testimonials",
+		where: {
+			and: [{ status: { equals: "published" } }, { source: { equals: source } }],
+		},
+		sort: "-order",
+		limit,
+	});
+
+	return result.docs as unknown as TestimonialData[];
+}
+
+/**
+ * Récupérer les témoignages avec une note spécifique
+ */
+export async function getTestimonialsByRating(rating: number, limit = 20): Promise<TestimonialData[]> {
+	const payload = await getPayload({ config });
+
+	const result = await payload.find({
+		collection: "testimonials",
+		where: {
+			and: [{ status: { equals: "published" } }, { rating: { equals: rating } }],
+		},
+		sort: "-order",
+		limit,
+	});
+
+	return result.docs as unknown as TestimonialData[];
+}
+
+/**
+ * Récupérer les statistiques des témoignages
+ */
+export async function getTestimonialsStats() {
+	const payload = await getPayload({ config });
+
+	// Total de témoignages publiés
+	const totalPublished = await payload.find({
+		collection: "testimonials",
+		where: {
+			status: { equals: "published" },
+		},
+		limit: 0, // Juste pour avoir le count
+	});
+
+	// Témoignages Google
+	const googleReviews = await payload.find({
+		collection: "testimonials",
+		where: {
+			and: [{ status: { equals: "published" } }, { source: { equals: "google" } }],
+		},
+		limit: 0,
+	});
+
+	// Témoignages mis en avant
+	const featured = await payload.find({
+		collection: "testimonials",
+		where: {
+			and: [{ status: { equals: "published" } }, { featured: { equals: true } }],
+		},
+		limit: 0,
+	});
+
+	// Calculer la note moyenne
+	const allPublished = await payload.find({
+		collection: "testimonials",
+		where: {
+			status: { equals: "published" },
+		},
+		limit: 1000, // Limite raisonnable
+	});
+
+	const averageRating =
+		allPublished.docs.length > 0
+			? allPublished.docs.reduce((sum, doc) => sum + (doc.rating || 0), 0) / allPublished.docs.length
+			: 0;
+
+	// Distribution des notes
+	const ratingDistribution = allPublished.docs.reduce(
+		(acc, doc) => {
+			const rating = doc.rating || 0;
+			acc[rating] = (acc[rating] || 0) + 1;
+			return acc;
+		},
+		{} as Record<number, number>,
+	);
+
+	return {
+		total: totalPublished.totalDocs,
+		google: googleReviews.totalDocs,
+		featured: featured.totalDocs,
+		averageRating: parseFloat(averageRating.toFixed(2)),
+		ratingDistribution,
+	};
 }

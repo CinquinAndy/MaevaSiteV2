@@ -3,6 +3,7 @@
  * Convertit les données de reviews-data/google-reviews.json vers la collection Testimonials
  */
 
+import "dotenv/config";
 import { getPayload } from "payload";
 import config from "@payload-config";
 import { readFileSync } from "node:fs";
