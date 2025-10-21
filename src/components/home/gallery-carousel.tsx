@@ -1,9 +1,9 @@
 'use client'
 
 import { ArrowLeft, ArrowRight } from 'lucide-react'
-import { useEffect, useState } from 'react'
-import Link from 'next/link'
 import Image from 'next/image'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
 import { Button } from '@/components/ui/button'
 import { Carousel, type CarouselApi, CarouselContent, CarouselItem } from '@/components/ui/carousel'
