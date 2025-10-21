@@ -365,6 +365,14 @@ export interface Testimonial {
    */
   content: string;
   /**
+   * Ex: il y a 3 mois, 12/2024
+   */
+  date?: string | null;
+  /**
+   * URL externe de la photo de profil (pour les avis Google)
+   */
+  avatarUrl?: string | null;
+  /**
    * Note sur 5
    */
   rating: number;
@@ -593,6 +601,8 @@ export interface ServicesSelect<T extends boolean = true> {
 export interface TestimonialsSelect<T extends boolean = true> {
   name?: T;
   content?: T;
+  date?: T;
+  avatarUrl?: T;
   rating?: T;
   source?: T;
   sourceUrl?: T;

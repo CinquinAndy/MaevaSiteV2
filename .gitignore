@@ -8,3 +8,5 @@ public/languages
 public/wordpress
 *.iml
 .next
+google-credentials.json
+reviews-data/

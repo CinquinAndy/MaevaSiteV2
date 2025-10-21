@@ -29,6 +29,25 @@ export const Testimonials: CollectionConfig = {
 			},
 		},
 		{
+			name: 'date',
+			type: 'text',
+			required: false,
+			label: 'Date de publication',
+			admin: {
+				description: 'Ex: il y a 3 mois, 12/2024',
+			},
+		},
+		{
+			name: 'avatarUrl',
+			type: 'text',
+			required: false,
+			label: 'URL de la photo (externe)',
+			admin: {
+				description: 'URL externe de la photo de profil (pour les avis Google)',
+				condition: (data) => data.source === 'google',
+			},
+		},
+		{
 			name: 'rating',
 			type: 'number',
 			required: true,

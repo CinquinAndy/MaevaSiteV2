@@ -264,3 +264,217 @@ Cette formule favorise:
 - #19: Lyon (460.6) - Métropole majeure (500k+ hab.)
 
 **Conclusion**: Augmenter le poids de la population à 50% permet d'inclure les grandes métropoles régionales (Genève, Lausanne, Annecy, Lyon) tout en préservant le bonus de proximité pour Thonon et Évian. Cette approche est plus équilibrée pour le SEO car elle cible à la fois les recherches locales (Thonon, Évian) et les grandes villes (Genève, Lyon).
+
+---
+
+# 🌟 Scripts de récupération des avis Google
+
+Ce dossier contient également deux scripts pour récupérer les avis Google de Maeva Cinquin.
+
+## 📋 Scripts disponibles
+
+### 1. `scrape-google-reviews-simple.ts` (Recommandé - Plus simple)
+
+**Utilise Playwright pour extraire tous les avis via recherche Google Maps.**
+
+**Avantages:**
+- ✅ Récupère TOUS les avis (pas de limitation)
+- ✅ Fonctionne immédiatement (pas besoin d'API Key)
+- ✅ Gratuit et illimité
+- ✅ Gère automatiquement la popup de cookies
+- ✅ Cherche directement "cinquin maeva"
+
+**Utilisation:**
+
+```bash
+# Lancer le scraping (cherche automatiquement "cinquin maeva")
+pnpm tsx scripts/scrape-google-reviews-simple.ts
+
+# Puis nettoyer les doublons et calculer les stats
+pnpm tsx scripts/clean-reviews.ts
+```
+
+**Résultat:**
+- `reviews-data/google-reviews.json` (19 avis uniques, note moyenne 4.58/5)
+- 89.5% d'avis 5 étoiles
+- Avis triés du plus récent au plus ancien
+
+---
+
+### 2. `scrape-google-reviews.ts` (Version avancée)
+
+**Utilise Playwright pour extraire tous les avis depuis une URL Google Business spécifique.**
+
+**Avantages:**
+- ✅ Récupère TOUS les avis (pas de limitation)
+- ✅ Capture les réponses du propriétaire
+- ✅ Récupère les images de profil
+- ✅ Plus de contrôle sur les sélecteurs
+
+**Inconvénients:**
+- ⚠️ Nécessite une URL exacte
+- ⚠️ Peut casser si Google change son interface
+
+**Utilisation:**
+
+```bash
+# Avec l'URL longue
+pnpm tsx scripts/scrape-google-reviews.ts "https://www.google.com/maps/place/..."
+
+# Avec l'URL courte
+pnpm tsx scripts/scrape-google-reviews.ts "https://share.google/kEWKrOQpKqnDZejJ5"
+
+# Sans argument (utilise l'URL par défaut)
+pnpm tsx scripts/scrape-google-reviews.ts
+```
+
+**Résultat:** Fichier `reviews-data/google-reviews.json`
+
+---
+
+### 2. `fetch-google-reviews-api.ts` (Officiel mais limité)
+
+**Utilise Google Places API pour récupérer les avis officiellement.**
+
+**Avantages:**
+- ✅ Officiel et conforme aux CGU Google
+- ✅ Stable (pas de changement d'interface)
+- ✅ Données structurées et fiables
+
+**Inconvénients:**
+- ❌ Nécessite une API Key Google Places API
+- ❌ Limité à 5 avis maximum (limitation API gratuite)
+- ❌ Nécessite activation de l'API dans Google Cloud
+
+**Prérequis:**
+
+1. **Créer une API Key (PAS un Service Account):**
+   - Aller sur https://console.cloud.google.com/apis/credentials
+   - Cliquer sur "Créer des identifiants" > "Clé API"
+   - Copier la clé générée
+
+2. **Activer Places API:**
+   - Aller sur https://console.cloud.google.com/apis/library
+   - Rechercher "Places API (New)"
+   - Cliquer sur "Activer"
+
+3. **Configurer l'environnement:**
+   ```bash
+   echo "GOOGLE_PLACES_API_KEY=votre_clé_api" >> .env
+   ```
+
+**Utilisation:**
+
+```bash
+pnpm tsx scripts/fetch-google-reviews-api.ts
+```
+
+**Résultat:** Fichier `reviews-data/google-reviews-api.json`
+
+---
+
+## 🎯 Quelle méthode choisir ?
+
+| Critère | Playwright | Places API |
+|---------|-----------|------------|
+| Nombre d'avis | ✅ Tous | ❌ Max 5 |
+| Gratuit | ✅ Oui | ⚠️ Quota limité |
+| Setup | ✅ Aucun | ❌ API Key requise |
+| Légalité | ⚠️ Zone grise | ✅ Officiel |
+| Stabilité | ⚠️ Peut casser | ✅ Stable |
+| Vitesse | ⚠️ Lent | ✅ Rapide |
+
+**Recommandation:** Utilisez `scrape-google-reviews.ts` pour une extraction complète et gratuite des avis.
+
+---
+
+## 📊 Structure des données des avis
+
+Les deux scripts génèrent des fichiers JSON avec cette structure:
+
+```json
+{
+  "businessName": "Maquilleuse professionnelle freelance - Makeup.Artist.Dream",
+  "averageRating": 5.0,
+  "totalReviews": 42,
+  "placeId": "ChIJ...",
+  "extractedAt": "2025-10-22T10:30:00.000Z",
+  "reviews": [
+    {
+      "author": "Marie Dupont",
+      "authorImage": "https://...",
+      "rating": 5,
+      "date": "il y a 2 mois",
+      "text": "Excellent service, très professionnelle!",
+      "response": {
+        "text": "Merci pour votre confiance!",
+        "date": "il y a 2 mois"
+      }
+    }
+  ]
+}
+```
+
+---
+
+## 🚀 Afficher les avis sur le site web
+
+Une fois les avis extraits, vous pouvez les afficher sur le site de Maeva:
+
+```tsx
+// src/components/reviews/GoogleReviews.tsx
+import reviewsData from '@/reviews-data/google-reviews.json';
+
+export function GoogleReviews() {
+  return (
+    <div className="reviews-container">
+      <h2>{reviewsData.businessName}</h2>
+      <p>⭐ {reviewsData.averageRating}/5 ({reviewsData.totalReviews} avis)</p>
+
+      <div className="reviews-grid">
+        {reviewsData.reviews.map((review, index) => (
+          <div key={index} className="review-card">
+            <div className="review-header">
+              <img src={review.authorImage} alt={review.author} />
+              <div>
+                <h3>{review.author}</h3>
+                <p>{'⭐'.repeat(review.rating)}</p>
+                <span>{review.date}</span>
+              </div>
+            </div>
+            <p>{review.text}</p>
+            {review.response && (
+              <div className="owner-response">
+                <p><strong>Réponse du propriétaire:</strong></p>
+                <p>{review.response.text}</p>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+```
+
+---
+
+## ⚠️ Notes importantes sur les avis Google
+
+1. **Sécurité:**
+   - Le fichier `google-credentials.json` est dans `.gitignore`
+   - Ne commitez JAMAIS vos clés API
+   - Les credentials service account ne fonctionnent PAS pour Places API
+
+2. **Fréquence de mise à jour:**
+   - Relancez le script régulièrement pour mettre à jour les avis
+   - Recommandation: 1 fois par semaine ou mois
+
+3. **Légalité:**
+   - Le scraping Playwright est dans une zone grise légale
+   - Usage personnel et éducatif généralement toléré
+   - Pour production, préférez Places API officielle
+
+4. **Performance:**
+   - Les fichiers JSON sont légers et peuvent être importés directement
+   - Pour plus de performance, stockez les avis dans Payload CMS
