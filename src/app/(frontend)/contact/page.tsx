@@ -1,5 +1,6 @@
 import { IconBrandFacebook, IconBrandInstagram, IconMail, IconMapPin, IconPhone } from '@tabler/icons-react'
 import { ContactForm } from '@/components/global/contact-form'
+import Hero from '@/components/home/hero'
 import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
 
@@ -12,17 +13,7 @@ export const metadata = {
 export default function ContactPage() {
 	return (
 		<>
-			{/* Hero Section */}
-			<Section variant="muted" className="py-16 md:py-24">
-				<Container>
-					<div className="max-w-3xl mx-auto text-center space-y-4">
-						<h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">Me Contacter</h1>
-						<p className="text-lg md:text-xl text-muted-foreground">
-							Une question ? Un projet ? Je suis à votre écoute
-						</p>
-					</div>
-				</Container>
-			</Section>
+			<Hero title="Contact" backgroundImage="/Maquilleuse_Professionnelle_Maeva-scaled.jpg" />
 
 			{/* Contact Section */}
 			<Section>

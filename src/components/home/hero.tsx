@@ -1,17 +1,17 @@
 import Image from 'next/image'
 
-import { Blob1, Blob3, Blob5, Blob7, Blob9 } from '../blobs/blobs'
+import { Blob1, Blob5, Blob7 } from '../blobs/blobs'
 import CurvedText from './curved-text'
 
-export default function Hero({ title }: { title: string }) {
+interface HeroProps {
+	title: string
+	backgroundImage?: string
+}
+
+export default function Hero({ title, backgroundImage = '/Maquilleuse_Professionnelle_Maeva-scaled.jpg' }: HeroProps) {
 	return (
 		<div className="h-screen w-screen relative overflow-hidden">
-			<Image
-				src="/Maquilleuse_Professionnelle_Maeva-scaled.jpg"
-				alt="Hero"
-				fill
-				className="object-cover grayscale brightness-75"
-			/>
+			<Image src={backgroundImage} alt="Hero" fill className="object-cover grayscale brightness-75" />
 			<h1 className="text-[700px]/50 font-bold absolute top-40 -left-20 z-10 font-corinthia text-foreground">
 				{title}
 			</h1>

@@ -31,9 +31,17 @@ export default async function BlogPage() {
 			<Hero title="Blog" />
 
 			{/* Articles Section */}
-			<Section>
+			<Section className="py-12 md:py-16 lg:py-20">
 				<Container>
-					<div className="space-y-8">
+					<div className="space-y-12">
+						{/* En-tête de section */}
+						<div className="max-w-2xl mx-auto text-center space-y-4">
+							<h2 className="text-3xl md:text-4xl font-bold text-foreground">Derniers Articles</h2>
+							<p className="text-muted-foreground text-lg">
+								Découvrez mes conseils, astuces et actualités dans le monde du maquillage et du nail art
+							</p>
+						</div>
+
 						{/* Catégories - Pour future implémentation de filtrage client-side */}
 						{/* <div className="flex flex-wrap gap-2 justify-center">
 							{categories.map((cat) => (
@@ -46,7 +54,7 @@ export default async function BlogPage() {
 							))}
 						</div> */}
 
-						{/* Articles Grid */}
+						{/* Articles Grid avec effet glowing */}
 						{posts.length > 0 ? (
 							<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
 								{posts.map(post => (

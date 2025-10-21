@@ -1,5 +1,6 @@
 import config from '@payload-config'
 import { getPayload } from 'payload'
+import Hero from '@/components/home/hero'
 import { Container } from '@/components/ui/container'
 import { GalleryCard } from '@/components/ui/gallery-card'
 import { Section } from '@/components/ui/section'
@@ -27,17 +28,7 @@ export default async function GaleriePage() {
 
 	return (
 		<>
-			{/* Hero Section */}
-			<Section variant="muted" className="py-16 md:py-24">
-				<Container>
-					<div className="max-w-3xl mx-auto text-center space-y-4">
-						<h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">Galerie</h1>
-						<p className="text-lg md:text-xl text-muted-foreground">
-							Découvrez mes créations et réalisations en maquillage et nail art
-						</p>
-					</div>
-				</Container>
-			</Section>
+			<Hero title="Galerie" backgroundImage="/Maquilleuse_Professionnelle_Maeva-scaled.jpg" />
 
 			{/* Galleries Section */}
 			<Section>

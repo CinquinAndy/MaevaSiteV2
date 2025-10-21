@@ -1,5 +1,6 @@
 import config from '@payload-config'
 import { getPayload } from 'payload'
+import Hero from '@/components/home/hero'
 import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
 import { ServiceCard } from '@/components/ui/service-card'
@@ -49,17 +50,7 @@ export default async function PrestationsPage() {
 
 	return (
 		<>
-			{/* Hero Section */}
-			<Section variant="muted" className="py-16 md:py-24">
-				<Container>
-					<div className="max-w-3xl mx-auto text-center space-y-4">
-						<h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">Mes Prestations</h1>
-						<p className="text-lg md:text-xl text-muted-foreground">
-							Maquillage professionnel et nail art pour tous vos événements
-						</p>
-					</div>
-				</Container>
-			</Section>
+			<Hero title="Prestations" backgroundImage="/Maquilleuse_Professionnelle_Maeva-scaled.jpg" />
 
 			{/* Introduction */}
 			<Section className="py-12">
