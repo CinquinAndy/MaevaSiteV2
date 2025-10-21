@@ -1,5 +1,6 @@
 import config from '@payload-config'
 import { getPayload } from 'payload'
+import { CtaSection } from '@/components/home/cta-section'
 import Hero from '@/components/home/hero'
 import { Container } from '@/components/ui/container'
 import { GalleryCard } from '@/components/ui/gallery-card'
@@ -28,12 +29,7 @@ export default async function GaleriePage() {
 
 	return (
 		<>
-			<Hero
-				title="Galerie"
-				backgroundImage="/Maquilleuse_Professionnelle_Maeva-scaled.jpg"
-				fontSize={600}
-				lineHeight={0.5}
-			/>
+			<Hero title="Galerie" backgroundImage="/Fond_Mae.jpg" fontSize={600} lineHeight={0.5} />
 
 			{/* Galleries Section */}
 			<Section>
@@ -54,6 +50,9 @@ export default async function GaleriePage() {
 					</div>
 				</Container>
 			</Section>
+
+			{/* Section CTA */}
+			<CtaSection />
 		</>
 	)
 }

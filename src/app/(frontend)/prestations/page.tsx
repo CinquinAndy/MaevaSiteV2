@@ -1,5 +1,6 @@
 import config from '@payload-config'
 import { getPayload } from 'payload'
+import { CtaSection } from '@/components/home/cta-section'
 import Hero from '@/components/home/hero'
 import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
@@ -52,7 +53,7 @@ export default async function PrestationsPage() {
 		<>
 			<Hero
 				title="Prestations"
-				backgroundImage="/Maquilleuse_Professionnelle_Maeva-scaled.jpg"
+				backgroundImage="/Maquillage_Artistique_Cirque_Shooting_4.jpg"
 				fontSize={480}
 				lineHeight={0.5}
 			/>
@@ -124,31 +125,8 @@ export default async function PrestationsPage() {
 				</Container>
 			</Section>
 
-			{/* Call to Action */}
-			<Section>
-				<Container>
-					<div className="max-w-3xl mx-auto text-center space-y-6 bg-gradient-to-br from-primary/10 to-accent/10 p-12 rounded-lg">
-						<h2 className="text-3xl md:text-4xl font-bold text-foreground">Prête à vous sublimer ?</h2>
-						<p className="text-lg text-muted-foreground">
-							Contactez-moi pour discuter de votre projet et recevoir un devis personnalisé.
-						</p>
-						<div className="flex flex-col sm:flex-row gap-4 justify-center">
-							<a
-								href="/contact"
-								className="inline-flex items-center justify-center px-8 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium"
-							>
-								Me contacter
-							</a>
-							<a
-								href="tel:+33616625137"
-								className="inline-flex items-center justify-center px-8 py-3 border border-border rounded-lg hover:bg-muted transition-colors font-medium"
-							>
-								Appeler : 06 16 62 51 37
-							</a>
-						</div>
-					</div>
-				</Container>
-			</Section>
+			{/* Section CTA */}
+			<CtaSection />
 		</>
 	)
 }

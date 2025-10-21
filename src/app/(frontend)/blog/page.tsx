@@ -1,5 +1,6 @@
 import config from '@payload-config'
 import { getPayload } from 'payload'
+import { CtaSection } from '@/components/home/cta-section'
 import Hero from '@/components/home/hero'
 import { BlogCard } from '@/components/ui/blog-card'
 import { Container } from '@/components/ui/container'
@@ -42,18 +43,6 @@ export default async function BlogPage() {
 							</p>
 						</div>
 
-						{/* Catégories - Pour future implémentation de filtrage client-side */}
-						{/* <div className="flex flex-wrap gap-2 justify-center">
-							{categories.map((cat) => (
-								<button
-									key={cat.value}
-									className="px-4 py-2 rounded-full border border-border hover:bg-primary hover:text-primary-foreground transition-colors"
-								>
-									{cat.label}
-								</button>
-							))}
-						</div> */}
-
 						{/* Articles Grid avec effet glowing */}
 						{posts.length > 0 ? (
 							<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
@@ -70,6 +59,9 @@ export default async function BlogPage() {
 					</div>
 				</Container>
 			</Section>
+
+			{/* Section CTA */}
+			<CtaSection />
 		</>
 	)
 }

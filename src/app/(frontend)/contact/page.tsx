@@ -1,5 +1,6 @@
 import { IconBrandFacebook, IconBrandInstagram, IconMail, IconMapPin, IconPhone } from '@tabler/icons-react'
 import { ContactForm } from '@/components/global/contact-form'
+import { CtaSection } from '@/components/home/cta-section'
 import Hero from '@/components/home/hero'
 import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
@@ -13,12 +14,7 @@ export const metadata = {
 export default function ContactPage() {
 	return (
 		<>
-			<Hero
-				title="Contact"
-				backgroundImage="/Maquilleuse_Professionnelle_Maeva-scaled.jpg"
-				fontSize={600}
-				lineHeight={0.5}
-			/>
+			<Hero title="Contact" backgroundImage="/image00003.jpeg" fontSize={600} lineHeight={0.5} />
 
 			{/* Contact Section */}
 			<Section>
@@ -147,36 +143,7 @@ export default function ContactPage() {
 			</Section>
 
 			{/* Section CTA */}
-			<Section variant="muted">
-				<Container>
-					<div className="max-w-3xl mx-auto text-center space-y-6">
-						<h2 className="text-3xl md:text-4xl font-bold text-foreground">Pourquoi me choisir ?</h2>
-						<div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-							<div className="space-y-2">
-								<div className="text-4xl">✨</div>
-								<h3 className="font-semibold text-foreground">Expertise</h3>
-								<p className="text-sm text-muted-foreground">
-									Diplômée Make Up For Ever Academy et certifiée prothésiste ongulaire
-								</p>
-							</div>
-							<div className="space-y-2">
-								<div className="text-4xl">💎</div>
-								<h3 className="font-semibold text-foreground">Personnalisé</h3>
-								<p className="text-sm text-muted-foreground">
-									Prestations sur-mesure adaptées à vos besoins et à votre style
-								</p>
-							</div>
-							<div className="space-y-2">
-								<div className="text-4xl">🌟</div>
-								<h3 className="font-semibold text-foreground">Qualité</h3>
-								<p className="text-sm text-muted-foreground">
-									Produits professionnels haut de gamme et techniques éprouvées
-								</p>
-							</div>
-						</div>
-					</div>
-				</Container>
-			</Section>
+			<CtaSection />
 		</>
 	)
 }

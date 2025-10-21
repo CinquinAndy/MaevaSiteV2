@@ -76,7 +76,7 @@ export function BlogCard({ post, className }: BlogCardProps) {
 							</div>
 
 							{/* Titre */}
-							<h3 className="text-xl font-semibold leading-[1.375rem] tracking-[-0.04em] text-balance text-foreground group-hover:text-pink-700 transition-colors md:text-2xl md:leading-[1.875rem] line-clamp-2">
+							<h3 className="text-xl font-libre-caslon-display font-semibold leading-[1.375rem] tracking-[-0.04em] text-balance text-foreground group-hover:text-pink-700 transition-colors md:text-2xl md:leading-[1.875rem] line-clamp-2">
 								{post.title}
 							</h3>
 
