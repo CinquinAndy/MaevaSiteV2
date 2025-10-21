@@ -1,5 +1,6 @@
 import config from '@payload-config'
 import { getPayload } from 'payload'
+import Hero from '@/components/home/hero'
 import { BlogCard } from '@/components/ui/blog-card'
 import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
@@ -25,30 +26,9 @@ export default async function BlogPage() {
 		limit: 100,
 	})
 
-	// Grouper les posts par catégorie pour affichage
-	const categories = [
-		{ value: 'all', label: 'Tous les articles' },
-		{ value: 'conseils-maquillage', label: 'Conseils Maquillage' },
-		{ value: 'nail-art', label: 'Nail Art' },
-		{ value: 'tutoriels', label: 'Tutoriels' },
-		{ value: 'actualites', label: 'Actualités' },
-		{ value: 'collections', label: 'Collections' },
-		{ value: 'mariages-evenements', label: 'Mariages & Événements' },
-	]
-
 	return (
 		<>
-			{/* Hero Section */}
-			<Section variant="muted" className="py-16 md:py-24">
-				<Container>
-					<div className="max-w-3xl mx-auto text-center space-y-4">
-						<h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">Blog</h1>
-						<p className="text-lg md:text-xl text-muted-foreground">
-							Conseils, astuces et actualités sur le maquillage et le nail art
-						</p>
-					</div>
-				</Container>
-			</Section>
+			<Hero title="Blog" />
 
 			{/* Articles Section */}
 			<Section>

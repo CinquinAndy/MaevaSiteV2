@@ -70,3 +70,5 @@ tsconfig.tsbuildinfo
 .DS_Store
 *.swp
 coverage/
+
+public
