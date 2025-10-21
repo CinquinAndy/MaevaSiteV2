@@ -115,13 +115,13 @@ const GalleryCarousel = ({
 											alt={item.title}
 											fill
 											sizes="(max-width: 768px) 320px, 360px"
-											className="object-cover object-center"
+											className="object-cover object-center opacity-75"
 										/>
 									</div>
 
 									{/* Themed Gradient Overlay */}
 									<div
-										className="absolute inset-0"
+										className="absolute inset-0 z-50"
 										style={{
 											background:
 												'linear-gradient(to top, hsl(var(--primary) / 0.9), hsl(var(--primary) / 0.6) 30%, transparent 60%)',
@@ -129,12 +129,11 @@ const GalleryCarousel = ({
 									/>
 
 									{/* Content */}
-									<div className="relative flex h-full flex-col justify-end p-6 text-primary-foreground md:p-8">
-										<div className="mb-2 text-sm font-medium uppercase tracking-wider opacity-90">{item.category}</div>
+									<div className="relative flex h-full flex-col justify-end p-6 text-foreground md:p-8">
 										<h3 className="mb-2 pt-2 text-xl font-bold tracking-tight md:mb-3 md:pt-2 lg:pt-2 font-kalam">
 											{item.title}
 										</h3>
-										<p className="mb-8 line-clamp-2 text-sm text-white/90 md:mb-12 lg:mb-9">{item.description}</p>
+										<p className="mb-8 line-clamp-2 text-sm text-foreground/90 md:mb-12 lg:mb-9">{item.description}</p>
 
 										{/* Explore Button */}
 										<div className="flex items-center justify-between rounded-lg border border-[hsl(var(--primary)/0.3)] bg-[hsl(var(--primary)/0.2)] px-4 py-3 backdrop-blur-md transition-all duration-300 group-hover:border-[hsl(var(--primary)/0.5)] group-hover:bg-[hsl(var(--primary)/0.4)]">
