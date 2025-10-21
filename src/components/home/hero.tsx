@@ -1,6 +1,7 @@
 import Image from 'next/image'
 
 import { Blob1, Blob3, Blob5, Blob7, Blob9 } from '../blobs/blobs'
+import CurvedText from './curved-text'
 
 export default function Hero({ title }: { title: string }) {
 	return (
@@ -25,6 +26,11 @@ export default function Hero({ title }: { title: string }) {
 
 			<div className="absolute right-8 top-1/2 m-8 -translate-y-1/2 z-0 animate-float-slow delay-2500 opacity-70">
 				<Blob7 />
+			</div>
+
+			{/* Texte courbé */}
+			<div className="absolute inset-0 z-20 pointer-events-none">
+				<CurvedText />
 			</div>
 		</div>
 	)
