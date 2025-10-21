@@ -39,7 +39,7 @@ function convertGoogleReviewToTestimonial(review: GoogleReview, index: number) {
 	return {
 		name: review.author,
 		content: review.text,
-		date: review.date,
+		publishedDate: review.date, // Date ISO maintenant
 		rating: review.rating,
 		source: "google" as const,
 		sourceUrl: "https://www.google.com/maps/search/cinquin+maeva",

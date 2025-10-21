@@ -3,10 +3,12 @@
  * - Supprime les doublons
  * - Corrige le nom de l'entreprise
  * - Calcule la note moyenne réelle
+ * - Convertit les dates relatives en dates absolues
  */
 
 import { readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
+import { convertRelativeDate } from "./convert-relative-dates";
 
 interface Review {
 	author: string;
@@ -59,9 +61,21 @@ function cleanReviews() {
 	console.log(`   - Avis après: ${cleanedReviews.length}`);
 	console.log(`   - Doublons supprimés: ${data.reviews.length - cleanedReviews.length}`);
 
-	// 3. Nettoyer les noms d'auteurs (enlever "Photo de ")
+	// 3. Nettoyer les noms d'auteurs (enlever "Photo de ") et convertir les dates
+	console.log(`\n📅 Conversion des dates relatives en dates absolues...`);
+	const referenceDate = data.extractedAt ? new Date(data.extractedAt) : new Date();
+
 	for (const review of cleanedReviews) {
 		review.author = review.author.replace(/^Photo de /, "").trim();
+
+		// Convertir la date relative en date ISO
+		const originalDate = review.date;
+		review.date = convertRelativeDate(review.date, referenceDate);
+
+		// Log si conversion réussie
+		if (review.date !== originalDate && review.date.includes('T')) {
+			// Date convertie avec succès (format ISO)
+		}
 	}
 
 	// 3b. Statistiques sur les images
@@ -96,7 +110,20 @@ function cleanReviews() {
 
 	// 6. Trier par date (les plus récents en premier)
 	cleanedReviews.sort((a, b) => {
-		// Simple tri par texte de date (pas parfait mais suffisant)
+		// Essayer de parser les dates ISO, sinon fallback sur tri texte
+		try {
+			const dateA = new Date(a.date).getTime();
+			const dateB = new Date(b.date).getTime();
+
+			// Si les deux dates sont valides, comparer (plus récent en premier)
+			if (!isNaN(dateA) && !isNaN(dateB)) {
+				return dateB - dateA;
+			}
+		} catch {
+			// Fallback sur ancien système si erreur
+		}
+
+		// Fallback: tri par texte de date (pour dates non converties)
 		const getMonths = (dateText: string): number => {
 			if (dateText.includes("semaine")) return 0.25;
 			if (dateText.includes("mois")) {

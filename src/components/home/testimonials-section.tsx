@@ -2,11 +2,11 @@ import { IconStar } from '@tabler/icons-react'
 import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
 import { TestimonialsColumn } from '@/components/ui/testimonials-column'
-import type { Testimonial } from '@/lib/payload/get-testimonials'
-import { getTestimonials } from '@/lib/payload/get-testimonials'
+import type { TestimonialData } from '@/lib/payload/get-testimonials'
+import { getPublishedTestimonials } from '@/lib/payload/get-testimonials'
 
 // Fallback testimonials for when DB is empty or during build
-const fallbackTestimonials: Testimonial[] = [
+const fallbackTestimonials: TestimonialData[] = [
 	{
 		id: 'sophie-l',
 		name: 'Sophie L.',
@@ -83,7 +83,7 @@ const fallbackTestimonials: Testimonial[] = [
 
 export async function TestimonialsSection() {
 	// Fetch testimonials from Payload CMS
-	let testimonials = await getTestimonials()
+	let testimonials = await getPublishedTestimonials()
 
 	// If no testimonials in DB, use fallback
 	if (testimonials.length === 0) {
