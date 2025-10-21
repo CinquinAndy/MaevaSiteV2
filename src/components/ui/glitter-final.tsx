@@ -119,7 +119,7 @@ interface GlitterFinalProps {
 export default function GlitterFinal({ speed = 1, intensity = 5.0, className = '' }: GlitterFinalProps) {
 	return (
 		<div
-			className={`fixed z-[20] scale-125 custom-bg inset-0 w-full h-full opacity-50 mix-blend-lighten ${className}`}
+			className={`fixed z-[60] scale-125 custom-bg inset-0 w-full h-full opacity-50 mix-blend-lighten ${className}`}
 			style={{ width: '100vw', height: '100vh' }}
 		>
 			<Canvas
