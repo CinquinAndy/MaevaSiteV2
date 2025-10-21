@@ -101,26 +101,45 @@ const GalleryCarousel = ({
 					<CarouselContent className="ml-0 2xl:ml-[max(8rem,calc(50vw-700px))] 2xl:mr-[max(0rem,calc(50vw-700px))]">
 						{items.map(item => (
 							<CarouselItem key={item.id} className="max-w-[320px] pl-[20px] lg:max-w-[360px]">
-								<Link href={item.href} className="group rounded-xl">
-									<div className="group relative h-full min-h-[27rem] max-w-full overflow-hidden rounded-xl md:aspect-[5/4] lg:aspect-[16/9]">
+								<Link
+									href={item.href}
+									className="group relative block h-full min-h-[27rem] w-full overflow-hidden rounded-2xl shadow-lg transition-all duration-500 ease-in-out hover:scale-105 hover:shadow-[0_0_60px_-15px_hsl(var(--primary)/0.6)] md:aspect-[5/4] lg:aspect-[16/9]"
+									style={{
+										boxShadow: '0 0 40px -15px hsl(var(--primary) / 0.5)',
+									}}
+								>
+									{/* Background Image with Parallax Zoom */}
+									<div className="absolute inset-0 transition-transform duration-500 ease-in-out group-hover:scale-110">
 										<Image
 											src={item.image}
 											alt={item.title}
 											fill
 											sizes="(max-width: 768px) 320px, 360px"
-											className="object-cover object-center transition-transform duration-300 group-hover:scale-105"
+											className="object-cover object-center"
 										/>
-										<div className="absolute inset-0 h-full bg-[linear-gradient(hsl(var(--primary)/0),hsl(var(--primary)/0.4),hsl(var(--primary)/0.8)_100%)] mix-blend-multiply" />
-										<div className="absolute inset-x-0 bottom-0 flex flex-col items-start p-6 text-primary-foreground md:p-8">
-											<div className="mb-2 text-xs font-medium uppercase tracking-wider opacity-90">
-												{item.category}
-											</div>
-											<div className="mb-2 pt-2 text-xl font-semibold md:mb-3 md:pt-2 lg:pt-2">{item.title}</div>
-											<div className="mb-8 line-clamp-2 md:mb-12 lg:mb-9">{item.description}</div>
-											<div className="flex items-center text-sm">
-												Voir la galerie{' '}
-												<ArrowRight className="ml-2 size-5 transition-transform group-hover:translate-x-1" />
-											</div>
+									</div>
+
+									{/* Themed Gradient Overlay */}
+									<div
+										className="absolute inset-0"
+										style={{
+											background:
+												'linear-gradient(to top, hsl(var(--primary) / 0.9), hsl(var(--primary) / 0.6) 30%, transparent 60%)',
+										}}
+									/>
+
+									{/* Content */}
+									<div className="relative flex h-full flex-col justify-end p-6 text-primary-foreground md:p-8">
+										<div className="mb-2 text-sm font-medium uppercase tracking-wider opacity-90">{item.category}</div>
+										<h3 className="mb-2 pt-2 text-xl font-bold tracking-tight md:mb-3 md:pt-2 lg:pt-2 font-kalam">
+											{item.title}
+										</h3>
+										<p className="mb-8 line-clamp-2 text-sm text-white/90 md:mb-12 lg:mb-9">{item.description}</p>
+
+										{/* Explore Button */}
+										<div className="flex items-center justify-between rounded-lg border border-[hsl(var(--primary)/0.3)] bg-[hsl(var(--primary)/0.2)] px-4 py-3 backdrop-blur-md transition-all duration-300 group-hover:border-[hsl(var(--primary)/0.5)] group-hover:bg-[hsl(var(--primary)/0.4)]">
+											<span className="text-sm font-semibold tracking-wide">Voir la galerie</span>
+											<ArrowRight className="size-4 transform transition-transform duration-300 group-hover:translate-x-1" />
 										</div>
 									</div>
 								</Link>
