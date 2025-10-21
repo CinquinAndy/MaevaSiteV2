@@ -106,10 +106,6 @@ export async function TestimonialsSection() {
 
 			<Container className="relative z-10">
 				<div className="flex flex-col items-center justify-center max-w-[540px] mx-auto mb-10">
-					<div className="flex justify-center">
-						<div className="border py-1 px-4 rounded-lg bg-card/50 backdrop-blur-sm">Témoignages</div>
-					</div>
-
 					<h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mt-5 text-center">
 						Elles me font confiance
 					</h2>
