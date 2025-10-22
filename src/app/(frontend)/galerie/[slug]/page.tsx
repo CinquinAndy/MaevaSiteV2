@@ -35,14 +35,15 @@ export async function generateStaticParams() {
 	}))
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+	const { slug } = await params
 	const payload = await getPayload({ config })
 
 	const { docs } = await payload.find({
 		collection: 'gallery',
 		where: {
 			slug: {
-				equals: params.slug,
+				equals: slug,
 			},
 		},
 		limit: 1,
@@ -63,14 +64,15 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 	}
 }
 
-export default async function GalleryDetailPage({ params }: { params: { slug: string } }) {
+export default async function GalleryDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+	const { slug } = await params
 	const payload = await getPayload({ config })
 
 	const { docs } = await payload.find({
 		collection: 'gallery',
 		where: {
 			slug: {
-				equals: params.slug,
+				equals: slug,
 			},
 			status: {
 				equals: 'published',
