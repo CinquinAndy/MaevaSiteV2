@@ -11,6 +11,7 @@ export const Services: CollectionConfig = {
 		read: () => true,
 	},
 	fields: [
+		...seoFields,
 		{
 			name: 'title',
 			type: 'text',
@@ -171,6 +172,5 @@ export const Services: CollectionConfig = {
 				position: 'sidebar',
 			},
 		},
-		...seoFields,
 	],
 }

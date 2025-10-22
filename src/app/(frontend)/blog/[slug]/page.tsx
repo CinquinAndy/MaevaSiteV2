@@ -62,12 +62,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 	return generateBlogPostMetadata({
 		title: post.title,
-		excerpt: post.excerpt,
-		featuredImage: featuredImage?.url,
+		excerpt: post.excerpt ?? undefined,
+		featuredImage: featuredImage?.url ?? undefined,
 		slug: post.slug,
-		publishedDate: post.publishedDate,
-		seoTitle: post.seo_title,
-		seoDescription: post.seo_description,
+		publishedDate: post.publishedDate ?? undefined,
+		seoTitle: post.seo_title ?? undefined,
+		seoDescription: post.seo_description ?? undefined,
 	})
 }
 
@@ -103,10 +103,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
 	const jsonLd = generateBlogPostJsonLd({
 		title: post.title,
-		excerpt: post.excerpt,
-		featuredImage: featuredImage?.url,
+		excerpt: post.excerpt ?? undefined,
+		featuredImage: featuredImage?.url ?? undefined,
 		slug: post.slug,
-		publishedDate: post.publishedDate,
+		publishedDate: post.publishedDate ?? undefined,
 	})
 
 	return (

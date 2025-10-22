@@ -1,6 +1,5 @@
 import config from '@payload-config'
 import { RichText } from '@payloadcms/richtext-lexical/react'
-import { Check } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -65,11 +64,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 	return generateServiceItemMetadata({
 		title: service.title,
-		shortDescription: service.shortDescription,
-		featuredImage: featuredImage?.url,
+		shortDescription: service.shortDescription ?? undefined,
+		featuredImage: featuredImage?.url ?? undefined,
 		slug: service.slug,
-		seoTitle: service.seo_title,
-		seoDescription: service.seo_description,
+		seoTitle: service.seo_title ?? undefined,
+		seoDescription: service.seo_description ?? undefined,
 	})
 }
 

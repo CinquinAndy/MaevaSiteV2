@@ -106,7 +106,7 @@ export function generateHomeMetadata(): Metadata {
 	return generateMetadata({
 		title: PAGE_SEO.home.title,
 		description: PAGE_SEO.home.description,
-		keywords: PAGE_SEO.home.keywords,
+		keywords: [...PAGE_SEO.home.keywords],
 		path: '/',
 		type: 'website',
 	})
@@ -119,7 +119,7 @@ export function generateBlogListingMetadata(): Metadata {
 	return generateMetadata({
 		title: PAGE_SEO.blog.title,
 		description: PAGE_SEO.blog.description,
-		keywords: PAGE_SEO.blog.keywords,
+		keywords: [...PAGE_SEO.blog.keywords],
 		path: '/blog',
 		type: 'website',
 	})
@@ -158,7 +158,7 @@ export function generateGalleryListingMetadata(): Metadata {
 	return generateMetadata({
 		title: PAGE_SEO.gallery.title,
 		description: PAGE_SEO.gallery.description,
-		keywords: PAGE_SEO.gallery.keywords,
+		keywords: [...PAGE_SEO.gallery.keywords],
 		path: '/galerie',
 		type: 'website',
 	})
@@ -195,7 +195,7 @@ export function generateServicesListingMetadata(): Metadata {
 	return generateMetadata({
 		title: PAGE_SEO.services.title,
 		description: PAGE_SEO.services.description,
-		keywords: PAGE_SEO.services.keywords,
+		keywords: [...PAGE_SEO.services.keywords],
 		path: '/prestations',
 		type: 'website',
 	})
@@ -233,7 +233,7 @@ export function generateContactMetadata(): Metadata {
 	return generateMetadata({
 		title: PAGE_SEO.contact.title,
 		description: PAGE_SEO.contact.description,
-		keywords: PAGE_SEO.contact.keywords,
+		keywords: [...PAGE_SEO.contact.keywords],
 		path: '/contact',
 		type: 'website',
 	})
@@ -246,7 +246,7 @@ export function generateMentionsLegalesMetadata(): Metadata {
 	return generateMetadata({
 		title: PAGE_SEO.mentionsLegales.title,
 		description: PAGE_SEO.mentionsLegales.description,
-		keywords: PAGE_SEO.mentionsLegales.keywords,
+		keywords: [...PAGE_SEO.mentionsLegales.keywords],
 		path: '/mentions-legales',
 		type: 'website',
 		noIndex: true, // Les pages légales ne doivent généralement pas être indexées

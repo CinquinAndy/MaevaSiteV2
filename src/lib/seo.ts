@@ -2,6 +2,15 @@ import type { Metadata } from 'next'
 import { generateSEODescription, generateSEOKeywords, getCityNamesForSEO } from './cities-data'
 
 /**
+ * Configuration du site pour SEO et sitemap
+ */
+export const SITE_CONFIG = {
+	url: 'https://cinquin-maeva.com',
+	name: 'Maeva Cinquin - Makeup Artist',
+	author: 'Maeva Cinquin',
+} as const
+
+/**
  * Génère les métadonnées SEO de base pour le site
  */
 export function generateBaseSEO(): Metadata {
@@ -17,28 +26,6 @@ export function generateBaseSEO(): Metadata {
 		keywords: keywords.join(', '),
 		authors: [{ name: 'Maeva Cinquin' }],
 		creator: 'Maeva Cinquin',
-		openGraph: {
-			type: 'website',
-			locale: 'fr_FR',
-			url: 'https://maevacinquin.com',
-			siteName: 'Maeva Cinquin - Makeup Artist',
-			title: 'Maeva Cinquin - Maquilleuse Professionnelle',
-			description,
-			images: [
-				{
-					url: '/image00001.jpeg',
-					width: 1920,
-					height: 1080,
-					alt: 'Maeva Cinquin - Maquilleuse Professionnelle',
-				},
-			],
-		},
-		twitter: {
-			card: 'summary_large_image',
-			title: 'Maeva Cinquin - Maquilleuse Professionnelle',
-			description,
-			images: ['/image00001.jpeg'],
-		},
 		robots: {
 			index: true,
 			follow: true,
@@ -51,7 +38,7 @@ export function generateBaseSEO(): Metadata {
 			},
 		},
 		alternates: {
-			canonical: 'https://maevacinquin.com',
+			canonical: 'https://cinquin-maeva.com',
 		},
 	}
 }
@@ -66,11 +53,6 @@ export function generatePrestationsSEO(): Metadata {
 	return {
 		title: 'Prestations - Maquillage Beauté, Mariages, Artistique & Nail Art',
 		description: `Découvrez mes prestations de maquillage professionnel: beauté, mariages, artistique, body painting et nail art. Interventions à ${mainCities} et toute la Haute-Savoie.`,
-		openGraph: {
-			title: 'Mes Prestations - Maeva Cinquin Makeup Artist',
-			description: `Services de maquillage professionnel en Haute-Savoie et Suisse: beauté, mariages, artistique, nail art. Déplacement à ${mainCities}.`,
-			images: ['/image00005.jpeg'],
-		},
 	}
 }
 
@@ -82,11 +64,6 @@ export function generateGalerieSEO(): Metadata {
 		title: 'Portfolio & Galerie - Mes Réalisations',
 		description:
 			'Découvrez mon portfolio de maquillage professionnel: mariages, maquillages artistiques, beauty looks, nail art et body painting. Photos de mes réalisations en Haute-Savoie et Genève.',
-		openGraph: {
-			title: 'Portfolio - Maeva Cinquin Makeup Artist',
-			description: 'Galerie photo de mes réalisations: mariages, maquillages artistiques, beauty looks et nail art.',
-			images: ['/image00003.jpeg'],
-		},
 	}
 }
 
@@ -98,11 +75,6 @@ export function generateBlogSEO(): Metadata {
 		title: 'Blog - Conseils Maquillage & Actualités Beauté',
 		description:
 			'Retrouvez mes conseils de maquilleuse professionnelle, astuces beauté, tendances maquillage et actualités nail art. Tips et tutoriels pour sublimer votre beauté.',
-		openGraph: {
-			title: 'Blog Beauté - Maeva Cinquin',
-			description: 'Conseils maquillage, tendances beauté et astuces de professionnelle.',
-			images: ['/image00006.jpeg'],
-		},
 	}
 }
 
@@ -116,10 +88,6 @@ export function generateContactSEO(): Metadata {
 	return {
 		title: 'Contact - Demandez un Devis Gratuit',
 		description: `Contactez-moi pour vos prestations de maquillage et nail art en Haute-Savoie et Suisse. Déplacement à ${zones}. Devis gratuit et réponse sous 24-48h.`,
-		openGraph: {
-			title: 'Me Contacter - Maeva Cinquin',
-			description: 'Demandez un devis gratuit pour vos prestations de maquillage. Réponse rapide garantie.',
-		},
 	}
 }
 
@@ -134,9 +102,8 @@ export function generateLocalBusinessSchema() {
 		'@type': 'BeautySalon',
 		name: 'Maeva Cinquin - Makeup Artist',
 		description: generateSEODescription(),
-		image: 'https://maevacinquin.com/image00001.jpeg',
-		'@id': 'https://maevacinquin.com',
-		url: 'https://maevacinquin.com',
+		'@id': 'https://cinquin-maeva.com',
+		url: 'https://cinquin-maeva.com',
 		telephone: '+33616625137',
 		email: 'maevacinquin1@gmail.com',
 		priceRange: '€€',
@@ -185,11 +152,6 @@ export function generateLocalBusinessSchema() {
 						'@type': 'Service',
 						name: 'Maquillage Beauté',
 						description: 'Maquillage naturel ou sophistiqué pour toutes occasions',
-						priceSpecification: {
-							'@type': 'PriceSpecification',
-							price: '80',
-							priceCurrency: 'EUR',
-						},
 					},
 				},
 				{
@@ -231,8 +193,8 @@ export function generatePersonSchema() {
 		name: 'Maeva Cinquin',
 		jobTitle: 'Maquilleuse Professionnelle',
 		description: 'Maquilleuse professionnelle diplômée de la Make Up For Ever Academy et prothésiste ongulaire',
-		image: 'https://maevacinquin.com/image00002.jpeg',
-		url: 'https://maevacinquin.com',
+		image: 'https://cinquin-maeva.com/image00002.jpeg',
+		url: 'https://cinquin-maeva.com',
 		email: 'maevacinquin1@gmail.com',
 		telephone: '+33616625137',
 		alumniOf: {
@@ -284,5 +246,262 @@ export function generateHomeJsonLd() {
 	return {
 		'@context': 'https://schema.org',
 		'@graph': [localBusiness, person],
+	}
+}
+
+/**
+ * Génère les métadonnées SEO pour une page de contact
+ */
+export function generateContactMetadata(): Metadata {
+	return generateContactSEO()
+}
+
+/**
+ * Génère les métadonnées SEO pour une page de mentions légales
+ */
+export function generateMentionsLegalesMetadata(): Metadata {
+	return {
+		title: 'Mentions Légales',
+		description:
+			'Mentions légales du site Maeva Cinquin - Informations légales, propriété intellectuelle et protection des données personnelles.',
+		robots: {
+			index: true,
+			follow: true,
+		},
+	}
+}
+
+/**
+ * Génère les métadonnées SEO pour la liste des articles de blog
+ */
+export function generateBlogListingMetadata(): Metadata {
+	return generateBlogSEO()
+}
+
+/**
+ * Génère les métadonnées SEO pour un article de blog individuel
+ */
+export function generateBlogPostMetadata(params: {
+	title: string
+	excerpt?: string
+	featuredImage?: string
+	slug: string
+	publishedDate?: string
+	seoTitle?: string
+	seoDescription?: string
+}): Metadata {
+	const baseSEO = generateBaseSEO()
+	const { title, excerpt, featuredImage, slug, seoTitle, seoDescription } = params
+
+	const metaTitle = seoTitle || `${title} | Blog Maeva Cinquin`
+	const metaDescription = seoDescription || excerpt || title
+
+	return {
+		...baseSEO,
+		title: metaTitle,
+		description: metaDescription,
+		openGraph: {
+			title: metaTitle,
+			description: metaDescription,
+			type: 'article',
+			url: `${SITE_CONFIG.url}/blog/${slug}`,
+			images: featuredImage
+				? [
+						{
+							url: featuredImage,
+							width: 1200,
+							height: 630,
+							alt: title,
+						},
+					]
+				: [],
+		},
+		twitter: {
+			card: 'summary_large_image',
+			title: metaTitle,
+			description: metaDescription,
+			images: featuredImage ? [featuredImage] : [],
+		},
+		alternates: {
+			canonical: `${SITE_CONFIG.url}/blog/${slug}`,
+		},
+	}
+}
+
+/**
+ * Génère le JSON-LD pour un article de blog
+ */
+export function generateBlogPostJsonLd(params: {
+	title: string
+	excerpt?: string
+	featuredImage?: string
+	slug: string
+	publishedDate?: string
+}) {
+	const { title, excerpt, featuredImage, slug, publishedDate } = params
+
+	return {
+		'@context': 'https://schema.org',
+		'@type': 'BlogPosting',
+		headline: title,
+		description: excerpt || title,
+		image: featuredImage || `${SITE_CONFIG.url}/image00002.jpeg`,
+		datePublished: publishedDate || new Date().toISOString(),
+		dateModified: publishedDate || new Date().toISOString(),
+		author: {
+			'@type': 'Person',
+			name: 'Maeva Cinquin',
+			url: SITE_CONFIG.url,
+		},
+		publisher: {
+			'@type': 'Organization',
+			name: SITE_CONFIG.name,
+			logo: {
+				'@type': 'ImageObject',
+				url: `${SITE_CONFIG.url}/image00002.jpeg`,
+			},
+		},
+		mainEntityOfPage: {
+			'@type': 'WebPage',
+			'@id': `${SITE_CONFIG.url}/blog/${slug}`,
+		},
+	}
+}
+
+/**
+ * Génère les métadonnées SEO pour la liste des galeries
+ */
+export function generateGalleryListingMetadata(): Metadata {
+	return generateGalerieSEO()
+}
+
+/**
+ * Génère les métadonnées SEO pour une galerie individuelle
+ */
+export function generateGalleryItemMetadata(params: {
+	title: string
+	description?: string
+	coverImage?: string
+	slug: string
+	publishedDate?: string
+	seoTitle?: string
+	seoDescription?: string
+}): Metadata {
+	const baseSEO = generateBaseSEO()
+	const { title, description, coverImage, slug, seoTitle, seoDescription } = params
+
+	const metaTitle = seoTitle || `${title} | Galerie Maeva Cinquin`
+	const metaDescription = seoDescription || description || title
+
+	return {
+		...baseSEO,
+		title: metaTitle,
+		description: metaDescription,
+		openGraph: {
+			title: metaTitle,
+			description: metaDescription,
+			type: 'website',
+			url: `${SITE_CONFIG.url}/galerie/${slug}`,
+			images: coverImage
+				? [
+						{
+							url: coverImage,
+							width: 1200,
+							height: 630,
+							alt: title,
+						},
+					]
+				: [],
+		},
+		twitter: {
+			card: 'summary_large_image',
+			title: metaTitle,
+			description: metaDescription,
+			images: coverImage ? [coverImage] : [],
+		},
+		alternates: {
+			canonical: `${SITE_CONFIG.url}/galerie/${slug}`,
+		},
+	}
+}
+
+/**
+ * Génère le JSON-LD pour une galerie
+ */
+export function generateGalleryJsonLd(params: { title: string; description?: string; slug: string; images: string[] }) {
+	const { title, description, slug, images } = params
+
+	return {
+		'@context': 'https://schema.org',
+		'@type': 'ImageGallery',
+		name: title,
+		description: description || title,
+		url: `${SITE_CONFIG.url}/galerie/${slug}`,
+		image: images,
+		author: {
+			'@type': 'Person',
+			name: 'Maeva Cinquin',
+			url: SITE_CONFIG.url,
+		},
+	}
+}
+
+/**
+ * Génère les métadonnées SEO pour la liste des services
+ */
+export function generateServicesListingMetadata(): Metadata {
+	return generatePrestationsSEO()
+}
+
+/**
+ * Génère les métadonnées SEO pour un service individuel
+ */
+export function generateServiceItemMetadata(params: {
+	title: string
+	shortDescription?: string
+	featuredImage?: string
+	slug: string
+	seoTitle?: string
+	seoDescription?: string
+}): Metadata {
+	const baseSEO = generateBaseSEO()
+	const { title, shortDescription, featuredImage, slug, seoTitle, seoDescription } = params
+	const cities = getCityNamesForSEO()
+
+	const metaTitle = seoTitle || `${title} | Prestations Maeva Cinquin`
+	const metaDescription =
+		seoDescription ||
+		shortDescription ||
+		`Découvrez mon service ${title} en Haute-Savoie et Suisse. Interventions à ${cities.all.slice(0, 3).join(', ')}.`
+
+	return {
+		...baseSEO,
+		title: metaTitle,
+		description: metaDescription,
+		openGraph: {
+			title: metaTitle,
+			description: metaDescription,
+			type: 'website',
+			url: `${SITE_CONFIG.url}/prestations/${slug}`,
+			images: featuredImage
+				? [
+						{
+							url: featuredImage,
+							width: 1200,
+							height: 630,
+							alt: title,
+						},
+					]
+				: [],
+		},
+		twitter: {
+			card: 'summary_large_image',
+			title: metaTitle,
+			description: metaDescription,
+			images: featuredImage ? [featuredImage] : [],
+		},
+		alternates: {
+			canonical: `${SITE_CONFIG.url}/prestations/${slug}`,
+		},
 	}
 }

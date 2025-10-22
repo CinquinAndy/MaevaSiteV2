@@ -11,6 +11,7 @@ export const Blog: CollectionConfig = {
 		read: () => true,
 	},
 	fields: [
+		...seoFields,
 		{
 			name: 'title',
 			type: 'text',
@@ -90,6 +91,5 @@ export const Blog: CollectionConfig = {
 				position: 'sidebar',
 			},
 		},
-		...seoFields,
 	],
 }

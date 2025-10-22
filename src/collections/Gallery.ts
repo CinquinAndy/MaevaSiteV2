@@ -11,6 +11,7 @@ export const Gallery: CollectionConfig = {
 		read: () => true,
 	},
 	fields: [
+		...seoFields,
 		{
 			name: 'title',
 			type: 'text',
@@ -109,6 +110,5 @@ export const Gallery: CollectionConfig = {
 				position: 'sidebar',
 			},
 		},
-		...seoFields,
 	],
 }

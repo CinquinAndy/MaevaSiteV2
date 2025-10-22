@@ -62,12 +62,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 	return generateGalleryItemMetadata({
 		title: gallery.title,
-		description: gallery.description,
-		coverImage: coverImage?.url,
+		description: gallery.description ?? undefined,
+		coverImage: coverImage?.url ?? undefined,
 		slug: gallery.slug,
-		publishedDate: gallery.publishedDate,
-		seoTitle: gallery.seo_title,
-		seoDescription: gallery.seo_description,
+		publishedDate: gallery.publishedDate ?? undefined,
+		seoTitle: gallery.seo_title ?? undefined,
+		seoDescription: gallery.seo_description ?? undefined,
 	})
 }
 
@@ -105,7 +105,7 @@ export default async function GalleryDetailPage({ params }: { params: Promise<{ 
 
 	const jsonLd = generateGalleryJsonLd({
 		title: gallery.title,
-		description: gallery.description,
+		description: gallery.description ?? undefined,
 		slug: gallery.slug,
 		images:
 			gallery.images?.map(item => {

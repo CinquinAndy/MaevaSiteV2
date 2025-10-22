@@ -108,35 +108,3 @@ export function generateSEOKeywords(): string[] {
 
 	return keywords
 }
-
-/**
- * Génère le texte pour la section "Zone d'intervention"
- */
-export function generateInterventionZoneText(): {
-	title: string
-	description: string
-	regions: Array<{ name: string; cities: string[] }>
-} {
-	const french = getFrenchCities()
-		.slice(0, 10)
-		.map(c => c.name)
-	const swiss = getSwissCities()
-		.slice(0, 10)
-		.map(c => c.name)
-
-	return {
-		title: "Zone d'Intervention",
-		description:
-			'Je me déplace dans toute la Haute-Savoie et la région lémanique suisse pour vos prestations de maquillage et nail art.',
-		regions: [
-			{
-				name: 'Haute-Savoie (France)',
-				cities: french,
-			},
-			{
-				name: 'Région Lémanique (Suisse)',
-				cities: swiss,
-			},
-		],
-	}
-}

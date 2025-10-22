@@ -25,7 +25,7 @@ let logoCache: string | null = null
 export async function loadLogo(): Promise<string> {
 	if (logoCache) return logoCache
 
-	const logoPath = join(process.cwd(), 'public/logo.png')
+	const logoPath = join(process.cwd(), '/logo.png')
 	const logoBuffer = await readFile(logoPath)
 	logoCache = `data:image/png;base64,${logoBuffer.toString('base64')}`
 

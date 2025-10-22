@@ -170,6 +170,14 @@ export interface Media {
  */
 export interface Blog {
   id: number;
+  /**
+   * Titre optimisé pour les moteurs de recherche (max 60 caractères)
+   */
+  seo_title?: string | null;
+  /**
+   * Description optimisée pour les moteurs de recherche (max 155 caractères)
+   */
+  seo_description?: string | null;
   title: string;
   /**
    * URL de l'article (ex: conseils-maquillage-mariage)
@@ -198,14 +206,6 @@ export interface Blog {
   category: 'conseils-maquillage' | 'nail-art' | 'tutoriels' | 'actualites' | 'collections' | 'mariages-evenements';
   publishedDate: string;
   status: 'draft' | 'published';
-  /**
-   * Titre optimisé pour les moteurs de recherche (max 60 caractères)
-   */
-  seo_title?: string | null;
-  /**
-   * Description optimisée pour les moteurs de recherche (max 155 caractères)
-   */
-  seo_description?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -215,6 +215,14 @@ export interface Blog {
  */
 export interface Gallery {
   id: number;
+  /**
+   * Titre optimisé pour les moteurs de recherche (max 60 caractères)
+   */
+  seo_title?: string | null;
+  /**
+   * Description optimisée pour les moteurs de recherche (max 155 caractères)
+   */
+  seo_description?: string | null;
   title: string;
   /**
    * URL de la galerie (ex: mariage-alice-tom)
@@ -236,14 +244,6 @@ export interface Gallery {
   }[];
   publishedDate: string;
   status: 'draft' | 'published';
-  /**
-   * Titre optimisé pour les moteurs de recherche (max 60 caractères)
-   */
-  seo_title?: string | null;
-  /**
-   * Description optimisée pour les moteurs de recherche (max 155 caractères)
-   */
-  seo_description?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -253,6 +253,14 @@ export interface Gallery {
  */
 export interface Service {
   id: number;
+  /**
+   * Titre optimisé pour les moteurs de recherche (max 60 caractères)
+   */
+  seo_title?: string | null;
+  /**
+   * Description optimisée pour les moteurs de recherche (max 155 caractères)
+   */
+  seo_description?: string | null;
   title: string;
   /**
    * URL du service (ex: maquillage-mariage)
@@ -315,14 +323,6 @@ export interface Service {
    */
   order: number;
   status: 'draft' | 'published';
-  /**
-   * Titre optimisé pour les moteurs de recherche (max 60 caractères)
-   */
-  seo_title?: string | null;
-  /**
-   * Description optimisée pour les moteurs de recherche (max 155 caractères)
-   */
-  seo_description?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -483,6 +483,8 @@ export interface MediaSelect<T extends boolean = true> {
  * via the `definition` "blog_select".
  */
 export interface BlogSelect<T extends boolean = true> {
+  seo_title?: T;
+  seo_description?: T;
   title?: T;
   slug?: T;
   featuredImage?: T;
@@ -491,8 +493,6 @@ export interface BlogSelect<T extends boolean = true> {
   category?: T;
   publishedDate?: T;
   status?: T;
-  seo_title?: T;
-  seo_description?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -501,6 +501,8 @@ export interface BlogSelect<T extends boolean = true> {
  * via the `definition` "gallery_select".
  */
 export interface GallerySelect<T extends boolean = true> {
+  seo_title?: T;
+  seo_description?: T;
   title?: T;
   slug?: T;
   description?: T;
@@ -515,8 +517,6 @@ export interface GallerySelect<T extends boolean = true> {
       };
   publishedDate?: T;
   status?: T;
-  seo_title?: T;
-  seo_description?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -525,6 +525,8 @@ export interface GallerySelect<T extends boolean = true> {
  * via the `definition` "services_select".
  */
 export interface ServicesSelect<T extends boolean = true> {
+  seo_title?: T;
+  seo_description?: T;
   title?: T;
   slug?: T;
   shortDescription?: T;
@@ -543,8 +545,6 @@ export interface ServicesSelect<T extends boolean = true> {
   gridSize?: T;
   order?: T;
   status?: T;
-  seo_title?: T;
-  seo_description?: T;
   updatedAt?: T;
   createdAt?: T;
 }
