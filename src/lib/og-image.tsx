@@ -68,7 +68,7 @@ export function OGImageTemplate({ title, logoSrc }: { title: string; logoSrc: st
 					alignItems: 'center',
 					justifyContent: 'flex-start',
 					padding: '40px 40px 40px 40px',
-					width: '60%',
+					width: '58%',
 					height: '100%',
 				}}
 			>
