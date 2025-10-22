@@ -13,8 +13,6 @@ build/
 .cache/
 .parcel-cache/
 .eslintcache
-.tsbuildinfo
-tsconfig.tsbuildinfo
 
 # Git (347MB chez toi)
 .git/
