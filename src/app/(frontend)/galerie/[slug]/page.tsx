@@ -150,7 +150,6 @@ export default async function GalleryDetailPage({ params }: { params: Promise<{ 
 							<span className="text-sm text-muted-foreground">
 								{imageCount} {imageCount === 1 ? 'photo' : 'photos'}
 							</span>
-							{gallery.location && <span className="text-sm text-muted-foreground">• {gallery.location}</span>}
 							<time className="text-sm text-muted-foreground">• {publishedDate}</time>
 						</div>
 
@@ -241,16 +240,6 @@ export default async function GalleryDetailPage({ params }: { params: Promise<{ 
 												{categoryLabels[gallery.category] || gallery.category}
 											</Badge>
 										</div>
-
-										{/* Location */}
-										{gallery.location && (
-											<div>
-												<h3 className="text-sm font-medium text-muted-foreground font-libre-caslon-display mb-2">
-													Lieu
-												</h3>
-												<p className="text-base text-foreground">{gallery.location}</p>
-											</div>
-										)}
 
 										{/* Image Count */}
 										<div>

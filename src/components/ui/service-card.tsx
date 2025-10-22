@@ -64,7 +64,6 @@ export function ServiceCard({ service, className }: ServiceCardProps) {
 				<div className="p-6 space-y-4 flex-1 flex flex-col">
 					<div className="flex items-center gap-2">
 						<Badge variant="primary">{categoryLabels[service.category] || service.category}</Badge>
-						{service.duration && <span className="text-sm text-muted-foreground">{service.duration}</span>}
 					</div>
 
 					<h3 className="text-2xl font-semibold leading-tight text-foreground group-hover:text-primary transition-colors">
@@ -72,17 +71,6 @@ export function ServiceCard({ service, className }: ServiceCardProps) {
 					</h3>
 
 					<p className="text-muted-foreground text-sm leading-relaxed flex-1">{service.shortDescription}</p>
-
-					{service.features && service.features.length > 0 && (
-						<ul className="space-y-1 text-sm">
-							{service.features.slice(0, 3).map((item, index) => (
-								<li key={index} className="flex items-start gap-2 text-muted-foreground">
-									<span className="text-primary mt-0.5">✓</span>
-									<span>{item.feature}</span>
-								</li>
-							))}
-						</ul>
-					)}
 
 					{service.pricing?.displayPricing && (
 						<div className="pt-4 border-t border-border">

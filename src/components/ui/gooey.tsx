@@ -200,7 +200,7 @@ export const Gooey: React.FC<GooeyNavProps> = ({
 				>
 					{items.map((item, index) => (
 						<li
-							key={index}
+							key={item.href}
 							className={cn(
 								`py-1.5 my-1 px-2.5 sm:py-2 sm:my-2 sm:px-3 lg:py-3 lg:px-5 flex items-center justify-center rounded-full relative cursor-pointer`,
 								activeIndex === index ? 'active' : ''

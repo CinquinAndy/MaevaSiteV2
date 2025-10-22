@@ -242,24 +242,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 						)}
 					</div>
 
-					{/* Bottom Section - Tags & Navigation */}
+					{/* Bottom Section - Navigation */}
 					<div className="mt-12">
-						{/* Tags */}
-						{post.tags && post.tags.length > 0 && (
-							<div className="pt-8 border-t border-border">
-								<div className="flex flex-wrap gap-2 items-center">
-									<span className="text-sm font-medium text-muted-foreground mr-2">Tags:</span>
-									{post.tags.map((item, index) => (
-										<Badge key={index} variant="outline">
-											{item.tag}
-										</Badge>
-									))}
-								</div>
-							</div>
-						)}
-
 						{/* Back to Blog */}
-						<div className="mt-8 pt-8 border-t border-border">
+						<div className="pt-8 border-t border-border">
 							<Link href="/blog" className="inline-flex items-center gap-2 text-primary hover:underline font-medium">
 								← Retour au blog
 							</Link>

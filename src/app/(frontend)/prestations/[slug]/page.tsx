@@ -178,21 +178,6 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 									</div>
 								)}
 							</article>
-
-							{/* Features */}
-							{service.features && service.features.length > 0 && (
-								<div className="mt-12 p-6 rounded-xl bg-muted/50 border border-border">
-									<h2 className="text-3xl font-bold font-corinthia mb-6 text-foreground">Ce qui est inclus</h2>
-									<ul className="space-y-3">
-										{service.features.map((item, index) => (
-											<li key={item.id || index} className="flex items-start gap-3">
-												<Check className="w-5 h-5 text-primary mt-1 shrink-0" />
-												<span className="text-foreground font-kalam">{item.feature}</span>
-											</li>
-										))}
-									</ul>
-								</div>
-							)}
 						</div>
 
 						{/* Right Column - Sidebar */}
@@ -234,14 +219,6 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 													<RichText data={service.pricing.priceDetails} />
 												</div>
 											)}
-									</div>
-								)}
-
-								{/* Duration Card */}
-								{service.duration && (
-									<div className="p-6 rounded-xl bg-card border border-border shadow-lg">
-										<h3 className="text-2xl font-bold font-libre-caslon-display mb-2 text-card-foreground">Durée</h3>
-										<p className="text-lg text-card-foreground font-kalam">{service.duration}</p>
 									</div>
 								)}
 

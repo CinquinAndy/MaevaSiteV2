@@ -115,7 +115,6 @@ async function uploadAvatarsToPayload() {
 				id: testimonial.id,
 				data: {
 					avatar: mediaId, // Relation vers Media
-					avatarUrl: null, // Nettoyer l'ancien champ URL externe
 				},
 			})
 

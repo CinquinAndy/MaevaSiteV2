@@ -69,7 +69,7 @@ interface SparklesPlaneProps {
 	intensity?: number
 }
 
-function SparklesPlane({ speed = 1, intensity = 5.0 }: SparklesPlaneProps) {
+function SparklesPlane({ speed = 1, intensity: _intensity = 5.0 }: SparklesPlaneProps) {
 	const meshRef = useRef<THREE.Mesh>(null!)
 
 	// Générer la texture de noise une seule fois

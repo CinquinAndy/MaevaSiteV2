@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@plugin "@tailwindcss/typography";
 @import "leaflet/dist/leaflet.css";
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -288,6 +288,20 @@
 	}
 
 	/* Application des fonts: Satisfy pour les titres, urw-form pour le texte (matching old WordPress site) */
+	/* Sélecteurs généraux d'abord (spécificité plus faible) */
+	p,
+	span,
+	li,
+	a,
+	button,
+	input,
+	textarea,
+	select,
+	label {
+		@apply font-kalam;
+	}
+
+	/* Puis sélecteurs plus spécifiques */
 	h1,
 	h1 span {
 		@apply font-libre-caslon-display;
@@ -308,18 +322,6 @@
 		@apply font-corinthia;
 		font-weight: 400 !important;
 		letter-spacing: 0.01em;
-	}
-
-	p,
-	span,
-	li,
-	a,
-	button,
-	input,
-	textarea,
-	select,
-	label {
-		@apply font-kalam;
 	}
 }
 
