@@ -1,4 +1,5 @@
 import { Facebook, Instagram, Mail, MapPin, Phone } from 'lucide-react'
+import Link from 'next/link'
 import { ContactForm } from '@/components/global/contact-form'
 import { CtaSection } from '@/components/home/cta-section'
 import Hero from '@/components/home/hero'
@@ -29,24 +30,24 @@ export default function ContactPage() {
 								icon: Mail,
 								label: 'Email',
 								value: (
-									<a
+									<Link
 										href="mailto:maevacinquin1@gmail.com"
 										className="text-muted-foreground hover:text-primary transition-colors text-xs"
 									>
 										maevacinquin1@gmail.com
-									</a>
+									</Link>
 								),
 							},
 							{
 								icon: Phone,
 								label: 'Téléphone',
 								value: (
-									<a
+									<Link
 										href="tel:+33616625137"
 										className="text-muted-foreground hover:text-primary transition-colors text-xs"
 									>
 										+33 6 16 62 51 37
-									</a>
+									</Link>
 								),
 							},
 							{
@@ -70,9 +71,11 @@ export default function ContactPage() {
 					<div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
 						{/* Réseaux sociaux */}
 						<div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 shadow-lg">
-							<h3 className="text-2xl font-bold text-foreground mb-6">Suivez mon actualité</h3>
+							<h3 className="text-2xl font-bold text-foreground mb-6 font-libre-caslon-display">
+								Suivez mon actualité
+							</h3>
 							<div className="space-y-4">
-								<a
+								<Link
 									href="https://www.instagram.com/makeup.artist.dream"
 									target="_blank"
 									rel="noopener noreferrer"
@@ -83,8 +86,8 @@ export default function ContactPage() {
 										<span className="font-semibold block">Instagram</span>
 										<span className="text-xs text-muted-foreground">@makeup.artist.dream</span>
 									</div>
-								</a>
-								<a
+								</Link>
+								<Link
 									href="https://www.facebook.com/Cinquin-maeva"
 									target="_blank"
 									rel="noopener noreferrer"
@@ -95,10 +98,10 @@ export default function ContactPage() {
 										<span className="font-semibold block">Facebook</span>
 										<span className="text-xs text-muted-foreground">Cinquin-maeva</span>
 									</div>
-								</a>
+								</Link>
 							</div>
 							<div className="mt-8 p-6 rounded-xl bg-muted/40 border border-border/50">
-								<h4 className="font-semibold text-foreground mb-2">Disponibilité</h4>
+								<h4 className="font-semibold text-foreground mb-2 font-libre-caslon-display">Disponibilité</h4>
 								<p className="text-muted-foreground text-sm leading-relaxed">
 									Je travaille sur rendez-vous uniquement. N'hésitez pas à me contacter pour vérifier mes disponibilités
 									et discuter de votre projet.
@@ -108,7 +111,7 @@ export default function ContactPage() {
 
 						{/* Carte Interactive */}
 						<div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 shadow-lg">
-							<h3 className="text-2xl font-bold text-foreground mb-6">Zone d'intervention</h3>
+							<h3 className="text-2xl font-bold text-foreground mb-6 font-libre-caslon-display">Zone d'intervention</h3>
 							<div className="rounded-xl overflow-hidden border-2 border-border/50 shadow-md h-[400px]">
 								<InteractiveMap className="h-full w-full" />
 							</div>

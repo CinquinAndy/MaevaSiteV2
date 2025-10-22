@@ -131,6 +131,11 @@ export function ContactForm() {
 			<p className="text-sm text-muted-foreground text-center">
 				Les champs marqués d'un <span className="text-destructive">*</span> sont obligatoires
 			</p>
+			<p className="text-xs text-muted-foreground text-left">
+				Aucune donnée personnelle n’est conservée par notre site via ce formulaire, les données de contact seront
+				utilisées uniquement pour vous re-contacter. En raison d'une récente recrudescence de désistements, des frais de
+				réservations vous seront demandés afin de valider la prise en charge de la prestation.
+			</p>
 		</form>
 	)
 }
