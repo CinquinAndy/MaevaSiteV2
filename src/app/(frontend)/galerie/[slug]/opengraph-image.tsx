@@ -92,6 +92,7 @@ export async function generateImageMetadata({ params }: { params: Promise<{ slug
 
 	return [
 		{
+			id: slug,
 			alt: galery ? galery.seo_title || galery.title : 'Galerie non trouvée',
 		},
 	]
