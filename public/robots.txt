@@ -1,6 +1,0 @@
-# Robots.txt for cinquin-maeva.com
-# Block all bots and indexing
-
-User-agent: *
-Disallow: /
-Noindex: /

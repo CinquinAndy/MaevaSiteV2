@@ -25,7 +25,7 @@ let logoCache: string | null = null
 export async function loadLogo(): Promise<string> {
 	if (logoCache) return logoCache
 
-	const logoPath = join(process.cwd(), '/public/logo.png')
+	const logoPath = join(process.cwd(), '/public/web-app-manifest-512x512.png')
 	const logoBuffer = await readFile(logoPath)
 	logoCache = `data:image/png;base64,${logoBuffer.toString('base64')}`
 
@@ -54,10 +54,10 @@ export function OGImageTemplate({ title, logoSrc }: { title: string; logoSrc: st
 				alt="Logo"
 				style={{
 					position: 'absolute',
-					bottom: 40,
-					left: 40,
-					height: 100,
-					width: 'auto',
+					bottom: 80,
+					right: 80,
+					height: '512px',
+					width: '512px',
 				}}
 			/>
 
@@ -67,8 +67,8 @@ export function OGImageTemplate({ title, logoSrc }: { title: string; logoSrc: st
 					display: 'flex',
 					alignItems: 'center',
 					justifyContent: 'flex-start',
-					padding: '80px 80px 80px 80px',
-					width: '100%',
+					padding: '40px 40px 40px 40px',
+					width: '60%',
 					height: '100%',
 				}}
 			>
@@ -90,8 +90,8 @@ export function OGImageTemplate({ title, logoSrc }: { title: string; logoSrc: st
 			<div
 				style={{
 					position: 'absolute',
-					bottom: 50,
-					right: 60,
+					bottom: 40,
+					left: 40,
 					fontSize: 48,
 					color: '#c9a8b4',
 					fontWeight: 400,
