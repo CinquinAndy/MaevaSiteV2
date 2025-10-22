@@ -79,7 +79,7 @@ export async function Footer() {
 
 	return (
 		<section className="py-16 lg:py-24">
-			<div className="container mx-auto">
+			<div className="container px-4 lg:px-0 mx-auto">
 				<footer>
 					<div className="grid grid-cols-2 gap-8 lg:grid-cols-6">
 						{/* Brand Section */}
@@ -102,7 +102,7 @@ export async function Footer() {
 							</p>
 							<div className="space-y-2 text-sm text-muted-foreground">
 								<p className="font-medium">📍 Haute-Savoie (74)</p>
-								<p className="text-xs">Thonon · Annecy · Genève · Lausanne</p>
+								<p className="text-xs">Thonon-Les-Bains · Annecy · Genève · Lausanne</p>
 							</div>
 						</div>
 

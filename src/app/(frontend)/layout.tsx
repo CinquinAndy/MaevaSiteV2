@@ -99,9 +99,9 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 					/>
 				</div>
 
-				<nav className="fixed w-screen top-10 z-50">
+				<nav className="fixed left-1/2 -translate-x-1/2 top-10 z-50">
 					{/* Mobile + Desktop Navbar - Centré */}
-					<div className="flex items-center justify-center h-12 sm:h-14 lg:h-16">
+					<div className="flex items-center justify-center z-50 h-12 sm:h-14 lg:h-16">
 						<Gooey
 							items={[
 								{ label: 'Logo', href: '/', isLogo: true },

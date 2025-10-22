@@ -202,7 +202,7 @@ export const Gooey: React.FC<GooeyNavProps> = ({
 						<li
 							key={index}
 							className={cn(
-								`py-1.5 my-1 px-2.5 sm:py-2 sm:my-2 sm:px-3 lg:py-3 lg:px-5 rounded-full relative cursor-pointer`,
+								`py-1.5 my-1 px-2.5 sm:py-2 sm:my-2 sm:px-3 lg:py-3 lg:px-5 flex items-center justify-center rounded-full relative cursor-pointer`,
 								activeIndex === index ? 'active' : ''
 							)}
 							onClick={e => handleClick(e, index)}

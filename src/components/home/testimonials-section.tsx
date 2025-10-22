@@ -175,7 +175,7 @@ export async function TestimonialsSection() {
 						</div>
 						<div className="w-px h-4 bg-border" />
 						<span className="text-sm font-medium text-foreground">
-							Plus de <strong className="text-primary">50 clientes</strong> satisfaites
+							Plus de <strong className="text-primary">{testimonials.length * 2} clientes</strong> satisfaites
 						</span>
 					</div>
 				</div>

@@ -56,7 +56,7 @@ function ImageModal({ image, isOpen, onClose, onNext, onPrev, currentIndex, tota
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
 			exit={{ opacity: 0 }}
-			className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4"
+			className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm p-4"
 			onClick={onClose}
 		>
 			<div className="relative w-full max-w-7xl h-full max-h-[90vh] flex items-center justify-center">
@@ -79,18 +79,6 @@ function ImageModal({ image, isOpen, onClose, onNext, onPrev, currentIndex, tota
 							priority
 						/>
 					</div>
-
-					{/* Caption */}
-					{image.caption && (
-						<motion.div
-							initial={{ y: 20, opacity: 0 }}
-							animate={{ y: 0, opacity: 1 }}
-							transition={{ delay: 0.2 }}
-							className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent"
-						>
-							<p className="text-white text-lg text-center">{image.caption}</p>
-						</motion.div>
-					)}
 				</motion.div>
 
 				{/* Bouton fermer */}
@@ -212,17 +200,6 @@ export function BentoGallery({ images }: BentoGalleryProps) {
 								sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
 							/>
 						</div>
-
-						{/* Overlay avec caption */}
-						{item.caption && (
-							<motion.div
-								className="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-								initial={{ opacity: 0 }}
-								whileHover={{ opacity: 1 }}
-							>
-								<p className="text-white text-sm md:text-base font-medium line-clamp-2">{item.caption}</p>
-							</motion.div>
-						)}
 
 						{/* Effet de brillance au survol */}
 						<div className="absolute inset-0 bg-gradient-to-br from-white/0 via-white/5 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

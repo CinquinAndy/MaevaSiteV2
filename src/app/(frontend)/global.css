@@ -329,6 +329,10 @@
 	text-decoration: none;
 }
 
+button *, a *, button, a{
+	@apply cursor-pointer;
+}
+
 body {
 	--sb-track-color: #f5f3f0;
 	--sb-thumb-color: #a8517a;
