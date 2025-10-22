@@ -39,7 +39,7 @@ export async function ServicesSection() {
 							</p>
 						</div>
 						<GradientButton asChild className="md:shrink-0">
-							<Link href="/prestations" className="z-20 text-foreground">
+							<Link href="/prestations" className="z-20 text-foreground flex items-center gap-2">
 								Voir toutes mes prestations
 							</Link>
 						</GradientButton>

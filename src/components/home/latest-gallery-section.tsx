@@ -48,7 +48,7 @@ export async function LatestGallerySection() {
 					{/* CTA */}
 					<div className="pt-4">
 						<GradientButton asChild>
-							<Link href="/galerie" className="z-20 text-foreground">
+							<Link href="/galerie" className="z-20 text-foreground flex items-center gap-2">
 								Voir toutes les galeries
 								<IconArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
 							</Link>

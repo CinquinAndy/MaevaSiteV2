@@ -66,21 +66,13 @@ export async function Footer() {
 				url: `/galerie/${gallery.slug}`,
 			})),
 		},
-		{
-			title: 'Informations',
-			links: [
-				{ text: 'À propos', url: '/#about' },
-				{ text: 'Témoignages', url: '/#testimonials' },
-				{ text: 'Mentions légales', url: '/mentions-legales' },
-			],
-		},
 	]
 
 	return (
 		<section className="py-16 lg:py-24">
 			<div className="container px-4 lg:px-0 mx-auto">
 				<footer>
-					<div className="grid grid-cols-2 gap-8 lg:grid-cols-6">
+					<div className="grid grid-cols-2 gap-8 lg:grid-cols-5">
 						{/* Brand Section */}
 						<div className="col-span-2 mb-8 lg:mb-0">
 							<Link href="/" className="flex items-center gap-3 lg:justify-start mb-4">
@@ -100,7 +92,7 @@ export async function Footer() {
 								Sublimez votre beauté naturelle avec une maquilleuse diplômée Make Up For Ever Academy.
 							</p>
 							<div className="space-y-2 text-sm text-muted-foreground">
-								<p className="font-medium">📍 Haute-Savoie (74)</p>
+								<p className="font-medium">📍 Haute-Savoie, France (74) & Suisse (VD)</p>
 								<p className="text-xs">Thonon-Les-Bains · Annecy · Genève · Lausanne</p>
 							</div>
 						</div>
@@ -130,9 +122,6 @@ export async function Footer() {
 							<ul className="flex gap-4 text-xs">
 								<li className="underline hover:text-primary transition-colors">
 									<Link href="/mentions-legales">Mentions légales</Link>
-								</li>
-								<li className="underline hover:text-primary transition-colors">
-									<Link href="/politique-confidentialite">Confidentialité</Link>
 								</li>
 							</ul>
 							<p className="text-xs">
