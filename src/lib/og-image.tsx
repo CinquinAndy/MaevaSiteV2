@@ -25,7 +25,7 @@ let logoCache: string | null = null
 export async function loadLogo(): Promise<string> {
 	if (logoCache) return logoCache
 
-	const logoPath = join(process.cwd(), '/logo.png')
+	const logoPath = join(process.cwd(), '/public/logo.png')
 	const logoBuffer = await readFile(logoPath)
 	logoCache = `data:image/png;base64,${logoBuffer.toString('base64')}`
 
@@ -92,12 +92,12 @@ export function OGImageTemplate({ title, logoSrc }: { title: string; logoSrc: st
 					position: 'absolute',
 					bottom: 50,
 					right: 60,
-					fontSize: 24,
+					fontSize: 48,
 					color: '#c9a8b4',
 					fontWeight: 400,
 				}}
 			>
-				cinquin-maeva.com
+				https://cinquin-maeva.com
 			</div>
 		</div>
 	)

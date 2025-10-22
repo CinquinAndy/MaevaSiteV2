@@ -1,8 +1,8 @@
 import type { CollectionConfig } from 'payload'
 import { seoFields } from '@/lib/payload/seo-fields'
 
-export const Gallery: CollectionConfig = {
-	slug: 'gallery',
+export const Galery: CollectionConfig = {
+	slug: 'galery',
 	admin: {
 		useAsTitle: 'title',
 		defaultColumns: ['title', 'category', 'publishedDate', 'updatedAt'],

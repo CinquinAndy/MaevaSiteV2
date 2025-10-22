@@ -9,7 +9,7 @@ import { s3Storage } from '@payloadcms/storage-s3'
 import { buildConfig } from 'payload'
 import sharp from 'sharp'
 import { Blog } from './collections/Blog'
-import { Gallery } from './collections/Gallery'
+import { Galery } from './collections/Galery'
 import { Media } from './collections/Media'
 import { Services } from './collections/Services'
 import { Testimonials } from './collections/Testimonials'
@@ -31,7 +31,7 @@ export default buildConfig({
 			baseDir: path.resolve(dirname),
 		},
 	},
-	collections: [Users, Media, Blog, Gallery, Services, Testimonials],
+	collections: [Users, Media, Blog, Galery, Services, Testimonials],
 	editor: lexicalEditor({
 		features: ({ defaultFeatures }) => [
 			...defaultFeatures.filter(

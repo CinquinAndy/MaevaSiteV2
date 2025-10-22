@@ -70,7 +70,7 @@ export interface Config {
     users: User;
     media: Media;
     blog: Blog;
-    gallery: Gallery;
+    galery: Galery;
     services: Service;
     testimonials: Testimonial;
     'payload-locked-documents': PayloadLockedDocument;
@@ -82,7 +82,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     blog: BlogSelect<false> | BlogSelect<true>;
-    gallery: GallerySelect<false> | GallerySelect<true>;
+    galery: GalerySelect<false> | GalerySelect<true>;
     services: ServicesSelect<false> | ServicesSelect<true>;
     testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -211,9 +211,9 @@ export interface Blog {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "gallery".
+ * via the `definition` "galery".
  */
-export interface Gallery {
+export interface Galery {
   id: number;
   /**
    * Titre optimisé pour les moteurs de recherche (max 60 caractères)
@@ -385,8 +385,8 @@ export interface PayloadLockedDocument {
         value: number | Blog;
       } | null)
     | ({
-        relationTo: 'gallery';
-        value: number | Gallery;
+        relationTo: 'galery';
+        value: number | Galery;
       } | null)
     | ({
         relationTo: 'services';
@@ -498,9 +498,9 @@ export interface BlogSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "gallery_select".
+ * via the `definition` "galery_select".
  */
-export interface GallerySelect<T extends boolean = true> {
+export interface GalerySelect<T extends boolean = true> {
   seo_title?: T;
   seo_description?: T;
   title?: T;
