@@ -1,11 +1,10 @@
 import config from '@payload-config'
-import { RichText } from '@payloadcms/richtext-lexical/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getPayload } from 'payload'
 import { Blob2, Blob3, Blob4, Blob6, Blob8, Blob9 } from '@/components/blobs/blobs'
-import { ScrollingImage } from '@/components/blog/ScrollingImage'
+import { BlogArticleGrid } from '@/components/blog/BlogArticleGrid'
 import { Badge } from '@/components/ui/badge'
 import { generateBlogPostJsonLd, generateBlogPostMetadata } from '@/lib/seo'
 import type { Blog, Media } from '@/payload-types'
@@ -227,31 +226,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
 				{/* Main Grid Layout */}
 				<div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8 relative">
-					<div className="grid grid-cols-1 gap-x-12 gap-y-16 lg:grid-cols-2 lg:items-start">
-						{/* Left Column - Content */}
-						<div className="lg:pr-8">
-							{/* Main Content - Lexical RichText */}
-							<article className="prose prose-blog prose-lg max-w-none prose-headings:font-corinthia prose-h2:text-5xl prose-h3:text-4xl prose-h4:text-3xl prose-p:font-kalam prose-img:rounded-xl prose-img:shadow-lg">
-								{/* Render Lexical Content */}
-								{post.content && typeof post.content === 'object' && 'root' in post.content ? (
-									<RichText data={post.content} />
-								) : (
-									<div className="text-muted-foreground">
-										<p>Contenu de l'article non disponible.</p>
-									</div>
-								)}
-							</article>
-						</div>
-
-						{/* Right Column - Scrolling Featured Image (Desktop only) */}
-						{featuredImage?.url && (
-							<ScrollingImage
-								src={featuredImage.url}
-								alt={featuredImage.alt || post.title}
-								className="h-auto w-full rounded-xl bg-card shadow-2xl ring-1 ring-border overflow-hidden"
-							/>
-						)}
-					</div>
+					<BlogArticleGrid post={post} featuredImage={featuredImage} />
 
 					{/* Bottom Section - Navigation */}
 					<div className="mt-12">
