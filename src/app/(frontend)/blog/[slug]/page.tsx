@@ -6,7 +6,6 @@ import { notFound } from 'next/navigation'
 import { getPayload } from 'payload'
 import { Blob2, Blob3, Blob4, Blob6, Blob8, Blob9 } from '@/components/blobs/blobs'
 import { Badge } from '@/components/ui/badge'
-import { jsxConverters } from '@/lib/lexical/jsx-converters'
 import type { Blog, Media } from '@/payload-types'
 
 const categoryLabels: Record<string, string> = {
@@ -206,71 +205,62 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
 				</div>
 
 				{/* Main Grid Layout */}
-				<div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-start lg:gap-y-10 px-6 py-24 sm:py-32 lg:px-8">
-					{/* Left Column - Content */}
-					<div className="lg:col-span-2 lg:col-start-1 lg:row-start-1 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
-						<div className="lg:pr-4">
-							<div className="lg:max-w-lg">
-								{/* Main Content - Lexical RichText */}
-								<article className="prose prose-lg dark:prose-invert prose-headings:font-corinthia prose-h2:text-5xl prose-h3:text-4xl prose-h4:text-3xl prose-p:font-kalam prose-p:leading-relaxed prose-a:text-primary hover:prose-a:underline prose-strong:text-foreground prose-ul:list-disc prose-ol:list-decimal prose-li:ml-4 prose-img:rounded-xl prose-figcaption:text-sm prose-figcaption:text-center prose-figcaption:italic prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:pl-6 prose-blockquote:italic max-w-none">
-									{/* Render Lexical Content */}
-									{post.content && typeof post.content === 'object' && 'root' in post.content ? (
-										<RichText data={post.content} converters={jsxConverters} />
-									) : (
-										<div className="text-muted-foreground">
-											<p>Contenu de l'article non disponible.</p>
-										</div>
-									)}
-								</article>
-							</div>
-						</div>
-					</div>
-
-					{/* Right Column - Sticky Featured Image */}
-					{featuredImage?.url && (
-						<div className="-mt-12 -ml-12 p-12 lg:sticky lg:top-24 lg:col-start-2 lg:row-span-2 lg:row-start-1">
-							<div className="relative w-full max-w-none rounded-xl bg-card shadow-2xl ring-1 ring-border overflow-hidden">
-								<div className="relative aspect-[4/3] w-full">
-									<Image
-										src={featuredImage.url}
-										alt={featuredImage.alt || post.title}
-										fill
-										className="object-cover"
-										sizes="(max-width: 1024px) 100vw, 50vw"
-									/>
-								</div>
-							</div>
-						</div>
-					)}
-
-					{/* Bottom Section - Tags & Navigation */}
-					<div className="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
-						<div className="lg:pr-4">
-							<div className="max-w-xl lg:max-w-lg">
-								{/* Tags */}
-								{post.tags && post.tags.length > 0 && (
-									<div className="mt-12 pt-8 border-t border-border">
-										<div className="flex flex-wrap gap-2 items-center">
-											<span className="text-sm font-medium text-muted-foreground mr-2">Tags:</span>
-											{post.tags.map((item, index) => (
-												<Badge key={index} variant="outline">
-													{item.tag}
-												</Badge>
-											))}
-										</div>
+				<div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8 relative">
+					<div className="grid grid-cols-1 gap-x-12 gap-y-16 lg:grid-cols-2">
+						{/* Left Column - Content */}
+						<div className="lg:pr-8">
+							{/* Main Content - Lexical RichText */}
+							<article className="prose prose-blog prose-lg max-w-none prose-headings:font-corinthia prose-h2:text-5xl prose-h3:text-4xl prose-h4:text-3xl prose-p:font-kalam prose-img:rounded-xl prose-img:shadow-lg">
+								{/* Render Lexical Content */}
+								{post.content && typeof post.content === 'object' && 'root' in post.content ? (
+									<RichText data={post.content} />
+								) : (
+									<div className="text-muted-foreground">
+										<p>Contenu de l'article non disponible.</p>
 									</div>
 								)}
+							</article>
+						</div>
 
-								{/* Back to Blog */}
-								<div className="mt-8 pt-8 border-t border-border">
-									<Link
-										href="/blog"
-										className="inline-flex items-center gap-2 text-primary hover:underline font-medium"
-									>
-										← Retour au blog
-									</Link>
+						{/* Right Column - Sticky Featured Image */}
+						{featuredImage?.url && (
+							<div>
+								<div className="sticky top-24 h-auto w-full rounded-xl bg-card shadow-2xl ring-1 ring-border overflow-hidden">
+									<div className="relative aspect-[4/3] w-full">
+										<Image
+											src={featuredImage.url}
+											alt={featuredImage.alt || post.title}
+											fill
+											className="object-cover"
+											sizes="(max-width: 1024px) 100vw, 50vw"
+										/>
+									</div>
 								</div>
 							</div>
+						)}
+					</div>
+
+					{/* Bottom Section - Tags & Navigation */}
+					<div className="mt-12">
+						{/* Tags */}
+						{post.tags && post.tags.length > 0 && (
+							<div className="pt-8 border-t border-border">
+								<div className="flex flex-wrap gap-2 items-center">
+									<span className="text-sm font-medium text-muted-foreground mr-2">Tags:</span>
+									{post.tags.map((item, index) => (
+										<Badge key={index} variant="outline">
+											{item.tag}
+										</Badge>
+									))}
+								</div>
+							</div>
+						)}
+
+						{/* Back to Blog */}
+						<div className="mt-8 pt-8 border-t border-border">
+							<Link href="/blog" className="inline-flex items-center gap-2 text-primary hover:underline font-medium">
+								← Retour au blog
+							</Link>
 						</div>
 					</div>
 				</div>
