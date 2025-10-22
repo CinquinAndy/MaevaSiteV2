@@ -14,7 +14,6 @@ import { Media } from './collections/Media'
 import { Services } from './collections/Services'
 import { Testimonials } from './collections/Testimonials'
 import { Users } from './collections/Users'
-import { Homepage } from './globals/Homepage'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -33,7 +32,6 @@ export default buildConfig({
 		},
 	},
 	collections: [Users, Media, Blog, Gallery, Services, Testimonials],
-	globals: [Homepage],
 	editor: lexicalEditor({
 		features: ({ defaultFeatures }) => [
 			...defaultFeatures.filter(

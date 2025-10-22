@@ -92,12 +92,8 @@ export interface Config {
   db: {
     defaultIDType: number;
   };
-  globals: {
-    homepage: Homepage;
-  };
-  globalsSelect: {
-    homepage: HomepageSelect<false> | HomepageSelect<true>;
-  };
+  globals: {};
+  globalsSelect: {};
   locale: null;
   user: User & {
     collection: 'users';
@@ -649,138 +645,6 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "homepage".
- */
-export interface Homepage {
-  id: number;
-  /**
-   * Titre optimisé pour les moteurs de recherche (max 60 caractères)
-   */
-  seo_title?: string | null;
-  /**
-   * Description optimisée pour les moteurs de recherche (max 155 caractères)
-   */
-  seo_description?: string | null;
-  hero: {
-    title: string;
-  };
-  about?: {
-    title?: string | null;
-    image?: (number | null) | Media;
-    paragraphs?:
-      | {
-          text: string;
-          id?: string | null;
-        }[]
-      | null;
-  };
-  services?: {
-    title?: string | null;
-    subtitle?: string | null;
-  };
-  blog?: {
-    title?: string | null;
-    subtitle?: string | null;
-    limit?: number | null;
-  };
-  gallery?: {
-    title?: string | null;
-    subtitle?: string | null;
-    limit?: number | null;
-  };
-  testimonials?: {
-    enabled?: boolean | null;
-    title?: string | null;
-    subtitle?: string | null;
-    items?:
-      | {
-          name: string;
-          role: string;
-          content: string;
-          rating?: number | null;
-          id?: string | null;
-        }[]
-      | null;
-  };
-  cta?: {
-    title?: string | null;
-    subtitle?: string | null;
-  };
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "homepage_select".
- */
-export interface HomepageSelect<T extends boolean = true> {
-  seo_title?: T;
-  seo_description?: T;
-  hero?:
-    | T
-    | {
-        title?: T;
-      };
-  about?:
-    | T
-    | {
-        title?: T;
-        image?: T;
-        paragraphs?:
-          | T
-          | {
-              text?: T;
-              id?: T;
-            };
-      };
-  services?:
-    | T
-    | {
-        title?: T;
-        subtitle?: T;
-      };
-  blog?:
-    | T
-    | {
-        title?: T;
-        subtitle?: T;
-        limit?: T;
-      };
-  gallery?:
-    | T
-    | {
-        title?: T;
-        subtitle?: T;
-        limit?: T;
-      };
-  testimonials?:
-    | T
-    | {
-        enabled?: T;
-        title?: T;
-        subtitle?: T;
-        items?:
-          | T
-          | {
-              name?: T;
-              role?: T;
-              content?: T;
-              rating?: T;
-              id?: T;
-            };
-      };
-  cta?:
-    | T
-    | {
-        title?: T;
-        subtitle?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
