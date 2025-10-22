@@ -4,7 +4,6 @@ import { getPayload } from 'payload'
 import { loadFont, loadLogo, OG_IMAGE_CONTENT_TYPE, OG_IMAGE_SIZE, OGImageTemplate } from '@/lib/og-image'
 import type { Service } from '@/payload-types'
 
-export const runtime = 'edge'
 export const size = OG_IMAGE_SIZE
 export const contentType = OG_IMAGE_CONTENT_TYPE
 

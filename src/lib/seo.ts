@@ -259,3 +259,30 @@ export function generatePersonSchema() {
 		],
 	}
 }
+
+/**
+ * Génère les métadonnées SEO pour la page d'accueil
+ */
+export function generateHomeMetadata(): Metadata {
+	const baseSEO = generateBaseSEO()
+	return {
+		...baseSEO,
+		title: 'Maeva Cinquin - Maquilleuse Professionnelle Haute-Savoie & Genève',
+		alternates: {
+			canonical: 'https://maevacinquin.com',
+		},
+	}
+}
+
+/**
+ * Génère le JSON-LD combiné pour la page d'accueil
+ */
+export function generateHomeJsonLd() {
+	const localBusiness = generateLocalBusinessSchema()
+	const person = generatePersonSchema()
+
+	return {
+		'@context': 'https://schema.org',
+		'@graph': [localBusiness, person],
+	}
+}

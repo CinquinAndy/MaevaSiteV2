@@ -1,7 +1,6 @@
 import { ImageResponse } from 'next/og'
 import { loadFont, loadLogo, OG_IMAGE_CONTENT_TYPE, OG_IMAGE_SIZE, OGImageTemplate } from '@/lib/og-image'
 
-export const runtime = 'edge'
 export const alt = 'Prestations - Mes Services - Maeva Cinquin'
 export const size = OG_IMAGE_SIZE
 export const contentType = OG_IMAGE_CONTENT_TYPE
