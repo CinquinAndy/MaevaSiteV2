@@ -5,13 +5,10 @@ import Hero from '@/components/home/hero'
 import { BlogCard } from '@/components/ui/blog-card'
 import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
+import { generateBlogListingMetadata } from '@/lib/seo'
 import type { Blog } from '@/payload-types'
 
-export const metadata = {
-	title: 'Blog - Maeva Cinquin',
-	description:
-		'Découvrez mes conseils et astuces en maquillage, nail art et beauté. Articles, tutoriels et actualités du monde de la beauté.',
-}
+export const metadata = generateBlogListingMetadata()
 
 export default async function BlogPage() {
 	const payload = await getPayload({ config })

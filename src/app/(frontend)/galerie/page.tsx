@@ -5,13 +5,10 @@ import Hero from '@/components/home/hero'
 import { Container } from '@/components/ui/container'
 import { GalleryCard } from '@/components/ui/gallery-card'
 import { Section } from '@/components/ui/section'
+import { generateGalleryListingMetadata } from '@/lib/seo'
 import type { Gallery } from '@/payload-types'
 
-export const metadata = {
-	title: 'Galerie - Maeva Cinquin',
-	description:
-		'Découvrez mes réalisations en maquillage et nail art. Mariages, événements, maquillage artistique et plus encore.',
-}
+export const metadata = generateGalleryListingMetadata()
 
 export default async function GaleriePage() {
 	const payload = await getPayload({ config })

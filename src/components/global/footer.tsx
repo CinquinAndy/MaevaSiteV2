@@ -123,6 +123,9 @@ export async function Footer() {
 								<li className="underline hover:text-primary transition-colors">
 									<Link href="/mentions-legales">Mentions légales</Link>
 								</li>
+								<li className="underline hover:text-primary transition-colors">
+									<Link href="/sitemap.xml">Plan du site</Link>
+								</li>
 							</ul>
 							<p className="text-xs">
 								Developed & Designed with ❤️ by{' '}

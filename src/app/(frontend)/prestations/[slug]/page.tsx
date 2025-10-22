@@ -11,6 +11,7 @@ import { Badge } from '@/components/ui/badge'
 import { Container } from '@/components/ui/container'
 import { GradientButton } from '@/components/ui/gradient-button'
 import { Section } from '@/components/ui/section'
+import { generateServiceItemMetadata } from '@/lib/seo'
 import type { Media, Service } from '@/payload-types'
 
 const categoryLabels: Record<string, string> = {
@@ -60,13 +61,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 		}
 	}
 
-	return {
-		title: service.seo_title || `${service.title} - Maeva Cinquin`,
-		description:
-			service.seo_description ||
-			service.shortDescription ||
-			`Découvrez ${service.title} - Service professionnel de maquillage et nail art en Haute-Savoie`,
-	}
+	const featuredImage = service.featuredImage as Media | undefined
+
+	return generateServiceItemMetadata({
+		title: service.title,
+		shortDescription: service.shortDescription,
+		featuredImage: featuredImage?.url,
+		slug: service.slug,
+		seoTitle: service.seo_title,
+		seoDescription: service.seo_description,
+	})
 }
 
 export default async function ServiceDetailPage({ params }: { params: Promise<{ slug: string }> }) {

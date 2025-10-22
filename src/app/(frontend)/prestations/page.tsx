@@ -7,13 +7,10 @@ import Hero from '@/components/home/hero'
 import { BentoGrid, BentoGridItem } from '@/components/ui/bento-grid'
 import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
+import { generateServicesListingMetadata } from '@/lib/seo'
 import type { Media, Service } from '@/payload-types'
 
-export const metadata = {
-	title: 'Prestations - Maeva Cinquin',
-	description:
-		'Découvrez mes prestations en maquillage professionnel et nail art. Mariages, événements, photo/vidéo, maquillage artistique et formations.',
-}
+export const metadata = generateServicesListingMetadata()
 
 export default async function PrestationsPage() {
 	const payload = await getPayload({ config })

@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation'
 import { getPayload } from 'payload'
 import { Blob2, Blob3, Blob4, Blob6, Blob8, Blob9 } from '@/components/blobs/blobs'
 import { Badge } from '@/components/ui/badge'
+import { generateBlogPostJsonLd, generateBlogPostMetadata } from '@/lib/seo'
 import type { Blog, Media } from '@/payload-types'
 
 const categoryLabels: Record<string, string> = {
@@ -57,11 +58,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 		}
 	}
 
-	return {
-		title: post.seo_title || `${post.title} - Blog Maeva Cinquin`,
-		description:
-			post.seo_description || post.excerpt || `Découvrez l'article ${post.title} sur le blog de Maeva Cinquin`,
-	}
+	const featuredImage = post.featuredImage as Media | undefined
+
+	return generateBlogPostMetadata({
+		title: post.title,
+		excerpt: post.excerpt,
+		featuredImage: featuredImage?.url,
+		slug: post.slug,
+		publishedDate: post.publishedDate,
+		seoTitle: post.seo_title,
+		seoDescription: post.seo_description,
+	})
 }
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -94,8 +101,23 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 		day: 'numeric',
 	})
 
+	const jsonLd = generateBlogPostJsonLd({
+		title: post.title,
+		excerpt: post.excerpt,
+		featuredImage: featuredImage?.url,
+		slug: post.slug,
+		publishedDate: post.publishedDate,
+	})
+
 	return (
 		<>
+			{/* JSON-LD Schema pour SEO */}
+			<script
+				type="application/ld+json"
+				// biome-ignore lint/security/noDangerouslySetInnerHtml: Required for JSON-LD schema
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+			/>
+
 			{/* Hero Banner */}
 			<div className="relative h-[60vh] lg:h-[70vh] w-full overflow-hidden">
 				{/* Background Image */}

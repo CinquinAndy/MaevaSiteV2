@@ -7,12 +7,9 @@ import { ContactCard } from '@/components/ui/contact-card'
 import { Container } from '@/components/ui/container'
 import { InteractiveMap } from '@/components/ui/interactive-map'
 import { Section } from '@/components/ui/section'
+import { generateContactMetadata } from '@/lib/seo'
 
-export const metadata = {
-	title: 'Contact - Maeva Cinquin',
-	description:
-		'Contactez Maeva Cinquin pour vos projets de maquillage et nail art. Basée en Haute-Savoie, interventions à Thonon, Annecy, Genève et environs.',
-}
+export const metadata = generateContactMetadata()
 
 export default function ContactPage() {
 	return (

@@ -1,12 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { Blob2, Blob3, Blob4, Blob6, Blob8, Blob9 } from '@/components/blobs/blobs'
+import { generateMentionsLegalesMetadata } from '@/lib/seo'
 
-export const metadata = {
-	title: 'Mentions Légales - Maeva Cinquin',
-	description:
-		'Mentions légales et informations sur la protection des données personnelles du site de Maeva Cinquin, maquilleuse professionnelle.',
-}
+export const metadata = generateMentionsLegalesMetadata()
 
 export default function MentionsLegalesPage() {
 	return (

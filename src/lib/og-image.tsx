@@ -1,9 +1,8 @@
-// TODO: Create opengraph image for Maeva Cinquin
 import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 
 /**
- * Load Apple Garamond Bold font for OG images
+ * Load Corinthia Bold font for OG images
  * Cached at module level to avoid re-reading on every image generation
  */
 let fontCache: Buffer | null = null
@@ -11,24 +10,93 @@ let fontCache: Buffer | null = null
 export async function loadFont(): Promise<Buffer> {
 	if (fontCache) return fontCache
 
-	const fontPath = join(process.cwd(), 'public/font/AppleGaramond-Bold.ttf')
+	const fontPath = join(process.cwd(), 'public/fonts/Corinthia-Bold.ttf')
 	fontCache = await readFile(fontPath)
 
 	return fontCache
 }
 
 /**
- * OG Image Template Component
- * Simple design with centered title on #F5F1EC background
+ * Load logo.png for OG images as base64
+ * Cached at module level to avoid re-reading on every image generation
  */
-export function OGImageTemplate({ title }: { title: string }) {
+let logoCache: string | null = null
+
+export async function loadLogo(): Promise<string> {
+	if (logoCache) return logoCache
+
+	const logoPath = join(process.cwd(), 'public/logo.png')
+	const logoBuffer = await readFile(logoPath)
+	logoCache = `data:image/png;base64,${logoBuffer.toString('base64')}`
+
+	return logoCache
+}
+
+/**
+ * OG Image Template Component
+ * Dark background with pink accents, logo bottom-left, title centered, URL bottom-right
+ */
+export function OGImageTemplate({ title, logoSrc }: { title: string; logoSrc: string }) {
 	return (
-		<div tw="h-full w-full flex bg-[#F5F1EC] relative">
-			<div tw="p-10 w-[700px] h-full flex justify-center items-center text-7xl font-bold text-[#3e2723] text-left">
-				{title}
+		<div
+			style={{
+				width: '100%',
+				height: '100%',
+				display: 'flex',
+				position: 'relative',
+				background: '#2d2528',
+			}}
+		>
+			{/* Logo bottom-left */}
+			<img
+				src={logoSrc}
+				alt="Logo"
+				style={{
+					position: 'absolute',
+					bottom: 40,
+					left: 40,
+					height: 100,
+					width: 'auto',
+				}}
+			/>
+
+			{/* Title - centered with padding */}
+			<div
+				style={{
+					display: 'flex',
+					alignItems: 'center',
+					justifyContent: 'flex-start',
+					padding: '80px 80px 80px 80px',
+					width: '100%',
+					height: '100%',
+				}}
+			>
+				<div
+					style={{
+						fontSize: 80,
+						fontWeight: 700,
+						color: '#f5f3f0',
+						lineHeight: 1.2,
+						maxWidth: '900px',
+						textAlign: 'left',
+					}}
+				>
+					{title}
+				</div>
 			</div>
-			<div tw="absolute bottom-0 left-0 p-10 w-[700px] flex text-3xl underline text-[#806560] text-left italic">
-				https://cinquin-maeva.com
+
+			{/* Site URL bottom-right */}
+			<div
+				style={{
+					position: 'absolute',
+					bottom: 50,
+					right: 60,
+					fontSize: 24,
+					color: '#c9a8b4',
+					fontWeight: 400,
+				}}
+			>
+				cinquin-maeva.com
 			</div>
 		</div>
 	)
@@ -42,5 +110,5 @@ export const OG_IMAGE_SIZE = {
 	height: 630,
 }
 
-export const OG_IMAGE_ALT = 'Nature Paysage Laheux - Éco-Paysagiste Loire-Atlantique'
+export const OG_IMAGE_ALT = 'Maeva Cinquin - Maquilleuse Professionnelle'
 export const OG_IMAGE_CONTENT_TYPE = 'image/png'

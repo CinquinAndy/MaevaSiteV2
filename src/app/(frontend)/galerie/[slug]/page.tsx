@@ -6,6 +6,7 @@ import { getPayload } from 'payload'
 import { Blob3, Blob5, Blob6, Blob7, Blob8, Blob9 } from '@/components/blobs/blobs'
 import { Badge } from '@/components/ui/badge'
 import { BentoGallery } from '@/components/ui/bento-gallery'
+import { generateGalleryItemMetadata, generateGalleryJsonLd } from '@/lib/seo'
 import type { Gallery, Media } from '@/payload-types'
 
 const categoryLabels: Record<string, string> = {
@@ -57,11 +58,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 		}
 	}
 
-	return {
-		title: gallery.seo_title || `${gallery.title} - Galerie Maeva Cinquin`,
-		description:
-			gallery.seo_description || gallery.description || `Découvrez la galerie ${gallery.title} de Maeva Cinquin`,
-	}
+	const coverImage = gallery.coverImage as Media | undefined
+
+	return generateGalleryItemMetadata({
+		title: gallery.title,
+		description: gallery.description,
+		coverImage: coverImage?.url,
+		slug: gallery.slug,
+		publishedDate: gallery.publishedDate,
+		seoTitle: gallery.seo_title,
+		seoDescription: gallery.seo_description,
+	})
 }
 
 export default async function GalleryDetailPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -96,8 +103,26 @@ export default async function GalleryDetailPage({ params }: { params: Promise<{ 
 
 	const imageCount = gallery.images?.length || 0
 
+	const jsonLd = generateGalleryJsonLd({
+		title: gallery.title,
+		description: gallery.description,
+		slug: gallery.slug,
+		images:
+			gallery.images?.map(item => {
+				const img = item.image as Media
+				return img.url || ''
+			}) || [],
+	})
+
 	return (
 		<>
+			{/* JSON-LD Schema pour SEO */}
+			<script
+				type="application/ld+json"
+				// biome-ignore lint/security/noDangerouslySetInnerHtml: Required for JSON-LD schema
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+			/>
+
 			{/* Hero Banner */}
 			<div className="relative h-[60vh] lg:h-[70vh] w-full overflow-hidden">
 				{/* Background Image */}

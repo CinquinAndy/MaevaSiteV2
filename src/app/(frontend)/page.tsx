@@ -5,36 +5,44 @@ import { LatestBlogSection } from '@/components/home/latest-blog-section'
 import { LatestGallerySection } from '@/components/home/latest-gallery-section'
 import { ServicesSection } from '@/components/home/services-section'
 import { TestimonialsSection } from '@/components/home/testimonials-section'
+import { generateHomeJsonLd, generateHomeMetadata } from '@/lib/seo'
 
-export const metadata = {
-	title: 'Maeva Cinquin - Maquilleuse Professionnelle & Prothésiste Ongulaire',
-	description:
-		'Maquilleuse professionnelle diplômée Make Up For Ever Academy et prothésiste ongulaire en Haute-Savoie. Mariages, événements, maquillage artistique, nail art. Interventions à Thonon, Annecy, Genève, Lausanne.',
-}
+export const metadata = generateHomeMetadata()
 
 export default async function HomePage() {
+	const jsonLd = generateHomeJsonLd()
+
 	return (
-		<div className="w-full h-full">
-			{/* Hero Section */}
-			<HeroAltSection />
+		<>
+			{/* JSON-LD Schema pour SEO */}
+			<script
+				type="application/ld+json"
+				// biome-ignore lint/security/noDangerouslySetInnerHtml: Required for JSON-LD schema
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+			/>
 
-			{/* Section About */}
-			<AboutSection />
+			<div className="w-full h-full">
+				{/* Hero Section */}
+				<HeroAltSection />
 
-			{/* Section Services */}
-			<ServicesSection />
+				{/* Section About */}
+				<AboutSection />
 
-			{/* Section Latest Blog */}
-			<LatestBlogSection />
+				{/* Section Services */}
+				<ServicesSection />
 
-			{/* Section Latest Gallery */}
-			<LatestGallerySection />
+				{/* Section Latest Blog */}
+				<LatestBlogSection />
 
-			{/* Section Testimonials */}
-			<TestimonialsSection />
+				{/* Section Latest Gallery */}
+				<LatestGallerySection />
 
-			{/* Section CTA */}
-			<CtaSection />
-		</div>
+				{/* Section Testimonials */}
+				<TestimonialsSection />
+
+				{/* Section CTA */}
+				<CtaSection />
+			</div>
+		</>
 	)
 }
