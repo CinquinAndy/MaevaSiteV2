@@ -5,7 +5,7 @@ import type { PageContext } from '@/lib/gemini/generate-seo'
 import { generateSeoContent } from '@/lib/gemini/generate-seo'
 import config from '@/payload.config'
 
-type CollectionSlug = 'users' | 'media' | 'blog' | 'gallery' | 'services' | 'testimonials'
+type CollectionSlug = 'users' | 'media' | 'blog' | 'galery' | 'services' | 'testimonials'
 
 export async function POST(req: NextRequest) {
 	try {
@@ -28,10 +28,10 @@ export async function POST(req: NextRequest) {
 					}
 					break
 				}
-				case 'gallery': {
-					const doc = await payload.findByID({ collection: 'gallery', id: documentId })
+				case 'galery': {
+					const doc = await payload.findByID({ collection: 'galery', id: documentId })
 					pageContext = {
-						pageType: 'gallery-item',
+						pageType: 'galery-item',
 						title: doc.title || '',
 						description: doc.description || '',
 						category: doc.category || '',

@@ -4,8 +4,8 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
 	await db.execute(sql`
    CREATE TYPE "public"."enum_blog_category" AS ENUM('conseils-maquillage', 'nail-art', 'tutoriels', 'actualites', 'collections', 'mariages-evenements');
   CREATE TYPE "public"."enum_blog_status" AS ENUM('draft', 'published');
-  CREATE TYPE "public"."enum_gallery_category" AS ENUM('mariage', 'artistique', 'nail-art', 'evenementiel', 'photo-video', 'collections');
-  CREATE TYPE "public"."enum_gallery_status" AS ENUM('draft', 'published');
+  CREATE TYPE "public"."enum_galery_category" AS ENUM('mariage', 'artistique', 'nail-art', 'evenementiel', 'photo-video', 'collections');
+  CREATE TYPE "public"."enum_galery_status" AS ENUM('draft', 'published');
   CREATE TYPE "public"."enum_services_category" AS ENUM('maquillage', 'nail-art', 'evenementiel', 'formation');
   CREATE TYPE "public"."enum_services_icon" AS ENUM('sparkles', 'heart', 'camera', 'paint', 'palette', 'star', 'crown', 'diamond', 'brush');
   CREATE TYPE "public"."enum_services_pricing_price_type" AS ENUM('fixed', 'from', 'quote');
@@ -73,7 +73,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"created_at" timestamp(3) with time zone DEFAULT now() NOT NULL
   );
   
-  CREATE TABLE "gallery_images" (
+  CREATE TABLE "galery_images" (
   	"_order" integer NOT NULL,
   	"_parent_id" integer NOT NULL,
   	"id" varchar PRIMARY KEY NOT NULL,
@@ -81,16 +81,16 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"caption" varchar
   );
   
-  CREATE TABLE "gallery" (
+  CREATE TABLE "galery" (
   	"id" serial PRIMARY KEY NOT NULL,
   	"title" varchar NOT NULL,
   	"slug" varchar NOT NULL,
   	"description" varchar,
-  	"category" "enum_gallery_category" DEFAULT 'mariage' NOT NULL,
+  	"category" "enum_galery_category" DEFAULT 'mariage' NOT NULL,
   	"cover_image_id" integer NOT NULL,
   	"published_date" timestamp(3) with time zone NOT NULL,
   	"location" varchar,
-  	"status" "enum_gallery_status" DEFAULT 'draft' NOT NULL,
+  	"status" "enum_galery_status" DEFAULT 'draft' NOT NULL,
   	"seo_title" varchar,
   	"seo_description" varchar,
   	"updated_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
@@ -158,7 +158,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"users_id" integer,
   	"media_id" integer,
   	"blog_id" integer,
-  	"gallery_id" integer,
+  	"galery_id" integer,
   	"services_id" integer,
   	"testimonials_id" integer
   );
@@ -216,9 +216,9 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"blog_title" varchar DEFAULT 'Derniers Articles',
   	"blog_subtitle" varchar DEFAULT 'Découvrez mes conseils, astuces et actualités sur le maquillage et le nail art',
   	"blog_limit" numeric DEFAULT 3,
-  	"gallery_title" varchar DEFAULT 'Mes Dernières Créations',
-  	"gallery_subtitle" varchar DEFAULT 'Découvrez mes réalisations récentes en maquillage et nail art',
-  	"gallery_limit" numeric DEFAULT 4,
+  	"galery_title" varchar DEFAULT 'Mes Dernières Créations',
+  	"galery_subtitle" varchar DEFAULT 'Découvrez mes réalisations récentes en maquillage et nail art',
+  	"galery_limit" numeric DEFAULT 4,
   	"testimonials_enabled" boolean DEFAULT true,
   	"testimonials_title" varchar DEFAULT 'Elles me font confiance',
   	"testimonials_subtitle" varchar DEFAULT 'Découvrez les témoignages de mes clientes satisfaites',
@@ -232,9 +232,9 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   ALTER TABLE "blog_tags" ADD CONSTRAINT "blog_tags_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."blog"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "blog" ADD CONSTRAINT "blog_featured_image_id_media_id_fk" FOREIGN KEY ("featured_image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
   ALTER TABLE "blog" ADD CONSTRAINT "blog_author_id_users_id_fk" FOREIGN KEY ("author_id") REFERENCES "public"."users"("id") ON DELETE set null ON UPDATE no action;
-  ALTER TABLE "gallery_images" ADD CONSTRAINT "gallery_images_image_id_media_id_fk" FOREIGN KEY ("image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
-  ALTER TABLE "gallery_images" ADD CONSTRAINT "gallery_images_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."gallery"("id") ON DELETE cascade ON UPDATE no action;
-  ALTER TABLE "gallery" ADD CONSTRAINT "gallery_cover_image_id_media_id_fk" FOREIGN KEY ("cover_image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "galery_images" ADD CONSTRAINT "galery_images_image_id_media_id_fk" FOREIGN KEY ("image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "galery_images" ADD CONSTRAINT "galery_images_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."galery"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "galery" ADD CONSTRAINT "galery_cover_image_id_media_id_fk" FOREIGN KEY ("cover_image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
   ALTER TABLE "services_features" ADD CONSTRAINT "services_features_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."services"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "services" ADD CONSTRAINT "services_featured_image_id_media_id_fk" FOREIGN KEY ("featured_image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
   ALTER TABLE "testimonials" ADD CONSTRAINT "testimonials_avatar_id_media_id_fk" FOREIGN KEY ("avatar_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
@@ -242,7 +242,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   ALTER TABLE "payload_locked_documents_rels" ADD CONSTRAINT "payload_locked_documents_rels_users_fk" FOREIGN KEY ("users_id") REFERENCES "public"."users"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "payload_locked_documents_rels" ADD CONSTRAINT "payload_locked_documents_rels_media_fk" FOREIGN KEY ("media_id") REFERENCES "public"."media"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "payload_locked_documents_rels" ADD CONSTRAINT "payload_locked_documents_rels_blog_fk" FOREIGN KEY ("blog_id") REFERENCES "public"."blog"("id") ON DELETE cascade ON UPDATE no action;
-  ALTER TABLE "payload_locked_documents_rels" ADD CONSTRAINT "payload_locked_documents_rels_gallery_fk" FOREIGN KEY ("gallery_id") REFERENCES "public"."gallery"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "payload_locked_documents_rels" ADD CONSTRAINT "payload_locked_documents_rels_galery_fk" FOREIGN KEY ("galery_id") REFERENCES "public"."galery"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "payload_locked_documents_rels" ADD CONSTRAINT "payload_locked_documents_rels_services_fk" FOREIGN KEY ("services_id") REFERENCES "public"."services"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "payload_locked_documents_rels" ADD CONSTRAINT "payload_locked_documents_rels_testimonials_fk" FOREIGN KEY ("testimonials_id") REFERENCES "public"."testimonials"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "payload_preferences_rels" ADD CONSTRAINT "payload_preferences_rels_parent_fk" FOREIGN KEY ("parent_id") REFERENCES "public"."payload_preferences"("id") ON DELETE cascade ON UPDATE no action;
@@ -265,13 +265,13 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX "blog_author_idx" ON "blog" USING btree ("author_id");
   CREATE INDEX "blog_updated_at_idx" ON "blog" USING btree ("updated_at");
   CREATE INDEX "blog_created_at_idx" ON "blog" USING btree ("created_at");
-  CREATE INDEX "gallery_images_order_idx" ON "gallery_images" USING btree ("_order");
-  CREATE INDEX "gallery_images_parent_id_idx" ON "gallery_images" USING btree ("_parent_id");
-  CREATE INDEX "gallery_images_image_idx" ON "gallery_images" USING btree ("image_id");
-  CREATE UNIQUE INDEX "gallery_slug_idx" ON "gallery" USING btree ("slug");
-  CREATE INDEX "gallery_cover_image_idx" ON "gallery" USING btree ("cover_image_id");
-  CREATE INDEX "gallery_updated_at_idx" ON "gallery" USING btree ("updated_at");
-  CREATE INDEX "gallery_created_at_idx" ON "gallery" USING btree ("created_at");
+  CREATE INDEX "galery_images_order_idx" ON "galery_images" USING btree ("_order");
+  CREATE INDEX "galery_images_parent_id_idx" ON "galery_images" USING btree ("_parent_id");
+  CREATE INDEX "galery_images_image_idx" ON "galery_images" USING btree ("image_id");
+  CREATE UNIQUE INDEX "galery_slug_idx" ON "galery" USING btree ("slug");
+  CREATE INDEX "galery_cover_image_idx" ON "galery" USING btree ("cover_image_id");
+  CREATE INDEX "galery_updated_at_idx" ON "galery" USING btree ("updated_at");
+  CREATE INDEX "galery_created_at_idx" ON "galery" USING btree ("created_at");
   CREATE INDEX "services_features_order_idx" ON "services_features" USING btree ("_order");
   CREATE INDEX "services_features_parent_id_idx" ON "services_features" USING btree ("_parent_id");
   CREATE UNIQUE INDEX "services_slug_idx" ON "services" USING btree ("slug");
@@ -290,7 +290,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX "payload_locked_documents_rels_users_id_idx" ON "payload_locked_documents_rels" USING btree ("users_id");
   CREATE INDEX "payload_locked_documents_rels_media_id_idx" ON "payload_locked_documents_rels" USING btree ("media_id");
   CREATE INDEX "payload_locked_documents_rels_blog_id_idx" ON "payload_locked_documents_rels" USING btree ("blog_id");
-  CREATE INDEX "payload_locked_documents_rels_gallery_id_idx" ON "payload_locked_documents_rels" USING btree ("gallery_id");
+  CREATE INDEX "payload_locked_documents_rels_galery_id_idx" ON "payload_locked_documents_rels" USING btree ("galery_id");
   CREATE INDEX "payload_locked_documents_rels_services_id_idx" ON "payload_locked_documents_rels" USING btree ("services_id");
   CREATE INDEX "payload_locked_documents_rels_testimonials_id_idx" ON "payload_locked_documents_rels" USING btree ("testimonials_id");
   CREATE INDEX "payload_preferences_key_idx" ON "payload_preferences" USING btree ("key");
@@ -316,8 +316,8 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TABLE "media" CASCADE;
   DROP TABLE "blog_tags" CASCADE;
   DROP TABLE "blog" CASCADE;
-  DROP TABLE "gallery_images" CASCADE;
-  DROP TABLE "gallery" CASCADE;
+  DROP TABLE "galery_images" CASCADE;
+  DROP TABLE "galery" CASCADE;
   DROP TABLE "services_features" CASCADE;
   DROP TABLE "services" CASCADE;
   DROP TABLE "testimonials" CASCADE;
@@ -331,8 +331,8 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TABLE "homepage" CASCADE;
   DROP TYPE "public"."enum_blog_category";
   DROP TYPE "public"."enum_blog_status";
-  DROP TYPE "public"."enum_gallery_category";
-  DROP TYPE "public"."enum_gallery_status";
+  DROP TYPE "public"."enum_galery_category";
+  DROP TYPE "public"."enum_galery_status";
   DROP TYPE "public"."enum_services_category";
   DROP TYPE "public"."enum_services_icon";
   DROP TYPE "public"."enum_services_pricing_price_type";

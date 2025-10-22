@@ -3,16 +3,16 @@ import { IconArrowRight } from '@tabler/icons-react'
 import Link from 'next/link'
 import { getPayload } from 'payload'
 import { Container } from '@/components/ui/container'
-import { GalleryCard } from '@/components/ui/gallery-card'
+import { GaleryCard } from '@/components/ui/galery-card'
 import { GradientButton } from '@/components/ui/gradient-button'
 import { Section } from '@/components/ui/section'
-import type { Gallery } from '@/payload-types'
+import type { Galery } from '@/payload-types'
 
-export async function LatestGallerySection() {
+export async function LatestGalerySection() {
 	const payload = await getPayload({ config })
 
-	const { docs: galleries } = await payload.find({
-		collection: 'gallery',
+	const { docs: galeries } = await payload.find({
+		collection: 'galery',
 		where: {
 			status: {
 				equals: 'published',
@@ -22,7 +22,7 @@ export async function LatestGallerySection() {
 		limit: 3,
 	})
 
-	if (galleries.length === 0) {
+	if (galeries.length === 0) {
 		return null
 	}
 
@@ -40,8 +40,8 @@ export async function LatestGallerySection() {
 
 					{/* Galleries Grid */}
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-						{galleries.map(gallery => (
-							<GalleryCard key={gallery.id} gallery={gallery as Gallery} />
+						{galeries.map(galery => (
+							<GaleryCard key={galery.id} galery={galery as Galery} />
 						))}
 					</div>
 

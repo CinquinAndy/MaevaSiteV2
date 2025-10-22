@@ -154,11 +154,11 @@ export function generateBlogPostMetadata(options: {
 /**
  * Génère les metadata pour la page galerie (listing)
  */
-export function generateGalleryListingMetadata(): Metadata {
+export function generateGaleryListingMetadata(): Metadata {
 	return generateMetadata({
-		title: PAGE_SEO.gallery.title,
-		description: PAGE_SEO.gallery.description,
-		keywords: [...PAGE_SEO.gallery.keywords],
+		title: PAGE_SEO.galery.title,
+		description: PAGE_SEO.galery.description,
+		keywords: [...PAGE_SEO.galery.keywords],
 		path: '/galerie',
 		type: 'website',
 	})
@@ -167,7 +167,7 @@ export function generateGalleryListingMetadata(): Metadata {
 /**
  * Génère les metadata pour une galerie individuelle
  */
-export function generateGalleryItemMetadata(options: {
+export function generateGaleryItemMetadata(options: {
 	title: string
 	description?: string
 	coverImage?: string
@@ -355,17 +355,12 @@ export function generateBlogPostJsonLd(options: {
 /**
  * Génère un JSON-LD pour une galerie
  */
-export function generateGalleryJsonLd(options: {
-	title: string
-	description?: string
-	slug: string
-	images: string[]
-}) {
+export function generateGaleryJsonLd(options: { title: string; description?: string; slug: string; images: string[] }) {
 	const { title, description, slug, images } = options
 
 	return {
 		'@context': 'https://schema.org',
-		'@type': 'ImageGallery',
+		'@type': 'ImageGalery',
 		name: title,
 		description,
 		url: `${SITE_CONFIG.url}/galerie/${slug}`,

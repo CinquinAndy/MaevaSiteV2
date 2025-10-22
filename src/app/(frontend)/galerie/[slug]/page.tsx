@@ -5,9 +5,9 @@ import { notFound } from 'next/navigation'
 import { getPayload } from 'payload'
 import { Blob3, Blob5, Blob6, Blob7, Blob8, Blob9 } from '@/components/blobs/blobs'
 import { Badge } from '@/components/ui/badge'
-import { BentoGallery } from '@/components/ui/bento-gallery'
-import { generateGalleryItemMetadata, generateGalleryJsonLd } from '@/lib/seo'
-import type { Gallery, Media } from '@/payload-types'
+import { BentoGalery } from '@/components/ui/bento-galery'
+import { generateGaleryItemMetadata, generateGaleryJsonLd } from '@/lib/seo'
+import type { Galery, Media } from '@/payload-types'
 
 const categoryLabels: Record<string, string> = {
 	mariage: 'Mariage',
@@ -22,7 +22,7 @@ export async function generateStaticParams() {
 	const payload = await getPayload({ config })
 
 	const { docs: galleries } = await payload.find({
-		collection: 'gallery',
+		collection: 'galery',
 		where: {
 			status: {
 				equals: 'published',
@@ -31,8 +31,8 @@ export async function generateStaticParams() {
 		limit: 1000,
 	})
 
-	return galleries.map(gallery => ({
-		slug: gallery.slug,
+	return galleries.map(galery => ({
+		slug: galery.slug,
 	}))
 }
 
@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 	const payload = await getPayload({ config })
 
 	const { docs } = await payload.find({
-		collection: 'gallery',
+		collection: 'galery',
 		where: {
 			slug: {
 				equals: slug,
@@ -50,33 +50,33 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 		limit: 1,
 	})
 
-	const gallery = docs[0] as Gallery | undefined
+	const galery = docs[0] as Galery | undefined
 
-	if (!gallery) {
+	if (!galery) {
 		return {
 			title: 'Galerie non trouvée',
 		}
 	}
 
-	const coverImage = gallery.coverImage as Media | undefined
+	const coverImage = galery.coverImage as Media | undefined
 
-	return generateGalleryItemMetadata({
-		title: gallery.title,
-		description: gallery.description ?? undefined,
+	return generateGaleryItemMetadata({
+		title: galery.title,
+		description: galery.description ?? undefined,
 		coverImage: coverImage?.url ?? undefined,
-		slug: gallery.slug,
-		publishedDate: gallery.publishedDate ?? undefined,
-		seoTitle: gallery.seo_title ?? undefined,
-		seoDescription: gallery.seo_description ?? undefined,
+		slug: galery.slug,
+		publishedDate: galery.publishedDate ?? undefined,
+		seoTitle: galery.seo_title ?? undefined,
+		seoDescription: galery.seo_description ?? undefined,
 	})
 }
 
-export default async function GalleryDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function GaleryDetailPage({ params }: { params: Promise<{ slug: string }> }) {
 	const { slug } = await params
 	const payload = await getPayload({ config })
 
 	const { docs } = await payload.find({
-		collection: 'gallery',
+		collection: 'galery',
 		where: {
 			slug: {
 				equals: slug,
@@ -88,27 +88,27 @@ export default async function GalleryDetailPage({ params }: { params: Promise<{ 
 		limit: 1,
 	})
 
-	const gallery = docs[0] as Gallery | undefined
+	const galery = docs[0] as Galery | undefined
 
-	if (!gallery) {
+	if (!galery) {
 		notFound()
 	}
 
-	const coverImage = gallery.coverImage as Media | undefined
-	const publishedDate = new Date(gallery.publishedDate).toLocaleDateString('fr-FR', {
+	const coverImage = galery.coverImage as Media | undefined
+	const publishedDate = new Date(galery.publishedDate).toLocaleDateString('fr-FR', {
 		year: 'numeric',
 		month: 'long',
 		day: 'numeric',
 	})
 
-	const imageCount = gallery.images?.length || 0
+	const imageCount = galery.images?.length || 0
 
-	const jsonLd = generateGalleryJsonLd({
-		title: gallery.title,
-		description: gallery.description ?? undefined,
-		slug: gallery.slug,
+	const jsonLd = generateGaleryJsonLd({
+		title: galery.title,
+		description: galery.description ?? undefined,
+		slug: galery.slug,
 		images:
-			gallery.images?.map(item => {
+			galery.images?.map(item => {
 				const img = item.image as Media
 				return img.url || ''
 			}) || [],
@@ -129,7 +129,7 @@ export default async function GalleryDetailPage({ params }: { params: Promise<{ 
 				{coverImage?.url && (
 					<Image
 						src={coverImage.url}
-						alt={coverImage.alt || gallery.title}
+						alt={coverImage.alt || galery.title}
 						fill
 						className="object-cover grayscale brightness-75"
 						priority
@@ -165,13 +165,13 @@ export default async function GalleryDetailPage({ params }: { params: Promise<{ 
 									</Link>
 								</li>
 								<li>/</li>
-								<li className="text-foreground">{gallery.title}</li>
+								<li className="text-foreground">{galery.title}</li>
 							</ol>
 						</nav>
 
 						{/* Category & Metadata */}
 						<div className="flex flex-wrap items-center gap-3 mb-4">
-							<Badge variant="primary">{categoryLabels[gallery.category] || gallery.category}</Badge>
+							<Badge variant="primary">{categoryLabels[galery.category] || galery.category}</Badge>
 							<span className="text-sm text-muted-foreground">
 								{imageCount} {imageCount === 1 ? 'photo' : 'photos'}
 							</span>
@@ -180,20 +180,18 @@ export default async function GalleryDetailPage({ params }: { params: Promise<{ 
 
 						{/* Title */}
 						<h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-foreground font-corinthia mb-4">
-							{gallery.title}
+							{galery.title}
 						</h1>
 
 						{/* Description */}
-						{gallery.description && (
-							<p className="text-lg md:text-xl text-muted-foreground max-w-3xl leading-relaxed">
-								{gallery.description}
-							</p>
+						{galery.description && (
+							<p className="text-lg md:text-xl text-muted-foreground max-w-3xl leading-relaxed">{galery.description}</p>
 						)}
 					</div>
 				</div>
 			</div>
 
-			{/* Gallery Content Section */}
+			{/* Galery Content Section */}
 			<div className="relative isolate bg-background">
 				{/* Background Pattern SVG - Couleurs adaptées pour la galerie */}
 				<div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
@@ -202,7 +200,7 @@ export default async function GalleryDetailPage({ params }: { params: Promise<{ 
 						className="absolute top-0 left-[max(50%,25rem)] h-[64rem] w-[128rem] -translate-x-1/2 stroke-accent/15"
 					>
 						<defs>
-							<pattern x="50%" y={-1} id="gallery-pattern" width={200} height={200} patternUnits="userSpaceOnUse">
+							<pattern x="50%" y={-1} id="galery-pattern" width={200} height={200} patternUnits="userSpaceOnUse">
 								<path d="M100 200V.5M.5 .5H200" fill="none" />
 							</pattern>
 						</defs>
@@ -212,7 +210,7 @@ export default async function GalleryDetailPage({ params }: { params: Promise<{ 
 								strokeWidth={0}
 							/>
 						</svg>
-						<rect fill="url(#gallery-pattern)" width="100%" height="100%" strokeWidth={0} />
+						<rect fill="url(#galery-pattern)" width="100%" height="100%" strokeWidth={0} />
 					</svg>
 				</div>
 
@@ -241,14 +239,14 @@ export default async function GalleryDetailPage({ params }: { params: Promise<{ 
 				{/* Main Grid Layout */}
 				<div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8 relative">
 					<div className="grid grid-cols-1 gap-x-12 gap-y-16 lg:grid-cols-2">
-						{/* Left Column - Gallery Information */}
+						{/* Left Column - Galery Information */}
 						<div className="lg:pr-8">
 							<div className="space-y-8">
 								{/* Extended Description if available */}
 								<div className="prose prose-lg max-w-none">
-									{gallery.description && (
+									{galery.description && (
 										<div className="text-lg text-foreground/90 leading-relaxed font-kalam">
-											<p>{gallery.description}</p>
+											<p>{galery.description}</p>
 										</div>
 									)}
 								</div>
@@ -262,7 +260,7 @@ export default async function GalleryDetailPage({ params }: { params: Promise<{ 
 												Catégorie
 											</h3>
 											<Badge variant="secondary" className="text-base">
-												{categoryLabels[gallery.category] || gallery.category}
+												{categoryLabels[galery.category] || galery.category}
 											</Badge>
 										</div>
 
@@ -295,7 +293,7 @@ export default async function GalleryDetailPage({ params }: { params: Promise<{ 
 									<div className="relative aspect-[4/3] w-full">
 										<Image
 											src={coverImage.url}
-											alt={coverImage.alt || gallery.title}
+											alt={coverImage.alt || galery.title}
 											fill
 											className="object-cover"
 											sizes="(max-width: 1024px) 100vw, 50vw"
@@ -306,7 +304,7 @@ export default async function GalleryDetailPage({ params }: { params: Promise<{ 
 						)}
 					</div>
 
-					{/* Gallery Images Section */}
+					{/* Galery Images Section */}
 					<div className="mt-24">
 						<div className="mb-12">
 							<h2 className="text-3xl md:text-4xl font-bold text-foreground font-corinthia mb-4">
@@ -314,10 +312,10 @@ export default async function GalleryDetailPage({ params }: { params: Promise<{ 
 							</h2>
 						</div>
 
-						{/* Bento Gallery */}
-						{gallery.images && gallery.images.length > 0 && (
-							<BentoGallery
-								images={gallery.images.map(item => ({
+						{/* Bento Galery */}
+						{galery.images && galery.images.length > 0 && (
+							<BentoGalery
+								images={galery.images.map(item => ({
 									image: item.image as Media,
 									caption: item.caption,
 									id: item.id,
@@ -326,7 +324,7 @@ export default async function GalleryDetailPage({ params }: { params: Promise<{ 
 						)}
 					</div>
 
-					{/* Back to Gallery */}
+					{/* Back to Galery */}
 					<div className="mt-16 pt-8 border-t border-border">
 						<Link href="/galerie" className="inline-flex items-center gap-2 text-primary hover:underline font-medium">
 							← Retour à la galerie

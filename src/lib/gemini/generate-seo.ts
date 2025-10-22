@@ -11,8 +11,8 @@ export interface PageContext {
 		| 'homepage'
 		| 'blog'
 		| 'blog-post'
-		| 'gallery'
-		| 'gallery-item'
+		| 'galery'
+		| 'galery-item'
 		| 'service'
 		| 'services'
 		| 'contact'
@@ -103,13 +103,13 @@ ${context.category ? `Catégorie: ${context.category}` : ''}
 Focus SEO: sujet spécifique de l'article, expertise partagée, conseils pratiques beauté/maquillage.`
 			break
 
-		case 'gallery':
+		case 'galery':
 			specificContext = `Page: **Galerie - Portfolio**
 Page présentant les réalisations : mariages, maquillages artistiques, créations nail art, événements, shootings.
 Focus SEO: portfolio maquilleuse, réalisations maquillage mariage, book makeup artist Haute-Savoie.`
 			break
 
-		case 'gallery-item':
+		case 'galery-item':
 			specificContext = `Page: **Galerie - ${context.title || 'Collection'}**
 ${context.description ? `Description: ${context.description}` : ''}
 ${context.category ? `Type: ${context.category}` : ''}

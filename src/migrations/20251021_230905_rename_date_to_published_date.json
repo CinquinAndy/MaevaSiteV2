@@ -625,8 +625,8 @@
 			"checkConstraints": {},
 			"isRLSEnabled": false
 		},
-		"public.gallery_images": {
-			"name": "gallery_images",
+		"public.galery_images": {
+			"name": "galery_images",
 			"schema": "",
 			"columns": {
 				"_order": {
@@ -661,8 +661,8 @@
 				}
 			},
 			"indexes": {
-				"gallery_images_order_idx": {
-					"name": "gallery_images_order_idx",
+				"galery_images_order_idx": {
+					"name": "galery_images_order_idx",
 					"columns": [
 						{
 							"expression": "_order",
@@ -676,8 +676,8 @@
 					"method": "btree",
 					"with": {}
 				},
-				"gallery_images_parent_id_idx": {
-					"name": "gallery_images_parent_id_idx",
+				"galery_images_parent_id_idx": {
+					"name": "galery_images_parent_id_idx",
 					"columns": [
 						{
 							"expression": "_parent_id",
@@ -691,8 +691,8 @@
 					"method": "btree",
 					"with": {}
 				},
-				"gallery_images_image_idx": {
-					"name": "gallery_images_image_idx",
+				"galery_images_image_idx": {
+					"name": "galery_images_image_idx",
 					"columns": [
 						{
 							"expression": "image_id",
@@ -708,19 +708,19 @@
 				}
 			},
 			"foreignKeys": {
-				"gallery_images_image_id_media_id_fk": {
-					"name": "gallery_images_image_id_media_id_fk",
-					"tableFrom": "gallery_images",
+				"galery_images_image_id_media_id_fk": {
+					"name": "galery_images_image_id_media_id_fk",
+					"tableFrom": "galery_images",
 					"tableTo": "media",
 					"columnsFrom": ["image_id"],
 					"columnsTo": ["id"],
 					"onDelete": "set null",
 					"onUpdate": "no action"
 				},
-				"gallery_images_parent_id_fk": {
-					"name": "gallery_images_parent_id_fk",
-					"tableFrom": "gallery_images",
-					"tableTo": "gallery",
+				"galery_images_parent_id_fk": {
+					"name": "galery_images_parent_id_fk",
+					"tableFrom": "galery_images",
+					"tableTo": "galery",
 					"columnsFrom": ["_parent_id"],
 					"columnsTo": ["id"],
 					"onDelete": "cascade",
@@ -733,8 +733,8 @@
 			"checkConstraints": {},
 			"isRLSEnabled": false
 		},
-		"public.gallery": {
-			"name": "gallery",
+		"public.galery": {
+			"name": "galery",
 			"schema": "",
 			"columns": {
 				"id": {
@@ -763,7 +763,7 @@
 				},
 				"category": {
 					"name": "category",
-					"type": "enum_gallery_category",
+					"type": "enum_galery_category",
 					"typeSchema": "public",
 					"primaryKey": false,
 					"notNull": true,
@@ -789,7 +789,7 @@
 				},
 				"status": {
 					"name": "status",
-					"type": "enum_gallery_status",
+					"type": "enum_galery_status",
 					"typeSchema": "public",
 					"primaryKey": false,
 					"notNull": true,
@@ -823,8 +823,8 @@
 				}
 			},
 			"indexes": {
-				"gallery_slug_idx": {
-					"name": "gallery_slug_idx",
+				"galery_slug_idx": {
+					"name": "galery_slug_idx",
 					"columns": [
 						{
 							"expression": "slug",
@@ -838,8 +838,8 @@
 					"method": "btree",
 					"with": {}
 				},
-				"gallery_cover_image_idx": {
-					"name": "gallery_cover_image_idx",
+				"galery_cover_image_idx": {
+					"name": "galery_cover_image_idx",
 					"columns": [
 						{
 							"expression": "cover_image_id",
@@ -853,8 +853,8 @@
 					"method": "btree",
 					"with": {}
 				},
-				"gallery_updated_at_idx": {
-					"name": "gallery_updated_at_idx",
+				"galery_updated_at_idx": {
+					"name": "galery_updated_at_idx",
 					"columns": [
 						{
 							"expression": "updated_at",
@@ -868,8 +868,8 @@
 					"method": "btree",
 					"with": {}
 				},
-				"gallery_created_at_idx": {
-					"name": "gallery_created_at_idx",
+				"galery_created_at_idx": {
+					"name": "galery_created_at_idx",
 					"columns": [
 						{
 							"expression": "created_at",
@@ -885,9 +885,9 @@
 				}
 			},
 			"foreignKeys": {
-				"gallery_cover_image_id_media_id_fk": {
-					"name": "gallery_cover_image_id_media_id_fk",
-					"tableFrom": "gallery",
+				"galery_cover_image_id_media_id_fk": {
+					"name": "galery_cover_image_id_media_id_fk",
+					"tableFrom": "galery",
 					"tableTo": "media",
 					"columnsFrom": ["cover_image_id"],
 					"columnsTo": ["id"],
@@ -1482,8 +1482,8 @@
 					"primaryKey": false,
 					"notNull": false
 				},
-				"gallery_id": {
-					"name": "gallery_id",
+				"galery_id": {
+					"name": "galery_id",
 					"type": "integer",
 					"primaryKey": false,
 					"notNull": false
@@ -1592,11 +1592,11 @@
 					"method": "btree",
 					"with": {}
 				},
-				"payload_locked_documents_rels_gallery_id_idx": {
-					"name": "payload_locked_documents_rels_gallery_id_idx",
+				"payload_locked_documents_rels_galery_id_idx": {
+					"name": "payload_locked_documents_rels_galery_id_idx",
 					"columns": [
 						{
-							"expression": "gallery_id",
+							"expression": "galery_id",
 							"isExpression": false,
 							"asc": true,
 							"nulls": "last"
@@ -1675,11 +1675,11 @@
 					"onDelete": "cascade",
 					"onUpdate": "no action"
 				},
-				"payload_locked_documents_rels_gallery_fk": {
-					"name": "payload_locked_documents_rels_gallery_fk",
+				"payload_locked_documents_rels_galery_fk": {
+					"name": "payload_locked_documents_rels_galery_fk",
 					"tableFrom": "payload_locked_documents_rels",
-					"tableTo": "gallery",
-					"columnsFrom": ["gallery_id"],
+					"tableTo": "galery",
+					"columnsFrom": ["galery_id"],
 					"columnsTo": ["id"],
 					"onDelete": "cascade",
 					"onUpdate": "no action"
@@ -2250,22 +2250,22 @@
 					"notNull": false,
 					"default": 3
 				},
-				"gallery_title": {
-					"name": "gallery_title",
+				"galery_title": {
+					"name": "galery_title",
 					"type": "varchar",
 					"primaryKey": false,
 					"notNull": false,
 					"default": "'Mes Dernières Créations'"
 				},
-				"gallery_subtitle": {
-					"name": "gallery_subtitle",
+				"galery_subtitle": {
+					"name": "galery_subtitle",
 					"type": "varchar",
 					"primaryKey": false,
 					"notNull": false,
 					"default": "'Découvrez mes réalisations récentes en maquillage et nail art'"
 				},
-				"gallery_limit": {
-					"name": "gallery_limit",
+				"galery_limit": {
+					"name": "galery_limit",
 					"type": "numeric",
 					"primaryKey": false,
 					"notNull": false,
@@ -2365,13 +2365,13 @@
 			"schema": "public",
 			"values": ["draft", "published"]
 		},
-		"public.enum_gallery_category": {
-			"name": "enum_gallery_category",
+		"public.enum_galery_category": {
+			"name": "enum_galery_category",
 			"schema": "public",
 			"values": ["mariage", "artistique", "nail-art", "evenementiel", "photo-video", "collections"]
 		},
-		"public.enum_gallery_status": {
-			"name": "enum_gallery_status",
+		"public.enum_galery_status": {
+			"name": "enum_galery_status",
 			"schema": "public",
 			"values": ["draft", "published"]
 		},

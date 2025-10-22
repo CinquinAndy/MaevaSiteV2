@@ -371,14 +371,14 @@ export function generateBlogPostJsonLd(params: {
 /**
  * Génère les métadonnées SEO pour la liste des galeries
  */
-export function generateGalleryListingMetadata(): Metadata {
+export function generateGaleryListingMetadata(): Metadata {
 	return generateGalerieSEO()
 }
 
 /**
  * Génère les métadonnées SEO pour une galerie individuelle
  */
-export function generateGalleryItemMetadata(params: {
+export function generateGaleryItemMetadata(params: {
 	title: string
 	description?: string
 	coverImage?: string
@@ -428,12 +428,12 @@ export function generateGalleryItemMetadata(params: {
 /**
  * Génère le JSON-LD pour une galerie
  */
-export function generateGalleryJsonLd(params: { title: string; description?: string; slug: string; images: string[] }) {
+export function generateGaleryJsonLd(params: { title: string; description?: string; slug: string; images: string[] }) {
 	const { title, description, slug, images } = params
 
 	return {
 		'@context': 'https://schema.org',
-		'@type': 'ImageGallery',
+		'@type': 'ImageGalery',
 		name: title,
 		description: description || title,
 		url: `${SITE_CONFIG.url}/galerie/${slug}`,

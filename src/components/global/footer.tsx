@@ -19,7 +19,7 @@ export async function Footer() {
 
 	// Fetch latest galleries (published only, limit 4)
 	const galleriesResponse = await payload.find({
-		collection: 'gallery',
+		collection: 'galery',
 		where: {
 			status: {
 				equals: 'published',
@@ -61,9 +61,9 @@ export async function Footer() {
 		},
 		{
 			title: 'Galeries récentes',
-			links: galleriesResponse.docs.map(gallery => ({
-				text: gallery.title,
-				url: `/galerie/${gallery.slug}`,
+			links: galleriesResponse.docs.map(galery => ({
+				text: galery.title,
+				url: `/galerie/${galery.slug}`,
 			})),
 		},
 	]

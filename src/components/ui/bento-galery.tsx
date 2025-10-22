@@ -7,14 +7,14 @@ import { useState } from 'react'
 import { cn } from '@/lib/utils'
 import type { Media } from '@/payload-types'
 
-interface GalleryImage {
+interface GaleryImage {
 	image: Media
 	caption?: string | null
 	id?: string | null
 }
 
-interface BentoGalleryProps {
-	images: GalleryImage[]
+interface BentoGaleryProps {
+	images: GaleryImage[]
 }
 
 // Génère automatiquement les spans pour le layout bento
@@ -39,7 +39,7 @@ const generateBentoLayout = (totalImages: number): string[] => {
 
 // Modal pour afficher l'image en grand
 interface ImageModalProps {
-	image: GalleryImage
+	image: GaleryImage
 	isOpen: boolean
 	onClose: () => void
 	onNext: () => void
@@ -129,7 +129,7 @@ function ImageModal({ image, isOpen, onClose, onNext, onPrev, currentIndex, tota
 	)
 }
 
-export function BentoGallery({ images }: BentoGalleryProps) {
+export function BentoGalery({ images }: BentoGaleryProps) {
 	const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
 	const validImages = images.filter(item => item.image?.url)
 	const layouts = generateBentoLayout(validImages.length)

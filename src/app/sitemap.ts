@@ -2,7 +2,7 @@ import config from '@payload-config'
 import type { MetadataRoute } from 'next'
 import { getPayload } from 'payload'
 import { SITE_CONFIG } from '@/lib/seo'
-import type { Blog, Gallery, Service } from '@/payload-types'
+import type { Blog, Galery, Service } from '@/payload-types'
 
 /**
  * Génère automatiquement le sitemap.xml du site
@@ -13,7 +13,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	const payload = await getPayload({ config })
 
 	// Récupérer toutes les données dynamiques depuis Payload CMS
-	const [blogPosts, galleries, services] = await Promise.all([
+	const [blogPosts, galeries, services] = await Promise.all([
 		// Articles de blog publiés
 		payload.find({
 			collection: 'blog',
@@ -27,7 +27,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		}),
 		// Galeries publiées
 		payload.find({
-			collection: 'gallery',
+			collection: 'galery',
 			where: {
 				status: {
 					equals: 'published',
@@ -98,9 +98,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	}))
 
 	// Pages de galerie dynamiques
-	const galleryPages: MetadataRoute.Sitemap = galleries.docs.map((gallery: Gallery) => ({
-		url: `${siteUrl}/galerie/${gallery.slug}`,
-		lastModified: gallery.updatedAt ? new Date(gallery.updatedAt) : new Date(gallery.publishedDate),
+	const galeryPages: MetadataRoute.Sitemap = galeries.docs.map((galery: Galery) => ({
+		url: `${siteUrl}/galerie/${galery.slug}`,
+		lastModified: galery.updatedAt ? new Date(galery.updatedAt) : new Date(galery.publishedDate),
 		changeFrequency: 'monthly' as const,
 		priority: 0.7,
 	}))
@@ -114,5 +114,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	}))
 
 	// Combiner toutes les pages
-	return [...staticPages, ...blogPages, ...galleryPages, ...servicePages]
+	return [...staticPages, ...blogPages, ...galeryPages, ...servicePages]
 }

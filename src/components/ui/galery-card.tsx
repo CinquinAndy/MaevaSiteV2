@@ -4,10 +4,10 @@ import Link from 'next/link'
 import { Badge } from '@/components/ui/badge'
 import { GlowingEffect } from '@/components/ui/glowing-effect'
 import { cn } from '@/lib/utils'
-import type { Gallery, Media } from '@/payload-types'
+import type { Galery, Media } from '@/payload-types'
 
-interface GalleryCardProps {
-	gallery: Gallery
+interface GaleryCardProps {
+	galery: Galery
 	className?: string
 }
 
@@ -20,17 +20,17 @@ const categoryLabels: Record<string, string> = {
 	collections: 'Collections',
 }
 
-export function GalleryCard({ gallery, className }: GalleryCardProps) {
-	const coverImage = gallery.coverImage as Media | undefined
-	const publishedDate = new Date(gallery.publishedDate).toLocaleDateString('fr-FR', {
+export function GaleryCard({ galery, className }: GaleryCardProps) {
+	const coverImage = galery.coverImage as Media | undefined
+	const publishedDate = new Date(galery.publishedDate).toLocaleDateString('fr-FR', {
 		year: 'numeric',
 		month: 'long',
 		day: 'numeric',
 	})
-	const imageCount = gallery.images?.length || 0
+	const imageCount = galery.images?.length || 0
 
 	return (
-		<Link href={`/galerie/${gallery.slug}`} className={cn('group block min-h-[28rem]', className)}>
+		<Link href={`/galerie/${galery.slug}`} className={cn('group block min-h-[28rem]', className)}>
 			<div className="relative h-full rounded-[1.25rem] border-[0.75px] border-border p-2 md:rounded-[1.5rem] md:p-3">
 				<GlowingEffect
 					spread={40}
@@ -46,7 +46,7 @@ export function GalleryCard({ gallery, className }: GalleryCardProps) {
 						<div className="relative aspect-[16/9] min-h-[300px] w-full overflow-hidden bg-muted">
 							<Image
 								src={coverImage.url}
-								alt={coverImage.alt || gallery.title}
+								alt={coverImage.alt || galery.title}
 								fill
 								className="object-cover transition-transform group-hover:scale-105"
 							/>
@@ -57,7 +57,7 @@ export function GalleryCard({ gallery, className }: GalleryCardProps) {
 									variant="secondary"
 									className="bg-background/80 backdrop-blur-sm border-border/50 text-foreground"
 								>
-									{categoryLabels[gallery.category] || gallery.category}
+									{categoryLabels[galery.category] || galery.category}
 								</Badge>
 							</div>
 						</div>
@@ -79,13 +79,13 @@ export function GalleryCard({ gallery, className }: GalleryCardProps) {
 
 							{/* Titre */}
 							<h3 className="text-xl font-libre-caslon-display font-semibold leading-[1.375rem] tracking-[-0.04em] text-balance text-foreground group-hover:text-pink-700 transition-colors md:text-2xl md:leading-[1.875rem] line-clamp-2">
-								{gallery.title}
+								{galery.title}
 							</h3>
 
 							{/* Description */}
-							{gallery.description && (
+							{galery.description && (
 								<p className="text-sm leading-[1.125rem] md:text-base md:leading-[1.375rem] text-muted-foreground line-clamp-3">
-									{gallery.description}
+									{galery.description}
 								</p>
 							)}
 						</div>

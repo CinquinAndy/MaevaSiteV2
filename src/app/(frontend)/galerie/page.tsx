@@ -3,18 +3,18 @@ import { getPayload } from 'payload'
 import { CtaSection } from '@/components/home/cta-section'
 import Hero from '@/components/home/hero'
 import { Container } from '@/components/ui/container'
-import { GalleryCard } from '@/components/ui/gallery-card'
+import { GaleryCard } from '@/components/ui/galery-card'
 import { Section } from '@/components/ui/section'
-import { generateGalleryListingMetadata } from '@/lib/seo'
-import type { Gallery } from '@/payload-types'
+import { generateGaleryListingMetadata } from '@/lib/seo'
+import type { Galery } from '@/payload-types'
 
-export const metadata = generateGalleryListingMetadata()
+export const metadata = generateGaleryListingMetadata()
 
 export default async function GaleriePage() {
 	const payload = await getPayload({ config })
 
-	const { docs: galleries } = await payload.find({
-		collection: 'gallery',
+	const { docs: galeries } = await payload.find({
+		collection: 'galery',
 		where: {
 			status: {
 				equals: 'published',
@@ -32,10 +32,10 @@ export default async function GaleriePage() {
 			<Section>
 				<Container>
 					<div className="space-y-8">
-						{galleries.length > 0 ? (
+						{galeries.length > 0 ? (
 							<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
-								{galleries.map(gallery => (
-									<GalleryCard key={gallery.id} gallery={gallery as Gallery} />
+								{galeries.map(galery => (
+									<GaleryCard key={galery.id} galery={galery as Galery} />
 								))}
 							</div>
 						) : (

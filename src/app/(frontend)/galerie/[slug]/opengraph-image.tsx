@@ -2,7 +2,7 @@ import config from '@payload-config'
 import { ImageResponse } from 'next/og'
 import { getPayload } from 'payload'
 import { loadFont, loadLogo, OG_IMAGE_CONTENT_TYPE, OG_IMAGE_SIZE, OGImageTemplate } from '@/lib/og-image'
-import type { Gallery } from '@/payload-types'
+import type { Galery } from '@/payload-types'
 
 export const size = OG_IMAGE_SIZE
 export const contentType = OG_IMAGE_CONTENT_TYPE
@@ -10,8 +10,8 @@ export const contentType = OG_IMAGE_CONTENT_TYPE
 export async function generateStaticParams() {
 	const payload = await getPayload({ config })
 
-	const { docs: galleries } = await payload.find({
-		collection: 'gallery',
+	const { docs: galeries } = await payload.find({
+		collection: 'galery',
 		where: {
 			status: {
 				equals: 'published',
@@ -20,8 +20,8 @@ export async function generateStaticParams() {
 		limit: 1000,
 	})
 
-	return galleries.map(gallery => ({
-		slug: gallery.slug,
+	return galeries.map(galery => ({
+		slug: galery.slug,
 	}))
 }
 
@@ -30,7 +30,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
 	const payload = await getPayload({ config })
 
 	const { docs } = await payload.find({
-		collection: 'gallery',
+		collection: 'galery',
 		where: {
 			slug: {
 				equals: slug,
@@ -39,9 +39,9 @@ export default async function Image({ params }: { params: Promise<{ slug: string
 		limit: 1,
 	})
 
-	const gallery = docs[0] as Gallery | undefined
+	const galery = docs[0] as Galery | undefined
 
-	if (!gallery) {
+	if (!galery) {
 		const font = await loadFont()
 		const logo = await loadLogo()
 		return new ImageResponse(<OGImageTemplate title="Galerie non trouvée" logoSrc={logo} />, {
@@ -59,7 +59,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
 
 	const font = await loadFont()
 	const logo = await loadLogo()
-	const title = gallery.seo_title || gallery.title
+	const title = galery.seo_title || galery.title
 
 	return new ImageResponse(<OGImageTemplate title={title} logoSrc={logo} />, {
 		...size,
@@ -79,7 +79,7 @@ export async function generateImageMetadata({ params }: { params: Promise<{ slug
 	const payload = await getPayload({ config })
 
 	const { docs } = await payload.find({
-		collection: 'gallery',
+		collection: 'galery',
 		where: {
 			slug: {
 				equals: slug,
@@ -88,9 +88,9 @@ export async function generateImageMetadata({ params }: { params: Promise<{ slug
 		limit: 1,
 	})
 
-	const gallery = docs[0] as Gallery | undefined
+	const galery = docs[0] as Galery | undefined
 
 	return {
-		alt: gallery ? gallery.seo_title || gallery.title : 'Galerie non trouvée',
+		alt: galery ? galery.seo_title || galery.title : 'Galerie non trouvée',
 	}
 }

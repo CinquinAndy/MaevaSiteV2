@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
 
-interface GalleryItem {
+interface GaleryItem {
 	title: string
 	category: string
 	image: string
@@ -12,7 +12,7 @@ interface GalleryItem {
 }
 
 interface CircularGalleriesProps {
-	galleries: GalleryItem[]
+	galleries: GaleryItem[]
 	autoplay?: boolean
 }
 
@@ -34,7 +34,7 @@ export function CircularGalleries({ galleries, autoplay = true }: CircularGaller
 	const autoplayIntervalRef = useRef<NodeJS.Timeout | null>(null)
 
 	const galleriesLength = useMemo(() => galleries.length, [galleries])
-	const activeGallery = useMemo(() => galleries[activeIndex], [activeIndex, galleries])
+	const activeGalery = useMemo(() => galleries[activeIndex], [activeIndex, galleries])
 
 	// Responsive gap calculation
 	useEffect(() => {
@@ -136,13 +136,13 @@ export function CircularGalleries({ galleries, autoplay = true }: CircularGaller
 			<div className="grid gap-12 md:gap-20 md:grid-cols-2">
 				{/* Images */}
 				<div ref={imageContainerRef} className="relative w-full h-96" style={{ perspective: '1000px' }}>
-					{galleries.map((gallery, index) => {
+					{galleries.map((galery, index) => {
 						const isActive = index === activeIndex
 						return (
-							<div key={gallery.image} className="absolute w-full h-full" style={getImageStyle(index)}>
+							<div key={galery.image} className="absolute w-full h-full" style={getImageStyle(index)}>
 								<Image
-									src={gallery.image}
-									alt={gallery.title}
+									src={galery.image}
+									alt={galery.title}
 									fill
 									className="object-cover rounded-3xl shadow-2xl"
 									data-index={index}
@@ -176,11 +176,11 @@ export function CircularGalleries({ galleries, autoplay = true }: CircularGaller
 							transition={{ duration: 0.3, ease: 'easeInOut' }}
 							className="space-y-4"
 						>
-							<h3 className="text-4xl font-bold text-foreground">{activeGallery.title}</h3>
-							<p className="text-lg text-muted-foreground">{activeGallery.category}</p>
+							<h3 className="text-4xl font-bold text-foreground">{activeGalery.title}</h3>
+							<p className="text-lg text-muted-foreground">{activeGalery.category}</p>
 							<motion.div className="pt-4">
 								<a
-									href={activeGallery.href}
+									href={activeGalery.href}
 									className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-medium"
 								>
 									Voir la galerie
@@ -196,7 +196,7 @@ export function CircularGalleries({ galleries, autoplay = true }: CircularGaller
 							type="button"
 							className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 border-2 border-primary hover:bg-primary hover:text-primary-foreground text-primary"
 							onClick={handlePrev}
-							aria-label="Previous gallery"
+							aria-label="Previous galery"
 						>
 							<FaArrowLeft size={20} />
 						</button>
@@ -204,7 +204,7 @@ export function CircularGalleries({ galleries, autoplay = true }: CircularGaller
 							type="button"
 							className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 border-2 border-primary hover:bg-primary hover:text-primary-foreground text-primary"
 							onClick={handleNext}
-							aria-label="Next gallery"
+							aria-label="Next galery"
 						>
 							<FaArrowRight size={20} />
 						</button>

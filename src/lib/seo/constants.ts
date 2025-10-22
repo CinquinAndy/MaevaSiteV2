@@ -85,7 +85,7 @@ export const PAGE_SEO = {
 			'actualités maquillage',
 		],
 	},
-	gallery: {
+	galery: {
 		title: 'Mes réalisations - Maquilleuse professionnelle | Nail Art | Maeva Cinquin',
 		description:
 			'Découvrez mes réalisations en maquillage et nail art : mariages, événements, maquillage artistique, body painting, manucure. Portfolio professionnel en Haute-Savoie.',

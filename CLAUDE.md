@@ -73,11 +73,11 @@ The website consists of the following pages:
 - Purpose: Share knowledge, showcase expertise, and provide beauty industry news
 - Each article should link to a detailed post page
 
-**3. Gallery Page - `/galerie`**
+**3. Galery Page - `/galerie`**
 - Displays Maeva's work organized in galleries
 - Shows recent projects, makeup collections, and completed work
 - Visual showcase of artistic makeup, beauty makeup, and nail art
-- Each gallery should link to a detailed view with full images
+- Each galery should link to a detailed view with full images
 
 **4. Prestations (Services) Page - `/prestations`**
 - Details of services offered (weddings, events, artistic makeup, nail art, photo shoots, etc.)
@@ -103,7 +103,7 @@ The website consists of the following pages:
 - Logo (links to homepage)
 - Blog
 - Prestations (Services)
-- Galerie (Gallery)
+- Galerie (Galery)
 - Contact
 
 **Footer:**
@@ -123,7 +123,7 @@ The website consists of the following pages:
 - Showcase of special collections (e.g., "Mi Ange-Mi Démon" collection)
 - Industry news and updates
 
-**Gallery Content Strategy:**
+**Galery Content Strategy:**
 - Wedding makeup portfolios
 - Artistic makeup projects
 - Nail art designs
@@ -177,7 +177,7 @@ src/
 - **Current Globals:** Homepage
 - **Planned Collections to Add:**
   - `Blog` - Blog posts/articles with title, slug, content (Lexical), featured image, excerpt, publish date, SEO fields
-  - `Gallery` - Gallery collections with title, slug, description, images array, category (wedding/artistic/nail-art), publish date
+  - `Galery` - Galery collections with title, slug, description, images array, category (wedding/artistic/nail-art), publish date
   - `Services` - Services/Prestations with title, description, pricing, category
   - `Legal` - Legal pages (mentions légales, privacy policy) with slug and content
 - Use helper functions like `getHomepageData()` from `src/lib/payload/` to fetch CMS data
@@ -196,11 +196,11 @@ src/
   - `/` - Homepage (currently basic, needs full landing page implementation)
   - `/blog` - Blog listing page (needs implementation)
   - `/prestations` - Services page (needs implementation)
-  - `/galerie` - Gallery page (needs implementation)
+  - `/galerie` - Galery page (needs implementation)
   - `/contact` - Contact form page (needs implementation)
 - **Pages to Add:**
   - `/blog/[slug]` - Individual blog post pages
-  - `/galerie/[slug]` - Individual gallery detail pages
+  - `/galerie/[slug]` - Individual galery detail pages
   - `/mentions-legales` - Legal notice page
 - SEO: Robots currently set to block all indexing (`index: false`, `follow: false`) - update when ready for production
 
@@ -267,7 +267,7 @@ When building out the website, follow this priority order:
 
 1. **CMS Collections Setup**
    - Create Blog collection with all necessary fields
-   - Create Gallery collection with image arrays
+   - Create Galery collection with image arrays
    - Create Services collection for prestations
    - Update Homepage global with sections for hero, about, latest blog posts, latest galleries
    - Run `pnpm generate:types` after each collection creation
@@ -281,10 +281,10 @@ When building out the website, follow this priority order:
 
 3. **Core Pages**
    - Blog listing page with attractive card layout
-   - Gallery listing page with visual grid
+   - Galery listing page with visual grid
    - Contact page with form + contact info + map
    - Individual blog post page (`/blog/[slug]`)
-   - Individual gallery page (`/galerie/[slug]`)
+   - Individual galery page (`/galerie/[slug]`)
 
 4. **Services & Legal**
    - Prestations page with service details

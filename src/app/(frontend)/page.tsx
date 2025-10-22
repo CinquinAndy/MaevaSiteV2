@@ -2,7 +2,7 @@ import { AboutSection } from '@/components/home/about-section'
 import { CtaSection } from '@/components/home/cta-section'
 import HeroAltSection from '@/components/home/heroAlt'
 import { LatestBlogSection } from '@/components/home/latest-blog-section'
-import { LatestGallerySection } from '@/components/home/latest-gallery-section'
+import { LatestGalerySection } from '@/components/home/latest-galery-section'
 import { ServicesSection } from '@/components/home/services-section'
 import { TestimonialsSection } from '@/components/home/testimonials-section'
 import { generateHomeJsonLd, generateHomeMetadata } from '@/lib/seo'
@@ -34,8 +34,8 @@ export default async function HomePage() {
 				{/* Section Latest Blog */}
 				<LatestBlogSection />
 
-				{/* Section Latest Gallery */}
-				<LatestGallerySection />
+				{/* Section Latest Galery */}
+				<LatestGalerySection />
 
 				{/* Section Testimonials */}
 				<TestimonialsSection />

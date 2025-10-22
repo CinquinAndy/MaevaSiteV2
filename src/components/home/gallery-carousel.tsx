@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Carousel, type CarouselApi, CarouselContent, CarouselItem } from '@/components/ui/carousel'
 
-export interface GalleryCarouselItem {
+export interface GaleryCarouselItem {
 	id: string
 	title: string
 	description: string
@@ -17,17 +17,17 @@ export interface GalleryCarouselItem {
 	category: string
 }
 
-export interface GalleryCarouselProps {
+export interface GaleryCarouselProps {
 	title?: string
 	description?: string
-	items: GalleryCarouselItem[]
+	items: GaleryCarouselItem[]
 }
 
-const GalleryCarousel = ({
+const GaleryCarousel = ({
 	title = 'Mes Dernières Créations',
 	description = 'Découvrez mes réalisations récentes en maquillage et nail art',
 	items,
-}: GalleryCarouselProps) => {
+}: GaleryCarouselProps) => {
 	const [carouselApi, setCarouselApi] = useState<CarouselApi>()
 	const [canScrollPrev, setCanScrollPrev] = useState(false)
 	const [canScrollNext, setCanScrollNext] = useState(false)
@@ -164,4 +164,4 @@ const GalleryCarousel = ({
 	)
 }
 
-export { GalleryCarousel }
+export { GaleryCarousel }

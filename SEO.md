@@ -74,7 +74,7 @@ Ce document décrit la stratégie SEO complète mise en place pour le site de Ma
 - Image : `coverImage` de la galerie
 - Date de publication : `publishedDate`
 
-**JSON-LD** : Schema.org ImageGallery avec toutes les images de la collection
+**JSON-LD** : Schema.org ImageGalery avec toutes les images de la collection
 
 **Open Graph & Twitter Cards** : Automatiquement générés avec image de couverture
 
@@ -148,7 +148,7 @@ Structured data pour améliorer l'affichage dans les résultats de recherche :
 - Informations de publication et modification
 
 **Galeries** :
-- `ImageGallery` avec toutes les images
+- `ImageGalery` avec toutes les images
 - Métadonnées complètes pour chaque collection
 
 ### ✅ Open Graph & Twitter Cards
@@ -208,15 +208,15 @@ import {
   generateHomeMetadata,
   generateBlogListingMetadata,
   generateBlogPostMetadata,
-  generateGalleryListingMetadata,
-  generateGalleryItemMetadata,
+  generateGaleryListingMetadata,
+  generateGaleryItemMetadata,
   generateServicesListingMetadata,
   generateServiceItemMetadata,
   generateContactMetadata,
   generateMentionsLegalesMetadata,
   generateHomeJsonLd,
   generateBlogPostJsonLd,
-  generateGalleryJsonLd,
+  generateGaleryJsonLd,
 } from '@/lib/seo'
 ```
 
@@ -289,7 +289,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [blogPosts, galleries, services] = await Promise.all([...])
 
   // Combiner pages statiques et dynamiques
-  return [...staticPages, ...blogPages, ...galleryPages, ...servicePages]
+  return [...staticPages, ...blogPages, ...galeryPages, ...servicePages]
 }
 ```
 
