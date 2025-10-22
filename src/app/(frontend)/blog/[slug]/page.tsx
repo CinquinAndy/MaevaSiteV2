@@ -110,10 +110,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 				)}
 
 				{/* Blobs décoratifs dans le hero */}
-				<div className="absolute left-10 top-20 z-10 animate-float-slow opacity-60">
+				<div className="absolute left-10 top-20 z-10 animate-float-slow opacity-60 hidden md:block">
 					<Blob2 />
 				</div>
-				<div className="absolute right-16 bottom-24 z-10 animate-float-medium delay-1000 opacity-70">
+				<div className="absolute right-16 bottom-24 z-10 animate-float-medium delay-1000 opacity-70 hidden md:block">
 					<Blob4 />
 				</div>
 
@@ -185,7 +185,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 				</div>
 
 				{/* Blobs décoratifs dans le contenu - Gauche */}
-				<div className="absolute left-4 top-32 z-0 animate-float-slow delay-500 opacity-40 hidden lg:block">
+				<div className="absolute  left-4 top-32 z-0 animate-float-slow delay-500 opacity-40 hidden lg:block">
 					<Blob3 />
 				</div>
 				<div className="absolute left-8 top-96 z-0 animate-float-medium delay-1500 opacity-50 hidden lg:block">

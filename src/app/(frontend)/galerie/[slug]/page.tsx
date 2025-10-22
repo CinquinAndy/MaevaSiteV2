@@ -112,10 +112,10 @@ export default async function GalleryDetailPage({ params }: { params: Promise<{ 
 				)}
 
 				{/* Blobs décoratifs dans le hero */}
-				<div className="absolute left-8 top-16 z-10 animate-float-slow opacity-50">
+				<div className="absolute left-8 top-16 z-10 animate-float-slow opacity-50 hidden md:block">
 					<Blob5 />
 				</div>
-				<div className="absolute right-12 bottom-20 z-10 animate-float-medium delay-1000 opacity-60">
+				<div className="absolute right-12 bottom-20 z-10 animate-float-medium delay-1000 opacity-60 hidden md:block">
 					<Blob7 />
 				</div>
 
