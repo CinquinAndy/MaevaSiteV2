@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { toast } from 'sonner'
 import { submitContactForm } from '@/actions/contact'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -9,11 +10,9 @@ import { Textarea } from '@/components/ui/textarea'
 
 export function ContactForm() {
 	const [isSubmitting, setIsSubmitting] = useState(false)
-	const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null)
 
 	async function handleSubmit(formData: FormData) {
 		setIsSubmitting(true)
-		setMessage(null)
 
 		try {
 			// Convert FormData to ContactFormData object
@@ -29,23 +28,20 @@ export function ContactForm() {
 			const result = await submitContactForm(data)
 
 			if (result.success) {
-				setMessage({
-					type: 'success',
-					text: 'Merci pour votre message ! Je vous répondrai dans les plus brefs délais.',
+				toast.success('Message envoyé !', {
+					description: 'Merci pour votre message ! Je vous répondrai dans les plus brefs délais.',
 				})
 				// Reset form
 				const form = document.querySelector('form') as HTMLFormElement
 				form?.reset()
 			} else {
-				setMessage({
-					type: 'error',
-					text: result.error || 'Une erreur est survenue. Veuillez réessayer.',
+				toast.error('Erreur', {
+					description: result.message || 'Une erreur est survenue. Veuillez réessayer.',
 				})
 			}
 		} catch (_error) {
-			setMessage({
-				type: 'error',
-				text: 'Une erreur est survenue. Veuillez réessayer.',
+			toast.error('Erreur', {
+				description: 'Une erreur est survenue. Veuillez réessayer.',
 			})
 		} finally {
 			setIsSubmitting(false)
@@ -54,19 +50,6 @@ export function ContactForm() {
 
 	return (
 		<form action={handleSubmit} className="space-y-6">
-			{/* Message de retour */}
-			{message && (
-				<div
-					className={`p-4 rounded-lg ${
-						message.type === 'success'
-							? 'bg-green-500/10 text-green-600 dark:text-green-400 border border-green-500/20'
-							: 'bg-red-500/10 text-red-600 dark:text-red-400 border border-red-500/20'
-					}`}
-				>
-					{message.text}
-				</div>
-			)}
-
 			{/* Nom */}
 			<div className="space-y-2">
 				<Label htmlFor="name">

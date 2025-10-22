@@ -3,6 +3,7 @@ import type React from 'react'
 import '@/app/(frontend)/global.css'
 import { Corinthia, Kalam, Libre_Caslon_Display } from 'next/font/google'
 import Script from 'next/script'
+import { Toaster } from 'sonner'
 import { Footer } from '@/components/global/footer'
 import GlitterFinal from '@/components/ui/glitter-final'
 import { Gooey } from '@/components/ui/gooey'
@@ -124,6 +125,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 				<div className="">
 					<GlitterFinal speed={0.75} />
 				</div>
+				<Toaster position="bottom-right" expand={false} richColors closeButton />
 			</body>
 		</html>
 	)
