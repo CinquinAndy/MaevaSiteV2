@@ -5,6 +5,7 @@ import { submitContactForm } from '@/actions/contact'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { Textarea } from '@/components/ui/textarea'
 
 export function ContactForm() {
 	const [isSubmitting, setIsSubmitting] = useState(false)
@@ -41,7 +42,7 @@ export function ContactForm() {
 					text: result.error || 'Une erreur est survenue. Veuillez réessayer.',
 				})
 			}
-		} catch (error) {
+		} catch (_error) {
 			setMessage({
 				type: 'error',
 				text: 'Une erreur est survenue. Veuillez réessayer.',
@@ -112,14 +113,13 @@ export function ContactForm() {
 				<Label htmlFor="message">
 					Votre message <span className="text-destructive">*</span>
 				</Label>
-				<textarea
+				<Textarea
 					id="message"
 					name="message"
 					required
 					rows={6}
 					placeholder="Décrivez votre projet, la date de votre événement, vos besoins..."
 					disabled={isSubmitting}
-					className="w-full px-3 py-2 bg-background border border-input rounded-md text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed resize-none"
 				/>
 			</div>
 

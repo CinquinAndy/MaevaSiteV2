@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getPayload } from 'payload'
 import { Badge } from '@/components/ui/badge'
+import { BentoGallery } from '@/components/ui/bento-gallery'
 import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
 import type { Gallery, Media } from '@/payload-types'
@@ -145,10 +146,10 @@ export default async function GalleryDetailPage({ params }: { params: Promise<{ 
 			{/* Gallery Images */}
 			<Section>
 				<Container>
-					<div className="max-w-6xl mx-auto">
-						{/* Cover Image si différente */}
+					<div className="max-w-7xl mx-auto">
+						{/* Cover Image en hero si disponible */}
 						{coverImage?.url && (
-							<div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg bg-muted mb-8">
+							<div className="relative aspect-[21/9] w-full overflow-hidden rounded-2xl bg-muted mb-12 shadow-2xl">
 								<Image
 									src={coverImage.url}
 									alt={coverImage.alt || gallery.title}
@@ -156,41 +157,37 @@ export default async function GalleryDetailPage({ params }: { params: Promise<{ 
 									className="object-cover"
 									priority
 								/>
+								{/* Gradient overlay pour un effet élégant */}
+								<div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
 							</div>
 						)}
 
-						{/* Images Grid */}
-						{gallery.images && gallery.images.length > 0 ? (
-							<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-								{gallery.images.map((item, index) => {
-									const image = item.image as Media | undefined
-									if (!image?.url) return null
-
-									return (
-										<div key={index} className="group relative aspect-[4/3] overflow-hidden rounded-lg bg-muted">
-											<Image
-												src={image.url}
-												alt={image.alt || item.caption || `Image ${index + 1}`}
-												fill
-												className="object-cover transition-transform group-hover:scale-105"
-											/>
-											{item.caption && (
-												<div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity">
-													<p className="text-white text-sm">{item.caption}</p>
-												</div>
-											)}
-										</div>
-									)
-								})}
-							</div>
-						) : (
-							<p className="text-center text-muted-foreground">Aucune image dans cette galerie.</p>
+						{/* Bento Gallery */}
+						{gallery.images && gallery.images.length > 0 && (
+							<BentoGallery
+								images={gallery.images.map(item => ({
+									image: item.image as Media,
+									caption: item.caption,
+									id: item.id,
+								}))}
+							/>
 						)}
 
 						{/* Back to Gallery */}
-						<div className="mt-12 pt-8 border-t border-border">
-							<Link href="/galerie" className="inline-flex items-center gap-2 text-primary hover:underline font-medium">
-								← Retour à la galerie
+						<div className="mt-16 pt-8 border-t border-border/50">
+							<Link
+								href="/galerie"
+								className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-medium group"
+							>
+								<svg
+									className="w-5 h-5 transition-transform group-hover:-translate-x-1"
+									fill="none"
+									stroke="currentColor"
+									viewBox="0 0 24 24"
+								>
+									<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+								</svg>
+								Retour à la galerie
 							</Link>
 						</div>
 					</div>

@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
+@import "leaflet/dist/leaflet.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -826,4 +827,40 @@ html.dark .gooey-nav-container {
 	--tw-prose-invert-pre-bg: var(--color-muted);
 	--tw-prose-invert-th-borders: var(--color-border);
 	--tw-prose-invert-td-borders: var(--color-border);
+}
+
+/* Leaflet Map Custom Styles */
+.leaflet-container {
+	font-family: var(--font-kalam), sans-serif;
+}
+
+.leaflet-popup-content-wrapper {
+	border-radius: 0.75rem;
+	box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+	border: 1px solid hsl(var(--border));
+}
+
+.leaflet-popup-content {
+	margin: 0;
+	font-family: var(--font-kalam), sans-serif;
+}
+
+.leaflet-popup-tip {
+	border-top: 1px solid hsl(var(--border));
+}
+
+/* Custom marker styles */
+.custom-marker-main,
+.custom-marker-location {
+	background: transparent !important;
+	border: none !important;
+}
+
+/* Animations pour les marqueurs */
+@keyframes ping {
+	75%,
+	100% {
+		transform: scale(2);
+		opacity: 0;
+	}
 }

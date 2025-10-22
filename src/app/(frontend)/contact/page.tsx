@@ -1,8 +1,10 @@
-import { IconBrandFacebook, IconBrandInstagram, IconMail, IconMapPin, IconPhone } from '@tabler/icons-react'
+import { Facebook, Instagram, Mail, MapPin, Phone } from 'lucide-react'
 import { ContactForm } from '@/components/global/contact-form'
 import { CtaSection } from '@/components/home/cta-section'
 import Hero from '@/components/home/hero'
+import { ContactCard } from '@/components/ui/contact-card'
 import { Container } from '@/components/ui/container'
+import { InteractiveMap } from '@/components/ui/interactive-map'
 import { Section } from '@/components/ui/section'
 
 export const metadata = {
@@ -16,126 +18,117 @@ export default function ContactPage() {
 		<>
 			<Hero title="Contact" backgroundImage="/image00003.jpeg" fontSize={600} lineHeight={0.5} />
 
-			{/* Contact Section */}
+			{/* Contact Card Section */}
 			<Section>
 				<Container>
-					<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-						{/* Colonne gauche - Formulaire */}
-						<div className="order-2 lg:order-1">
-							<div className="space-y-6">
-								<div>
-									<h2 className="text-3xl font-bold text-foreground mb-3">Envoyez-moi un message</h2>
-									<p className="text-muted-foreground">
-										Remplissez le formulaire ci-dessous et je vous répondrai dans les plus brefs délais.
-									</p>
-								</div>
-
-								<ContactForm />
-							</div>
-						</div>
-
-						{/* Colonne droite - Informations */}
-						<div className="order-1 lg:order-2 space-y-8">
-							<div>
-								<h2 className="text-3xl font-bold text-foreground mb-6">Coordonnées</h2>
-
-								<div className="space-y-6">
-									{/* Email */}
-									<div className="flex items-start gap-4">
-										<div className="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-											<IconMail className="w-6 h-6 text-primary" />
-										</div>
-										<div>
-											<h3 className="font-semibold text-foreground mb-1">Email</h3>
-											<a
-												href="mailto:maevacinquin1@gmail.com"
-												className="text-muted-foreground hover:text-primary transition-colors"
-											>
-												maevacinquin1@gmail.com
-											</a>
-										</div>
-									</div>
-
-									{/* Téléphone */}
-									<div className="flex items-start gap-4">
-										<div className="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-											<IconPhone className="w-6 h-6 text-primary" />
-										</div>
-										<div>
-											<h3 className="font-semibold text-foreground mb-1">Téléphone</h3>
-											<a href="tel:+33616625137" className="text-muted-foreground hover:text-primary transition-colors">
-												+33 6 16 62 51 37
-											</a>
-										</div>
-									</div>
-
-									{/* Localisation */}
-									<div className="flex items-start gap-4">
-										<div className="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-											<IconMapPin className="w-6 h-6 text-primary" />
-										</div>
-										<div>
-											<h3 className="font-semibold text-foreground mb-1">Zone d'intervention</h3>
-											<p className="text-muted-foreground">
-												Haute-Savoie et Suisse
-												<br />
-												Thonon-les-Bains, Annecy, Genève, Lausanne et environs
-											</p>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							{/* Réseaux sociaux */}
-							<div>
-								<h3 className="text-xl font-semibold text-foreground mb-4">Suivez-moi</h3>
-								<div className="flex gap-4">
+					<ContactCard
+						title="Contactez-moi"
+						description="Que ce soit pour un mariage, un événement, une séance photo ou tout autre projet artistique, je suis à votre écoute. Remplissez le formulaire et je vous répondrai dans les plus brefs délais."
+						contactInfo={[
+							{
+								icon: Mail,
+								label: 'Email',
+								value: (
 									<a
-										href="https://www.instagram.com/makeup.artist.dream"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/10 hover:bg-primary/20 text-primary transition-colors"
+										href="mailto:maevacinquin1@gmail.com"
+										className="text-muted-foreground hover:text-primary transition-colors text-xs"
 									>
-										<IconBrandInstagram className="w-5 h-5" />
-										<span className="font-medium">Instagram</span>
+										maevacinquin1@gmail.com
 									</a>
+								),
+							},
+							{
+								icon: Phone,
+								label: 'Téléphone',
+								value: (
 									<a
-										href="https://www.facebook.com/Cinquin-maeva"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/10 hover:bg-primary/20 text-primary transition-colors"
+										href="tel:+33616625137"
+										className="text-muted-foreground hover:text-primary transition-colors text-xs"
 									>
-										<IconBrandFacebook className="w-5 h-5" />
-										<span className="font-medium">Facebook</span>
+										+33 6 16 62 51 37
 									</a>
-								</div>
-							</div>
+								),
+							},
+							{
+								icon: MapPin,
+								label: "Zone d'intervention",
+								value: (
+									<span className="text-muted-foreground text-xs">Haute-Savoie, Genève, Lausanne et environs</span>
+								),
+								className: 'col-span-2',
+							},
+						]}
+					>
+						<ContactForm />
+					</ContactCard>
+				</Container>
+			</Section>
 
-							{/* Horaires */}
-							<div className="bg-muted/30 p-6 rounded-lg">
-								<h3 className="text-xl font-semibold text-foreground mb-3">Disponibilité</h3>
+			{/* Additional Info Section */}
+			<Section className="py-12">
+				<Container>
+					<div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+						{/* Réseaux sociaux */}
+						<div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 shadow-lg">
+							<h3 className="text-2xl font-bold text-foreground mb-6">Suivez mon actualité</h3>
+							<div className="space-y-4">
+								<a
+									href="https://www.instagram.com/makeup.artist.dream"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="flex items-center gap-4 px-6 py-4 rounded-xl bg-primary/10 hover:bg-primary/20 text-primary transition-all hover:scale-[1.02] group"
+								>
+									<Instagram className="w-6 h-6 group-hover:scale-110 transition-transform" />
+									<div className="flex-1">
+										<span className="font-semibold block">Instagram</span>
+										<span className="text-xs text-muted-foreground">@makeup.artist.dream</span>
+									</div>
+								</a>
+								<a
+									href="https://www.facebook.com/Cinquin-maeva"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="flex items-center gap-4 px-6 py-4 rounded-xl bg-primary/10 hover:bg-primary/20 text-primary transition-all hover:scale-[1.02] group"
+								>
+									<Facebook className="w-6 h-6 group-hover:scale-110 transition-transform" />
+									<div className="flex-1">
+										<span className="font-semibold block">Facebook</span>
+										<span className="text-xs text-muted-foreground">Cinquin-maeva</span>
+									</div>
+								</a>
+							</div>
+							<div className="mt-8 p-6 rounded-xl bg-muted/40 border border-border/50">
+								<h4 className="font-semibold text-foreground mb-2">Disponibilité</h4>
 								<p className="text-muted-foreground text-sm leading-relaxed">
 									Je travaille sur rendez-vous uniquement. N'hésitez pas à me contacter pour vérifier mes disponibilités
 									et discuter de votre projet.
 								</p>
 							</div>
+						</div>
 
-							{/* Google Maps */}
-							<div>
-								<h3 className="text-xl font-semibold text-foreground mb-4">Localisation</h3>
-								<a
-									href="https://g.page/cinquin-maeva?share"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="block rounded-lg overflow-hidden border border-border hover:border-primary transition-colors"
-								>
-									<div className="aspect-video bg-muted flex items-center justify-center">
-										<div className="text-center space-y-2">
-											<IconMapPin className="w-12 h-12 text-primary mx-auto" />
-											<p className="text-sm text-muted-foreground">Voir sur Google Maps</p>
-										</div>
-									</div>
-								</a>
+						{/* Carte Interactive */}
+						<div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 shadow-lg">
+							<h3 className="text-2xl font-bold text-foreground mb-6">Zone d'intervention</h3>
+							<div className="rounded-xl overflow-hidden border-2 border-border/50 shadow-md h-[400px]">
+								<InteractiveMap className="h-full w-full" />
+							</div>
+							<div className="mt-6 space-y-3 text-sm text-muted-foreground">
+								<p className="flex items-center gap-2">
+									<span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+									Studio principal à Thonon-les-Bains
+								</p>
+								<p className="flex items-center gap-2">
+									<span className="w-1.5 h-1.5 rounded-full bg-primary/70" />
+									Déplacements en Haute-Savoie (Annecy et environs)
+								</p>
+								<p className="flex items-center gap-2">
+									<span className="w-1.5 h-1.5 rounded-full bg-primary/70" />
+									Interventions en Suisse (Genève, Lausanne)
+								</p>
+								<p className="flex items-center gap-2 pt-2 border-t border-border/50">
+									<MapPin className="w-4 h-4 text-primary" />
+									<span className="text-xs">Zone de couverture : rayon de 50km autour de Thonon-les-Bains</span>
+								</p>
 							</div>
 						</div>
 					</div>
