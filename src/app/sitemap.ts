@@ -9,7 +9,7 @@ import type { Blog, Galery, Service } from '@/payload-types'
  * Inclut toutes les pages statiques et dynamiques (blog, galerie, services)
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-	const siteUrl = SITE_CONFIG.url
+	const siteUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'
 	const payload = await getPayload({ config })
 
 	// Récupérer toutes les données dynamiques depuis Payload CMS

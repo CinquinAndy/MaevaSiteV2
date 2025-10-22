@@ -231,7 +231,7 @@ export function generateHomeMetadata(): Metadata {
 		...baseSEO,
 		title: 'Maeva Cinquin - Maquilleuse Professionnelle Haute-Savoie & Genève',
 		alternates: {
-			canonical: 'https://maevacinquin.com',
+			canonical: 'https://cinquin-maeva.com',
 		},
 	}
 }

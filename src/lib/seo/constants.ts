@@ -5,7 +5,7 @@
 
 export const SITE_CONFIG = {
 	name: 'Maeva Cinquin',
-	url: 'https://cinquin-maeva.com',
+	url: process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000',
 	email: 'maevacinquin1@gmail.com',
 	phone: '+33 6 16 62 51 37',
 	locale: 'fr_FR',
