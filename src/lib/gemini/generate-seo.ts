@@ -9,17 +9,17 @@ interface SeoContent {
 export interface PageContext {
 	pageType:
 		| 'homepage'
+		| 'blog'
+		| 'blog-post'
+		| 'gallery'
+		| 'gallery-item'
 		| 'service'
-		| 'realisation'
-		| 'faq'
+		| 'services'
 		| 'contact'
 		| 'mentions-legales'
-		| 'prestations'
-		| 'realisations'
 	title?: string
 	description?: string
 	content?: string
-	location?: string
 	category?: string
 	additionalContext?: Record<string, unknown>
 }
@@ -39,7 +39,7 @@ export async function generateSeoContent(context: PageContext): Promise<SeoConte
 		const prompt = buildSeoPrompt(context)
 
 		const { text } = await generateText({
-			model: google('gemini-2.5-flash'),
+			model: google('gemini-2.5-pro'),
 			prompt,
 			temperature: 0.7,
 		})
@@ -54,16 +54,30 @@ export async function generateSeoContent(context: PageContext): Promise<SeoConte
 }
 
 function buildSeoPrompt(context: PageContext): string {
-	const baseContext = `Tu es un expert en SEO pour un paysagiste écologique basé dans la région de Nantes (Loire-Atlantique).
-L'entreprise "Nature Paysage Laheux" propose des services de jardinage et paysagisme respectueux de l'environnement.
+	const baseContext = `Tu es un expert en SEO pour Maeva Cinquin, maquilleuse professionnelle et nail artist basée en Haute-Savoie, France.
 
-**IMPORTANT - Règles strictes:**
+**Contexte professionnel:**
+- Diplômée de la Make Up For Ever Academy (Nice)
+- Spécialisations : maquillage beauté, maquillage artistique, nail art
+- Services : mariages, événements, projets artistiques, shooting photo, défilés de mode, enfants
+- Zones d'intervention : Haute-Savoie et Suisse (Thonon-les-Bains, Genève, Annecy, Lausanne et environs)
+- Ton : professionnel mais authentique, utilise le "je" avec légèreté et naturel
+
+**Structure du site:**
+- Accueil : présentation et expertise
+- Blog : conseils maquillage, nail art, actualités beauté
+- Galerie : portfolios de réalisations (mariages, artistique, nail art)
+- Prestations : détails des services offerts
+- Contact : formulaire et informations
+
+**IMPORTANT - Règles SEO strictes:**
 - Le titre SEO doit faire **maximum 60 caractères**
 - La description SEO doit faire **maximum 155 caractères**
-- Reste naturel, clair et précis
-- Évite les superlatifs excessifs
-- Intègre des mots-clés pertinents naturellement
-- Pense référencement local (Nantes, Loire-Atlantique)
+- Ton naturel et professionnel avec un "je" léger quand approprié
+- Évite les superlatifs excessifs ou formulations marketing agressives
+- Intègre naturellement les mots-clés pertinents (maquillage, maquilleuse, nail art, beauté)
+- Pense référencement local (Haute-Savoie, Thonon, Genève, Annecy, Lausanne)
+- Privilégie authenticité et clarté plutôt que promesses exagérées
 
 `
 
@@ -72,53 +86,59 @@ L'entreprise "Nature Paysage Laheux" propose des services de jardinage et paysag
 	switch (context.pageType) {
 		case 'homepage':
 			specificContext = `Page: **Accueil**
-Cette page présente l'entreprise de paysagisme écologique, ses valeurs, et ses services principaux.
-Focus: paysagiste Nantes, jardin écologique, entretien jardins naturels.`
+Cette page présente Maeva, son parcours (Make Up For Ever Academy), ses expertises (maquillage beauté, artistique, nail art), et ses zones d'intervention.
+Focus SEO: maquilleuse Haute-Savoie, maquillage mariage Thonon, makeup artist Genève, nail art Annecy.`
+			break
+
+		case 'blog':
+			specificContext = `Page: **Blog - Liste des articles**
+Page listant tous les articles : conseils maquillage, tutoriels nail art, actualités beauté, recommandations produits.
+Focus SEO: conseils maquillage professionnel, tips beauté, tutoriels makeup, blog maquilleuse.`
+			break
+
+		case 'blog-post':
+			specificContext = `Page: **Article de blog - ${context.title || 'Article'}**
+${context.description ? `Extrait: ${context.description}` : ''}
+${context.category ? `Catégorie: ${context.category}` : ''}
+Focus SEO: sujet spécifique de l'article, expertise partagée, conseils pratiques beauté/maquillage.`
+			break
+
+		case 'gallery':
+			specificContext = `Page: **Galerie - Portfolio**
+Page présentant les réalisations : mariages, maquillages artistiques, créations nail art, événements, shootings.
+Focus SEO: portfolio maquilleuse, réalisations maquillage mariage, book makeup artist Haute-Savoie.`
+			break
+
+		case 'gallery-item':
+			specificContext = `Page: **Galerie - ${context.title || 'Collection'}**
+${context.description ? `Description: ${context.description}` : ''}
+${context.category ? `Type: ${context.category}` : ''}
+Focus SEO: projet concret, type de maquillage/nail art, résultat visuel, expertise démontrée.`
 			break
 
 		case 'service':
 			specificContext = `Page: **Prestation - ${context.title || 'Service'}**
 ${context.description ? `Description: ${context.description}` : ''}
 ${context.category ? `Catégorie: ${context.category}` : ''}
-Focus: service spécifique de paysagisme, avantages, zone d'intervention.`
+Focus SEO: service spécifique (ex: maquillage mariage, nail art, makeup artistique), avantages, zone d'intervention.`
 			break
 
-		case 'prestations':
-			specificContext = `Page: **Liste des prestations**
-Page listant tous les services de paysagisme proposés.
-Focus: services paysagiste, entretien jardin, création espaces verts Nantes.`
-			break
-
-		case 'realisation':
-			specificContext = `Page: **Réalisation - ${context.title || 'Projet'}**
-${context.description ? `Description: ${context.description}` : ''}
-${context.location ? `Localisation: ${context.location}` : ''}
-${context.category ? `Type: ${context.category}` : ''}
-Focus: projet concret, expertise, résultat, localité.`
-			break
-
-		case 'realisations':
-			specificContext = `Page: **Portfolio des réalisations**
-Page présentant les projets de paysagisme réalisés dans la région nantaise.
-Focus: réalisations paysagiste, projets jardins, portfolio Nantes.`
-			break
-
-		case 'faq':
-			specificContext = `Page: **Questions fréquentes**
-Page répondant aux questions courantes sur les services de paysagisme.
-Focus: informations pratiques, tarifs, zone intervention, méthodes écologiques.`
+		case 'services':
+			specificContext = `Page: **Prestations - Liste des services**
+Page détaillant tous les services : mariages, événements, maquillage artistique, nail art, shooting, défilés.
+Focus SEO: services maquilleuse professionnelle, prestations maquillage Haute-Savoie, tarifs maquillage mariage.`
 			break
 
 		case 'contact':
 			specificContext = `Page: **Contact**
-Page pour contacter le paysagiste et demander un devis.
-Focus: devis paysagiste Nantes, contact jardinier, zone intervention.`
+Page pour me contacter et demander un devis ou réservation.
+Focus SEO: contact maquilleuse Thonon, devis maquillage mariage, rendez-vous makeup Haute-Savoie, réservation nail art.`
 			break
 
 		case 'mentions-legales':
 			specificContext = `Page: **Mentions légales**
 Page d'information légale obligatoire.
-Focus: simple et factuel, nom entreprise.`
+Focus SEO: simple et factuel, mentions légales Maeva Cinquin maquilleuse.`
 			break
 	}
 
@@ -134,9 +154,12 @@ Génère UNIQUEMENT ces deux lignes, sans autre texte:
 TITLE: [ton titre SEO de max 60 caractères]
 DESCRIPTION: [ta description SEO de max 155 caractères]
 
-Exemple:
-TITLE: Paysagiste écologique à Nantes | Nature Paysage Laheux
-DESCRIPTION: Expert en jardinage naturel près de Nantes. Entretien, création et conseil pour vos espaces verts respectueux de l'environnement. Devis gratuit.`
+Exemples de ton et style:
+TITLE: Maquilleuse professionnelle Haute-Savoie | Maeva Cinquin
+DESCRIPTION: Diplômée Make Up For Ever Academy. Je réalise vos maquillages mariage, artistique et nail art à Thonon, Genève, Annecy. Devis gratuit.
+
+TITLE: Portfolio maquillage mariage | Maeva Cinquin
+DESCRIPTION: Découvrez mes réalisations maquillage pour mariées en Haute-Savoie et Suisse. Makeup naturel et sophistiqué pour votre grand jour.`
 
 	return baseContext + specificContext + outputFormat
 }
@@ -160,8 +183,10 @@ function parseSeoResponse(text: string): SeoContent {
 		// Fallback parsing
 		const titleMatch = text.match(/TITLE:\s*(.+)/i)
 		const descMatch = text.match(/DESCRIPTION:\s*(.+)/i)
-		title = titleMatch?.[1]?.trim() || 'Nature Paysage Laheux'
-		description = descMatch?.[1]?.trim() || 'Paysagiste écologique à Nantes'
+		title = titleMatch?.[1]?.trim() || 'Maeva Cinquin - Maquilleuse Professionnelle'
+		description =
+			descMatch?.[1]?.trim() ||
+			'Maquilleuse et nail artist en Haute-Savoie. Maquillage mariage, artistique et nail art.'
 	}
 
 	// Truncate if too long

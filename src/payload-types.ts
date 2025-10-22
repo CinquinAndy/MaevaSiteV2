@@ -196,17 +196,7 @@ export interface Blog {
     [k: string]: unknown;
   };
   category: 'conseils-maquillage' | 'nail-art' | 'tutoriels' | 'actualites' | 'collections' | 'mariages-evenements';
-  tags?:
-    | {
-        tag: string;
-        id?: string | null;
-      }[]
-    | null;
   publishedDate: string;
-  /**
-   * Laisser vide pour Maeva Cinquin par défaut
-   */
-  author?: (number | null) | User;
   status: 'draft' | 'published';
   /**
    * Titre optimisé pour les moteurs de recherche (max 60 caractères)
@@ -245,10 +235,6 @@ export interface Gallery {
     id?: string | null;
   }[];
   publishedDate: string;
-  /**
-   * Lieu de l'événement (ex: Annecy, Haute-Savoie)
-   */
-  location?: string | null;
   status: 'draft' | 'published';
   /**
    * Titre optimisé pour les moteurs de recherche (max 60 caractères)
@@ -320,16 +306,6 @@ export interface Service {
       [k: string]: unknown;
     } | null;
   };
-  features?:
-    | {
-        feature: string;
-        id?: string | null;
-      }[]
-    | null;
-  /**
-   * Durée estimée de la prestation (ex: 1h30, 2-3h)
-   */
-  duration?: string | null;
   /**
    * Taille de la card dans la grille bento (desktop uniquement)
    */
@@ -369,18 +345,10 @@ export interface Testimonial {
    */
   publishedDate?: string | null;
   /**
-   * URL externe de la photo de profil (pour les avis Google)
-   */
-  avatarUrl?: string | null;
-  /**
    * Note sur 5
    */
   rating: number;
   source: 'google' | 'facebook' | 'instagram' | 'email' | 'other';
-  /**
-   * Lien vers le commentaire original (optionnel)
-   */
-  sourceUrl?: string | null;
   /**
    * Optionnel - photo de profil du client
    */
@@ -521,14 +489,7 @@ export interface BlogSelect<T extends boolean = true> {
   excerpt?: T;
   content?: T;
   category?: T;
-  tags?:
-    | T
-    | {
-        tag?: T;
-        id?: T;
-      };
   publishedDate?: T;
-  author?: T;
   status?: T;
   seo_title?: T;
   seo_description?: T;
@@ -553,7 +514,6 @@ export interface GallerySelect<T extends boolean = true> {
         id?: T;
       };
   publishedDate?: T;
-  location?: T;
   status?: T;
   seo_title?: T;
   seo_description?: T;
@@ -580,13 +540,6 @@ export interface ServicesSelect<T extends boolean = true> {
         price?: T;
         priceDetails?: T;
       };
-  features?:
-    | T
-    | {
-        feature?: T;
-        id?: T;
-      };
-  duration?: T;
   gridSize?: T;
   order?: T;
   status?: T;
@@ -603,10 +556,8 @@ export interface TestimonialsSelect<T extends boolean = true> {
   name?: T;
   content?: T;
   publishedDate?: T;
-  avatarUrl?: T;
   rating?: T;
   source?: T;
-  sourceUrl?: T;
   avatar?: T;
   featured?: T;
   status?: T;

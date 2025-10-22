@@ -66,19 +66,6 @@ export const Blog: CollectionConfig = {
 			defaultValue: 'conseils-maquillage',
 		},
 		{
-			name: 'tags',
-			type: 'array',
-			label: 'Tags',
-			required: false,
-			fields: [
-				{
-					name: 'tag',
-					type: 'text',
-					required: true,
-				},
-			],
-		},
-		{
 			name: 'publishedDate',
 			type: 'date',
 			required: true,
@@ -87,16 +74,6 @@ export const Blog: CollectionConfig = {
 				date: {
 					pickerAppearance: 'dayOnly',
 				},
-			},
-		},
-		{
-			name: 'author',
-			type: 'relationship',
-			relationTo: 'users',
-			required: false,
-			label: 'Auteur',
-			admin: {
-				description: 'Laisser vide pour Maeva Cinquin par défaut',
 			},
 		},
 		{

@@ -96,15 +96,6 @@ export const Gallery: CollectionConfig = {
 			},
 		},
 		{
-			name: 'location',
-			type: 'text',
-			required: false,
-			label: 'Lieu',
-			admin: {
-				description: "Lieu de l'événement (ex: Annecy, Haute-Savoie)",
-			},
-		},
-		{
 			name: 'status',
 			type: 'select',
 			required: true,

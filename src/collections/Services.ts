@@ -132,29 +132,6 @@ export const Services: CollectionConfig = {
 			],
 		},
 		{
-			name: 'features',
-			type: 'array',
-			label: 'Points forts',
-			required: false,
-			fields: [
-				{
-					name: 'feature',
-					type: 'text',
-					required: true,
-					label: 'Point fort',
-				},
-			],
-		},
-		{
-			name: 'duration',
-			type: 'text',
-			required: false,
-			label: 'Durée',
-			admin: {
-				description: 'Durée estimée de la prestation (ex: 1h30, 2-3h)',
-			},
-		},
-		{
 			name: 'gridSize',
 			type: 'select',
 			required: true,

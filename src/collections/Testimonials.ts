@@ -41,16 +41,6 @@ export const Testimonials: CollectionConfig = {
 			},
 		},
 		{
-			name: 'avatarUrl',
-			type: 'text',
-			required: false,
-			label: 'URL de la photo (externe)',
-			admin: {
-				description: 'URL externe de la photo de profil (pour les avis Google)',
-				condition: data => data.source === 'google',
-			},
-		},
-		{
 			name: 'rating',
 			type: 'number',
 			required: true,
@@ -75,15 +65,6 @@ export const Testimonials: CollectionConfig = {
 				{ label: 'Autre', value: 'other' },
 			],
 			defaultValue: 'google',
-		},
-		{
-			name: 'sourceUrl',
-			type: 'text',
-			required: false,
-			label: 'Lien source',
-			admin: {
-				description: 'Lien vers le commentaire original (optionnel)',
-			},
 		},
 		{
 			name: 'avatar',
