@@ -115,14 +115,14 @@ const container = {
 }
 
 const header = {
-	background: 'linear-gradient(135deg, #D493A8 0%, #A86B84 100%)', // Primary to secondary gradient
+	background: 'linear-gradient(135deg, #92005c 0%, #600037 100%)', // Primary to secondary gradient
 	borderRadius: '16px 16px 0 0',
 	padding: '40px 32px',
 	textAlign: 'center' as const,
 }
 
 const headerTitle = {
-	color: '#1a1a1a',
+	color: '#f0f0f0',
 	fontSize: '32px',
 	fontWeight: '700',
 	margin: '0 0 8px 0',
@@ -131,7 +131,7 @@ const headerTitle = {
 }
 
 const headerSubtitle = {
-	color: 'rgba(26, 26, 26, 0.8)',
+	color: '#f0f0f0',
 	fontSize: '14px',
 	fontWeight: '500',
 	margin: '0',
