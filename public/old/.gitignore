@@ -1,6 +1,0 @@
-mu-plugins/*
-!plugins/index.php
-upgrade
-uploads
-wordpress
-plugins

@@ -72,7 +72,6 @@ export async function Footer() {
 				{ text: 'À propos', url: '/#about' },
 				{ text: 'Témoignages', url: '/#testimonials' },
 				{ text: 'Mentions légales', url: '/mentions-legales' },
-				{ text: 'Politique de confidentialité', url: '/politique-confidentialite' },
 			],
 		},
 	]

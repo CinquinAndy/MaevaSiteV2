@@ -1,235 +1,231 @@
-import Hero from '@/components/home/hero'
-import { Container } from '@/components/ui/container'
-import { Section } from '@/components/ui/section'
+import Image from 'next/image'
+import Link from 'next/link'
+import { Blob2, Blob3, Blob4, Blob6, Blob8, Blob9 } from '@/components/blobs/blobs'
 
 export const metadata = {
 	title: 'Mentions Légales - Maeva Cinquin',
-	description: 'Mentions légales du site de Maeva Cinquin, maquilleuse professionnelle.',
+	description:
+		'Mentions légales et informations sur la protection des données personnelles du site de Maeva Cinquin, maquilleuse professionnelle.',
 }
 
 export default function MentionsLegalesPage() {
 	return (
 		<>
-			<Hero
-				title="Mentions Légales"
-				backgroundImage="/Maquilleuse_Professionnelle_Maeva-scaled.jpg"
-				fontSize={400}
-				lineHeight={0.7}
-			/>
+			{/* Hero Banner */}
+			<div className="relative h-[60vh] lg:h-[70vh] w-full overflow-hidden">
+				{/* Background Image */}
+				<Image
+					src="/Maquilleuse_Professionnelle_Maeva-scaled.jpg"
+					alt="Mentions Légales - Maeva Cinquin"
+					fill
+					className="object-cover grayscale brightness-75"
+					priority
+				/>
 
-			<Section>
-				<Container>
-					<div className="max-w-4xl mx-auto prose prose-lg dark:prose-invert">
-						<h2>1. Présentation du site</h2>
-						<p>
-							En vertu de l'article 6 de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique,
-							il est précisé aux utilisateurs du site <a href="https://maevacinquin.fr">maevacinquin.fr</a> l'identité
-							des différents intervenants dans le cadre de sa réalisation et de son suivi :
-						</p>
+				{/* Blobs décoratifs dans le hero */}
+				<div className="absolute left-10 top-20 z-10 animate-float-slow opacity-60 hidden md:block">
+					<Blob2 />
+				</div>
+				<div className="absolute right-16 bottom-24 z-10 animate-float-medium delay-1000 opacity-70 hidden md:block">
+					<Blob4 />
+				</div>
 
-						<h3>Propriétaire du site</h3>
-						<p>
-							<strong>Maeva Cinquin</strong>
-							<br />
-							Maquilleuse professionnelle et prothésiste ongulaire
-							<br />
-							Email :{' '}
-							<a href="mailto:maevacinquin1@gmail.com" className="text-primary hover:underline">
-								maevacinquin1@gmail.com
-							</a>
-							<br />
-							Téléphone :{' '}
-							<a href="tel:+33616625137" className="text-primary hover:underline">
-								+33 6 16 62 51 37
-							</a>
-						</p>
+				{/* Content Overlay */}
+				<div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/40 to-transparent z-20" />
 
-						<h3>Responsable de publication</h3>
-						<p>
-							<strong>Maeva Cinquin</strong>
-							<br />
-							Email :{' '}
-							<a href="mailto:maevacinquin1@gmail.com" className="text-primary hover:underline">
-								maevacinquin1@gmail.com
-							</a>
-						</p>
+				{/* Title & Metadata */}
+				<div className="absolute bottom-0 left-0 right-0 z-30 pb-8 px-6 lg:px-12">
+					<div className="max-w-7xl mx-auto">
+						{/* Breadcrumb */}
+						<nav className="mb-4">
+							<ol className="flex items-center gap-2 text-sm text-muted-foreground">
+								<li>
+									<Link href="/" className="hover:text-foreground transition-colors">
+										Accueil
+									</Link>
+								</li>
+								<li>/</li>
+								<li className="text-foreground">Mentions Légales</li>
+							</ol>
+						</nav>
 
-						<h3>Hébergement</h3>
-						<p>
-							Le site est hébergé par :
-							<br />
-							<strong>Vercel Inc.</strong>
-							<br />
-							340 S Lemon Ave #4133
-							<br />
-							Walnut, CA 91789
-							<br />
-							États-Unis
-						</p>
+						{/* Title */}
+						<h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-foreground font-corinthia mb-4">
+							Mentions Légales
+						</h1>
 
-						<h2>2. Conditions générales d'utilisation du site et des services proposés</h2>
-						<p>
-							L'utilisation du site <a href="https://maevacinquin.fr">maevacinquin.fr</a> implique l'acceptation pleine
-							et entière des conditions générales d'utilisation ci-après décrites. Ces conditions d'utilisation sont
-							susceptibles d'être modifiées ou complétées à tout moment, les utilisateurs du site{' '}
-							<a href="https://maevacinquin.fr">maevacinquin.fr</a> sont donc invités à les consulter de manière
-							régulière.
-						</p>
-						<p>
-							Ce site est normalement accessible à tout moment aux utilisateurs. Une interruption pour raison de
-							maintenance technique peut être toutefois décidée par Maeva Cinquin, qui s'efforcera alors de communiquer
-							préalablement aux utilisateurs les dates et heures de l'intervention.
-						</p>
-
-						<h2>3. Description des services fournis</h2>
-						<p>
-							Le site <a href="https://maevacinquin.fr">maevacinquin.fr</a> a pour objet de fournir une information
-							concernant l'ensemble des activités de Maeva Cinquin en tant que maquilleuse professionnelle et
-							prothésiste ongulaire.
-						</p>
-						<p>
-							Maeva Cinquin s'efforce de fournir sur le site <a href="https://maevacinquin.fr">maevacinquin.fr</a> des
-							informations aussi précises que possible. Toutefois, elle ne pourra être tenue responsable des omissions,
-							des inexactitudes et des carences dans la mise à jour, qu'elles soient de son fait ou du fait des tiers
-							partenaires qui lui fournissent ces informations.
-						</p>
-
-						<h2>4. Propriété intellectuelle et contrefaçons</h2>
-						<p>
-							Maeva Cinquin est propriétaire des droits de propriété intellectuelle ou détient les droits d'usage sur
-							tous les éléments accessibles sur le site, notamment les textes, images, graphismes, logo, icônes, sons,
-							logiciels.
-						</p>
-						<p>
-							Toute reproduction, représentation, modification, publication, adaptation de tout ou partie des éléments
-							du site, quel que soit le moyen ou le procédé utilisé, est interdite, sauf autorisation écrite préalable
-							de Maeva Cinquin.
-						</p>
-						<p>
-							Toute exploitation non autorisée du site ou de l'un quelconque des éléments qu'il contient sera considérée
-							comme constitutive d'une contrefaçon et poursuivie conformément aux dispositions des articles L.335-2 et
-							suivants du Code de Propriété Intellectuelle.
-						</p>
-
-						<h2>5. Limitations de responsabilité</h2>
-						<p>
-							Maeva Cinquin ne pourra être tenue responsable des dommages directs et indirects causés au matériel de
-							l'utilisateur, lors de l'accès au site <a href="https://maevacinquin.fr">maevacinquin.fr</a>, et résultant
-							soit de l'utilisation d'un matériel ne répondant pas aux spécifications indiquées au point 4, soit de
-							l'apparition d'un bug ou d'une incompatibilité.
-						</p>
-						<p>
-							Maeva Cinquin ne pourra également être tenue responsable des dommages indirects (tels par exemple qu'une
-							perte de marché ou perte d'une chance) consécutifs à l'utilisation du site{' '}
-							<a href="https://maevacinquin.fr">maevacinquin.fr</a>.
-						</p>
-
-						<h2>6. Gestion des données personnelles</h2>
-						<p>
-							En France, les données personnelles sont notamment protégées par la loi n° 78-87 du 6 janvier 1978, la loi
-							n° 2004-801 du 6 août 2004, l'article L. 226-13 du Code pénal et la Directive Européenne du 24 octobre
-							1995.
-						</p>
-						<p>
-							À l'occasion de l'utilisation du site <a href="https://maevacinquin.fr">maevacinquin.fr</a>, peuvent être
-							recueillies : l'URL des liens par l'intermédiaire desquels l'utilisateur a accédé au site{' '}
-							<a href="https://maevacinquin.fr">maevacinquin.fr</a>, le fournisseur d'accès de l'utilisateur, l'adresse
-							de protocole Internet (IP) de l'utilisateur.
-						</p>
-						<p>
-							En tout état de cause, Maeva Cinquin ne collecte des informations personnelles relatives à l'utilisateur
-							que pour le besoin de certains services proposés par le site{' '}
-							<a href="https://maevacinquin.fr">maevacinquin.fr</a>. L'utilisateur fournit ces informations en toute
-							connaissance de cause, notamment lorsqu'il procède par lui-même à leur saisie. Il est alors précisé à
-							l'utilisateur du site <a href="https://maevacinquin.fr">maevacinquin.fr</a> l'obligation ou non de fournir
-							ces informations.
-						</p>
-						<p>
-							Conformément aux dispositions des articles 38 et suivants de la loi 78-17 du 6 janvier 1978 relative à
-							l'informatique, aux fichiers et aux libertés, tout utilisateur dispose d'un droit d'accès, de
-							rectification et d'opposition aux données personnelles le concernant, en effectuant sa demande écrite et
-							signée, accompagnée d'une copie du titre d'identité avec signature du titulaire de la pièce, en précisant
-							l'adresse à laquelle la réponse doit être envoyée.
-						</p>
-						<p>
-							Aucune information personnelle de l'utilisateur du site{' '}
-							<a href="https://maevacinquin.fr">maevacinquin.fr</a> n'est publiée à l'insu de l'utilisateur, échangée,
-							transférée, cédée ou vendue sur un support quelconque à des tiers. Seule l'hypothèse du rachat de Maeva
-							Cinquin et de ses droits permettrait la transmission des dites informations à l'éventuel acquéreur qui
-							serait à son tour tenu de la même obligation de conservation et de modification des données vis-à-vis de
-							l'utilisateur du site <a href="https://maevacinquin.fr">maevacinquin.fr</a>.
-						</p>
-
-						<h2>7. Liens hypertextes et cookies</h2>
-						<p>
-							Le site <a href="https://maevacinquin.fr">maevacinquin.fr</a> contient un certain nombre de liens
-							hypertextes vers d'autres sites, mis en place avec l'autorisation de Maeva Cinquin. Cependant, Maeva
-							Cinquin n'a pas la possibilité de vérifier le contenu des sites ainsi visités, et n'assumera en
-							conséquence aucune responsabilité de ce fait.
-						</p>
-						<p>
-							La navigation sur le site <a href="https://maevacinquin.fr">maevacinquin.fr</a> est susceptible de
-							provoquer l'installation de cookie(s) sur l'ordinateur de l'utilisateur. Un cookie est un fichier de
-							petite taille, qui ne permet pas l'identification de l'utilisateur, mais qui enregistre des informations
-							relatives à la navigation d'un ordinateur sur un site. Les données ainsi obtenues visent à faciliter la
-							navigation ultérieure sur le site, et ont également vocation à permettre diverses mesures de
-							fréquentation.
-						</p>
-						<p>
-							Le refus d'installation d'un cookie peut entraîner l'impossibilité d'accéder à certains services.
-							L'utilisateur peut toutefois configurer son ordinateur de la manière suivante, pour refuser l'installation
-							des cookies :
-						</p>
-						<ul>
-							<li>
-								Sous Internet Explorer : onglet outil (pictogramme en forme de rouage en haut a droite) / options
-								internet. Cliquez sur Confidentialité et choisissez Bloquer tous les cookies. Validez sur Ok.
-							</li>
-							<li>
-								Sous Firefox : en haut de la fenêtre du navigateur, cliquez sur le bouton Firefox, puis aller dans
-								l'onglet Options. Cliquer sur l'onglet Vie privée. Paramétrez les Règles de conservation sur : utiliser
-								les paramètres personnalisés pour l'historique. Enfin décochez-la pour désactiver les cookies.
-							</li>
-							<li>
-								Sous Safari : Cliquez en haut à droite du navigateur sur le pictogramme de menu (symbolisé par un
-								rouage). Sélectionnez Paramètres. Cliquez sur Afficher les paramètres avancés. Dans la section
-								"Confidentialité", cliquez sur Paramètres de contenu. Dans la section "Cookies", vous pouvez bloquer les
-								cookies.
-							</li>
-							<li>
-								Sous Chrome : Cliquez en haut à droite du navigateur sur le pictogramme de menu (symbolisé par trois
-								lignes horizontales). Sélectionnez Paramètres. Cliquez sur Afficher les paramètres avancés. Dans la
-								section "Confidentialité", cliquez sur préférences. Dans l'onglet "Confidentialité", vous pouvez bloquer
-								les cookies.
-							</li>
-						</ul>
-
-						<h2>8. Droit applicable et attribution de juridiction</h2>
-						<p>
-							Tout litige en relation avec l'utilisation du site <a href="https://maevacinquin.fr">maevacinquin.fr</a>{' '}
-							est soumis au droit français. Il est fait attribution exclusive de juridiction aux tribunaux compétents de
-							Paris.
-						</p>
-
-						<h2>9. Les principales lois concernées</h2>
-						<p>
-							Loi n° 78-17 du 6 janvier 1978, notamment modifiée par la loi n° 2004-801 du 6 août 2004 relative à
-							l'informatique, aux fichiers et aux libertés.
-						</p>
-						<p>Loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique.</p>
-
-						<h2>10. Lexique</h2>
-						<p>
-							<strong>Utilisateur :</strong> Internaute se connectant, utilisant le site susnommé.
-						</p>
-						<p>
-							<strong>Informations personnelles :</strong> « les informations qui permettent, sous quelque forme que ce
-							soit, directement ou non, l'identification des personnes physiques auxquelles elles s'appliquent »
-							(article 4 de la loi n° 78-17 du 6 janvier 1978).
+						{/* Description */}
+						<p className="text-lg md:text-xl text-muted-foreground max-w-3xl leading-relaxed">
+							Informations légales et protection des données personnelles
 						</p>
 					</div>
-				</Container>
-			</Section>
+				</div>
+			</div>
+
+			{/* Main Content Section */}
+			<div className="relative isolate bg-background">
+				{/* Background Pattern SVG */}
+				<div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+					<svg
+						aria-hidden="true"
+						className="absolute top-0 left-[max(50%,25rem)] h-[64rem] w-[128rem] -translate-x-1/2 stroke-primary/20"
+					>
+						<defs>
+							<pattern x="50%" y={-1} id="legal-pattern" width={200} height={200} patternUnits="userSpaceOnUse">
+								<path d="M100 200V.5M.5 .5H200" fill="none" />
+							</pattern>
+						</defs>
+						<svg x="50%" y={-1} className="overflow-visible fill-primary/5">
+							<path
+								d="M-100.5 0h201v201h-201Z M699.5 0h201v201h-201Z M499.5 400h201v201h-201Z M-300.5 600h201v201h-201Z"
+								strokeWidth={0}
+							/>
+						</svg>
+						<rect fill="url(#legal-pattern)" width="100%" height="100%" strokeWidth={0} />
+					</svg>
+				</div>
+
+				{/* Blobs décoratifs dans le contenu - Gauche */}
+				<div className="absolute left-4 top-32 z-0 animate-float-slow delay-500 opacity-40 hidden lg:block">
+					<Blob3 />
+				</div>
+				<div className="absolute left-8 top-96 z-0 animate-float-medium delay-1500 opacity-50 hidden lg:block">
+					<Blob6 />
+				</div>
+				<div className="absolute left-12 top-[800px] z-0 animate-float-slow delay-2500 opacity-45 hidden lg:block">
+					<Blob8 />
+				</div>
+
+				{/* Blobs décoratifs dans le contenu - Droite */}
+				<div className="absolute right-8 top-64 z-0 animate-float-medium delay-1000 opacity-40 hidden lg:block">
+					<Blob9 />
+				</div>
+				<div className="absolute right-4 top-[600px] z-0 animate-float-slow delay-2000 opacity-50 hidden lg:block">
+					<Blob2 />
+				</div>
+				<div className="absolute right-10 top-[1000px] z-0 animate-float-medium delay-3000 opacity-45 hidden lg:block">
+					<Blob4 />
+				</div>
+
+				{/* Main Content */}
+				<div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8 relative">
+					<article className="max-w-4xl mx-auto prose prose-blog prose-lg max-w-none prose-headings:font-corinthia prose-h2:text-5xl prose-h3:text-4xl prose-h4:text-3xl prose-p:font-kalam">
+						{/* Qui sommes-nous */}
+						<section>
+							<h2>Qui sommes-nous ?</h2>
+							<p>L'adresse de notre site est : https://cinquin-maeva.com/</p>
+						</section>
+
+						{/* Propriétaire et responsable */}
+						<section>
+							<h2>Propriétaire et Responsable de publication</h2>
+							<p>
+								<strong>Maeva Cinquin</strong>
+								<br />
+								Maquilleuse professionnelle et prothésiste ongulaire
+								<br />
+								SIRET : 881 829 873 00010
+								<br />
+								1250 chemin de la renouillère
+								<br />
+								74140 Sciez
+								<br />
+								France
+							</p>
+							<p>
+								<strong>Contact :</strong>
+								<br />
+								Téléphone :{' '}
+								<a href="tel:+33616625137" className="text-primary hover:underline">
+									+33 6 16 62 51 37
+								</a>
+								<br />
+								Email :{' '}
+								<a href="mailto:maevacinquin1@gmail.com" className="text-primary hover:underline">
+									maevacinquin1@gmail.com
+								</a>
+							</p>
+						</section>
+
+						{/* Hébergement */}
+						<section>
+							<h2>Hébergement du site</h2>
+							<p>
+								Ce site est hébergé par :
+								<br />
+								<strong>netcup GmbH</strong>
+								<br />
+								Daimlerstraße 25
+								<br />
+								76185 Karlsruhe
+								<br />
+								Allemagne
+							</p>
+						</section>
+
+						{/* Droit d'auteur */}
+						<section>
+							<h2>Droit d'auteur et propriété intellectuelle</h2>
+							<p>
+								L'ensemble de ce site est soumis à une protection de droits d'auteur selon les Articles L335-2 et
+								suivants du Code de la propriété intellectuelle.
+							</p>
+							<p>
+								Toute reproduction ou représentation totale ou partielle de son contenu, images, textes, sons, par
+								quelque procédé utilisé, sans l'autorisation préalable de la société 'Cinquin Andy' ou celle de 'Artist
+								Make Up Dream – Maeva Cinquin', est strictement interdite.
+							</p>
+							<p>
+								Toute violation constituera une sanction et fera l'objet de poursuites conformément aux dispositions des
+								articles L.335-2 et suivants du Code de Propriété Intellectuelle.
+							</p>
+						</section>
+
+						{/* Crédits */}
+						<section>
+							<h2>Crédits et conception du site</h2>
+							<p>
+								<strong>Conception, développement et design :</strong>
+								<br />
+								Cinquin Andy
+								<br />
+								SIRET : 880 505 276 00027
+								<br />4 Impasse de la Marchaisière
+								<br />
+								44115 Haute-Goulaine
+								<br />
+								Téléphone : 06 21 58 26 84
+								<br />
+								Site web :{' '}
+								<a href="https://andy-cinquin.fr" target="_blank" rel="noopener noreferrer">
+									https://andy-cinquin.fr
+								</a>
+							</p>
+							<p>
+								Les photographies présentes sur ce site sont la propriété de Maeva Cinquin et Cinquin Andy. Toute
+								utilisation sans autorisation est interdite et pourra faire l'objet de poursuites.
+							</p>
+						</section>
+
+						{/* Droit applicable */}
+						<section>
+							<h2>Droit applicable</h2>
+							<p>
+								Le présent site et les présentes mentions légales sont régis par le droit français. En cas de litige,
+								une solution amiable sera recherchée avant toute action judiciaire. Il est fait attribution exclusive de
+								juridiction aux tribunaux compétents de France.
+							</p>
+						</section>
+					</article>
+
+					{/* Back to Home */}
+					<div className="mt-12 pt-8 border-t border-border max-w-4xl mx-auto">
+						<Link href="/" className="inline-flex items-center gap-2 text-primary hover:underline font-medium">
+							← Retour à l'accueil
+						</Link>
+					</div>
+				</div>
+			</div>
 		</>
 	)
 }
