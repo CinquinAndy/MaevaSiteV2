@@ -17,7 +17,7 @@ export default function CurvedText() {
 				viewBox="0 0 2000 1179"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
-				className="absolute inset-0 w-full h-full scale-110 opacity-80"
+				className="absolute inset-0 w-full h-full scale-200 md:scale-110 opacity-80"
 				preserveAspectRatio="xMidYMid meet"
 			>
 				{/* Path definition */}
@@ -49,7 +49,7 @@ export default function CurvedText() {
 				viewBox="0 0 2000 1179"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
-				className="absolute inset-0 w-full h-full translate-y-10 translate-x-10 scale-110 opacity-80"
+				className="absolute inset-0 w-full h-full translate-y-4 translate-x-4 scale-200 md:translate-y-10 md:translate-x-10 md:scale-110 opacity-80"
 				preserveAspectRatio="xMidYMid meet"
 			>
 				{/* Path definition */}

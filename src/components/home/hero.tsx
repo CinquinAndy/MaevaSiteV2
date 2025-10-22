@@ -35,16 +35,16 @@ export default function Hero({
 			<div className="absolute left-1/2 bottom-0 m-20 z-0 animate-float-slow opacity-70">
 				<Blob1 />
 			</div>
-			<div className="absolute left-14 bottom-28 z-0 animate-float-medium delay-1500 opacity-80">
+			<div className="absolute hidden md:block left-14 bottom-28 z-0 animate-float-medium delay-1500 opacity-80">
 				<Blob5 />
 			</div>
 
-			<div className="absolute right-8 top-1/2 m-8 -translate-y-1/2 z-0 animate-float-slow delay-2500 opacity-70">
+			<div className="absolute hidden md:block right-8 top-1/2 m-8 -translate-y-1/2 z-0 animate-float-slow delay-2500 opacity-70">
 				<Blob7 />
 			</div>
 
 			{/* Texte courbé */}
-			<div className="absolute inset-0 z-20 pointer-events-none">
+			<div className="absolute rotate-45 scale-200 md:scale-100 md:rotate-0 inset-0 z-20 pointer-events-none">
 				<CurvedText />
 			</div>
 		</div>
