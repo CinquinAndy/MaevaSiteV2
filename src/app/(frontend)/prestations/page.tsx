@@ -1,11 +1,13 @@
 import config from '@payload-config'
+import Image from 'next/image'
+import Link from 'next/link'
 import { getPayload } from 'payload'
 import { CtaSection } from '@/components/home/cta-section'
 import Hero from '@/components/home/hero'
+import { BentoGrid, BentoGridItem } from '@/components/ui/bento-grid'
 import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
-import { ServiceCard } from '@/components/ui/service-card'
-import type { Service } from '@/payload-types'
+import type { Media, Service } from '@/payload-types'
 
 export const metadata = {
 	title: 'Prestations - Maeva Cinquin',
@@ -75,7 +77,7 @@ export default async function PrestationsPage() {
 				</Container>
 			</Section>
 
-			{/* Services par catégorie */}
+			{/* Services par catégorie avec Bento Grid */}
 			{categoryOrder.map(category => {
 				const categoryServices = servicesByCategory[category]
 				if (!categoryServices || categoryServices.length === 0) return null
@@ -86,11 +88,36 @@ export default async function PrestationsPage() {
 							<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-12">
 								{categoryLabels[category]}
 							</h2>
-							<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-								{categoryServices.map(service => (
-									<ServiceCard key={service.id} service={service} />
-								))}
-							</div>
+							<BentoGrid>
+								{categoryServices.map(service => {
+									const typedService = service as Service
+									const featuredImage = typedService.featuredImage as Media | undefined
+									const gridClass = typedService.gridSize === 'large' ? 'md:col-span-2' : 'md:col-span-1'
+
+									return (
+										<Link key={service.id} href={`/prestations/${typedService.slug}`} className={gridClass}>
+											<BentoGridItem
+												title={typedService.title}
+												description={typedService.shortDescription}
+												header={
+													featuredImage?.url ? (
+														<Image
+															src={featuredImage.url}
+															alt={featuredImage.alt || typedService.title}
+															width={900}
+															height={600}
+															className="h-full w-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
+														/>
+													) : (
+														<div className="h-full w-full bg-gradient-to-br from-pink-100 to-pink-200 dark:from-pink-900 dark:to-pink-800" />
+													)
+												}
+												className="h-full"
+											/>
+										</Link>
+									)
+								})}
+							</BentoGrid>
 						</Container>
 					</Section>
 				)

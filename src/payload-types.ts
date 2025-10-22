@@ -335,6 +335,10 @@ export interface Service {
    */
   duration?: string | null;
   /**
+   * Taille de la card dans la grille bento (desktop uniquement)
+   */
+  gridSize: 'normal' | 'large';
+  /**
    * Ordre d'affichage dans la liste (0 = premier)
    */
   order: number;
@@ -587,6 +591,7 @@ export interface ServicesSelect<T extends boolean = true> {
         id?: T;
       };
   duration?: T;
+  gridSize?: T;
   order?: T;
   status?: T;
   seo_title?: T;

@@ -155,6 +155,21 @@ export const Services: CollectionConfig = {
 			},
 		},
 		{
+			name: 'gridSize',
+			type: 'select',
+			required: true,
+			label: 'Taille dans la grille',
+			options: [
+				{ label: 'Normal (1 colonne)', value: 'normal' },
+				{ label: 'Large (2 colonnes)', value: 'large' },
+			],
+			defaultValue: 'normal',
+			admin: {
+				description: 'Taille de la card dans la grille bento (desktop uniquement)',
+				position: 'sidebar',
+			},
+		},
+		{
 			name: 'order',
 			type: 'number',
 			required: true,

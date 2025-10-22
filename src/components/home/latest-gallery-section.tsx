@@ -1,17 +1,12 @@
 import config from '@payload-config'
+import { IconArrowRight } from '@tabler/icons-react'
+import Link from 'next/link'
 import { getPayload } from 'payload'
-import { GalleryCarousel } from '@/components/home/gallery-carousel'
-import type { Gallery, Media } from '@/payload-types'
-
-// Category display names mapping
-const categoryLabels: Record<string, string> = {
-	mariage: 'Mariage',
-	artistique: 'Maquillage Artistique',
-	'nail-art': 'Nail Art',
-	evenementiel: 'Événementiel',
-	'photo-video': 'Photo/Vidéo',
-	collections: 'Collections',
-}
+import { Container } from '@/components/ui/container'
+import { GalleryCard } from '@/components/ui/gallery-card'
+import { GradientButton } from '@/components/ui/gradient-button'
+import { Section } from '@/components/ui/section'
+import type { Gallery } from '@/payload-types'
 
 export async function LatestGallerySection() {
 	const payload = await getPayload({ config })
@@ -24,34 +19,43 @@ export async function LatestGallerySection() {
 			},
 		},
 		sort: '-publishedDate',
-		limit: 6,
+		limit: 3,
 	})
 
 	if (galleries.length === 0) {
 		return null
 	}
 
-	// Transform galleries for GalleryCarousel component
-	const galleryItems = galleries
-		.map(gallery => {
-			const typedGallery = gallery as Gallery
-			const coverImage = typedGallery.coverImage as Media | undefined
-			if (!coverImage?.url) return null
+	return (
+		<Section>
+			<Container>
+				<div className="space-y-12">
+					{/* Header */}
+					<div className="space-y-3">
+						<h2 className="text-4xl md:text-5xl font-bold text-foreground">Mes Dernières Créations</h2>
+						<p className="text-lg text-muted-foreground max-w-2xl">
+							Découvrez mes réalisations récentes en maquillage et nail art
+						</p>
+					</div>
 
-			return {
-				id: String(typedGallery.id),
-				title: typedGallery.title,
-				description: typedGallery.description || 'Découvrez cette création',
-				category: categoryLabels[typedGallery.category] || typedGallery.category,
-				image: coverImage.url,
-				href: `/galerie/${typedGallery.slug}`,
-			}
-		})
-		.filter((item): item is NonNullable<typeof item> => item !== null)
+					{/* Galleries Grid */}
+					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+						{galleries.map(gallery => (
+							<GalleryCard key={gallery.id} gallery={gallery as Gallery} />
+						))}
+					</div>
 
-	if (galleryItems.length === 0) {
-		return null
-	}
-
-	return <GalleryCarousel items={galleryItems} />
+					{/* CTA */}
+					<div className="pt-4">
+						<GradientButton asChild>
+							<Link href="/galerie" className="z-20 text-foreground">
+								Voir toutes les galeries
+								<IconArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+							</Link>
+						</GradientButton>
+					</div>
+				</div>
+			</Container>
+		</Section>
+	)
 }

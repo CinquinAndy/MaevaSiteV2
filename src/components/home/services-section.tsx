@@ -1,74 +1,31 @@
+import config from '@payload-config'
 import Image from 'next/image'
 import Link from 'next/link'
+import { getPayload } from 'payload'
 import { BentoGrid, BentoGridItem } from '@/components/ui/bento-grid'
 import { Container } from '@/components/ui/container'
 import { GradientButton } from '@/components/ui/gradient-button'
 import { Section } from '@/components/ui/section'
+import type { Media, Service } from '@/payload-types'
 
-const services = [
-	{
-		id: 'mariages',
-		title: 'Mariages',
-		description:
-			'Maquillage de la mariée et de ses proches. Un look qui dure toute la journée et sublime votre beauté naturelle.',
-		image: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=900&auto=format&fit=crop&q=80',
-		className: 'md:col-span-2',
-		href: '/prestations#mariages',
-	},
-	{
-		id: 'artistique',
-		title: 'Maquillage Artistique',
-		description: 'Créations uniques et audacieuses pour vos projets artistiques, spectacles, et événements spéciaux.',
-		image: 'https://images.unsplash.com/photo-1596704017254-9b121068ec31?w=900&auto=format&fit=crop&q=80',
-		className: 'md:col-span-1',
-		href: '/prestations#artistique',
-	},
-	{
-		id: 'photo',
-		title: 'Séances Photo',
-		description:
-			'Maquillage professionnel pour shootings photo, books, mode et portraits. Résultat impeccable en haute définition.',
-		image: 'https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=900&auto=format&fit=crop&q=80',
-		className: 'md:col-span-1',
-		href: '/prestations#photo',
-	},
-	{
-		id: 'nail-art',
-		title: 'Nail Art',
-		description: 'Prothésie ongulaire professionnelle : pose de gel, vernis semi-permanent, nail art personnalisé.',
-		image: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=900&auto=format&fit=crop&q=80',
-		className: 'md:col-span-1',
-		href: '/prestations#nail-art',
-	},
-	{
-		id: 'evenements',
-		title: 'Événements',
-		description: "Soirées, galas, défilés de mode, événements professionnels. Je m'adapte à tous vos besoins.",
-		image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=900&auto=format&fit=crop&q=80',
-		className: 'md:col-span-1',
-		href: '/prestations#evenements',
-	},
-	{
-		id: 'beaute',
-		title: 'Maquillage Beauté',
-		description:
-			'Mise en beauté pour toutes occasions : soirées, rendez-vous importants, ou simplement pour vous faire plaisir.',
-		image: 'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=900&auto=format&fit=crop&q=80',
-		className: 'md:col-span-1',
-		href: '/prestations#beaute',
-	},
-	{
-		id: 'enfants',
-		title: 'Maquillage Enfants',
-		description:
-			'Maquillage pour les enfants de tous âges. Un look qui dure toute la journée et sublime leur beauté naturelle.',
-		image: 'https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=900&auto=format&fit=crop&q=80',
-		className: 'md:col-span-2',
-		href: '/prestations#enfants',
-	},
-]
+export async function ServicesSection() {
+	const payload = await getPayload({ config })
 
-export function ServicesSection() {
+	const { docs: services } = await payload.find({
+		collection: 'services',
+		where: {
+			status: {
+				equals: 'published',
+			},
+		},
+		sort: 'order',
+		limit: 10,
+	})
+
+	if (services.length === 0) {
+		return null
+	}
+
 	return (
 		<Section>
 			<Container>
@@ -90,24 +47,34 @@ export function ServicesSection() {
 
 					{/* Services Bento Grid */}
 					<BentoGrid>
-						{services.map(service => (
-							<Link key={service.id} href={service.href} className={service.className}>
-								<BentoGridItem
-									title={service.title}
-									description={service.description}
-									header={
-										<Image
-											src={service.image}
-											alt={service.title}
-											width={900}
-											height={600}
-											className="h-full w-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
-										/>
-									}
-									className="h-full"
-								/>
-							</Link>
-						))}
+						{services.map(service => {
+							const typedService = service as Service
+							const featuredImage = typedService.featuredImage as Media | undefined
+							const gridClass = typedService.gridSize === 'large' ? 'md:col-span-2' : 'md:col-span-1'
+
+							return (
+								<Link key={service.id} href={`/prestations/${typedService.slug}`} className={gridClass}>
+									<BentoGridItem
+										title={typedService.title}
+										description={typedService.shortDescription}
+										header={
+											featuredImage?.url ? (
+												<Image
+													src={featuredImage.url}
+													alt={featuredImage.alt || typedService.title}
+													width={900}
+													height={600}
+													className="h-full w-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
+												/>
+											) : (
+												<div className="h-full w-full bg-gradient-to-br from-pink-100 to-pink-200 dark:from-pink-900 dark:to-pink-800" />
+											)
+										}
+										className="h-full"
+									/>
+								</Link>
+							)
+						})}
 					</BentoGrid>
 				</div>
 			</Container>
