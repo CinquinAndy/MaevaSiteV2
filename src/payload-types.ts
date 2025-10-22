@@ -13,599 +13,598 @@
  * via the `definition` "supportedTimezones".
  */
 export type SupportedTimezones =
-  | 'Pacific/Midway'
-  | 'Pacific/Niue'
-  | 'Pacific/Honolulu'
-  | 'Pacific/Rarotonga'
-  | 'America/Anchorage'
-  | 'Pacific/Gambier'
-  | 'America/Los_Angeles'
-  | 'America/Tijuana'
-  | 'America/Denver'
-  | 'America/Phoenix'
-  | 'America/Chicago'
-  | 'America/Guatemala'
-  | 'America/New_York'
-  | 'America/Bogota'
-  | 'America/Caracas'
-  | 'America/Santiago'
-  | 'America/Buenos_Aires'
-  | 'America/Sao_Paulo'
-  | 'Atlantic/South_Georgia'
-  | 'Atlantic/Azores'
-  | 'Atlantic/Cape_Verde'
-  | 'Europe/London'
-  | 'Europe/Berlin'
-  | 'Africa/Lagos'
-  | 'Europe/Athens'
-  | 'Africa/Cairo'
-  | 'Europe/Moscow'
-  | 'Asia/Riyadh'
-  | 'Asia/Dubai'
-  | 'Asia/Baku'
-  | 'Asia/Karachi'
-  | 'Asia/Tashkent'
-  | 'Asia/Calcutta'
-  | 'Asia/Dhaka'
-  | 'Asia/Almaty'
-  | 'Asia/Jakarta'
-  | 'Asia/Bangkok'
-  | 'Asia/Shanghai'
-  | 'Asia/Singapore'
-  | 'Asia/Tokyo'
-  | 'Asia/Seoul'
-  | 'Australia/Brisbane'
-  | 'Australia/Sydney'
-  | 'Pacific/Guam'
-  | 'Pacific/Noumea'
-  | 'Pacific/Auckland'
-  | 'Pacific/Fiji';
+	| 'Pacific/Midway'
+	| 'Pacific/Niue'
+	| 'Pacific/Honolulu'
+	| 'Pacific/Rarotonga'
+	| 'America/Anchorage'
+	| 'Pacific/Gambier'
+	| 'America/Los_Angeles'
+	| 'America/Tijuana'
+	| 'America/Denver'
+	| 'America/Phoenix'
+	| 'America/Chicago'
+	| 'America/Guatemala'
+	| 'America/New_York'
+	| 'America/Bogota'
+	| 'America/Caracas'
+	| 'America/Santiago'
+	| 'America/Buenos_Aires'
+	| 'America/Sao_Paulo'
+	| 'Atlantic/South_Georgia'
+	| 'Atlantic/Azores'
+	| 'Atlantic/Cape_Verde'
+	| 'Europe/London'
+	| 'Europe/Berlin'
+	| 'Africa/Lagos'
+	| 'Europe/Athens'
+	| 'Africa/Cairo'
+	| 'Europe/Moscow'
+	| 'Asia/Riyadh'
+	| 'Asia/Dubai'
+	| 'Asia/Baku'
+	| 'Asia/Karachi'
+	| 'Asia/Tashkent'
+	| 'Asia/Calcutta'
+	| 'Asia/Dhaka'
+	| 'Asia/Almaty'
+	| 'Asia/Jakarta'
+	| 'Asia/Bangkok'
+	| 'Asia/Shanghai'
+	| 'Asia/Singapore'
+	| 'Asia/Tokyo'
+	| 'Asia/Seoul'
+	| 'Australia/Brisbane'
+	| 'Australia/Sydney'
+	| 'Pacific/Guam'
+	| 'Pacific/Noumea'
+	| 'Pacific/Auckland'
+	| 'Pacific/Fiji'
 
 export interface Config {
-  auth: {
-    users: UserAuthOperations;
-  };
-  blocks: {};
-  collections: {
-    users: User;
-    media: Media;
-    blog: Blog;
-    galery: Galery;
-    services: Service;
-    testimonials: Testimonial;
-    'payload-locked-documents': PayloadLockedDocument;
-    'payload-preferences': PayloadPreference;
-    'payload-migrations': PayloadMigration;
-  };
-  collectionsJoins: {};
-  collectionsSelect: {
-    users: UsersSelect<false> | UsersSelect<true>;
-    media: MediaSelect<false> | MediaSelect<true>;
-    blog: BlogSelect<false> | BlogSelect<true>;
-    galery: GalerySelect<false> | GalerySelect<true>;
-    services: ServicesSelect<false> | ServicesSelect<true>;
-    testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
-    'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
-    'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
-    'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
-  };
-  db: {
-    defaultIDType: number;
-  };
-  globals: {};
-  globalsSelect: {};
-  locale: null;
-  user: User & {
-    collection: 'users';
-  };
-  jobs: {
-    tasks: unknown;
-    workflows: unknown;
-  };
+	auth: {
+		users: UserAuthOperations
+	}
+	blocks: {}
+	collections: {
+		users: User
+		media: Media
+		blog: Blog
+		galery: Galery
+		services: Service
+		testimonials: Testimonial
+		'payload-locked-documents': PayloadLockedDocument
+		'payload-preferences': PayloadPreference
+		'payload-migrations': PayloadMigration
+	}
+	collectionsJoins: {}
+	collectionsSelect: {
+		users: UsersSelect<false> | UsersSelect<true>
+		media: MediaSelect<false> | MediaSelect<true>
+		blog: BlogSelect<false> | BlogSelect<true>
+		galery: GalerySelect<false> | GalerySelect<true>
+		services: ServicesSelect<false> | ServicesSelect<true>
+		testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>
+		'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>
+		'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>
+		'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>
+	}
+	db: {
+		defaultIDType: number
+	}
+	globals: {}
+	globalsSelect: {}
+	locale: null
+	user: User & {
+		collection: 'users'
+	}
+	jobs: {
+		tasks: unknown
+		workflows: unknown
+	}
 }
 export interface UserAuthOperations {
-  forgotPassword: {
-    email: string;
-    password: string;
-  };
-  login: {
-    email: string;
-    password: string;
-  };
-  registerFirstUser: {
-    email: string;
-    password: string;
-  };
-  unlock: {
-    email: string;
-    password: string;
-  };
+	forgotPassword: {
+		email: string
+		password: string
+	}
+	login: {
+		email: string
+		password: string
+	}
+	registerFirstUser: {
+		email: string
+		password: string
+	}
+	unlock: {
+		email: string
+		password: string
+	}
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
-  id: number;
-  updatedAt: string;
-  createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  sessions?:
-    | {
-        id: string;
-        createdAt?: string | null;
-        expiresAt: string;
-      }[]
-    | null;
-  password?: string | null;
+	id: number
+	updatedAt: string
+	createdAt: string
+	email: string
+	resetPasswordToken?: string | null
+	resetPasswordExpiration?: string | null
+	salt?: string | null
+	hash?: string | null
+	loginAttempts?: number | null
+	lockUntil?: string | null
+	sessions?:
+		| {
+				id: string
+				createdAt?: string | null
+				expiresAt: string
+		  }[]
+		| null
+	password?: string | null
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media".
  */
 export interface Media {
-  id: number;
-  alt?: string | null;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
+	id: number
+	alt?: string | null
+	updatedAt: string
+	createdAt: string
+	url?: string | null
+	thumbnailURL?: string | null
+	filename?: string | null
+	mimeType?: string | null
+	filesize?: number | null
+	width?: number | null
+	height?: number | null
+	focalX?: number | null
+	focalY?: number | null
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "blog".
  */
 export interface Blog {
-  id: number;
-  /**
-   * Titre optimisé pour les moteurs de recherche (max 60 caractères)
-   */
-  seo_title?: string | null;
-  /**
-   * Description optimisée pour les moteurs de recherche (max 155 caractères)
-   */
-  seo_description?: string | null;
-  title: string;
-  /**
-   * URL de l'article (ex: conseils-maquillage-mariage)
-   */
-  slug: string;
-  featuredImage?: (number | null) | Media;
-  /**
-   * Court résumé de l'article (affiché dans les listings)
-   */
-  excerpt?: string | null;
-  content: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  category: 'conseils-maquillage' | 'nail-art' | 'tutoriels' | 'actualites' | 'collections' | 'mariages-evenements';
-  publishedDate: string;
-  status: 'draft' | 'published';
-  updatedAt: string;
-  createdAt: string;
+	id: number
+	/**
+	 * Titre optimisé pour les moteurs de recherche (max 60 caractères)
+	 */
+	seo_title?: string | null
+	/**
+	 * Description optimisée pour les moteurs de recherche (max 155 caractères)
+	 */
+	seo_description?: string | null
+	title: string
+	/**
+	 * URL de l'article (ex: conseils-maquillage-mariage)
+	 */
+	slug: string
+	featuredImage?: (number | null) | Media
+	/**
+	 * Court résumé de l'article (affiché dans les listings)
+	 */
+	excerpt?: string | null
+	content: {
+		root: {
+			type: string
+			children: {
+				type: any
+				version: number
+				[k: string]: unknown
+			}[]
+			direction: ('ltr' | 'rtl') | null
+			format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | ''
+			indent: number
+			version: number
+		}
+		[k: string]: unknown
+	}
+	category: 'conseils-maquillage' | 'nail-art' | 'tutoriels' | 'actualites' | 'collections' | 'mariages-evenements'
+	publishedDate: string
+	status: 'draft' | 'published'
+	updatedAt: string
+	createdAt: string
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "galery".
  */
 export interface Galery {
-  id: number;
-  /**
-   * Titre optimisé pour les moteurs de recherche (max 60 caractères)
-   */
-  seo_title?: string | null;
-  /**
-   * Description optimisée pour les moteurs de recherche (max 155 caractères)
-   */
-  seo_description?: string | null;
-  title: string;
-  /**
-   * URL de la galerie (ex: mariage-alice-tom)
-   */
-  slug: string;
-  /**
-   * Description de la galerie
-   */
-  description?: string | null;
-  category: 'mariage' | 'artistique' | 'nail-art' | 'evenementiel' | 'photo-video' | 'collections';
-  /**
-   * Image principale affichée dans la liste des galeries
-   */
-  coverImage: number | Media;
-  images: {
-    image: number | Media;
-    caption?: string | null;
-    id?: string | null;
-  }[];
-  publishedDate: string;
-  status: 'draft' | 'published';
-  updatedAt: string;
-  createdAt: string;
+	id: number
+	/**
+	 * Titre optimisé pour les moteurs de recherche (max 60 caractères)
+	 */
+	seo_title?: string | null
+	/**
+	 * Description optimisée pour les moteurs de recherche (max 155 caractères)
+	 */
+	seo_description?: string | null
+	title: string
+	/**
+	 * URL de la galerie (ex: mariage-alice-tom)
+	 */
+	slug: string
+	/**
+	 * Description de la galerie
+	 */
+	description?: string | null
+	category: 'mariage' | 'artistique' | 'nail-art' | 'evenementiel' | 'photo-video' | 'collections'
+	/**
+	 * Image principale affichée dans la liste des galeries
+	 */
+	coverImage: number | Media
+	images: {
+		image: number | Media
+		caption?: string | null
+		id?: string | null
+	}[]
+	publishedDate: string
+	status: 'draft' | 'published'
+	updatedAt: string
+	createdAt: string
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "services".
  */
 export interface Service {
-  id: number;
-  /**
-   * Titre optimisé pour les moteurs de recherche (max 60 caractères)
-   */
-  seo_title?: string | null;
-  /**
-   * Description optimisée pour les moteurs de recherche (max 155 caractères)
-   */
-  seo_description?: string | null;
-  title: string;
-  /**
-   * URL du service (ex: maquillage-mariage)
-   */
-  slug: string;
-  /**
-   * Résumé du service (affiché dans les cards)
-   */
-  shortDescription: string;
-  description: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  category: 'maquillage' | 'nail-art' | 'evenementiel' | 'formation';
-  /**
-   * Icône Tabler à afficher (ex: Sparkles, Heart, Camera)
-   */
-  icon?: ('sparkles' | 'heart' | 'camera' | 'paint' | 'palette' | 'star' | 'crown' | 'diamond' | 'brush') | null;
-  featuredImage?: (number | null) | Media;
-  pricing?: {
-    displayPricing?: boolean | null;
-    priceType?: ('fixed' | 'from' | 'quote') | null;
-    price?: number | null;
-    /**
-     * Détails supplémentaires sur la tarification
-     */
-    priceDetails?: {
-      root: {
-        type: string;
-        children: {
-          type: any;
-          version: number;
-          [k: string]: unknown;
-        }[];
-        direction: ('ltr' | 'rtl') | null;
-        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-        indent: number;
-        version: number;
-      };
-      [k: string]: unknown;
-    } | null;
-  };
-  /**
-   * Taille de la card dans la grille bento (desktop uniquement)
-   */
-  gridSize: 'normal' | 'large';
-  /**
-   * Ordre d'affichage dans la liste (0 = premier)
-   */
-  order: number;
-  status: 'draft' | 'published';
-  updatedAt: string;
-  createdAt: string;
+	id: number
+	/**
+	 * Titre optimisé pour les moteurs de recherche (max 60 caractères)
+	 */
+	seo_title?: string | null
+	/**
+	 * Description optimisée pour les moteurs de recherche (max 155 caractères)
+	 */
+	seo_description?: string | null
+	title: string
+	/**
+	 * URL du service (ex: maquillage-mariage)
+	 */
+	slug: string
+	/**
+	 * Résumé du service (affiché dans les cards)
+	 */
+	shortDescription: string
+	description: {
+		root: {
+			type: string
+			children: {
+				type: any
+				version: number
+				[k: string]: unknown
+			}[]
+			direction: ('ltr' | 'rtl') | null
+			format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | ''
+			indent: number
+			version: number
+		}
+		[k: string]: unknown
+	}
+	category: 'maquillage' | 'nail-art' | 'evenementiel' | 'formation'
+	/**
+	 * Icône Tabler à afficher (ex: Sparkles, Heart, Camera)
+	 */
+	icon?: ('sparkles' | 'heart' | 'camera' | 'paint' | 'palette' | 'star' | 'crown' | 'diamond' | 'brush') | null
+	featuredImage?: (number | null) | Media
+	pricing?: {
+		displayPricing?: boolean | null
+		priceType?: ('fixed' | 'from' | 'quote') | null
+		price?: number | null
+		/**
+		 * Détails supplémentaires sur la tarification
+		 */
+		priceDetails?: {
+			root: {
+				type: string
+				children: {
+					type: any
+					version: number
+					[k: string]: unknown
+				}[]
+				direction: ('ltr' | 'rtl') | null
+				format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | ''
+				indent: number
+				version: number
+			}
+			[k: string]: unknown
+		} | null
+	}
+	/**
+	 * Taille de la card dans la grille bento (desktop uniquement)
+	 */
+	gridSize: 'normal' | 'large'
+	/**
+	 * Ordre d'affichage dans la liste (0 = premier)
+	 */
+	order: number
+	status: 'draft' | 'published'
+	updatedAt: string
+	createdAt: string
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "testimonials".
  */
 export interface Testimonial {
-  id: number;
-  /**
-   * Ex: Sophie L., Julie M.
-   */
-  name: string;
-  /**
-   * Le témoignage complet
-   */
-  content: string;
-  /**
-   * Date de publication de l'avis
-   */
-  publishedDate?: string | null;
-  /**
-   * Note sur 5
-   */
-  rating: number;
-  source: 'google' | 'facebook' | 'instagram' | 'email' | 'other';
-  /**
-   * Optionnel - photo de profil du client
-   */
-  avatar?: (number | null) | Media;
-  /**
-   * Afficher en priorité ce témoignage
-   */
-  featured?: boolean | null;
-  status: 'draft' | 'published';
-  /**
-   * Ordre d'affichage dans la liste (0 = premier)
-   */
-  order?: number | null;
-  updatedAt: string;
-  createdAt: string;
+	id: number
+	/**
+	 * Ex: Sophie L., Julie M.
+	 */
+	name: string
+	/**
+	 * Le témoignage complet
+	 */
+	content: string
+	/**
+	 * Date de publication de l'avis
+	 */
+	publishedDate?: string | null
+	/**
+	 * Note sur 5
+	 */
+	rating: number
+	source: 'google' | 'facebook' | 'instagram' | 'email' | 'other'
+	/**
+	 * Optionnel - photo de profil du client
+	 */
+	avatar?: (number | null) | Media
+	/**
+	 * Afficher en priorité ce témoignage
+	 */
+	featured?: boolean | null
+	status: 'draft' | 'published'
+	/**
+	 * Ordre d'affichage dans la liste (0 = premier)
+	 */
+	order?: number | null
+	updatedAt: string
+	createdAt: string
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
-  id: number;
-  document?:
-    | ({
-        relationTo: 'users';
-        value: number | User;
-      } | null)
-    | ({
-        relationTo: 'media';
-        value: number | Media;
-      } | null)
-    | ({
-        relationTo: 'blog';
-        value: number | Blog;
-      } | null)
-    | ({
-        relationTo: 'galery';
-        value: number | Galery;
-      } | null)
-    | ({
-        relationTo: 'services';
-        value: number | Service;
-      } | null)
-    | ({
-        relationTo: 'testimonials';
-        value: number | Testimonial;
-      } | null);
-  globalSlug?: string | null;
-  user: {
-    relationTo: 'users';
-    value: number | User;
-  };
-  updatedAt: string;
-  createdAt: string;
+	id: number
+	document?:
+		| ({
+				relationTo: 'users'
+				value: number | User
+		  } | null)
+		| ({
+				relationTo: 'media'
+				value: number | Media
+		  } | null)
+		| ({
+				relationTo: 'blog'
+				value: number | Blog
+		  } | null)
+		| ({
+				relationTo: 'galery'
+				value: number | Galery
+		  } | null)
+		| ({
+				relationTo: 'services'
+				value: number | Service
+		  } | null)
+		| ({
+				relationTo: 'testimonials'
+				value: number | Testimonial
+		  } | null)
+	globalSlug?: string | null
+	user: {
+		relationTo: 'users'
+		value: number | User
+	}
+	updatedAt: string
+	createdAt: string
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-  id: number;
-  user: {
-    relationTo: 'users';
-    value: number | User;
-  };
-  key?: string | null;
-  value?:
-    | {
-        [k: string]: unknown;
-      }
-    | unknown[]
-    | string
-    | number
-    | boolean
-    | null;
-  updatedAt: string;
-  createdAt: string;
+	id: number
+	user: {
+		relationTo: 'users'
+		value: number | User
+	}
+	key?: string | null
+	value?:
+		| {
+				[k: string]: unknown
+		  }
+		| unknown[]
+		| string
+		| number
+		| boolean
+		| null
+	updatedAt: string
+	createdAt: string
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-  id: number;
-  name?: string | null;
-  batch?: number | null;
-  updatedAt: string;
-  createdAt: string;
+	id: number
+	name?: string | null
+	batch?: number | null
+	updatedAt: string
+	createdAt: string
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
-  updatedAt?: T;
-  createdAt?: T;
-  email?: T;
-  resetPasswordToken?: T;
-  resetPasswordExpiration?: T;
-  salt?: T;
-  hash?: T;
-  loginAttempts?: T;
-  lockUntil?: T;
-  sessions?:
-    | T
-    | {
-        id?: T;
-        createdAt?: T;
-        expiresAt?: T;
-      };
+	updatedAt?: T
+	createdAt?: T
+	email?: T
+	resetPasswordToken?: T
+	resetPasswordExpiration?: T
+	salt?: T
+	hash?: T
+	loginAttempts?: T
+	lockUntil?: T
+	sessions?:
+		| T
+		| {
+				id?: T
+				createdAt?: T
+				expiresAt?: T
+		  }
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media_select".
  */
 export interface MediaSelect<T extends boolean = true> {
-  alt?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  url?: T;
-  thumbnailURL?: T;
-  filename?: T;
-  mimeType?: T;
-  filesize?: T;
-  width?: T;
-  height?: T;
-  focalX?: T;
-  focalY?: T;
+	alt?: T
+	updatedAt?: T
+	createdAt?: T
+	url?: T
+	thumbnailURL?: T
+	filename?: T
+	mimeType?: T
+	filesize?: T
+	width?: T
+	height?: T
+	focalX?: T
+	focalY?: T
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "blog_select".
  */
 export interface BlogSelect<T extends boolean = true> {
-  seo_title?: T;
-  seo_description?: T;
-  title?: T;
-  slug?: T;
-  featuredImage?: T;
-  excerpt?: T;
-  content?: T;
-  category?: T;
-  publishedDate?: T;
-  status?: T;
-  updatedAt?: T;
-  createdAt?: T;
+	seo_title?: T
+	seo_description?: T
+	title?: T
+	slug?: T
+	featuredImage?: T
+	excerpt?: T
+	content?: T
+	category?: T
+	publishedDate?: T
+	status?: T
+	updatedAt?: T
+	createdAt?: T
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "galery_select".
  */
 export interface GalerySelect<T extends boolean = true> {
-  seo_title?: T;
-  seo_description?: T;
-  title?: T;
-  slug?: T;
-  description?: T;
-  category?: T;
-  coverImage?: T;
-  images?:
-    | T
-    | {
-        image?: T;
-        caption?: T;
-        id?: T;
-      };
-  publishedDate?: T;
-  status?: T;
-  updatedAt?: T;
-  createdAt?: T;
+	seo_title?: T
+	seo_description?: T
+	title?: T
+	slug?: T
+	description?: T
+	category?: T
+	coverImage?: T
+	images?:
+		| T
+		| {
+				image?: T
+				caption?: T
+				id?: T
+		  }
+	publishedDate?: T
+	status?: T
+	updatedAt?: T
+	createdAt?: T
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "services_select".
  */
 export interface ServicesSelect<T extends boolean = true> {
-  seo_title?: T;
-  seo_description?: T;
-  title?: T;
-  slug?: T;
-  shortDescription?: T;
-  description?: T;
-  category?: T;
-  icon?: T;
-  featuredImage?: T;
-  pricing?:
-    | T
-    | {
-        displayPricing?: T;
-        priceType?: T;
-        price?: T;
-        priceDetails?: T;
-      };
-  gridSize?: T;
-  order?: T;
-  status?: T;
-  updatedAt?: T;
-  createdAt?: T;
+	seo_title?: T
+	seo_description?: T
+	title?: T
+	slug?: T
+	shortDescription?: T
+	description?: T
+	category?: T
+	icon?: T
+	featuredImage?: T
+	pricing?:
+		| T
+		| {
+				displayPricing?: T
+				priceType?: T
+				price?: T
+				priceDetails?: T
+		  }
+	gridSize?: T
+	order?: T
+	status?: T
+	updatedAt?: T
+	createdAt?: T
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "testimonials_select".
  */
 export interface TestimonialsSelect<T extends boolean = true> {
-  name?: T;
-  content?: T;
-  publishedDate?: T;
-  rating?: T;
-  source?: T;
-  avatar?: T;
-  featured?: T;
-  status?: T;
-  order?: T;
-  updatedAt?: T;
-  createdAt?: T;
+	name?: T
+	content?: T
+	publishedDate?: T
+	rating?: T
+	source?: T
+	avatar?: T
+	featured?: T
+	status?: T
+	order?: T
+	updatedAt?: T
+	createdAt?: T
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents_select".
  */
 export interface PayloadLockedDocumentsSelect<T extends boolean = true> {
-  document?: T;
-  globalSlug?: T;
-  user?: T;
-  updatedAt?: T;
-  createdAt?: T;
+	document?: T
+	globalSlug?: T
+	user?: T
+	updatedAt?: T
+	createdAt?: T
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-preferences_select".
  */
 export interface PayloadPreferencesSelect<T extends boolean = true> {
-  user?: T;
-  key?: T;
-  value?: T;
-  updatedAt?: T;
-  createdAt?: T;
+	user?: T
+	key?: T
+	value?: T
+	updatedAt?: T
+	createdAt?: T
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-migrations_select".
  */
 export interface PayloadMigrationsSelect<T extends boolean = true> {
-  name?: T;
-  batch?: T;
-  updatedAt?: T;
-  createdAt?: T;
+	name?: T
+	batch?: T
+	updatedAt?: T
+	createdAt?: T
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "auth".
  */
 export interface Auth {
-  [k: string]: unknown;
+	[k: string]: unknown
 }
 
-
 declare module 'payload' {
-  export interface GeneratedTypes extends Config {}
+	export interface GeneratedTypes extends Config {}
 }
