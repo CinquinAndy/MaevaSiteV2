@@ -1,11 +1,5 @@
 import { ImageResponse } from 'next/og'
-import {
-	loadFont,
-	loadLogo,
-	OG_IMAGE_CONTENT_TYPE,
-	OG_IMAGE_SIZE,
-	OGImageTemplate,
-} from '@/lib/og-image'
+import { loadFont, loadLogo, OG_IMAGE_CONTENT_TYPE, OG_IMAGE_SIZE, OGImageTemplate } from '@/lib/og-image'
 
 export const runtime = 'edge'
 export const alt = 'Mentions Légales - Maeva Cinquin'
@@ -28,4 +22,3 @@ export default async function Image() {
 		],
 	})
 }
-

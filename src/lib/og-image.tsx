@@ -48,6 +48,7 @@ export function OGImageTemplate({ title, logoSrc }: { title: string; logoSrc: st
 			}}
 		>
 			{/* Logo bottom-left */}
+			{/* biome-ignore lint/a11y/useAltText: Satori ImageResponse doesn't support Next.js Image component */}
 			<img
 				src={logoSrc}
 				alt="Logo"

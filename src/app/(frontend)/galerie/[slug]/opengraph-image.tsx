@@ -1,13 +1,7 @@
 import config from '@payload-config'
 import { ImageResponse } from 'next/og'
 import { getPayload } from 'payload'
-import {
-	loadFont,
-	loadLogo,
-	OG_IMAGE_CONTENT_TYPE,
-	OG_IMAGE_SIZE,
-	OGImageTemplate,
-} from '@/lib/og-image'
+import { loadFont, loadLogo, OG_IMAGE_CONTENT_TYPE, OG_IMAGE_SIZE, OGImageTemplate } from '@/lib/og-image'
 import type { Gallery } from '@/payload-types'
 
 export const runtime = 'edge'
@@ -101,4 +95,3 @@ export async function generateImageMetadata({ params }: { params: Promise<{ slug
 		alt: gallery ? gallery.seo_title || gallery.title : 'Galerie non trouvée',
 	}
 }
-
