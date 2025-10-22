@@ -329,7 +329,10 @@
 	text-decoration: none;
 }
 
-button *, a *, button, a{
+button *,
+a *,
+button,
+a {
 	@apply cursor-pointer;
 }
 
@@ -840,7 +843,9 @@ html.dark .gooey-nav-container {
 
 .leaflet-popup-content-wrapper {
 	border-radius: 0.75rem;
-	box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+	box-shadow:
+		0 10px 15px -3px rgb(0 0 0 / 0.1),
+		0 4px 6px -4px rgb(0 0 0 / 0.1);
 	border: 1px solid hsl(var(--border));
 }
 
@@ -866,5 +871,34 @@ html.dark .gooey-nav-container {
 	100% {
 		transform: scale(2);
 		opacity: 0;
+	}
+}
+
+/* ============================================
+   Hero Title Responsive Styles
+   ============================================ */
+
+.hero-title {
+	font-size: var(--font-size-base);
+}
+
+/* En dessous de 1400px */
+@media (max-width: 1400px) {
+	.hero-title {
+		font-size: calc(var(--font-size-base) * 0.7);
+	}
+}
+
+/* En dessous de 1000px */
+@media (max-width: 1000px) {
+	.hero-title {
+		font-size: calc(var(--font-size-base) * 0.5);
+	}
+}
+
+/* En dessous de 600px */
+@media (max-width: 600px) {
+	.hero-title {
+		font-size: calc(var(--font-size-base) * 0.35);
 	}
 }

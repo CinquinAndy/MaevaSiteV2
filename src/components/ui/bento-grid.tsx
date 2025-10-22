@@ -10,7 +10,7 @@ const BentoGrid = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivE
 		return (
 			<div
 				ref={ref}
-				className={cn('grid w-full auto-rows-[22rem] grid-cols-1 gap-4 md:grid-cols-3', className)}
+				className={cn('grid w-full auto-rows-[40rem] grid-cols-1 gap-4 md:grid-cols-3', className)}
 				{...props}
 			>
 				{children}
@@ -44,7 +44,7 @@ const BentoGridItem = React.forwardRef<HTMLDivElement, BentoGridItemProps>(
 				{...props}
 			>
 				{/* Header content, now perfect for images */}
-				<div className="flex h-full min-h-[6rem] flex-1 overflow-hidden rounded-md bg-muted">{header}</div>
+				<div className="flex h-full min-h-[8rem] flex-1 overflow-hidden rounded-md bg-muted">{header}</div>
 
 				{/* Title and description */}
 				<div className="transition-transform duration-200 group-hover:translate-x-1">

@@ -83,7 +83,7 @@ export default async function PrestationsPage() {
 				if (!categoryServices || categoryServices.length === 0) return null
 
 				return (
-					<Section key={category} variant={category === 'maquillage' ? 'default' : 'muted'} className="py-16">
+					<Section key={category} variant={category === 'maquillage' ? 'default' : 'muted'}>
 						<Container>
 							<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-12">
 								{categoryLabels[category]}
@@ -134,23 +134,6 @@ export default async function PrestationsPage() {
 					</Container>
 				</Section>
 			)}
-
-			{/* Zone d'intervention */}
-			<Section variant="muted">
-				<Container>
-					<div className="max-w-4xl mx-auto text-center space-y-6">
-						<h2 className="text-3xl md:text-4xl font-bold text-foreground">Zone d'Intervention</h2>
-						<p className="text-lg text-muted-foreground">J'interviens en Haute-Savoie et en Suisse, notamment à :</p>
-						<div className="flex flex-wrap justify-center gap-4 text-foreground font-medium">
-							<span className="px-4 py-2 bg-primary/10 rounded-full">Thonon-les-Bains</span>
-							<span className="px-4 py-2 bg-primary/10 rounded-full">Annecy</span>
-							<span className="px-4 py-2 bg-primary/10 rounded-full">Genève</span>
-							<span className="px-4 py-2 bg-primary/10 rounded-full">Lausanne</span>
-							<span className="px-4 py-2 bg-primary/10 rounded-full">Et environs</span>
-						</div>
-					</div>
-				</Container>
-			</Section>
 
 			{/* Section CTA */}
 			<CtaSection />

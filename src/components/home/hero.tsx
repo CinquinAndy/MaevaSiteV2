@@ -20,11 +20,13 @@ export default function Hero({
 		<div className="h-screen w-screen relative overflow-hidden">
 			<Image src={backgroundImage} alt="Hero" fill className="object-cover grayscale brightness-75" />
 			<h1
-				className="font-bold absolute top-20 -left-20 z-10 font-corinthia text-foreground"
-				style={{
-					fontSize: `${fontSize}px`,
-					lineHeight: `${lineHeight}`,
-				}}
+				className="font-bold absolute top-20 -left-20 z-10 font-corinthia text-foreground hero-title"
+				style={
+					{
+						'--font-size-base': `${fontSize}px`,
+						lineHeight: `${lineHeight}`,
+					} as React.CSSProperties
+				}
 			>
 				{title}
 			</h1>
