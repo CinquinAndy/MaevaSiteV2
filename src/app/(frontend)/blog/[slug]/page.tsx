@@ -230,7 +230,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
 				{/* Main Grid Layout */}
 				<div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8 relative">
-					<div className="grid grid-cols-1 gap-x-12 gap-y-16 lg:grid-cols-2">
+					<div className="grid grid-cols-1 gap-x-12 gap-y-16 lg:grid-cols-2 lg:items-start">
 						{/* Left Column - Content */}
 						<div className="lg:pr-8">
 							{/* Main Content - Lexical RichText */}

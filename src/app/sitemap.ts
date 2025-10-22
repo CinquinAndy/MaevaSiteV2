@@ -1,7 +1,6 @@
 import config from '@payload-config'
 import type { MetadataRoute } from 'next'
 import { getPayload } from 'payload'
-import { SITE_CONFIG } from '@/lib/seo'
 import type { Blog, Galery, Service } from '@/payload-types'
 
 /**

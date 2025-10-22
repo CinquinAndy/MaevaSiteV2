@@ -291,7 +291,7 @@ export function generateBlogPostMetadata(params: {
 	seoDescription?: string
 }): Metadata {
 	const baseSEO = generateBaseSEO()
-	const { title, excerpt, featuredImage, slug, seoTitle, seoDescription } = params
+	const { title, excerpt, slug, seoTitle, seoDescription } = params
 
 	const metaTitle = seoTitle || `${title} | Blog Maeva Cinquin`
 	const metaDescription = seoDescription || excerpt || title
@@ -305,22 +305,11 @@ export function generateBlogPostMetadata(params: {
 			description: metaDescription,
 			type: 'article',
 			url: `${SITE_CONFIG.url}/blog/${slug}`,
-			images: featuredImage
-				? [
-						{
-							url: featuredImage,
-							width: 1200,
-							height: 630,
-							alt: title,
-						},
-					]
-				: [],
 		},
 		twitter: {
 			card: 'summary_large_image',
 			title: metaTitle,
 			description: metaDescription,
-			images: featuredImage ? [featuredImage] : [],
 		},
 		alternates: {
 			canonical: `${SITE_CONFIG.url}/blog/${slug}`,
@@ -388,7 +377,7 @@ export function generateGaleryItemMetadata(params: {
 	seoDescription?: string
 }): Metadata {
 	const baseSEO = generateBaseSEO()
-	const { title, description, coverImage, slug, seoTitle, seoDescription } = params
+	const { title, description, slug, seoTitle, seoDescription } = params
 
 	const metaTitle = seoTitle || `${title} | Galerie Maeva Cinquin`
 	const metaDescription = seoDescription || description || title
@@ -402,22 +391,11 @@ export function generateGaleryItemMetadata(params: {
 			description: metaDescription,
 			type: 'website',
 			url: `${SITE_CONFIG.url}/galerie/${slug}`,
-			images: coverImage
-				? [
-						{
-							url: coverImage,
-							width: 1200,
-							height: 630,
-							alt: title,
-						},
-					]
-				: [],
 		},
 		twitter: {
 			card: 'summary_large_image',
 			title: metaTitle,
 			description: metaDescription,
-			images: coverImage ? [coverImage] : [],
 		},
 		alternates: {
 			canonical: `${SITE_CONFIG.url}/galerie/${slug}`,
@@ -465,7 +443,7 @@ export function generateServiceItemMetadata(params: {
 	seoDescription?: string
 }): Metadata {
 	const baseSEO = generateBaseSEO()
-	const { title, shortDescription, featuredImage, slug, seoTitle, seoDescription } = params
+	const { title, shortDescription, slug, seoTitle, seoDescription } = params
 	const cities = getCityNamesForSEO()
 
 	const metaTitle = seoTitle || `${title} | Prestations Maeva Cinquin`
@@ -483,22 +461,11 @@ export function generateServiceItemMetadata(params: {
 			description: metaDescription,
 			type: 'website',
 			url: `${SITE_CONFIG.url}/prestations/${slug}`,
-			images: featuredImage
-				? [
-						{
-							url: featuredImage,
-							width: 1200,
-							height: 630,
-							alt: title,
-						},
-					]
-				: [],
 		},
 		twitter: {
 			card: 'summary_large_image',
 			title: metaTitle,
 			description: metaDescription,
-			images: featuredImage ? [featuredImage] : [],
 		},
 		alternates: {
 			canonical: `${SITE_CONFIG.url}/prestations/${slug}`,

@@ -90,7 +90,9 @@ export async function generateImageMetadata({ params }: { params: Promise<{ slug
 
 	const service = docs[0] as Service | undefined
 
-	return {
-		alt: service ? service.seo_title || service.title : 'Service non trouvé',
-	}
+	return [
+		{
+			alt: service ? service.seo_title || service.title : 'Service non trouvé',
+		},
+	]
 }
