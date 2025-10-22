@@ -169,7 +169,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 						{/* Left Column - Main Content (2 cols) */}
 						<div className="lg:col-span-2">
 							{/* Description - Lexical RichText */}
-							<article className="prose prose-lg max-w-none prose-headings:font-corinthia prose-h2:text-5xl prose-h3:text-4xl prose-h4:text-3xl prose-p:font-kalam prose-img:rounded-xl prose-img:shadow-lg">
+							<article className="prose prose-blog prose-lg max-w-none prose-headings:font-corinthia prose-h2:text-5xl prose-h3:text-4xl prose-h4:text-3xl prose-p:font-kalam prose-img:rounded-xl prose-img:shadow-lg">
 								{service.description && typeof service.description === 'object' && 'root' in service.description ? (
 									<RichText data={service.description} />
 								) : (
@@ -182,12 +182,12 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 							{/* Features */}
 							{service.features && service.features.length > 0 && (
 								<div className="mt-12 p-6 rounded-xl bg-muted/50 border border-border">
-									<h2 className="text-3xl font-bold font-corinthia mb-6">Ce qui est inclus</h2>
+									<h2 className="text-3xl font-bold font-corinthia mb-6 text-foreground">Ce qui est inclus</h2>
 									<ul className="space-y-3">
 										{service.features.map((item, index) => (
 											<li key={item.id || index} className="flex items-start gap-3">
 												<Check className="w-5 h-5 text-primary mt-1 shrink-0" />
-												<span className="text-muted-foreground font-kalam">{item.feature}</span>
+												<span className="text-foreground font-kalam">{item.feature}</span>
 											</li>
 										))}
 									</ul>
@@ -201,7 +201,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 								{/* Pricing Card */}
 								{service.pricing?.displayPricing && (
 									<div className="p-6 rounded-xl bg-card border border-border shadow-lg">
-										<h3 className="text-2xl font-bold font-corinthia mb-4">Tarif</h3>
+										<h3 className="text-2xl font-bold font-libre-caslon-display mb-4 text-card-foreground">Tarif</h3>
 
 										{service.pricing.priceType === 'fixed' && service.pricing.price && (
 											<div className="mb-4">
@@ -230,7 +230,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 										{service.pricing.priceDetails &&
 											typeof service.pricing.priceDetails === 'object' &&
 											'root' in service.pricing.priceDetails && (
-												<div className="mt-4 pt-4 border-t border-border prose prose-sm max-w-none">
+												<div className="mt-4 pt-4 border-t border-border prose prose-blog prose-sm max-w-none">
 													<RichText data={service.pricing.priceDetails} />
 												</div>
 											)}
@@ -240,8 +240,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 								{/* Duration Card */}
 								{service.duration && (
 									<div className="p-6 rounded-xl bg-card border border-border shadow-lg">
-										<h3 className="text-2xl font-bold font-corinthia mb-2">Durée</h3>
-										<p className="text-lg text-muted-foreground font-kalam">{service.duration}</p>
+										<h3 className="text-2xl font-bold font-libre-caslon-display mb-2 text-card-foreground">Durée</h3>
+										<p className="text-lg text-card-foreground font-kalam">{service.duration}</p>
 									</div>
 								)}
 
@@ -252,17 +252,17 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 
 								{/* Contact Info */}
 								<div className="p-6 rounded-xl bg-muted/50 border border-border">
-									<h3 className="text-xl font-bold font-corinthia mb-3">Une question ?</h3>
+									<h3 className="text-xl font-bold font-libre-caslon-display mb-3 text-foreground">Une question ?</h3>
 									<p className="text-sm text-muted-foreground mb-4">
 										N'hésitez pas à me contacter pour toute information complémentaire.
 									</p>
 									<div className="space-y-2 text-sm">
-										<p className="font-medium">
+										<p className="font-medium text-foreground">
 											<a href="tel:+33616625137" className="hover:text-primary transition-colors">
 												+33 6 16 62 51 37
 											</a>
 										</p>
-										<p className="font-medium">
+										<p className="font-medium text-foreground">
 											<a href="mailto:maevacinquin1@gmail.com" className="hover:text-primary transition-colors">
 												maevacinquin1@gmail.com
 											</a>

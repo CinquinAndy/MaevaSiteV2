@@ -329,6 +329,7 @@
 	text-decoration: none;
 }
 
+
 button *,
 a *,
 button,
@@ -376,6 +377,10 @@ html,
 body {
 	scrollbar-width: none;
 	-ms-overflow-style: none;
+}
+
+.payload-richtext * {
+	@apply font-kalam;
 }
 
 @keyframes accordion-down {
