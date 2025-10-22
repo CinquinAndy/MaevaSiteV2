@@ -117,11 +117,7 @@ export default async function GaleryDetailPage({ params }: { params: Promise<{ s
 	return (
 		<>
 			{/* JSON-LD Schema pour SEO */}
-			<script
-				type="application/ld+json"
-				// biome-ignore lint/security/noDangerouslySetInnerHtml: Required for JSON-LD schema
-				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-			/>
+			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
 			{/* Hero Banner */}
 			<div className="relative h-[60vh] lg:h-[70vh] w-full overflow-hidden">

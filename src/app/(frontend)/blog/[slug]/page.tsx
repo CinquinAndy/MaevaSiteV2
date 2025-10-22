@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getPayload } from 'payload'
 import { Blob2, Blob3, Blob4, Blob6, Blob8, Blob9 } from '@/components/blobs/blobs'
+import { ScrollingImage } from '@/components/blog/ScrollingImage'
 import { Badge } from '@/components/ui/badge'
 import { generateBlogPostJsonLd, generateBlogPostMetadata } from '@/lib/seo'
 import type { Blog, Media } from '@/payload-types'
@@ -112,11 +113,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 	return (
 		<>
 			{/* JSON-LD Schema pour SEO */}
-			<script
-				type="application/ld+json"
-				// biome-ignore lint/security/noDangerouslySetInnerHtml: Required for JSON-LD schema
-				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-			/>
+			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
 			{/* Hero Banner */}
 			<div className="relative h-[60vh] lg:h-[70vh] w-full overflow-hidden">
@@ -246,21 +243,13 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 							</article>
 						</div>
 
-						{/* Right Column - Sticky Featured Image */}
+						{/* Right Column - Scrolling Featured Image (Desktop only) */}
 						{featuredImage?.url && (
-							<div>
-								<div className="sticky top-24 h-auto w-full rounded-xl bg-card shadow-2xl ring-1 ring-border overflow-hidden">
-									<div className="relative aspect-[4/3] w-full">
-										<Image
-											src={featuredImage.url}
-											alt={featuredImage.alt || post.title}
-											fill
-											className="object-cover"
-											sizes="(max-width: 1024px) 100vw, 50vw"
-										/>
-									</div>
-								</div>
-							</div>
+							<ScrollingImage
+								src={featuredImage.url}
+								alt={featuredImage.alt || post.title}
+								className="h-auto w-full rounded-xl bg-card shadow-2xl ring-1 ring-border overflow-hidden"
+							/>
 						)}
 					</div>
 

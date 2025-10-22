@@ -15,11 +15,7 @@ export default async function HomePage() {
 	return (
 		<>
 			{/* JSON-LD Schema pour SEO */}
-			<script
-				type="application/ld+json"
-				// biome-ignore lint/security/noDangerouslySetInnerHtml: Required for JSON-LD schema
-				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-			/>
+			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
 			<div className="w-full h-full">
 				{/* Hero Section */}
