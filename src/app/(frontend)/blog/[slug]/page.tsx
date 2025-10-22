@@ -1,11 +1,12 @@
 import config from '@payload-config'
+import { RichText } from '@payloadcms/richtext-lexical/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getPayload } from 'payload'
+import { Blob2, Blob3, Blob4, Blob6, Blob8, Blob9 } from '@/components/blobs/blobs'
 import { Badge } from '@/components/ui/badge'
-import { Container } from '@/components/ui/container'
-import { Section } from '@/components/ui/section'
+import { jsxConverters } from '@/lib/lexical/jsx-converters'
 import type { Blog, Media } from '@/payload-types'
 
 const categoryLabels: Record<string, string> = {
@@ -94,12 +95,35 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
 
 	return (
 		<>
-			{/* Article Header */}
-			<Section variant="muted" className="py-12 md:py-16">
-				<Container>
-					<div className="max-w-4xl mx-auto">
+			{/* Hero Banner */}
+			<div className="relative h-[60vh] lg:h-[70vh] w-full overflow-hidden">
+				{/* Background Image */}
+				{featuredImage?.url && (
+					<Image
+						src={featuredImage.url}
+						alt={featuredImage.alt || post.title}
+						fill
+						className="object-cover grayscale brightness-75"
+						priority
+					/>
+				)}
+
+				{/* Blobs décoratifs dans le hero */}
+				<div className="absolute left-10 top-20 z-10 animate-float-slow opacity-60">
+					<Blob2 />
+				</div>
+				<div className="absolute right-16 bottom-24 z-10 animate-float-medium delay-1000 opacity-70">
+					<Blob4 />
+				</div>
+
+				{/* Content Overlay */}
+				<div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/40 to-transparent z-20" />
+
+				{/* Title & Metadata */}
+				<div className="absolute bottom-0 left-0 right-0 z-30 pb-8 px-6 lg:px-12">
+					<div className="max-w-7xl mx-auto">
 						{/* Breadcrumb */}
-						<nav className="mb-6">
+						<nav className="mb-4">
 							<ol className="flex items-center gap-2 text-sm text-muted-foreground">
 								<li>
 									<Link href="/" className="hover:text-foreground transition-colors">
@@ -117,76 +141,140 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
 							</ol>
 						</nav>
 
-						{/* Metadata */}
-						<div className="flex flex-wrap items-center gap-3 mb-6">
+						{/* Category & Date */}
+						<div className="flex flex-wrap items-center gap-3 mb-4">
 							<Badge variant="primary">{categoryLabels[post.category] || post.category}</Badge>
 							<time className="text-sm text-muted-foreground">{publishedDate}</time>
 						</div>
 
 						{/* Title */}
-						<h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">{post.title}</h1>
+						<h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-foreground font-corinthia mb-4">
+							{post.title}
+						</h1>
 
 						{/* Excerpt */}
-						{post.excerpt && <p className="text-xl text-muted-foreground leading-relaxed">{post.excerpt}</p>}
+						{post.excerpt && (
+							<p className="text-lg md:text-xl text-muted-foreground max-w-3xl leading-relaxed">{post.excerpt}</p>
+						)}
 					</div>
-				</Container>
-			</Section>
+				</div>
+			</div>
 
-			{/* Featured Image */}
-			{featuredImage?.url && (
-				<Section className="py-0">
-					<Container>
-						<div className="max-w-5xl mx-auto">
-							<div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg bg-muted">
-								<Image
-									src={featuredImage.url}
-									alt={featuredImage.alt || post.title}
-									fill
-									className="object-cover"
-									priority
-								/>
+			{/* Article Content Section */}
+			<div className="relative isolate bg-background">
+				{/* Background Pattern SVG */}
+				<div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+					<svg
+						aria-hidden="true"
+						className="absolute top-0 left-[max(50%,25rem)] h-[64rem] w-[128rem] -translate-x-1/2 stroke-primary/20"
+					>
+						<defs>
+							<pattern x="50%" y={-1} id="blog-pattern" width={200} height={200} patternUnits="userSpaceOnUse">
+								<path d="M100 200V.5M.5 .5H200" fill="none" />
+							</pattern>
+						</defs>
+						<svg x="50%" y={-1} className="overflow-visible fill-primary/5">
+							<path
+								d="M-100.5 0h201v201h-201Z M699.5 0h201v201h-201Z M499.5 400h201v201h-201Z M-300.5 600h201v201h-201Z"
+								strokeWidth={0}
+							/>
+						</svg>
+						<rect fill="url(#blog-pattern)" width="100%" height="100%" strokeWidth={0} />
+					</svg>
+				</div>
+
+				{/* Blobs décoratifs dans le contenu - Gauche */}
+				<div className="absolute left-4 top-32 z-0 animate-float-slow delay-500 opacity-40 hidden lg:block">
+					<Blob3 />
+				</div>
+				<div className="absolute left-8 top-96 z-0 animate-float-medium delay-1500 opacity-50 hidden lg:block">
+					<Blob6 />
+				</div>
+				<div className="absolute left-12 top-[800px] z-0 animate-float-slow delay-2500 opacity-45 hidden lg:block">
+					<Blob8 />
+				</div>
+
+				{/* Blobs décoratifs dans le contenu - Droite */}
+				<div className="absolute right-8 top-64 z-0 animate-float-medium delay-1000 opacity-40 hidden lg:block">
+					<Blob9 />
+				</div>
+				<div className="absolute right-4 top-[600px] z-0 animate-float-slow delay-2000 opacity-50 hidden lg:block">
+					<Blob2 />
+				</div>
+				<div className="absolute right-10 top-[1000px] z-0 animate-float-medium delay-3000 opacity-45 hidden lg:block">
+					<Blob4 />
+				</div>
+
+				{/* Main Grid Layout */}
+				<div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-start lg:gap-y-10 px-6 py-24 sm:py-32 lg:px-8">
+					{/* Left Column - Content */}
+					<div className="lg:col-span-2 lg:col-start-1 lg:row-start-1 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+						<div className="lg:pr-4">
+							<div className="lg:max-w-lg">
+								{/* Main Content - Lexical RichText */}
+								<article className="prose prose-lg dark:prose-invert prose-headings:font-corinthia prose-h2:text-5xl prose-h3:text-4xl prose-h4:text-3xl prose-p:font-kalam prose-p:leading-relaxed prose-a:text-primary hover:prose-a:underline prose-strong:text-foreground prose-ul:list-disc prose-ol:list-decimal prose-li:ml-4 prose-img:rounded-xl prose-figcaption:text-sm prose-figcaption:text-center prose-figcaption:italic prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:pl-6 prose-blockquote:italic max-w-none">
+									{/* Render Lexical Content */}
+									{post.content && typeof post.content === 'object' && 'root' in post.content ? (
+										<RichText data={post.content} converters={jsxConverters} />
+									) : (
+										<div className="text-muted-foreground">
+											<p>Contenu de l'article non disponible.</p>
+										</div>
+									)}
+								</article>
 							</div>
 						</div>
-					</Container>
-				</Section>
-			)}
+					</div>
 
-			{/* Article Content */}
-			<Section>
-				<Container>
-					<article className="max-w-3xl mx-auto prose prose-lg dark:prose-invert prose-headings:font-corinthia prose-h2:text-4xl prose-h3:text-3xl prose-p:font-kalam prose-p:leading-relaxed prose-a:text-primary hover:prose-a:underline">
-						{/* TODO: Render Lexical richText content */}
-						{/* For now, displaying a placeholder */}
-						<div className="text-muted-foreground">
-							<p>Contenu de l'article à rendre ici avec le composant Lexical.</p>
-							<p className="text-sm italic mt-4">
-								Note technique : Le contenu richText de Payload CMS nécessite un composant de rendu Lexical approprié.
-							</p>
-						</div>
-					</article>
-
-					{/* Tags */}
-					{post.tags && post.tags.length > 0 && (
-						<div className="max-w-3xl mx-auto mt-12 pt-8 border-t border-border">
-							<div className="flex flex-wrap gap-2">
-								<span className="text-sm font-medium text-muted-foreground mr-2">Tags:</span>
-								{post.tags.map((item, index) => (
-									<Badge key={index} variant="outline">
-										{item.tag}
-									</Badge>
-								))}
+					{/* Right Column - Sticky Featured Image */}
+					{featuredImage?.url && (
+						<div className="-mt-12 -ml-12 p-12 lg:sticky lg:top-24 lg:col-start-2 lg:row-span-2 lg:row-start-1">
+							<div className="relative w-full max-w-none rounded-xl bg-card shadow-2xl ring-1 ring-border overflow-hidden">
+								<div className="relative aspect-[4/3] w-full">
+									<Image
+										src={featuredImage.url}
+										alt={featuredImage.alt || post.title}
+										fill
+										className="object-cover"
+										sizes="(max-width: 1024px) 100vw, 50vw"
+									/>
+								</div>
 							</div>
 						</div>
 					)}
 
-					{/* Back to Blog */}
-					<div className="max-w-3xl mx-auto mt-12 pt-8 border-t border-border">
-						<Link href="/blog" className="inline-flex items-center gap-2 text-primary hover:underline font-medium">
-							← Retour au blog
-						</Link>
+					{/* Bottom Section - Tags & Navigation */}
+					<div className="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+						<div className="lg:pr-4">
+							<div className="max-w-xl lg:max-w-lg">
+								{/* Tags */}
+								{post.tags && post.tags.length > 0 && (
+									<div className="mt-12 pt-8 border-t border-border">
+										<div className="flex flex-wrap gap-2 items-center">
+											<span className="text-sm font-medium text-muted-foreground mr-2">Tags:</span>
+											{post.tags.map((item, index) => (
+												<Badge key={index} variant="outline">
+													{item.tag}
+												</Badge>
+											))}
+										</div>
+									</div>
+								)}
+
+								{/* Back to Blog */}
+								<div className="mt-8 pt-8 border-t border-border">
+									<Link
+										href="/blog"
+										className="inline-flex items-center gap-2 text-primary hover:underline font-medium"
+									>
+										← Retour au blog
+									</Link>
+								</div>
+							</div>
+						</div>
 					</div>
-				</Container>
-			</Section>
+				</div>
+			</div>
 		</>
 	)
 }

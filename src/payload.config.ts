@@ -4,7 +4,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { LinkFeature, lexicalEditor, UploadFeature } from '@payloadcms/richtext-lexical'
 import { s3Storage } from '@payloadcms/storage-s3'
 import { buildConfig } from 'payload'
 import sharp from 'sharp'
@@ -34,7 +34,50 @@ export default buildConfig({
 	},
 	collections: [Users, Media, Blog, Gallery, Services, Testimonials],
 	globals: [Homepage],
-	editor: lexicalEditor(),
+	editor: lexicalEditor({
+		features: ({ defaultFeatures }) => [
+			...defaultFeatures.filter(
+				// Filter out default LinkFeature and UploadFeature to replace with customized versions
+				feature =>
+					!['link', 'upload'].includes(
+						typeof feature === 'object' && feature !== null && 'key' in feature ? feature.key : ''
+					)
+			),
+			// Customize LinkFeature to add rel attribute
+			LinkFeature({
+				fields: [
+					{
+						name: 'rel',
+						label: 'Rel Attribute',
+						type: 'select',
+						hasMany: true,
+						options: ['noopener', 'noreferrer', 'nofollow'],
+						admin: {
+							description:
+								'The rel attribute defines the relationship between a linked resource and the current document.',
+						},
+					},
+				],
+			}),
+			// Customize UploadFeature to add caption field for images
+			UploadFeature({
+				collections: {
+					media: {
+						fields: [
+							{
+								name: 'caption',
+								type: 'text',
+								label: 'Caption',
+								admin: {
+									description: 'Text displayed below the image',
+								},
+							},
+						],
+					},
+				},
+			}),
+		],
+	}),
 	secret: process.env.PAYLOAD_SECRET || '',
 	typescript: {
 		outputFile: path.resolve(dirname, 'payload-types.ts'),
