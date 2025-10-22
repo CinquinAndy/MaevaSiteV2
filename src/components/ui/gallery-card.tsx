@@ -43,7 +43,7 @@ export function GalleryCard({ gallery, className }: GalleryCardProps) {
 				/>
 				<article className="relative flex h-full flex-col overflow-hidden rounded-xl border-[0.75px] bg-background shadow-sm dark:shadow-[0px_0px_27px_0px_rgba(45,45,45,0.3)]">
 					{coverImage?.url && (
-						<div className="relative aspect-[16/9] w-full overflow-hidden bg-muted">
+						<div className="relative aspect-[16/9] min-h-[300px] w-full overflow-hidden bg-muted">
 							<Image
 								src={coverImage.url}
 								alt={coverImage.alt || gallery.title}
