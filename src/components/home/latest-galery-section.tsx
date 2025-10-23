@@ -1,5 +1,3 @@
-'use client'
-
 import config from '@payload-config'
 import { IconArrowRight } from '@tabler/icons-react'
 import Link from 'next/link'

@@ -1,5 +1,6 @@
 import { ArrowRight, Mail, Phone, Plus } from 'lucide-react'
 import Link from 'next/link'
+import { ScaleIn } from '@/components/animations'
 import { Container } from '@/components/ui/container'
 import { GradientButton } from '@/components/ui/gradient-button'
 import { Section } from '@/components/ui/section'
@@ -8,7 +9,8 @@ export function CtaSection() {
 	return (
 		<Section>
 			<Container>
-				<div className="relative mx-auto flex w-full max-w-7xl flex-col justify-between gap-y-6 border-y bg-[radial-gradient(35%_80%_at_25%_0%,hsl(var(--primary)/.08),transparent)] px-4 py-12 md:py-16">
+				<ScaleIn>
+					<div className="relative mx-auto flex w-full max-w-7xl flex-col justify-between gap-y-6 border-y bg-[radial-gradient(35%_80%_at_25%_0%,hsl(var(--primary)/.08),transparent)] px-4 py-12 md:py-16">
 					{/* Corner Plus Icons */}
 					<Plus className="absolute top-[-12.5px] left-[-11.5px] z-10 size-6" strokeWidth={1} />
 					<Plus className="absolute top-[-12.5px] right-[-11.5px] z-10 size-6" strokeWidth={1} />
@@ -45,7 +47,8 @@ export function CtaSection() {
 							</Link>
 						</GradientButton>
 					</div>
-				</div>
+					</div>
+				</ScaleIn>
 			</Container>
 		</Section>
 	)

@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getPayload } from 'payload'
+import { FadeIn, FadeInWhenVisible, ScaleIn, SlideInFromBottom, SlideInFromLeft } from '@/components/animations'
 import { Blob3, Blob5, Blob6, Blob7, Blob8, Blob9 } from '@/components/blobs/blobs'
 import { Badge } from '@/components/ui/badge'
 import { BentoGalery } from '@/components/ui/bento-galery'
@@ -104,17 +105,13 @@ export default async function GaleryDetailPage({ params }: { params: Promise<{ s
 		day: 'numeric',
 	})
 
-	const imageCount = galery.images?.length || 0
+	const imageCount = (galery.images as Media[])?.length || 0
 
 	const jsonLd = generateGaleryJsonLd({
 		title: galery.title,
 		description: galery.description ?? undefined,
 		slug: galery.slug,
-		images:
-			galery.images?.map(item => {
-				const img = item.image as Media
-				return img.url || ''
-			}) || [],
+		images: (galery.images as Media[])?.map(media => media.url || '') || [],
 	})
 
 	return (
@@ -123,7 +120,8 @@ export default async function GaleryDetailPage({ params }: { params: Promise<{ s
 			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
 			{/* Hero Banner */}
-			<div className="relative h-[60vh] lg:h-[70vh] w-full overflow-hidden">
+			<FadeIn>
+				<div className="relative h-[60vh] lg:h-[70vh] w-full overflow-hidden">
 				{/* Background Image */}
 				{coverImage?.url && (
 					<Image
@@ -150,7 +148,8 @@ export default async function GaleryDetailPage({ params }: { params: Promise<{ s
 				<div className="absolute bottom-0 left-0 right-0 z-30 pb-8 px-6 lg:px-12">
 					<div className="max-w-7xl mx-auto">
 						{/* Breadcrumb */}
-						<nav className="mb-4">
+						<SlideInFromBottom delay={0.2}>
+							<nav className="mb-4">
 							<ol className="flex items-center gap-2 text-sm text-muted-foreground">
 								<li>
 									<Link href="/" className="hover:text-foreground transition-colors">
@@ -166,29 +165,37 @@ export default async function GaleryDetailPage({ params }: { params: Promise<{ s
 								<li>/</li>
 								<li className="text-foreground">{galery.title}</li>
 							</ol>
-						</nav>
+							</nav>
+						</SlideInFromBottom>
 
 						{/* Category & Metadata */}
-						<div className="flex flex-wrap items-center gap-3 mb-4">
-							<Badge variant="primary">{categoryLabels[galery.category] || galery.category}</Badge>
-							<span className="text-sm text-muted-foreground">
-								{imageCount} {imageCount === 1 ? 'photo' : 'photos'}
-							</span>
-							<time className="text-sm text-muted-foreground">• {publishedDate}</time>
-						</div>
+						<ScaleIn delay={0.3}>
+							<div className="flex flex-wrap items-center gap-3 mb-4">
+								<Badge variant="primary">{categoryLabels[galery.category] || galery.category}</Badge>
+								<span className="text-sm text-muted-foreground">
+									{imageCount} {imageCount === 1 ? 'photo' : 'photos'}
+								</span>
+								<time className="text-sm text-muted-foreground">• {publishedDate}</time>
+							</div>
+						</ScaleIn>
 
 						{/* Title */}
-						<h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-foreground font-corinthia mb-4">
-							{galery.title}
-						</h1>
+						<SlideInFromBottom delay={0.4}>
+							<h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-foreground font-corinthia mb-4">
+								{galery.title}
+							</h1>
+						</SlideInFromBottom>
 
 						{/* Description */}
 						{galery.description && (
-							<p className="text-lg md:text-xl text-muted-foreground max-w-3xl leading-relaxed">{galery.description}</p>
+							<FadeInWhenVisible>
+								<p className="text-lg md:text-xl text-muted-foreground max-w-3xl leading-relaxed">{galery.description}</p>
+							</FadeInWhenVisible>
 						)}
 					</div>
 				</div>
-			</div>
+				</div>
+			</FadeIn>
 
 			{/* Galery Content Section */}
 			<div className="relative isolate bg-background">
@@ -239,7 +246,7 @@ export default async function GaleryDetailPage({ params }: { params: Promise<{ s
 				<div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8 relative">
 					<div className="grid grid-cols-1 gap-x-12 gap-y-16 lg:grid-cols-2">
 						{/* Left Column - Galery Information */}
-						<div className="lg:pr-8">
+						<SlideInFromLeft className="lg:pr-8">
 							<div className="space-y-8">
 								{/* Extended Description if available */}
 								<div className="prose prose-lg max-w-none">
@@ -283,11 +290,11 @@ export default async function GaleryDetailPage({ params }: { params: Promise<{ s
 									</div>
 								</div>
 							</div>
-						</div>
+						</SlideInFromLeft>
 
 						{/* Right Column - Sticky Cover Image */}
 						{coverImage?.url && (
-							<div>
+							<FadeInWhenVisible>
 								<div className="sticky top-24 h-auto w-full rounded-xl bg-card shadow-2xl ring-1 ring-border overflow-hidden">
 									<div className="relative aspect-[4/3] w-full">
 										<Image
@@ -300,34 +307,41 @@ export default async function GaleryDetailPage({ params }: { params: Promise<{ s
 									</div>
 								</div>
 							</div>
+							</FadeInWhenVisible>
 						)}
 					</div>
 
 					{/* Galery Images Section */}
 					<div className="mt-24">
-						<div className="mb-12">
-							<h2 className="text-3xl md:text-4xl font-bold text-foreground font-corinthia mb-4">
-								Découvrez la collection
-							</h2>
-						</div>
+						<SlideInFromBottom>
+							<div className="mb-12">
+								<h2 className="text-3xl md:text-4xl font-bold text-foreground font-corinthia mb-4">
+									Découvrez la collection
+								</h2>
+							</div>
+						</SlideInFromBottom>
 
-						{/* Bento Galery */}
-						{galery.images && galery.images.length > 0 && (
+					{/* Bento Galery */}
+					{galery.images && (galery.images as Media[]).length > 0 && (
+						<FadeInWhenVisible>
 							<BentoGalery
-								images={galery.images.map(item => ({
-									image: item.image as Media,
-									id: item.id,
+								images={(galery.images as Media[]).map(media => ({
+									image: media,
+									id: media.id.toString(),
 								}))}
 							/>
-						)}
+						</FadeInWhenVisible>
+					)}
 					</div>
 
 					{/* Back to Galery */}
-					<div className="mt-16 pt-8 border-t border-border">
+					<SlideInFromBottom>
+						<div className="mt-16 pt-8 border-t border-border">
 						<Link href="/galerie" className="inline-flex items-center gap-2 text-primary hover:underline font-medium">
 							← Retour à la galerie
 						</Link>
-					</div>
+						</div>
+					</SlideInFromBottom>
 				</div>
 			</div>
 		</>

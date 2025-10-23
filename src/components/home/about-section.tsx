@@ -1,5 +1,3 @@
-'use client'
-
 import { IconAward, IconBriefcase, IconHeart, IconMapPin } from '@tabler/icons-react'
 import Image from 'next/image'
 import Link from 'next/link'

@@ -70,19 +70,14 @@ export const Galery: CollectionConfig = {
 		},
 		{
 			name: 'images',
-			type: 'array',
-			label: 'Images de la galerie',
+			type: 'upload',
+			relationTo: 'media',
+			hasMany: true,
 			required: true,
-			minRows: 1,
-			fields: [
-				{
-					name: 'image',
-					type: 'upload',
-					relationTo: 'media',
-					required: true,
-					label: 'Image',
-				},
-			],
+			label: 'Images de la galerie',
+			admin: {
+				description: 'Sélectionnez ou uploadez plusieurs images en une seule fois',
+			},
 		},
 		{
 			name: 'publishedDate',

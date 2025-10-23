@@ -1,5 +1,6 @@
 import { Facebook, Instagram, Mail, MapPin, Phone } from 'lucide-react'
 import Link from 'next/link'
+import { SlideInFromBottom, SlideInFromLeft, SlideInFromRight } from '@/components/animations'
 import { ContactForm } from '@/components/global/contact-form'
 import { CtaSection } from '@/components/home/cta-section'
 import Hero from '@/components/home/hero'
@@ -22,7 +23,8 @@ export default function ContactPage() {
 			{/* Contact Card Section */}
 			<Section>
 				<Container>
-					<ContactCard
+					<SlideInFromBottom>
+						<ContactCard
 						title="Contactez-moi"
 						description="Que ce soit pour un mariage, un événement, une séance photo ou tout autre projet artistique, je suis à votre écoute. Remplissez le formulaire et je vous répondrai dans les plus brefs délais."
 						contactInfo={[
@@ -61,7 +63,8 @@ export default function ContactPage() {
 						]}
 					>
 						<ContactForm />
-					</ContactCard>
+						</ContactCard>
+					</SlideInFromBottom>
 				</Container>
 			</Section>
 
@@ -70,7 +73,8 @@ export default function ContactPage() {
 				<Container>
 					<div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
 						{/* Réseaux sociaux */}
-						<div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 shadow-lg">
+						<SlideInFromLeft>
+							<div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 shadow-lg">
 							<h3 className="text-2xl font-bold text-foreground mb-6 font-libre-caslon-display">
 								Suivez mon actualité
 							</h3>
@@ -107,10 +111,12 @@ export default function ContactPage() {
 									et discuter de votre projet.
 								</p>
 							</div>
-						</div>
+							</div>
+						</SlideInFromLeft>
 
 						{/* Carte Interactive */}
-						<div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 shadow-lg">
+						<SlideInFromRight>
+							<div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 shadow-lg">
 							<h3 className="text-2xl font-bold text-foreground mb-6 font-libre-caslon-display">Zone d'intervention</h3>
 							<div className="rounded-xl overflow-hidden border-2 border-border/50 shadow-md h-[400px]">
 								<InteractiveMap className="h-full w-full" />
@@ -133,7 +139,8 @@ export default function ContactPage() {
 									<span className="text-xs">Zone de couverture : rayon de 50km autour de Thonon-les-Bains</span>
 								</p>
 							</div>
-						</div>
+							</div>
+						</SlideInFromRight>
 					</div>
 				</Container>
 			</Section>

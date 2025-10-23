@@ -2,6 +2,7 @@ import config from '@payload-config'
 import Image from 'next/image'
 import Link from 'next/link'
 import { getPayload } from 'payload'
+import { FadeInWhenVisible, SlideInFromBottom, StaggerContainer, StaggerItem } from '@/components/animations'
 import { CtaSection } from '@/components/home/cta-section'
 import Hero from '@/components/home/hero'
 import { BentoGrid, BentoGridItem } from '@/components/ui/bento-grid'
@@ -63,8 +64,9 @@ export default async function PrestationsPage() {
 			{/* Introduction */}
 			<Section className="py-12">
 				<Container>
-					<div className="max-w-4xl mx-auto prose prose-lg dark:prose-invert">
-						<p className="text-muted-foreground leading-relaxed">
+					<FadeInWhenVisible>
+						<div className="max-w-4xl mx-auto prose prose-lg dark:prose-invert">
+							<p className="text-muted-foreground leading-relaxed">
 							Diplômée de Make Up For Ever Academy et certifiée prothésiste ongulaire, je mets mon expertise à votre
 							service pour sublimer votre beauté lors de vos moments importants. Que ce soit pour un mariage, un
 							événement professionnel, une séance photo ou simplement pour vous faire plaisir, je propose des
@@ -73,7 +75,8 @@ export default async function PrestationsPage() {
 						<p className="text-muted-foreground leading-relaxed">
 							Basée en Haute-Savoie, j'interviens à Thonon-les-Bains, Annecy, Genève, Lausanne et leurs environs.
 						</p>
-					</div>
+						</div>
+					</FadeInWhenVisible>
 				</Container>
 			</Section>
 
@@ -85,18 +88,22 @@ export default async function PrestationsPage() {
 				return (
 					<Section key={category} variant={category === 'maquillage' ? 'default' : 'muted'}>
 						<Container>
-							<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-12">
-								{categoryLabels[category]}
-							</h2>
-							<BentoGrid>
+							<SlideInFromBottom>
+								<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-12">
+									{categoryLabels[category]}
+								</h2>
+							</SlideInFromBottom>
+							<StaggerContainer staggerDelay={0.15}>
+								<BentoGrid>
 								{categoryServices.map(service => {
 									const typedService = service as Service
 									const featuredImage = typedService.featuredImage as Media | undefined
 									const gridClass = typedService.gridSize === 'large' ? 'md:col-span-2' : 'md:col-span-1'
 
 									return (
-										<Link key={service.id} href={`/prestations/${typedService.slug}`} className={gridClass}>
-											<BentoGridItem
+										<StaggerItem key={service.id} className={gridClass}>
+											<Link href={`/prestations/${typedService.slug}`} className="block h-full">
+												<BentoGridItem
 												title={typedService.title}
 												description={typedService.shortDescription}
 												header={
@@ -113,11 +120,13 @@ export default async function PrestationsPage() {
 													)
 												}
 												className="h-full"
-											/>
-										</Link>
+												/>
+											</Link>
+										</StaggerItem>
 									)
 								})}
-							</BentoGrid>
+								</BentoGrid>
+							</StaggerContainer>
 						</Container>
 					</Section>
 				)

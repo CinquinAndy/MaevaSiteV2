@@ -1,5 +1,6 @@
 import config from '@payload-config'
 import { getPayload } from 'payload'
+import { StaggerContainer, StaggerItem } from '@/components/animations'
 import { CtaSection } from '@/components/home/cta-section'
 import Hero from '@/components/home/hero'
 import { Container } from '@/components/ui/container'
@@ -36,11 +37,16 @@ export default async function GaleriePage() {
 				<Container>
 					<div className="space-y-8">
 						{galeries.length > 0 ? (
-							<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
+							<StaggerContainer
+								staggerDelay={0.1}
+								className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8"
+							>
 								{galeries.map(galery => (
-									<GaleryCard key={galery.id} galery={galery as Galery} />
+									<StaggerItem key={galery.id}>
+										<GaleryCard galery={galery as Galery} />
+									</StaggerItem>
 								))}
-							</div>
+							</StaggerContainer>
 						) : (
 							<div className="text-center py-16">
 								<p className="text-muted-foreground text-lg">Aucune galerie publiée pour le moment.</p>

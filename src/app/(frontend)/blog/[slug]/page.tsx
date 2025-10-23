@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getPayload } from 'payload'
+import { FadeIn, FadeInWhenVisible, ScaleIn, SlideInFromBottom } from '@/components/animations'
 import { Blob2, Blob3, Blob4, Blob6, Blob8, Blob9 } from '@/components/blobs/blobs'
 import { BlogArticleGrid } from '@/components/blog/BlogArticleGrid'
 import { Badge } from '@/components/ui/badge'
@@ -118,17 +119,18 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
 			{/* Hero Banner */}
-			<div className="relative h-[60vh] lg:h-[70vh] w-full overflow-hidden">
-				{/* Background Image */}
-				{featuredImage?.url && (
-					<Image
-						src={featuredImage.url}
-						alt={featuredImage.alt || post.title}
-						fill
-						className="object-cover grayscale brightness-75"
-						priority
-					/>
-				)}
+			<FadeIn>
+				<div className="relative h-[60vh] lg:h-[70vh] w-full overflow-hidden">
+					{/* Background Image */}
+					{featuredImage?.url && (
+						<Image
+							src={featuredImage.url}
+							alt={featuredImage.alt || post.title}
+							fill
+							className="object-cover grayscale brightness-75"
+							priority
+						/>
+					)}
 
 				{/* Blobs décoratifs dans le hero */}
 				<div className="absolute left-10 top-20 z-10 animate-float-slow opacity-60 hidden md:block">
@@ -145,7 +147,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 				<div className="absolute bottom-0 left-0 right-0 z-30 pb-8 px-6 lg:px-12">
 					<div className="max-w-7xl mx-auto">
 						{/* Breadcrumb */}
-						<nav className="mb-4">
+						<SlideInFromBottom delay={0.2}>
+							<nav className="mb-4">
 							<ol className="flex items-center gap-2 text-sm text-muted-foreground">
 								<li>
 									<Link href="/" className="hover:text-foreground transition-colors">
@@ -161,26 +164,34 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 								<li>/</li>
 								<li className="text-foreground">{post.title}</li>
 							</ol>
-						</nav>
+							</nav>
+						</SlideInFromBottom>
 
 						{/* Category & Date */}
-						<div className="flex flex-wrap items-center gap-3 mb-4">
-							<Badge variant="primary">{categoryLabels[post.category] || post.category}</Badge>
-							<time className="text-sm text-muted-foreground">{publishedDate}</time>
-						</div>
+						<ScaleIn delay={0.3}>
+							<div className="flex flex-wrap items-center gap-3 mb-4">
+								<Badge variant="primary">{categoryLabels[post.category] || post.category}</Badge>
+								<time className="text-sm text-muted-foreground">{publishedDate}</time>
+							</div>
+						</ScaleIn>
 
 						{/* Title */}
-						<h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-foreground font-corinthia mb-4">
-							{post.title}
-						</h1>
+						<SlideInFromBottom delay={0.4}>
+							<h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-foreground font-corinthia mb-4">
+								{post.title}
+							</h1>
+						</SlideInFromBottom>
 
 						{/* Excerpt */}
 						{post.excerpt && (
-							<p className="text-lg md:text-xl text-muted-foreground max-w-3xl leading-relaxed">{post.excerpt}</p>
+							<FadeInWhenVisible>
+								<p className="text-lg md:text-xl text-muted-foreground max-w-3xl leading-relaxed">{post.excerpt}</p>
+							</FadeInWhenVisible>
 						)}
 					</div>
 				</div>
-			</div>
+				</div>
+			</FadeIn>
 
 			{/* Article Content Section */}
 			<div className="relative isolate bg-background">
@@ -208,17 +219,21 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
 				{/* Main Grid Layout */}
 				<div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8 relative">
-					<BlogArticleGrid post={post} featuredImage={featuredImage} />
+					<FadeInWhenVisible>
+						<BlogArticleGrid post={post} featuredImage={featuredImage} />
+					</FadeInWhenVisible>
 
 					{/* Bottom Section - Navigation */}
-					<div className="mt-12">
+					<SlideInFromBottom>
+						<div className="mt-12">
 						{/* Back to Blog */}
 						<div className="pt-8 border-t border-border">
 							<Link href="/blog" className="inline-flex items-center gap-2 text-primary hover:underline font-medium">
 								← Retour au blog
 							</Link>
 						</div>
-					</div>
+						</div>
+					</SlideInFromBottom>
 				</div>
 			</div>
 		</>

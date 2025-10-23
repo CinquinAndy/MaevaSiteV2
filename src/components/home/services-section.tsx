@@ -1,5 +1,3 @@
-'use client'
-
 import config from '@payload-config'
 import Image from 'next/image'
 import Link from 'next/link'

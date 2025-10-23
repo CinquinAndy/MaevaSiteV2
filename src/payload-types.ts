@@ -237,10 +237,10 @@ export interface Galery {
    * Image principale affichée dans la liste des galeries
    */
   coverImage: number | Media;
-  images: {
-    image: number | Media;
-    id?: string | null;
-  }[];
+  /**
+   * Sélectionnez ou uploadez plusieurs images en une seule fois
+   */
+  images: (number | Media)[];
   publishedDate: string;
   status: 'draft' | 'published';
   updatedAt: string;
@@ -507,12 +507,7 @@ export interface GalerySelect<T extends boolean = true> {
   description?: T;
   category?: T;
   coverImage?: T;
-  images?:
-    | T
-    | {
-        image?: T;
-        id?: T;
-      };
+  images?: T;
   publishedDate?: T;
   status?: T;
   updatedAt?: T;

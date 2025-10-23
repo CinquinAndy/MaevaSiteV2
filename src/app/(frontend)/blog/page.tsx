@@ -1,5 +1,6 @@
 import config from '@payload-config'
 import { getPayload } from 'payload'
+import { SlideInFromBottom, StaggerContainer, StaggerItem } from '@/components/animations'
 import { CtaSection } from '@/components/home/cta-section'
 import Hero from '@/components/home/hero'
 import { BlogCard } from '@/components/ui/blog-card'
@@ -36,20 +37,24 @@ export default async function BlogPage() {
 				<Container>
 					<div className="space-y-12">
 						{/* En-tête de section */}
-						<div className="max-w-2xl mx-auto text-center space-y-4">
-							<h2 className="text-3xl md:text-4xl font-bold text-foreground">Derniers Articles</h2>
-							<p className="text-muted-foreground text-lg">
-								Découvrez mes conseils, astuces et actualités dans le monde du maquillage et du nail art
-							</p>
-						</div>
+						<SlideInFromBottom>
+							<div className="max-w-2xl mx-auto text-center space-y-4">
+								<h2 className="text-3xl md:text-4xl font-bold text-foreground">Derniers Articles</h2>
+								<p className="text-muted-foreground text-lg">
+									Découvrez mes conseils, astuces et actualités dans le monde du maquillage et du nail art
+								</p>
+							</div>
+						</SlideInFromBottom>
 
 						{/* Articles Grid avec effet glowing */}
 						{posts.length > 0 ? (
-							<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+							<StaggerContainer staggerDelay={0.12} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
 								{posts.map(post => (
-									<BlogCard key={post.id} post={post as Blog} />
+									<StaggerItem key={post.id}>
+										<BlogCard post={post as Blog} />
+									</StaggerItem>
 								))}
-							</div>
+							</StaggerContainer>
 						) : (
 							<div className="text-center py-16">
 								<p className="text-muted-foreground text-lg">Aucun article publié pour le moment.</p>

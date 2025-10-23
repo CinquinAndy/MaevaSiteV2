@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getPayload } from 'payload'
+import { FadeIn, FadeInWhenVisible, ScaleIn, SlideInFromBottom, SlideInFromRight } from '@/components/animations'
 import { Blob2, Blob3, Blob4 } from '@/components/blobs/blobs'
 import { CtaSection } from '@/components/home/cta-section'
 import { Badge } from '@/components/ui/badge'
@@ -103,7 +104,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 	return (
 		<>
 			{/* Hero Banner */}
-			<div className="relative h-[60vh] lg:h-[70vh] w-full overflow-hidden">
+			<FadeIn>
+				<div className="relative h-[60vh] lg:h-[70vh] w-full overflow-hidden">
 				{/* Background Image */}
 				{featuredImage?.url && (
 					<Image
@@ -130,7 +132,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 				<div className="absolute bottom-0 left-0 right-0 z-30 pb-8 px-6 lg:px-12">
 					<div className="max-w-7xl mx-auto">
 						{/* Breadcrumb */}
-						<nav className="mb-4">
+						<SlideInFromBottom delay={0.2}>
+							<nav className="mb-4">
 							<ol className="flex items-center gap-2 text-sm text-muted-foreground">
 								<li>
 									<Link href="/" className="hover:text-foreground transition-colors">
@@ -146,34 +149,42 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 								<li>/</li>
 								<li className="text-foreground">{service.title}</li>
 							</ol>
-						</nav>
+							</nav>
+						</SlideInFromBottom>
 
 						{/* Category */}
-						<div className="mb-4">
-							<Badge variant="primary">{categoryLabels[service.category] || service.category}</Badge>
-						</div>
+						<ScaleIn delay={0.3}>
+							<div className="mb-4">
+								<Badge variant="primary">{categoryLabels[service.category] || service.category}</Badge>
+							</div>
+						</ScaleIn>
 
 						{/* Title */}
-						<h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-foreground font-corinthia mb-4">
-							{service.title}
-						</h1>
+						<SlideInFromBottom delay={0.4}>
+							<h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-foreground font-corinthia mb-4">
+								{service.title}
+							</h1>
+						</SlideInFromBottom>
 
 						{/* Short Description */}
 						{service.shortDescription && (
-							<p className="text-lg md:text-xl text-muted-foreground max-w-3xl leading-relaxed">
-								{service.shortDescription}
-							</p>
+							<FadeInWhenVisible>
+								<p className="text-lg md:text-xl text-muted-foreground max-w-3xl leading-relaxed">
+									{service.shortDescription}
+								</p>
+							</FadeInWhenVisible>
 						)}
 					</div>
 				</div>
-			</div>
+				</div>
+			</FadeIn>
 
 			{/* Main Content Section */}
 			<Section>
 				<Container>
 					<div className="grid grid-cols-1 gap-x-12 gap-y-16 lg:grid-cols-3">
 						{/* Left Column - Main Content (2 cols) */}
-						<div className="lg:col-span-2">
+						<FadeInWhenVisible className="lg:col-span-2">
 							{/* Description - Lexical RichText */}
 							<article className="prose prose-blog prose-lg max-w-none prose-headings:font-corinthia prose-h2:text-5xl prose-h3:text-4xl prose-h4:text-3xl prose-p:font-kalam prose-img:rounded-xl prose-img:shadow-lg">
 								{service.description && typeof service.description === 'object' && 'root' in service.description ? (
@@ -184,10 +195,10 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 									</div>
 								)}
 							</article>
-						</div>
+						</FadeInWhenVisible>
 
 						{/* Right Column - Sidebar */}
-						<div className="lg:col-span-1">
+						<SlideInFromRight className="lg:col-span-1">
 							<div className="sticky top-24 space-y-6">
 								{/* Pricing Card */}
 								{service.pricing?.displayPricing && (
@@ -253,18 +264,20 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 									</div>
 								</div>
 							</div>
-						</div>
+						</SlideInFromRight>
 					</div>
 
 					{/* Back to Prestations */}
-					<div className="mt-12 pt-8 border-t border-border">
+					<SlideInFromBottom>
+						<div className="mt-12 pt-8 border-t border-border">
 						<Link
 							href="/prestations"
 							className="inline-flex items-center gap-2 text-primary hover:underline font-medium"
 						>
 							← Retour aux prestations
 						</Link>
-					</div>
+						</div>
+					</SlideInFromBottom>
 				</Container>
 			</Section>
 
