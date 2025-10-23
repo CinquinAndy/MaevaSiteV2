@@ -53,6 +53,9 @@ export function generatePrestationsSEO(): Metadata {
 	return {
 		title: 'Prestations - Maquillage Beauté, Mariages, Artistique & Nail Art',
 		description: `Découvrez mes prestations de maquillage professionnel: beauté, mariages, artistique, body painting et nail art. Interventions à ${mainCities} et toute la Haute-Savoie.`,
+		alternates: {
+			canonical: `${SITE_CONFIG.url}/prestations`,
+		},
 	}
 }
 
@@ -64,6 +67,9 @@ export function generateGalerieSEO(): Metadata {
 		title: 'Portfolio & Galerie - Mes Réalisations',
 		description:
 			'Découvrez mon portfolio de maquillage professionnel: mariages, maquillages artistiques, beauty looks, nail art et body painting. Photos de mes réalisations en Haute-Savoie et Genève.',
+		alternates: {
+			canonical: `${SITE_CONFIG.url}/galerie`,
+		},
 	}
 }
 
@@ -75,6 +81,9 @@ export function generateBlogSEO(): Metadata {
 		title: 'Blog - Conseils Maquillage & Actualités Beauté',
 		description:
 			'Retrouvez mes conseils de maquilleuse professionnelle, astuces beauté, tendances maquillage et actualités nail art. Tips et tutoriels pour sublimer votre beauté.',
+		alternates: {
+			canonical: `${SITE_CONFIG.url}/blog`,
+		},
 	}
 }
 
@@ -88,6 +97,9 @@ export function generateContactSEO(): Metadata {
 	return {
 		title: 'Contact - Demandez un Devis Gratuit',
 		description: `Contactez-moi pour vos prestations de maquillage et nail art en Haute-Savoie et Suisse. Déplacement à ${zones}. Devis gratuit et réponse sous 24-48h.`,
+		alternates: {
+			canonical: `${SITE_CONFIG.url}/contact`,
+		},
 	}
 }
 
@@ -267,6 +279,9 @@ export function generateMentionsLegalesMetadata(): Metadata {
 		robots: {
 			index: true,
 			follow: true,
+		},
+		alternates: {
+			canonical: `${SITE_CONFIG.url}/mentions-legales`,
 		},
 	}
 }

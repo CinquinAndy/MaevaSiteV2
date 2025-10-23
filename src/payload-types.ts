@@ -239,7 +239,6 @@ export interface Galery {
   coverImage: number | Media;
   images: {
     image: number | Media;
-    caption?: string | null;
     id?: string | null;
   }[];
   publishedDate: string;
@@ -512,7 +511,6 @@ export interface GalerySelect<T extends boolean = true> {
     | T
     | {
         image?: T;
-        caption?: T;
         id?: T;
       };
   publishedDate?: T;

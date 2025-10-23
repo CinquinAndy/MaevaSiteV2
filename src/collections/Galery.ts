@@ -77,12 +77,6 @@ export const Galery: CollectionConfig = {
 					required: true,
 					label: 'Image',
 				},
-				{
-					name: 'caption',
-					type: 'text',
-					required: false,
-					label: 'Légende',
-				},
 			],
 		},
 		{

@@ -14,9 +14,8 @@ export function BlogArticleGrid({ post, featuredImage }: BlogArticleGridProps) {
 	const articleRef = useRef<HTMLDivElement>(null)
 
 	return (
-		<div ref={articleRef} className="grid grid-cols-1 gap-x-12 gap-y-16 lg:grid-cols-2 lg:items-start">
-			{/* Left Column - Content */}
-			<div className="lg:pr-8">
+		<div ref={articleRef} className="grid grid-cols-1">
+			<div>
 				{/* Main Content - Lexical RichText */}
 				<article className="prose prose-blog prose-lg max-w-none prose-headings:font-corinthia prose-h2:text-5xl prose-h3:text-4xl prose-h4:text-3xl prose-p:font-kalam prose-img:rounded-xl prose-img:shadow-lg">
 					{/* Render Lexical Content */}
@@ -29,16 +28,6 @@ export function BlogArticleGrid({ post, featuredImage }: BlogArticleGridProps) {
 					)}
 				</article>
 			</div>
-
-			{/* Right Column - Scrolling Featured Image (Desktop only) */}
-			{featuredImage?.url && (
-				<ScrollingImage
-					src={featuredImage.url}
-					alt={featuredImage.alt || post.title}
-					className="h-full w-full rounded-xl"
-					articleRef={articleRef}
-				/>
-			)}
 		</div>
 	)
 }
