@@ -1,6 +1,9 @@
+'use client'
+
 import { IconAward, IconBriefcase, IconHeart, IconMapPin } from '@tabler/icons-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { SlideInFromBottom, SlideInFromLeft, SlideInFromRight } from '@/components/animations'
 import { Container } from '@/components/ui/container'
 import { GradientButton } from '@/components/ui/gradient-button'
 import { Section } from '@/components/ui/section'
@@ -11,7 +14,7 @@ export function AboutSection() {
 			<Container>
 				<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 					{/* Colonne gauche - Image */}
-					<div className="order-2 lg:order-1 rotate-6">
+					<SlideInFromLeft className="order-2 lg:order-1 rotate-6">
 						<div className="relative aspect-[4/5] rounded-lg overflow-hidden bg-gradient-to-br from-primary/20 to-accent/20">
 							{/* Placeholder pour l'image de Maeva */}
 							{/* <div className="absolute inset-0 flex items-center justify-center">
@@ -33,11 +36,13 @@ export function AboutSection() {
 					</div>
 
 					{/* Colonne droite - Contenu */}
-					<div className="order-1 lg:order-2 space-y-6">
-						<div className="space-y-3">
-							<h2 className="text-4xl md:text-5xl font-bold text-foreground">Qui suis-je ?</h2>
-							<div className="h-1 w-20 bg-primary rounded-full" />
-						</div>
+					<SlideInFromRight className="order-1 lg:order-2 space-y-6">
+						<SlideInFromBottom delay={0.2}>
+							<div className="space-y-3">
+								<h2 className="text-4xl md:text-5xl font-bold text-foreground">Qui suis-je ?</h2>
+								<div className="h-1 w-20 bg-primary rounded-full" />
+							</div>
+						</SlideInFromBottom>
 
 						<div className="space-y-4 text-muted-foreground leading-relaxed">
 							<p>
@@ -58,7 +63,8 @@ export function AboutSection() {
 						</div>
 
 						{/* Points forts */}
-						<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+						<SlideInFromBottom delay={0.4}>
+							<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
 							<div className="flex items-start gap-3">
 								<div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
 									<IconAward className="w-5 h-5 text-primary" />
@@ -98,10 +104,12 @@ export function AboutSection() {
 									<p className="text-sm text-muted-foreground">À votre écoute</p>
 								</div>
 							</div>
-						</div>
+							</div>
+						</SlideInFromBottom>
 
 						{/* CTA */}
-						<div className="flex flex-col sm:flex-row gap-4 pt-4">
+						<SlideInFromBottom delay={0.6}>
+							<div className="flex flex-col sm:flex-row gap-4 pt-4">
 							<GradientButton asChild>
 								<Link href="/prestations" className="z-20 text-white">
 									Découvrir mes prestations
@@ -112,8 +120,10 @@ export function AboutSection() {
 									Me contacter
 								</Link>
 							</GradientButton>
-						</div>
-					</div>
+							</div>
+						</SlideInFromBottom>
+					</SlideInFromRight>
+					</SlideInFromLeft>
 				</div>
 			</Container>
 		</Section>

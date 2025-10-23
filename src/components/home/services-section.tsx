@@ -1,7 +1,10 @@
+'use client'
+
 import config from '@payload-config'
 import Image from 'next/image'
 import Link from 'next/link'
 import { getPayload } from 'payload'
+import { SlideInFromBottom, StaggerContainer, StaggerItem } from '@/components/animations'
 import { BentoGrid, BentoGridItem } from '@/components/ui/bento-grid'
 import { Container } from '@/components/ui/container'
 import { GradientButton } from '@/components/ui/gradient-button'
@@ -31,30 +34,34 @@ export async function ServicesSection() {
 			<Container>
 				<div className="space-y-12">
 					{/* Header */}
-					<div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-						<div className="space-y-3">
-							<h2 className="text-4xl md:text-5xl font-bold text-foreground">Mes Prestations</h2>
-							<p className="text-lg text-muted-foreground max-w-2xl">
-								Des services personnalisés pour sublimer votre beauté à chaque occasion
-							</p>
+					<SlideInFromBottom>
+						<div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+							<div className="space-y-3">
+								<h2 className="text-4xl md:text-5xl font-bold text-foreground">Mes Prestations</h2>
+								<p className="text-lg text-muted-foreground max-w-2xl">
+									Des services personnalisés pour sublimer votre beauté à chaque occasion
+								</p>
+							</div>
+							<GradientButton asChild className="md:shrink-0">
+								<Link href="/prestations" className="z-20 text-foreground flex items-center gap-2">
+									Voir toutes mes prestations
+								</Link>
+							</GradientButton>
 						</div>
-						<GradientButton asChild className="md:shrink-0">
-							<Link href="/prestations" className="z-20 text-foreground flex items-center gap-2">
-								Voir toutes mes prestations
-							</Link>
-						</GradientButton>
-					</div>
+					</SlideInFromBottom>
 
 					{/* Services Bento Grid */}
-					<BentoGrid>
+					<StaggerContainer staggerDelay={0.15}>
+						<BentoGrid>
 						{services.map(service => {
 							const typedService = service as Service
 							const featuredImage = typedService.featuredImage as Media | undefined
 							const gridClass = typedService.gridSize === 'large' ? 'md:col-span-2' : 'md:col-span-1'
 
 							return (
-								<Link key={service.id} href={`/prestations/${typedService.slug}`} className={gridClass}>
-									<BentoGridItem
+								<StaggerItem key={service.id} className={gridClass}>
+									<Link href={`/prestations/${typedService.slug}`} className="block h-full">
+										<BentoGridItem
 										title={typedService.title}
 										description={typedService.shortDescription}
 										header={
@@ -71,11 +78,13 @@ export async function ServicesSection() {
 											)
 										}
 										className="h-full"
-									/>
-								</Link>
+										/>
+									</Link>
+								</StaggerItem>
 							)
 						})}
-					</BentoGrid>
+						</BentoGrid>
+					</StaggerContainer>
 				</div>
 			</Container>
 		</Section>

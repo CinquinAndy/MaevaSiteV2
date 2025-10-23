@@ -1,7 +1,10 @@
+'use client'
+
 import config from '@payload-config'
 import { IconArrowRight } from '@tabler/icons-react'
 import Link from 'next/link'
 import { getPayload } from 'payload'
+import { SlideInFromBottom, StaggerContainer, StaggerItem } from '@/components/animations'
 import { Container } from '@/components/ui/container'
 import { GaleryCard } from '@/components/ui/galery-card'
 import { GradientButton } from '@/components/ui/gradient-button'
@@ -31,29 +34,35 @@ export async function LatestGalerySection() {
 			<Container>
 				<div className="space-y-12">
 					{/* Header */}
-					<div className="space-y-3">
-						<h2 className="text-4xl md:text-5xl font-bold text-foreground">Mes Dernières Créations</h2>
-						<p className="text-lg text-muted-foreground max-w-2xl">
-							Découvrez mes réalisations récentes en maquillage et nail art
-						</p>
-					</div>
+					<SlideInFromBottom>
+						<div className="space-y-3">
+							<h2 className="text-4xl md:text-5xl font-bold text-foreground">Mes Dernières Créations</h2>
+							<p className="text-lg text-muted-foreground max-w-2xl">
+								Découvrez mes réalisations récentes en maquillage et nail art
+							</p>
+						</div>
+					</SlideInFromBottom>
 
 					{/* Galleries Grid */}
-					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+					<StaggerContainer staggerDelay={0.15} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
 						{galeries.map(galery => (
-							<GaleryCard key={galery.id} galery={galery as Galery} />
+							<StaggerItem key={galery.id}>
+								<GaleryCard galery={galery as Galery} />
+							</StaggerItem>
 						))}
-					</div>
+					</StaggerContainer>
 
 					{/* CTA */}
-					<div className="pt-4">
+					<SlideInFromBottom delay={0.3}>
+						<div className="pt-4">
 						<GradientButton asChild>
 							<Link href="/galerie" className="z-20 text-foreground flex items-center gap-2">
 								Voir toutes les galeries
 								<IconArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
 							</Link>
 						</GradientButton>
-					</div>
+						</div>
+					</SlideInFromBottom>
 				</div>
 			</Container>
 		</Section>
