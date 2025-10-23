@@ -4,6 +4,11 @@ import config from '@payload-config'
 import '@payloadcms/next/css'
 import { REST_DELETE, REST_GET, REST_OPTIONS, REST_PATCH, REST_POST, REST_PUT } from '@payloadcms/next/routes'
 
+// Configure route segment for serverless functions
+export const runtime = 'nodejs'
+export const dynamic = 'force-dynamic'
+export const maxDuration = 60 // Maximum execution time in seconds (for media files from S3)
+
 export const GET = REST_GET(config)
 export const POST = REST_POST(config)
 export const DELETE = REST_DELETE(config)

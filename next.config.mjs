@@ -53,6 +53,10 @@ const nextConfig = {
 			bodySizeLimit: '10mb',
 		},
 	},
+	// Configure serverless function timeout for Payload API routes (especially media from S3)
+	serverRuntimeConfig: {
+		apiTimeout: 60000, // 60 seconds
+	},
 }
 
 export default withPayload(nextConfig, { devBundleServerPackages: false })
