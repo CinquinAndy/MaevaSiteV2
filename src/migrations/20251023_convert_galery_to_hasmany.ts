@@ -80,4 +80,3 @@ export async function down({ db }: MigrateDownArgs): Promise<void> {
 		CREATE INDEX IF NOT EXISTS "galery_images_image_idx" ON "galery_images" USING btree ("image_id");
 	`)
 }
-

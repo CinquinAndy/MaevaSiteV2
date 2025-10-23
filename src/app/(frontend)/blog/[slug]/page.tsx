@@ -132,64 +132,64 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 						/>
 					)}
 
-				{/* Blobs décoratifs dans le hero */}
-				<div className="absolute left-10 top-20 z-10 animate-float-slow opacity-60 hidden md:block">
-					<Blob2 />
-				</div>
-				<div className="absolute right-16 bottom-24 z-10 animate-float-medium delay-1000 opacity-70 hidden md:block">
-					<Blob4 />
-				</div>
-
-				{/* Content Overlay */}
-				<div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/40 to-transparent z-20" />
-
-				{/* Title & Metadata */}
-				<div className="absolute bottom-0 left-0 right-0 z-30 pb-8 px-6 lg:px-12">
-					<div className="max-w-7xl mx-auto">
-						{/* Breadcrumb */}
-						<SlideInFromBottom delay={0.2}>
-							<nav className="mb-4">
-							<ol className="flex items-center gap-2 text-sm text-muted-foreground">
-								<li>
-									<Link href="/" className="hover:text-foreground transition-colors">
-										Accueil
-									</Link>
-								</li>
-								<li>/</li>
-								<li>
-									<Link href="/blog" className="hover:text-foreground transition-colors">
-										Blog
-									</Link>
-								</li>
-								<li>/</li>
-								<li className="text-foreground">{post.title}</li>
-							</ol>
-							</nav>
-						</SlideInFromBottom>
-
-						{/* Category & Date */}
-						<ScaleIn delay={0.3}>
-							<div className="flex flex-wrap items-center gap-3 mb-4">
-								<Badge variant="primary">{categoryLabels[post.category] || post.category}</Badge>
-								<time className="text-sm text-muted-foreground">{publishedDate}</time>
-							</div>
-						</ScaleIn>
-
-						{/* Title */}
-						<SlideInFromBottom delay={0.4}>
-							<h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-foreground font-corinthia mb-4">
-								{post.title}
-							</h1>
-						</SlideInFromBottom>
-
-						{/* Excerpt */}
-						{post.excerpt && (
-							<FadeInWhenVisible>
-								<p className="text-lg md:text-xl text-muted-foreground max-w-3xl leading-relaxed">{post.excerpt}</p>
-							</FadeInWhenVisible>
-						)}
+					{/* Blobs décoratifs dans le hero */}
+					<div className="absolute left-10 top-20 z-10 animate-float-slow opacity-60 hidden md:block">
+						<Blob2 />
 					</div>
-				</div>
+					<div className="absolute right-16 bottom-24 z-10 animate-float-medium delay-1000 opacity-70 hidden md:block">
+						<Blob4 />
+					</div>
+
+					{/* Content Overlay */}
+					<div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/40 to-transparent z-20" />
+
+					{/* Title & Metadata */}
+					<div className="absolute bottom-0 left-0 right-0 z-30 pb-8 px-6 lg:px-12">
+						<div className="max-w-7xl mx-auto">
+							{/* Breadcrumb */}
+							<SlideInFromBottom delay={0.2}>
+								<nav className="mb-4">
+									<ol className="flex items-center gap-2 text-sm text-muted-foreground">
+										<li>
+											<Link href="/" className="hover:text-foreground transition-colors">
+												Accueil
+											</Link>
+										</li>
+										<li>/</li>
+										<li>
+											<Link href="/blog" className="hover:text-foreground transition-colors">
+												Blog
+											</Link>
+										</li>
+										<li>/</li>
+										<li className="text-foreground">{post.title}</li>
+									</ol>
+								</nav>
+							</SlideInFromBottom>
+
+							{/* Category & Date */}
+							<ScaleIn delay={0.3}>
+								<div className="flex flex-wrap items-center gap-3 mb-4">
+									<Badge variant="primary">{categoryLabels[post.category] || post.category}</Badge>
+									<time className="text-sm text-muted-foreground">{publishedDate}</time>
+								</div>
+							</ScaleIn>
+
+							{/* Title */}
+							<SlideInFromBottom delay={0.4}>
+								<h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-foreground font-corinthia mb-4">
+									{post.title}
+								</h1>
+							</SlideInFromBottom>
+
+							{/* Excerpt */}
+							{post.excerpt && (
+								<FadeInWhenVisible>
+									<p className="text-lg md:text-xl text-muted-foreground max-w-3xl leading-relaxed">{post.excerpt}</p>
+								</FadeInWhenVisible>
+							)}
+						</div>
+					</div>
 				</div>
 			</FadeIn>
 
@@ -226,12 +226,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 					{/* Bottom Section - Navigation */}
 					<SlideInFromBottom>
 						<div className="mt-12">
-						{/* Back to Blog */}
-						<div className="pt-8 border-t border-border">
-							<Link href="/blog" className="inline-flex items-center gap-2 text-primary hover:underline font-medium">
-								← Retour au blog
-							</Link>
-						</div>
+							{/* Back to Blog */}
+							<div className="pt-8 border-t border-border">
+								<Link href="/blog" className="inline-flex items-center gap-2 text-primary hover:underline font-medium">
+									← Retour au blog
+								</Link>
+							</div>
 						</div>
 					</SlideInFromBottom>
 				</div>

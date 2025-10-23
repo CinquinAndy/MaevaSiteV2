@@ -31,7 +31,7 @@ export function AboutSection() {
 								className="w-full h-full object-cover -rotate-6 scale-115"
 							/>
 						</div>
-					</div>
+					</SlideInFromLeft>
 
 					{/* Colonne droite - Contenu */}
 					<SlideInFromRight className="order-1 lg:order-2 space-y-6">
@@ -63,65 +63,64 @@ export function AboutSection() {
 						{/* Points forts */}
 						<SlideInFromBottom delay={0.4}>
 							<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-							<div className="flex items-start gap-3">
-								<div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-									<IconAward className="w-5 h-5 text-primary" />
+								<div className="flex items-start gap-3">
+									<div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+										<IconAward className="w-5 h-5 text-primary" />
+									</div>
+									<div>
+										<h3 className="font-semibold text-foreground text-sm font-kalam">Formation d'excellence</h3>
+										<p className="text-sm text-muted-foreground">Make Up For Ever Academy</p>
+									</div>
 								</div>
-								<div>
-									<h3 className="font-semibold text-foreground text-sm font-kalam">Formation d'excellence</h3>
-									<p className="text-sm text-muted-foreground">Make Up For Ever Academy</p>
-								</div>
-							</div>
 
-							<div className="flex items-start gap-3">
-								<div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-									<IconBriefcase className="w-5 h-5 text-primary" />
+								<div className="flex items-start gap-3">
+									<div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+										<IconBriefcase className="w-5 h-5 text-primary" />
+									</div>
+									<div>
+										<h3 className="font-semibold text-foreground text-sm font-kalam">Double expertise</h3>
+										<p className="text-sm text-muted-foreground">Maquillage & Nail Art</p>
+									</div>
 								</div>
-								<div>
-									<h3 className="font-semibold text-foreground text-sm font-kalam">Double expertise</h3>
-									<p className="text-sm text-muted-foreground">Maquillage & Nail Art</p>
-								</div>
-							</div>
 
-							<div className="flex items-start gap-3">
-								<div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-									<IconMapPin className="w-5 h-5 text-primary" />
+								<div className="flex items-start gap-3">
+									<div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+										<IconMapPin className="w-5 h-5 text-primary" />
+									</div>
+									<div>
+										<h3 className="font-semibold text-foreground text-sm font-kalam">Zone d'intervention</h3>
+										<p className="text-sm text-muted-foreground">Haute-Savoie & Suisse</p>
+									</div>
 								</div>
-								<div>
-									<h3 className="font-semibold text-foreground text-sm font-kalam">Zone d'intervention</h3>
-									<p className="text-sm text-muted-foreground">Haute-Savoie & Suisse</p>
-								</div>
-							</div>
 
-							<div className="flex items-start gap-3">
-								<div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-									<IconHeart className="w-5 h-5 text-primary" />
+								<div className="flex items-start gap-3">
+									<div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+										<IconHeart className="w-5 h-5 text-primary" />
+									</div>
+									<div>
+										<h3 className="font-semibold text-foreground text-sm font-kalam">Approche personnalisée</h3>
+										<p className="text-sm text-muted-foreground">À votre écoute</p>
+									</div>
 								</div>
-								<div>
-									<h3 className="font-semibold text-foreground text-sm font-kalam">Approche personnalisée</h3>
-									<p className="text-sm text-muted-foreground">À votre écoute</p>
-								</div>
-							</div>
 							</div>
 						</SlideInFromBottom>
 
 						{/* CTA */}
 						<SlideInFromBottom delay={0.6}>
 							<div className="flex flex-col sm:flex-row gap-4 pt-4">
-							<GradientButton asChild>
-								<Link href="/prestations" className="z-20 text-white">
-									Découvrir mes prestations
-								</Link>
-							</GradientButton>
-							<GradientButton asChild variant="secondary">
-								<Link href="/contact" className="z-20 text-white">
-									Me contacter
-								</Link>
-							</GradientButton>
+								<GradientButton asChild>
+									<Link href="/prestations" className="z-20 text-white">
+										Découvrir mes prestations
+									</Link>
+								</GradientButton>
+								<GradientButton asChild variant="secondary">
+									<Link href="/contact" className="z-20 text-white">
+										Me contacter
+									</Link>
+								</GradientButton>
 							</div>
 						</SlideInFromBottom>
 					</SlideInFromRight>
-					</SlideInFromLeft>
 				</div>
 			</Container>
 		</Section>

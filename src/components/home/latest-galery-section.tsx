@@ -42,7 +42,10 @@ export async function LatestGalerySection() {
 					</SlideInFromBottom>
 
 					{/* Galleries Grid */}
-					<StaggerContainer staggerDelay={0.15} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+					<StaggerContainer
+						staggerDelay={0.15}
+						className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+					>
 						{galeries.map(galery => (
 							<StaggerItem key={galery.id}>
 								<GaleryCard galery={galery as Galery} />
@@ -53,12 +56,12 @@ export async function LatestGalerySection() {
 					{/* CTA */}
 					<SlideInFromBottom delay={0.3}>
 						<div className="pt-4">
-						<GradientButton asChild>
-							<Link href="/galerie" className="z-20 text-foreground flex items-center gap-2">
-								Voir toutes les galeries
-								<IconArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-							</Link>
-						</GradientButton>
+							<GradientButton asChild>
+								<Link href="/galerie" className="z-20 text-foreground flex items-center gap-2">
+									Voir toutes les galeries
+									<IconArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+								</Link>
+							</GradientButton>
 						</div>
 					</SlideInFromBottom>
 				</div>

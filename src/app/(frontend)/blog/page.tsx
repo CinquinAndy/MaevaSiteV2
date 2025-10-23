@@ -48,7 +48,10 @@ export default async function BlogPage() {
 
 						{/* Articles Grid avec effet glowing */}
 						{posts.length > 0 ? (
-							<StaggerContainer staggerDelay={0.12} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+							<StaggerContainer
+								staggerDelay={0.12}
+								className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+							>
 								{posts.map(post => (
 									<StaggerItem key={post.id}>
 										<BlogCard post={post as Blog} />

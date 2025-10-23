@@ -201,12 +201,7 @@ interface StaggerContainerProps {
 	initialDelay?: number
 }
 
-export function StaggerContainer({
-	children,
-	className,
-	staggerDelay = 0.1,
-	initialDelay = 0,
-}: StaggerContainerProps) {
+export function StaggerContainer({ children, className, staggerDelay = 0.1, initialDelay = 0 }: StaggerContainerProps) {
 	const containerVariants: Variants = {
 		hidden: { opacity: 1 },
 		visible: {

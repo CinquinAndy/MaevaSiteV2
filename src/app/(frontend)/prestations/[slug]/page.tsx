@@ -106,76 +106,76 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 			{/* Hero Banner */}
 			<FadeIn>
 				<div className="relative h-[60vh] lg:h-[70vh] w-full overflow-hidden">
-				{/* Background Image */}
-				{featuredImage?.url && (
-					<Image
-						src={featuredImage.url}
-						alt={featuredImage.alt || service.title}
-						fill
-						className="object-cover brightness-75"
-						priority
-					/>
-				)}
+					{/* Background Image */}
+					{featuredImage?.url && (
+						<Image
+							src={featuredImage.url}
+							alt={featuredImage.alt || service.title}
+							fill
+							className="object-cover brightness-75"
+							priority
+						/>
+					)}
 
-				{/* Blobs décoratifs dans le hero */}
-				<div className="absolute left-10 top-20 z-10 animate-float-slow opacity-60 hidden md:block">
-					<Blob2 />
-				</div>
-				<div className="absolute right-16 bottom-24 z-10 animate-float-medium delay-1000 opacity-70 hidden md:block">
-					<Blob4 />
-				</div>
-
-				{/* Content Overlay */}
-				<div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/50 to-transparent z-20" />
-
-				{/* Title & Metadata */}
-				<div className="absolute bottom-0 left-0 right-0 z-30 pb-8 px-6 lg:px-12">
-					<div className="max-w-7xl mx-auto">
-						{/* Breadcrumb */}
-						<SlideInFromBottom delay={0.2}>
-							<nav className="mb-4">
-							<ol className="flex items-center gap-2 text-sm text-muted-foreground">
-								<li>
-									<Link href="/" className="hover:text-foreground transition-colors">
-										Accueil
-									</Link>
-								</li>
-								<li>/</li>
-								<li>
-									<Link href="/prestations" className="hover:text-foreground transition-colors">
-										Prestations
-									</Link>
-								</li>
-								<li>/</li>
-								<li className="text-foreground">{service.title}</li>
-							</ol>
-							</nav>
-						</SlideInFromBottom>
-
-						{/* Category */}
-						<ScaleIn delay={0.3}>
-							<div className="mb-4">
-								<Badge variant="primary">{categoryLabels[service.category] || service.category}</Badge>
-							</div>
-						</ScaleIn>
-
-						{/* Title */}
-						<SlideInFromBottom delay={0.4}>
-							<h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-foreground font-corinthia mb-4">
-								{service.title}
-							</h1>
-						</SlideInFromBottom>
-
-						{/* Short Description */}
-						{service.shortDescription && (
-							<FadeInWhenVisible>
-								<p className="text-lg md:text-xl text-muted-foreground max-w-3xl leading-relaxed">
-									{service.shortDescription}
-								</p>
-							</FadeInWhenVisible>
-						)}
+					{/* Blobs décoratifs dans le hero */}
+					<div className="absolute left-10 top-20 z-10 animate-float-slow opacity-60 hidden md:block">
+						<Blob2 />
 					</div>
-				</div>
+					<div className="absolute right-16 bottom-24 z-10 animate-float-medium delay-1000 opacity-70 hidden md:block">
+						<Blob4 />
+					</div>
+
+					{/* Content Overlay */}
+					<div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/50 to-transparent z-20" />
+
+					{/* Title & Metadata */}
+					<div className="absolute bottom-0 left-0 right-0 z-30 pb-8 px-6 lg:px-12">
+						<div className="max-w-7xl mx-auto">
+							{/* Breadcrumb */}
+							<SlideInFromBottom delay={0.2}>
+								<nav className="mb-4">
+									<ol className="flex items-center gap-2 text-sm text-muted-foreground">
+										<li>
+											<Link href="/" className="hover:text-foreground transition-colors">
+												Accueil
+											</Link>
+										</li>
+										<li>/</li>
+										<li>
+											<Link href="/prestations" className="hover:text-foreground transition-colors">
+												Prestations
+											</Link>
+										</li>
+										<li>/</li>
+										<li className="text-foreground">{service.title}</li>
+									</ol>
+								</nav>
+							</SlideInFromBottom>
+
+							{/* Category */}
+							<ScaleIn delay={0.3}>
+								<div className="mb-4">
+									<Badge variant="primary">{categoryLabels[service.category] || service.category}</Badge>
+								</div>
+							</ScaleIn>
+
+							{/* Title */}
+							<SlideInFromBottom delay={0.4}>
+								<h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-foreground font-corinthia mb-4">
+									{service.title}
+								</h1>
+							</SlideInFromBottom>
+
+							{/* Short Description */}
+							{service.shortDescription && (
+								<FadeInWhenVisible>
+									<p className="text-lg md:text-xl text-muted-foreground max-w-3xl leading-relaxed">
+										{service.shortDescription}
+									</p>
+								</FadeInWhenVisible>
+							)}
+						</div>
+					</div>
 				</div>
 			</FadeIn>
 
@@ -270,12 +270,12 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 					{/* Back to Prestations */}
 					<SlideInFromBottom>
 						<div className="mt-12 pt-8 border-t border-border">
-						<Link
-							href="/prestations"
-							className="inline-flex items-center gap-2 text-primary hover:underline font-medium"
-						>
-							← Retour aux prestations
-						</Link>
+							<Link
+								href="/prestations"
+								className="inline-flex items-center gap-2 text-primary hover:underline font-medium"
+							>
+								← Retour aux prestations
+							</Link>
 						</div>
 					</SlideInFromBottom>
 				</Container>

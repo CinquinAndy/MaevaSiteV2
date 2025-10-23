@@ -51,36 +51,36 @@ export async function ServicesSection() {
 					{/* Services Bento Grid */}
 					<StaggerContainer staggerDelay={0.15}>
 						<BentoGrid>
-						{services.map(service => {
-							const typedService = service as Service
-							const featuredImage = typedService.featuredImage as Media | undefined
-							const gridClass = typedService.gridSize === 'large' ? 'md:col-span-2' : 'md:col-span-1'
+							{services.map(service => {
+								const typedService = service as Service
+								const featuredImage = typedService.featuredImage as Media | undefined
+								const gridClass = typedService.gridSize === 'large' ? 'md:col-span-2' : 'md:col-span-1'
 
-							return (
-								<StaggerItem key={service.id} className={gridClass}>
-									<Link href={`/prestations/${typedService.slug}`} className="block h-full">
-										<BentoGridItem
-										title={typedService.title}
-										description={typedService.shortDescription}
-										header={
-											featuredImage?.url ? (
-												<Image
-													src={featuredImage.url}
-													alt={featuredImage.alt || typedService.title}
-													width={900}
-													height={600}
-													className="h-full w-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
-												/>
-											) : (
-												<div className="h-full w-full bg-gradient-to-br from-pink-100 to-pink-200 dark:from-pink-900 dark:to-pink-800" />
-											)
-										}
-										className="h-full"
-										/>
-									</Link>
-								</StaggerItem>
-							)
-						})}
+								return (
+									<StaggerItem key={service.id} className={gridClass}>
+										<Link href={`/prestations/${typedService.slug}`} className="block h-full">
+											<BentoGridItem
+												title={typedService.title}
+												description={typedService.shortDescription}
+												header={
+													featuredImage?.url ? (
+														<Image
+															src={featuredImage.url}
+															alt={featuredImage.alt || typedService.title}
+															width={900}
+															height={600}
+															className="h-full w-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
+														/>
+													) : (
+														<div className="h-full w-full bg-gradient-to-br from-pink-100 to-pink-200 dark:from-pink-900 dark:to-pink-800" />
+													)
+												}
+												className="h-full"
+											/>
+										</Link>
+									</StaggerItem>
+								)
+							})}
 						</BentoGrid>
 					</StaggerContainer>
 				</div>

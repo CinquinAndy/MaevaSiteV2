@@ -19,7 +19,10 @@ export default function HeroAltSection() {
 					</h2>
 				</SlideInFromBottom>
 			</FadeIn>
-			<FadeIn delay={0.6} className="absolute bottom-10 left-1/2 -translate-x-1/2 flex justify-center items-center z-40">
+			<FadeIn
+				delay={0.6}
+				className="absolute bottom-10 left-1/2 -translate-x-1/2 flex justify-center items-center z-40"
+			>
 				<MoveDown />
 			</FadeIn>
 			<FadeIn delay={0.3} className="w-full h-full col-span-1 lg:col-start-2 relative z-5">

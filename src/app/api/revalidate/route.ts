@@ -37,18 +37,12 @@ export async function POST(request: NextRequest) {
 		const revalidateSecret = process.env.REVALIDATE_SECRET
 		if (!revalidateSecret) {
 			console.error('[Revalidate] REVALIDATE_SECRET not configured in environment variables')
-			return NextResponse.json(
-				{ error: 'Revalidation not configured' },
-				{ status: 500 }
-			)
+			return NextResponse.json({ error: 'Revalidation not configured' }, { status: 500 })
 		}
 
 		if (secret !== revalidateSecret) {
 			console.error('[Revalidate] Invalid secret provided')
-			return NextResponse.json(
-				{ error: 'Invalid secret' },
-				{ status: 401 }
-			)
+			return NextResponse.json({ error: 'Invalid secret' }, { status: 401 })
 		}
 
 		const revalidatedPaths: string[] = []

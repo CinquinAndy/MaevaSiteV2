@@ -174,16 +174,16 @@ export async function TestimonialsSection() {
 				{/* Social proof */}
 				<SlideInFromBottom delay={0.3}>
 					<div className="text-center pt-8">
-					<div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-primary/10 via-primary/5 to-accent/10 border border-primary/20 backdrop-blur-sm">
-						<div className="flex items-center gap-1">
-							<IconStar className="w-5 h-5 text-amber-500 fill-amber-500" />
-							<span className="font-bold text-foreground">5.0</span>
+						<div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-primary/10 via-primary/5 to-accent/10 border border-primary/20 backdrop-blur-sm">
+							<div className="flex items-center gap-1">
+								<IconStar className="w-5 h-5 text-amber-500 fill-amber-500" />
+								<span className="font-bold text-foreground">5.0</span>
+							</div>
+							<div className="w-px h-4 bg-border" />
+							<span className="text-sm font-medium text-foreground">
+								Plus de <strong className="text-primary">{testimonials.length * 2} clientes</strong> satisfaites
+							</span>
 						</div>
-						<div className="w-px h-4 bg-border" />
-						<span className="text-sm font-medium text-foreground">
-							Plus de <strong className="text-primary">{testimonials.length * 2} clientes</strong> satisfaites
-						</span>
-					</div>
 					</div>
 				</SlideInFromBottom>
 			</Container>
