@@ -46,7 +46,7 @@ const nextConfig = {
 			{ protocol: 'https', hostname: 'cdnjs.cloudflare.com' },
 			{ protocol: 'https', hostname: '*.unsplash.com' },
 		],
-		qualities: [75, 90, 100], // Add quality configurations
+		qualities: [75, 90, 95, 100], // Add quality configurations
 	},
 	experimental: {
 		serverActions: {

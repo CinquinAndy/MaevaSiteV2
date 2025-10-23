@@ -4,7 +4,6 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { X } from 'lucide-react'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
-import { cn } from '@/lib/utils'
 import type { Media } from '@/payload-types'
 
 interface GaleryImage {
@@ -15,26 +14,6 @@ interface GaleryImage {
 
 interface BentoGaleryProps {
 	images: GaleryImage[]
-}
-
-// Génère automatiquement les spans pour le layout bento
-const generateBentoLayout = (totalImages: number): string[] => {
-	const layouts: string[] = []
-
-	for (let i = 0; i < totalImages; i++) {
-		// Alterne les patterns pour créer un effet bento varié
-		if (i % 7 === 0) {
-			layouts.push('md:col-span-2 md:row-span-2 sm:col-span-2 sm:row-span-2') // Grand
-		} else if (i % 5 === 0) {
-			layouts.push('md:col-span-1 md:row-span-2 sm:col-span-1 sm:row-span-2') // Vertical
-		} else if (i % 3 === 0) {
-			layouts.push('md:col-span-2 md:row-span-1 sm:col-span-2 sm:row-span-1') // Horizontal
-		} else {
-			layouts.push('md:col-span-1 md:row-span-1 sm:col-span-1 sm:row-span-1') // Petit
-		}
-	}
-
-	return layouts
 }
 
 // Modal pour afficher l'image en grand
@@ -181,7 +160,6 @@ function ImageModal({ image, isOpen, onClose, onNext, onPrev, currentIndex, tota
 export function BentoGalery({ images }: BentoGaleryProps) {
 	const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
 	const validImages = images.filter(item => item.image?.url)
-	const layouts = generateBentoLayout(validImages.length)
 
 	const handleNext = () => {
 		if (selectedIndex === null) return
@@ -203,8 +181,9 @@ export function BentoGalery({ images }: BentoGaleryProps) {
 
 	return (
 		<>
+			{/* Galerie masonry compacte avec CSS columns */}
 			<motion.div
-				className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[200px]"
+				className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-3 space-y-3"
 				initial="hidden"
 				whileInView="visible"
 				viewport={{ once: true, amount: 0.05 }}
@@ -216,45 +195,51 @@ export function BentoGalery({ images }: BentoGaleryProps) {
 					},
 				}}
 			>
-				{validImages.map((item, index) => (
-					<motion.div
-						key={item.id || index}
-						className={cn(
-							'group relative overflow-hidden rounded-xl cursor-pointer bg-muted',
-							'transition-all hover:shadow-2xl hover:z-10',
-							layouts[index] || 'md:col-span-1 md:row-span-1'
-						)}
-						variants={{
-							hidden: { y: 20, scale: 0.95, opacity: 0 },
-							visible: {
-								y: 0,
-								scale: 1,
-								opacity: 1,
-								transition: {
-									type: 'spring',
-									stiffness: 300,
-									damping: 25,
-								},
-							},
-						}}
-						whileHover={{ scale: 1.02 }}
-						onClick={() => setSelectedIndex(index)}
-					>
-						{/* Image */}
-						<div className="absolute inset-0">
-							<Image
-								src={item.image.url || ''}
-								alt={item.image.alt || item.caption || `Image ${index + 1}`}
-								fill
-								className="object-cover transition-transform duration-300 group-hover:scale-110"
-								sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-							/>
-						</div>
+				{validImages.map((item, index) => {
+					const width = item.image.width || 400
+					const height = item.image.height || 600
 
-						{/* Effet de brillance au survol */}
-						<div className="absolute inset-0 bg-linear-to-br from-white/0 via-white/5 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-					</motion.div>
-				))}
+					return (
+						<motion.div
+							key={item.id || index}
+							className="break-inside-avoid mb-3"
+							variants={{
+								hidden: { y: 20, opacity: 0 },
+								visible: {
+									y: 0,
+									opacity: 1,
+									transition: {
+										type: 'spring',
+										stiffness: 300,
+										damping: 25,
+									},
+								},
+							}}
+						>
+							<button
+								type="button"
+								className="group relative w-full cursor-pointer overflow-hidden rounded-xl transition-all duration-300 hover:shadow-2xl border-0 p-0 bg-transparent"
+								onClick={() => setSelectedIndex(index)}
+								style={{
+									aspectRatio: `${width} / ${height}`,
+								}}
+							>
+								<Image
+									src={item.image.url || ''}
+									alt={item.image.alt || item.caption || `Image ${index + 1}`}
+									width={width}
+									height={height}
+									className="h-auto w-full transition-transform duration-300 group-hover:scale-105"
+									sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+									quality={95}
+								/>
+
+								{/* Effet de brillance au survol */}
+								<div className="absolute inset-0 bg-linear-to-br from-white/0 via-white/10 to-white/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none" />
+							</button>
+						</motion.div>
+					)
+				})}
 			</motion.div>
 
 			{/* Modal */}
