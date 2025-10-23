@@ -40,8 +40,8 @@ const nextConfig = {
 	images: {
 		remotePatterns: [
 			{ protocol: 'http', hostname: 'localhost' },
-			{ protocol: 'https', hostname: '*.v2.cinquin-maeva.com' },
-			{ protocol: 'https', hostname: 'v2.cinquin-maeva.com' },
+			{ protocol: 'https', hostname: '*.cinquin-maeva.com' },
+			{ protocol: 'https', hostname: 'cinquin-maeva.com' },
 			{ protocol: 'https', hostname: '*.andy-cinquin.fr' },
 			{ protocol: 'https', hostname: 'cdnjs.cloudflare.com' },
 			{ protocol: 'https', hostname: '*.unsplash.com' },
