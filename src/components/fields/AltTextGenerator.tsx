@@ -9,7 +9,7 @@ const AltTextGenerator: React.FC = () => {
 	const [error, setError] = useState<string | null>(null)
 	const [success, setSuccess] = useState<string | null>(null)
 	const { id } = useDocumentInfo()
-	const { getData, setData } = useForm()
+	const { dispatchFields } = useForm()
 	const pollingIntervalRef = useRef<NodeJS.Timeout | null>(null)
 
 	// Clean up polling interval on unmount
@@ -38,8 +38,11 @@ const AltTextGenerator: React.FC = () => {
 				}
 
 				// Update the form data with the new alt text
-				const currentData = getData()
-				setData({ ...currentData, alt: media.alt })
+				dispatchFields({
+					type: 'UPDATE',
+					path: 'alt',
+					value: media.alt,
+				})
 
 				// Update UI
 				setSuccess(`✅ Alt text généré avec succès: "${media.alt}"`)
