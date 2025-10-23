@@ -1,7 +1,7 @@
 'use client'
 
-import { useDocumentInfo } from '@payloadcms/ui'
-import { useState } from 'react'
+import { useDocumentInfo, useForm } from '@payloadcms/ui'
+import { useEffect, useRef, useState } from 'react'
 import { Button } from '../ui/button'
 
 const AltTextGenerator: React.FC = () => {
@@ -9,6 +9,46 @@ const AltTextGenerator: React.FC = () => {
 	const [error, setError] = useState<string | null>(null)
 	const [success, setSuccess] = useState<string | null>(null)
 	const { id } = useDocumentInfo()
+	const { getData, setData } = useForm()
+	const pollingIntervalRef = useRef<NodeJS.Timeout | null>(null)
+
+	// Clean up polling interval on unmount
+	useEffect(() => {
+		return () => {
+			if (pollingIntervalRef.current) {
+				clearInterval(pollingIntervalRef.current)
+			}
+		}
+	}, [])
+
+	const pollForAltText = async () => {
+		try {
+			// Fetch the media document to check if alt text has been generated
+			const response = await fetch(`/api/media/${id}`)
+			if (!response.ok) return
+
+			const media = await response.json()
+
+			// Check if alt text exists now
+			if (media.alt && media.alt.trim() !== '') {
+				// Stop polling
+				if (pollingIntervalRef.current) {
+					clearInterval(pollingIntervalRef.current)
+					pollingIntervalRef.current = null
+				}
+
+				// Update the form data with the new alt text
+				const currentData = getData()
+				setData({ ...currentData, alt: media.alt })
+
+				// Update UI
+				setSuccess(`✅ Alt text généré avec succès: "${media.alt}"`)
+				setIsGenerating(false)
+			}
+		} catch (err) {
+			console.error('Polling error:', err)
+		}
+	}
 
 	const handleGenerate = async () => {
 		if (!id) {
@@ -36,15 +76,20 @@ const AltTextGenerator: React.FC = () => {
 			}
 
 			// Show success message - generation is happening in background
-			setSuccess(
-				`✅ Génération lancée en arrière-plan pour "${data.filename}". Rafraîchissez la page dans ~10 secondes.`
-			)
-			setIsGenerating(false)
+			setSuccess(`⏳ Génération en cours pour "${data.filename}"... Le champ sera mis à jour automatiquement.`)
 
-			// Auto-reload after 10 seconds to show the generated alt text
+			// Start polling for the generated alt text (every 2 seconds)
+			pollingIntervalRef.current = setInterval(pollForAltText, 2000)
+
+			// Stop polling after 30 seconds (timeout)
 			setTimeout(() => {
-				window.location.reload()
-			}, 10000)
+				if (pollingIntervalRef.current) {
+					clearInterval(pollingIntervalRef.current)
+					pollingIntervalRef.current = null
+					setIsGenerating(false)
+					setSuccess(`⚠️ La génération prend plus de temps que prévu. Vérifiez les logs du serveur.`)
+				}
+			}, 30000)
 		} catch (err) {
 			setError(err instanceof Error ? err.message : 'An error occurred')
 			setIsGenerating(false)

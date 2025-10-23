@@ -31,16 +31,15 @@ const BulkAltTextGenerator: React.FC = () => {
 			// Generation happens in background - show immediate feedback
 			setTotalImages(data.total)
 			setIsDone(true)
-
-			// Reload after 30 seconds to show generated alt texts
-			setTimeout(() => {
-				window.location.reload()
-			}, 30000)
 		} catch (err) {
 			setError(err instanceof Error ? err.message : 'An error occurred')
 		} finally {
 			setIsGenerating(false)
 		}
+	}
+
+	const handleRefresh = () => {
+		window.location.reload()
 	}
 
 	return (
@@ -116,9 +115,24 @@ const BulkAltTextGenerator: React.FC = () => {
 									</p>
 								</div>
 								{isDone && (
-									<p style={{ fontSize: '12px', color: '#2563eb', marginTop: '8px', marginBottom: 0 }}>
-										La page va se recharger dans 30 secondes...
-									</p>
+									<button
+										type="button"
+										onClick={handleRefresh}
+										style={{
+											width: '100%',
+											marginTop: '12px',
+											padding: '8px 16px',
+											backgroundColor: '#10b981',
+											color: 'white',
+											border: 'none',
+											borderRadius: '6px',
+											fontSize: '14px',
+											fontWeight: '500',
+											cursor: 'pointer',
+										}}
+									>
+										🔄 Rafraîchir la page pour voir les résultats
+									</button>
 								)}
 							</div>
 						)}
