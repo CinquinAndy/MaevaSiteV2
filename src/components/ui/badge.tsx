@@ -12,7 +12,7 @@ export function Badge({ variant = 'default', children, className, ...props }: Ba
 			className={cn(
 				'inline-flex items-center rounded-full px-3 py-1 text-xs font-medium transition-colors',
 				{
-					'bg-primary/10 text-primary': variant === 'default' || variant === 'primary',
+					'bg-primary/50 text-foreground': variant === 'default' || variant === 'primary',
 					'bg-secondary/10 text-secondary': variant === 'secondary',
 					'bg-accent/10 text-accent-foreground': variant === 'accent',
 					'border border-border bg-transparent text-foreground': variant === 'outline',

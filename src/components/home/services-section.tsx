@@ -72,7 +72,7 @@ export async function ServicesSection() {
 															className="h-full w-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
 														/>
 													) : (
-														<div className="h-full w-full bg-gradient-to-br from-pink-100 to-pink-200 dark:from-pink-900 dark:to-pink-800" />
+														<div className="h-full w-full bg-gradient-to-br from-primary/10 to-primary/20" />
 													)
 												}
 												className="h-full"

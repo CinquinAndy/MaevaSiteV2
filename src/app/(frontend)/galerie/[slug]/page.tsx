@@ -142,7 +142,7 @@ export default async function GaleryDetailPage({ params }: { params: Promise<{ s
 					</div>
 
 					{/* Content Overlay */}
-					<div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/40 to-transparent z-20" />
+					<div className="absolute inset-0 bg-linear-to-t from-background/80 via-background/40 to-transparent z-20" />
 
 					{/* Title & Metadata */}
 					<div className="absolute bottom-0 left-0 right-0 z-30 pb-8 px-6 lg:px-12">
@@ -298,7 +298,7 @@ export default async function GaleryDetailPage({ params }: { params: Promise<{ s
 						{coverImage?.url && (
 							<FadeInWhenVisible>
 								<div className="sticky top-24 h-auto w-full rounded-xl bg-card shadow-2xl ring-1 ring-border overflow-hidden">
-									<div className="relative aspect-[4/3] w-full">
+									<div className="relative aspect-4/3 w-full">
 										<Image
 											src={coverImage.url}
 											alt={coverImage.alt || galery.title}
@@ -324,14 +324,12 @@ export default async function GaleryDetailPage({ params }: { params: Promise<{ s
 
 						{/* Bento Galery */}
 						{galery.images && (galery.images as Media[]).length > 0 && (
-							<FadeInWhenVisible>
-								<BentoGalery
-									images={(galery.images as Media[]).map(media => ({
-										image: media,
-										id: media.id.toString(),
-									}))}
-								/>
-							</FadeInWhenVisible>
+							<BentoGalery
+								images={(galery.images as Media[]).map(media => ({
+									image: media,
+									id: media.id.toString(),
+								}))}
+							/>
 						)}
 					</div>
 

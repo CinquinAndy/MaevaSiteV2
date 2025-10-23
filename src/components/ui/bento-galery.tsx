@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { X } from 'lucide-react'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { cn } from '@/lib/utils'
 import type { Media } from '@/payload-types'
 
@@ -49,34 +49,79 @@ interface ImageModalProps {
 }
 
 function ImageModal({ image, isOpen, onClose, onNext, onPrev, currentIndex, totalImages }: ImageModalProps) {
+	const [direction, setDirection] = useState(0)
+
+	// Gestion du clavier
+	useEffect(() => {
+		if (!isOpen) return
+
+		const handleKeyDown = (e: KeyboardEvent) => {
+			if (e.key === 'Escape') {
+				onClose()
+			} else if (e.key === 'ArrowLeft') {
+				setDirection(-1)
+				onPrev()
+			} else if (e.key === 'ArrowRight') {
+				setDirection(1)
+				onNext()
+			}
+		}
+
+		window.addEventListener('keydown', handleKeyDown)
+		return () => window.removeEventListener('keydown', handleKeyDown)
+	}, [isOpen, onClose, onNext, onPrev])
+
 	if (!isOpen) return null
+
+	const handleDragEnd = (_event: MouseEvent | TouchEvent | PointerEvent, info: { offset: { x: number } }) => {
+		const swipeThreshold = 50 // Distance minimale pour déclencher un swipe
+		const swipeOffset = info.offset.x
+
+		if (Math.abs(swipeOffset) > swipeThreshold) {
+			if (swipeOffset > 0) {
+				// Swipe vers la droite - image précédente
+				setDirection(-1)
+				onPrev()
+			} else {
+				// Swipe vers la gauche - image suivante
+				setDirection(1)
+				onNext()
+			}
+		}
+	}
 
 	return (
 		<motion.div
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
 			exit={{ opacity: 0 }}
-			className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm p-4"
+			className="fixed inset-0 z-100 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4"
 			onClick={onClose}
 		>
 			<div className="relative w-full max-w-7xl h-full max-h-[90vh] flex items-center justify-center">
-				{/* Image principale */}
+				{/* Image principale avec drag/swipe */}
 				<motion.div
-					initial={{ scale: 0.95, opacity: 0 }}
-					animate={{ scale: 1, opacity: 1 }}
-					exit={{ scale: 0.95, opacity: 0 }}
+					key={currentIndex} // Force la ré-animation à chaque changement d'image
+					initial={{ x: direction * 300, opacity: 0, scale: 0.95 }}
+					animate={{ x: 0, opacity: 1, scale: 1 }}
+					exit={{ x: direction * -300, opacity: 0, scale: 0.95 }}
 					transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-					className="relative w-full h-full flex items-center justify-center"
+					drag="x"
+					dragConstraints={{ left: 0, right: 0 }}
+					dragElastic={0.2}
+					onDragEnd={handleDragEnd}
+					className="relative w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing"
 					onClick={e => e.stopPropagation()}
 				>
-					<div className="relative w-full h-full">
+					<div className="relative w-full h-full pointer-events-none">
 						<Image
 							src={image.image.url || ''}
 							alt={image.image.alt || image.caption || 'Image'}
 							fill
-							className="object-contain"
+							className="object-contain select-none"
 							sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
 							priority
+							draggable={false}
 						/>
 					</div>
 				</motion.div>
@@ -97,9 +142,11 @@ function ImageModal({ image, isOpen, onClose, onNext, onPrev, currentIndex, tota
 							type="button"
 							onClick={e => {
 								e.stopPropagation()
+								setDirection(-1)
 								onPrev()
 							}}
-							className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm transition-all hover:scale-110"
+							className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm transition-all hover:scale-110 z-10"
+							aria-label="Image précédente"
 						>
 							<svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -109,9 +156,11 @@ function ImageModal({ image, isOpen, onClose, onNext, onPrev, currentIndex, tota
 							type="button"
 							onClick={e => {
 								e.stopPropagation()
+								setDirection(1)
 								onNext()
 							}}
-							className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm transition-all hover:scale-110"
+							className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm transition-all hover:scale-110 z-10"
+							aria-label="Image suivante"
 						>
 							<svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -157,7 +206,8 @@ export function BentoGalery({ images }: BentoGaleryProps) {
 			<motion.div
 				className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[200px]"
 				initial="hidden"
-				animate="visible"
+				whileInView="visible"
+				viewport={{ once: true, amount: 0.05 }}
 				variants={{
 					hidden: { opacity: 0 },
 					visible: {
@@ -202,7 +252,7 @@ export function BentoGalery({ images }: BentoGaleryProps) {
 						</div>
 
 						{/* Effet de brillance au survol */}
-						<div className="absolute inset-0 bg-gradient-to-br from-white/0 via-white/5 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+						<div className="absolute inset-0 bg-linear-to-br from-white/0 via-white/5 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 					</motion.div>
 				))}
 			</motion.div>

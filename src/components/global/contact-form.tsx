@@ -49,11 +49,11 @@ export function ContactForm() {
 	}
 
 	return (
-		<form action={handleSubmit} className="space-y-6">
+		<form action={handleSubmit} className="space-y-6" id="contact">
 			{/* Nom */}
 			<div className="space-y-2">
 				<Label htmlFor="name">
-					Nom complet <span className="text-destructive">*</span>
+					Nom complet <span className="text-destructive text-xl font-bold">*</span>
 				</Label>
 				<Input id="name" name="name" type="text" required placeholder="Votre nom" disabled={isSubmitting} />
 			</div>
@@ -61,7 +61,7 @@ export function ContactForm() {
 			{/* Email */}
 			<div className="space-y-2">
 				<Label htmlFor="email">
-					Email <span className="text-destructive">*</span>
+					Email <span className="text-destructive text-xl font-bold">*</span>
 				</Label>
 				<Input
 					id="email"
@@ -94,7 +94,7 @@ export function ContactForm() {
 			{/* Message */}
 			<div className="space-y-2">
 				<Label htmlFor="message">
-					Votre message <span className="text-destructive">*</span>
+					Votre message <span className="text-destructive text-xl font-bold">*</span>
 				</Label>
 				<Textarea
 					id="message"

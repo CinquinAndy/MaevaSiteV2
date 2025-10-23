@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import type React from 'react'
 import { useEffect, useRef, useState } from 'react'
 import { cn } from '@/lib/utils'
@@ -38,12 +38,47 @@ export const Gooey: React.FC<GooeyNavProps> = ({
 	const textRef = useRef<HTMLSpanElement>(null)
 	const [activeIndex, setActiveIndex] = useState<number>(initialActiveIndex)
 	const pathname = usePathname()
+	const router = useRouter()
 
 	// Mettre à jour l'index actif basé sur le pathname
 	useEffect(() => {
-		const index = items.findIndex(item => item.href === pathname)
-		if (index >= 0 && index !== activeIndex) {
-			setActiveIndex(index)
+		// Fonction pour trouver le meilleur match pour le pathname actuel
+		const findBestMatch = () => {
+			// D'abord, chercher une correspondance exacte
+			const exactMatchIndex = items.findIndex(item => item.href === pathname)
+			if (exactMatchIndex >= 0) {
+				return exactMatchIndex
+			}
+
+			// Si pas de correspondance exacte, chercher si le pathname commence par un des hrefs
+			// (utile pour les sous-pages comme /blog/article qui devrait activer /blog)
+			let bestMatchIndex = -1
+			let longestMatch = 0
+
+			items.forEach((item, index) => {
+				// Ignorer le logo et la homepage pour le matching partiel
+				if (item.href === '/' || item.isLogo) return
+
+				if (pathname.startsWith(item.href)) {
+					const matchLength = item.href.length
+					if (matchLength > longestMatch) {
+						longestMatch = matchLength
+						bestMatchIndex = index
+					}
+				}
+			})
+
+			// Si on est sur la homepage, retourner l'index du logo/homepage
+			if (pathname === '/') {
+				return items.findIndex(item => item.href === '/')
+			}
+
+			return bestMatchIndex >= 0 ? bestMatchIndex : 0
+		}
+
+		const newIndex = findBestMatch()
+		if (newIndex !== activeIndex) {
+			setActiveIndex(newIndex)
 		}
 	}, [pathname, items, activeIndex])
 
@@ -151,6 +186,9 @@ export const Gooey: React.FC<GooeyNavProps> = ({
 		if (filterRef.current) {
 			makeParticles(filterRef.current)
 		}
+
+		// Navigate to the selected item
+		router.push(items[index].href)
 	}
 
 	useEffect(() => {
@@ -195,14 +233,14 @@ export const Gooey: React.FC<GooeyNavProps> = ({
 			<nav className="flex relative" style={{ transform: 'translate3d(0,0,0.01px)' }}>
 				<ul
 					ref={navRef}
-					className={cn('flex gap-x-1 sm:gap-x-2 lg:gap-x-4 list-none p-0 px-2 sm:px-3 lg:px-4 m-0 relative z-[3]')}
+					className={cn('flex gap-x-1 sm:gap-x-2 lg:gap-x-4 list-none p-0 px-2 sm:px-3 lg:px-4 m-0 relative z-3')}
 					aria-label="Main navigation"
 				>
 					{items.map((item, index) => (
 						<li
 							key={item.href}
 							className={cn(
-								`py-1.5 my-1 px-2.5 sm:py-2 sm:my-2 sm:px-3 lg:py-3 lg:px-5 flex items-center justify-center rounded-full relative cursor-pointer`,
+								`py-1.5 my-1 px-2.5 sm:py-2 sm:my-2 sm:px-3 lg:py-3 lg:px-5 flex items-center justify-center rounded-full relative cursor-pointer min-w-[32px] min-h-[32px]`,
 								activeIndex === index ? 'active' : ''
 							)}
 							onClick={e => handleClick(e, index)}
@@ -216,7 +254,7 @@ export const Gooey: React.FC<GooeyNavProps> = ({
 						>
 							<Link
 								href={item.href}
-								className="outline-none no-underline flex items-center cursor-pointer gap-1 sm:gap-2 text-xs sm:text-sm lg:text-base"
+								className="outline-none no-underline h-full flex items-center cursor-pointer gap-1 sm:gap-2 text-xs sm:text-sm lg:text-base"
 								tabIndex={-1}
 							>
 								{item.isLogo ? (
@@ -225,7 +263,7 @@ export const Gooey: React.FC<GooeyNavProps> = ({
 										alt="Logo"
 										width={150}
 										height={150}
-										className="h-5 w-5 sm:h-6 sm:w-6 lg:h-8 lg:w-8 scale-125"
+										className="h-6 w-6 sm:w-7 sm:h-7 lg:h-8 lg:w-8 scale-125"
 									/>
 								) : (
 									item.label

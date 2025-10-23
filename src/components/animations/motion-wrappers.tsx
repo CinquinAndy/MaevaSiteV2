@@ -81,12 +81,12 @@ const scaleInVariants: Variants = {
 /**
  * FadeInWhenVisible - Animation de fade in au scroll
  */
-export function FadeInWhenVisible({ children, className, delay = 0, duration = 0.6 }: AnimationWrapperProps) {
+export function FadeInWhenVisible({ children, className, duration = 0.6 }: AnimationWrapperProps) {
 	return (
 		<motion.div
 			initial="hidden"
 			whileInView="visible"
-			viewport={{ once: true, amount: 0.2 }}
+			viewport={{ once: true, amount: 0.1 }}
 			variants={fadeInVariants}
 			custom={duration}
 			className={className}
@@ -100,7 +100,7 @@ export function FadeInWhenVisible({ children, className, delay = 0, duration = 0
 /**
  * FadeIn - Animation de fade in au montage (sans scroll detection)
  */
-export function FadeIn({ children, className, delay = 0, duration = 0.6 }: AnimationWrapperProps) {
+export function FadeIn({ children, className, duration = 0.6 }: AnimationWrapperProps) {
 	return (
 		<motion.div
 			initial="hidden"
@@ -123,7 +123,7 @@ export function SlideInFromBottom({ children, className, delay = 0, duration = 0
 		<motion.div
 			initial="hidden"
 			whileInView="visible"
-			viewport={{ once: true, amount: 0.2 }}
+			viewport={{ once: true, amount: 0.1 }}
 			variants={slideInFromBottomVariants}
 			custom={{ delay, duration }}
 			className={className}
@@ -142,7 +142,7 @@ export function SlideInFromLeft({ children, className, delay = 0, duration = 0.6
 		<motion.div
 			initial="hidden"
 			whileInView="visible"
-			viewport={{ once: true, amount: 0.2 }}
+			viewport={{ once: true, amount: 0.1 }}
 			variants={slideInFromLeftVariants}
 			custom={{ delay, duration }}
 			className={className}
@@ -161,7 +161,7 @@ export function SlideInFromRight({ children, className, delay = 0, duration = 0.
 		<motion.div
 			initial="hidden"
 			whileInView="visible"
-			viewport={{ once: true, amount: 0.2 }}
+			viewport={{ once: true, amount: 0.1 }}
 			variants={slideInFromRightVariants}
 			custom={{ delay, duration }}
 			className={className}
@@ -180,7 +180,7 @@ export function ScaleIn({ children, className, delay = 0, duration = 0.6 }: Anim
 		<motion.div
 			initial="hidden"
 			whileInView="visible"
-			viewport={{ once: true, amount: 0.2 }}
+			viewport={{ once: true, amount: 0.1 }}
 			variants={scaleInVariants}
 			custom={{ delay, duration }}
 			className={className}

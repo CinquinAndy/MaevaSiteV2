@@ -34,7 +34,7 @@ export function CtaSection() {
 
 						<div className="flex flex-col sm:flex-row items-center justify-center gap-4">
 							<GradientButton asChild variant="default">
-								<Link href="/contact" className="flex items-center gap-2 text-foreground relative z-20">
+								<Link href="#contact" className="flex items-center gap-2 text-foreground relative z-20">
 									<Mail className="size-5" />
 									Demander un devis
 									<ArrowRight className="size-5" />

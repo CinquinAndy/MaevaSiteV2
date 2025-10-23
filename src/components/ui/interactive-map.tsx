@@ -1,6 +1,5 @@
 'use client'
 
-import { MapPin } from 'lucide-react'
 import dynamic from 'next/dynamic'
 import { useMemo } from 'react'
 
@@ -20,7 +19,6 @@ interface InteractiveMapProps {
 const MapContainer = dynamic(() => import('react-leaflet').then(mod => mod.MapContainer), { ssr: false })
 const TileLayer = dynamic(() => import('react-leaflet').then(mod => mod.TileLayer), { ssr: false })
 const Marker = dynamic(() => import('react-leaflet').then(mod => mod.Marker), { ssr: false })
-const Popup = dynamic(() => import('react-leaflet').then(mod => mod.Popup), { ssr: false })
 const Circle = dynamic(() => import('react-leaflet').then(mod => mod.Circle), { ssr: false })
 
 // Locations principales
@@ -134,20 +132,7 @@ function InteractiveMapContent() {
 					key={location.name}
 					position={location.coordinates}
 					icon={location.isMainStudio ? mainIcon : locationIcon}
-				>
-					<Popup>
-						<div className="p-2">
-							<h3 className="font-semibold text-foreground mb-1">{location.name}</h3>
-							{location.description && <p className="text-sm text-muted-foreground">{location.description}</p>}
-							{location.isMainStudio && (
-								<div className="mt-2 inline-flex items-center gap-1 px-2 py-1 bg-primary/10 text-primary rounded text-xs font-medium">
-									<MapPin className="w-3 h-3" />
-									Studio principal
-								</div>
-							)}
-						</div>
-					</Popup>
-				</Marker>
+				/>
 			))}
 		</MapContainer>
 	)

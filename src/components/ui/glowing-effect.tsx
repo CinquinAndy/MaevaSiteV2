@@ -117,7 +117,7 @@ const GlowingEffect = memo(
 						'pointer-events-none absolute -inset-px hidden rounded-[inherit] border opacity-0 transition-opacity',
 						glow && 'opacity-100',
 						variant === 'white' && 'border-white',
-						variant === 'burgundy' && 'border-rose-300',
+						variant === 'burgundy' && 'border-accent',
 						disabled && '!block'
 					)}
 				/>

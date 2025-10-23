@@ -78,7 +78,7 @@ export function GaleryCard({ galery, className }: GaleryCardProps) {
 							</div>
 
 							{/* Titre */}
-							<h3 className="text-xl font-libre-caslon-display font-semibold leading-[1.375rem] tracking-[-0.04em] text-balance text-foreground group-hover:text-pink-700 transition-colors md:text-2xl md:leading-[1.875rem] line-clamp-2">
+							<h3 className="text-xl font-libre-caslon-display font-semibold leading-[1.375rem] tracking-[-0.04em] text-balance text-foreground group-hover:text-primary transition-colors md:text-2xl md:leading-[1.875rem] line-clamp-2">
 								{galery.title}
 							</h3>
 
@@ -92,7 +92,7 @@ export function GaleryCard({ galery, className }: GaleryCardProps) {
 
 						{/* CTA */}
 						<div className="pt-2 border-t border-border/50">
-							<span className="text-sm font-medium text-pink-700 group-hover:text-pink-800 transition-colors flex items-center gap-2">
+							<span className="text-sm font-medium text-primary group-hover:text-primary/90 transition-colors flex items-center gap-2">
 								Voir la galerie
 								<span className="transition-transform group-hover:translate-x-1">→</span>
 							</span>
