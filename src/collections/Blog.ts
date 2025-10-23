@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { revalidateAfterChange, revalidateAfterDelete } from '@/lib/payload/revalidate-hook'
 import { seoFields } from '@/lib/payload/seo-fields'
 
 export const Blog: CollectionConfig = {
@@ -9,6 +10,10 @@ export const Blog: CollectionConfig = {
 	},
 	access: {
 		read: () => true,
+	},
+	hooks: {
+		afterChange: [revalidateAfterChange],
+		afterDelete: [revalidateAfterDelete],
 	},
 	fields: [
 		...seoFields,

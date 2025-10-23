@@ -9,6 +9,9 @@ import { generateHomeJsonLd, generateHomeMetadata } from '@/lib/seo'
 
 export const metadata = generateHomeMetadata()
 
+// ISR - Revalidate toutes les heures
+export const revalidate = 3600
+
 export default async function HomePage() {
 	const jsonLd = generateHomeJsonLd()
 

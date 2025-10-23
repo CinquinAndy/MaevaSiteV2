@@ -20,6 +20,9 @@ const categoryLabels: Record<string, string> = {
 	formation: 'Formation',
 }
 
+// ISR - Revalidate toutes les heures
+export const revalidate = 3600
+
 export async function generateStaticParams() {
 	const payload = await getPayload({ config })
 

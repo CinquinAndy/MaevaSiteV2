@@ -10,6 +10,9 @@ import type { Blog } from '@/payload-types'
 
 export const metadata = generateBlogListingMetadata()
 
+// ISR - Revalidate toutes les heures
+export const revalidate = 3600
+
 export default async function BlogPage() {
 	const payload = await getPayload({ config })
 

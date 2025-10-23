@@ -5,6 +5,9 @@ import { generateMentionsLegalesMetadata } from '@/lib/seo'
 
 export const metadata = generateMentionsLegalesMetadata()
 
+// ISR - Revalidate toutes les heures (même si contenu statique, pour cohérence)
+export const revalidate = 3600
+
 export default function MentionsLegalesPage() {
 	return (
 		<>

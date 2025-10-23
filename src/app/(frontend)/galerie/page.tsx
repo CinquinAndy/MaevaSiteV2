@@ -10,6 +10,9 @@ import type { Galery } from '@/payload-types'
 
 export const metadata = generateGaleryListingMetadata()
 
+// ISR - Revalidate toutes les heures
+export const revalidate = 3600
+
 export default async function GaleriePage() {
 	const payload = await getPayload({ config })
 

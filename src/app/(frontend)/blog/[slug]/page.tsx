@@ -18,6 +18,9 @@ const categoryLabels: Record<string, string> = {
 	'mariages-evenements': 'Mariages & Événements',
 }
 
+// ISR - Revalidate toutes les heures
+export const revalidate = 3600
+
 export async function generateStaticParams() {
 	const payload = await getPayload({ config })
 

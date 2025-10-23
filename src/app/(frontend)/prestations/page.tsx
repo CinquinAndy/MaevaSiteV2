@@ -12,6 +12,9 @@ import type { Media, Service } from '@/payload-types'
 
 export const metadata = generateServicesListingMetadata()
 
+// ISR - Revalidate toutes les heures
+export const revalidate = 3600
+
 export default async function PrestationsPage() {
 	const payload = await getPayload({ config })
 

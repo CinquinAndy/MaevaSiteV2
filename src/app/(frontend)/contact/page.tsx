@@ -11,6 +11,9 @@ import { generateContactMetadata } from '@/lib/seo'
 
 export const metadata = generateContactMetadata()
 
+// ISR - Revalidate toutes les heures
+export const revalidate = 3600
+
 export default function ContactPage() {
 	return (
 		<>

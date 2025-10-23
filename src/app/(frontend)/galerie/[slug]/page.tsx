@@ -18,6 +18,9 @@ const categoryLabels: Record<string, string> = {
 	collections: 'Collections',
 }
 
+// ISR - Revalidate toutes les heures
+export const revalidate = 3600
+
 export async function generateStaticParams() {
 	const payload = await getPayload({ config })
 
@@ -313,7 +316,6 @@ export default async function GaleryDetailPage({ params }: { params: Promise<{ s
 							<BentoGalery
 								images={galery.images.map(item => ({
 									image: item.image as Media,
-									caption: item.caption,
 									id: item.id,
 								}))}
 							/>
