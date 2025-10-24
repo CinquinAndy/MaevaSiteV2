@@ -45,7 +45,7 @@
 		"@react-three/drei": "10.7.6",
 		"@react-three/fiber": "9.4.0",
 		"@tabler/icons-react": "3.35.0",
-		"@tailwindcss/postcss": "4.1.15",
+		"@tailwindcss/postcss": "4.1.16",
 		"@tailwindcss/typography": "0.5.19",
 		"@types/leaflet": "1.9.21",
 		"ai": "5.0.78",
@@ -75,7 +75,7 @@
 		"sharp": "0.34.4",
 		"sonner": "2.0.7",
 		"tailwind-merge": "3.3.1",
-		"tailwindcss": "4.1.15",
+		"tailwindcss": "4.1.16",
 		"three": "0.180.0"
 	},
 	"devDependencies": {
