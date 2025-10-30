@@ -1,25 +1,25 @@
 import type { Metadata } from 'next'
+import { cookies } from 'next/headers'
 import Link from 'next/link'
-import type React from 'react'
-import { cookies, headers } from 'next/headers'
 import { redirect } from 'next/navigation'
+import type React from 'react'
 import { FadeIn, FadeInWhenVisible, ScaleIn, SlideInFromBottom } from '@/components/animations'
 import { Blob2, Blob3, Blob4, Blob6, Blob8, Blob9 } from '@/components/blobs/blobs'
 import { Badge } from '@/components/ui/badge'
 
 export const metadata: Metadata = {
-	title: 'Guide d\'Utilisation - Maeva Cinquin CMS',
+	title: "Guide d'Utilisation - Maeva Cinquin CMS",
 	description:
-		'Apprends à gérer ton site avec Payload CMS : créer des articles, optimiser le SEO, utiliser l\'IA Gemini et gérer tes médias.',
+		"Apprends à gérer ton site avec Payload CMS : créer des articles, optimiser le SEO, utiliser l'IA Gemini et gérer tes médias.",
 }
 
 export default async function Page(): Promise<React.JSX.Element> {
 	// Verify Payload auth by checking session cookie
 	const cookieStore = await cookies()
-	
+
 	// Check if Payload session cookie exists
 	const payloadToken = cookieStore.get('payload-token')
-	
+
 	// If no session cookie, redirect to admin (which shows login if not authenticated)
 	if (!payloadToken || !payloadToken.value) {
 		redirect('/admin')
@@ -92,8 +92,8 @@ export default async function Page(): Promise<React.JSX.Element> {
 							{/* Excerpt */}
 							<FadeInWhenVisible>
 								<p className="text-lg md:text-xl text-muted-foreground max-w-3xl leading-relaxed">
-									Apprends à gérer ton site professionnel : créer des articles de blog, optimiser le
-									référencement avec l'IA Gemini, et gérer tes médias avec génération automatique d'alt text.
+									Apprends à gérer ton site : créer des articles de blog, optimiser le référencement, et gérer les
+									photos etc.
 								</p>
 							</FadeInWhenVisible>
 						</div>
@@ -163,8 +163,7 @@ export default async function Page(): Promise<React.JSX.Element> {
 
 							<h3>🎯 Qu'est-ce que le SEO ?</h3>
 							<p>
-								<strong>SEO</strong> signifie "Search Engine Optimization" (Optimisation pour les Moteurs de
-								Recherche).
+								<strong>SEO</strong> signifie "Search Engine Optimization" (Optimisation pour les Moteurs de Recherche).
 							</p>
 							<p>
 								<strong>En simple :</strong> C'est ce qui permet de rendre ton site visible sur Google.
@@ -203,12 +202,12 @@ Description : Maquilleuse pro à Bordeaux. Mariages, shooting photo, événement
 							</p>
 							<ol>
 								<li>
-									<strong>Accessibilité :</strong> Les personnes malvoyantes utilisent des lecteurs d'écran qui
-									lisent cette description
+									<strong>Accessibilité :</strong> Les personnes malvoyantes utilisent des lecteurs d'écran qui lisent
+									cette description
 								</li>
 								<li>
-									<strong>SEO :</strong> Google ne "voit" pas les images, il lit l'alt text pour comprendre ce
-									qu'elles représentent
+									<strong>SEO :</strong> Google ne "voit" pas les images, il lit l'alt text pour comprendre ce qu'elles
+									représentent
 								</li>
 							</ol>
 
@@ -217,9 +216,7 @@ Description : Maquilleuse pro à Bordeaux. Mariages, shooting photo, événement
 							</p>
 							<ul>
 								<li>❌ Mauvais : "image1.jpg" ou "photo"</li>
-								<li>
-									✅ Bon : "Maquillage artistique de mariée avec fard à paupières doré et gloss nude à Bordeaux"
-								</li>
+								<li>✅ Bon : "Maquillage artistique de mariée avec fard à paupières doré et gloss nude à Bordeaux"</li>
 							</ul>
 
 							<hr />
@@ -231,29 +228,29 @@ Description : Maquilleuse pro à Bordeaux. Mariages, shooting photo, événement
 								<strong>Qu'est-ce que c'est ?</strong>
 							</p>
 							<p>
-								Forvoyez est un service (écrit pas Bré & moi) d'intelligence artificielle qui analyse tes images et génère
-								automatiquement une description en français.
+								Forvoyez est un service (écrit pas Bré & moi) d'intelligence artificielle qui analyse tes images et
+								génère automatiquement une description en français.
 							</p>
 
 							<p>
 								<strong>Comment l'utiliser ?</strong>
 							</p>
 							<ol>
-								<li>Téléchargez votre image dans la bibliothèque Médias</li>
+								<li>Télécharge ton image dans la bibliothèque Médias</li>
 								<li>
-									Cliquez sur le bouton <strong>"✨ Générer alt text"</strong>
+									Clique sur le bouton <strong>"✨ Générer alt text"</strong>
 								</li>
-								<li>Attendez quelques secondes</li>
+								<li>Attends quelques secondes</li>
 								<li>L'IA génère une description automatique</li>
 								<li>
-									<strong>Important :</strong> Vérifiez toujours le résultat et ajustez si nécessaire
+									<strong>Important :</strong> Vérifie toujours le résultat et ajuste si nécessaire
 								</li>
 							</ol>
 
 							<p>
 								<strong>Note :</strong> La génération d'alt text se lance automatiquement en arrière-plan lors du
-								téléchargement. Si après 10 minutes vous n'avez toujours rien, tu peux réessayer manuellement
-								ou remplir le champ vous-même.
+								téléchargement. Si après 10 minutes tu n'as toujours rien, tu peux réessayer manuellement ou remplir le
+								champ toi-même.
 							</p>
 
 							<hr />
@@ -263,34 +260,35 @@ Description : Maquilleuse pro à Bordeaux. Mariages, shooting photo, événement
 								<strong>Qu'est-ce que c'est ?</strong>
 							</p>
 							<p>
-								Gemini est l'IA de Google, utilisée ici pour générer automatiquement les titres et descriptions
-								SEO.
+								Gemini est l'IA de Google, utilisée ici pour générer automatiquement les titres et descriptions SEO.
 							</p>
 
 							<p>
 								<strong>Comment l'utiliser ?</strong>
 							</p>
 							<ol>
-								<li>Ouvrez n'importe quel article de blog, service ou galerie dans Payload</li>
+								<li>Ouvre n'importe quel article de blog, service ou galerie dans Payload</li>
 								<li>
 									Cherchez le bouton <strong>"🤖 Générer SEO avec Gemini"</strong> (en haut de la section SEO)
 								</li>
-								<li>Cliquez dessus</li>
+								<li>Clique dessus</li>
 								<li>
-									L'IA analyse le contenu de votre page et génère :
+									L'IA analyse le contenu de ta page et génère :
 									<ul>
 										<li>Un titre SEO optimisé (max 60 caractères)</li>
 										<li>Une description SEO optimisée (max 155 caractères)</li>
 									</ul>
 								</li>
 								<li>
-									<strong>Important :</strong> Vérifiez et personnalisez si besoin
+									<strong>Important :</strong> Vérifie et personnalise si besoin
 								</li>
 							</ol>
 
 							<p>
-								<strong>Gemini et Forvoyez vous évitent de vous prendre la tête avec le côté "SEO" du site - tout
-								est automatique et simple !</strong>
+								<strong>
+									Gemini et Forvoyez t'évitent de te prendre la tête avec le côté "SEO" du site - tout est automatique
+									et simple !
+								</strong>
 							</p>
 
 							<hr />
@@ -307,22 +305,21 @@ Description : Maquilleuse pro à Bordeaux. Mariages, shooting photo, événement
 
 							<h3>📝 Connexion</h3>
 							<ol>
-								<li>Ouvrez l'URL d'administration dans votre navigateur</li>
-								<li>Vous verrez un écran de connexion</li>
+								<li>Ouvre l'URL d'administration dans ton navigateur</li>
+								<li>Tu verras un écran de connexion</li>
 								<li>
-									Entrez votre <strong>email</strong> et <strong>mot de passe</strong>
+									Entre ton <strong>email</strong> et ton <strong>mot de passe</strong>
 								</li>
 								<li>
-									Cliquez sur <strong>"Se connecter"</strong>
+									Clique sur <strong>"Se connecter"</strong>
 								</li>
 							</ol>
 
 							<h3>🗂️ Interface principale</h3>
-							<p>Une fois connecté, vous verrez le tableau de bord avec :</p>
+							<p>Une fois connecté, tu verras le tableau de bord avec :</p>
 							<ul>
 								<li>
-									<strong>Collections</strong> (à gauche) : Blog, Médias, Services, Galerie, Témoignages,
-									Utilisateurs
+									<strong>Collections</strong> (à gauche) : Blog, Médias, Services, Galerie, Témoignages, Utilisateurs
 								</li>
 								<li>
 									<strong>Dashboard :</strong> Vue d'ensemble avec statistiques Umami et accès rapide aux tutoriels
@@ -350,11 +347,11 @@ Description : Maquilleuse pro à Bordeaux. Mariages, shooting photo, événement
 							<h3>Créer un nouvel article</h3>
 							<ol>
 								<li>
-									Cliquez sur <strong>"Create New"</strong> (en haut à droite)
+									Clique sur <strong>"Create New"</strong> (en haut à droite)
 								</li>
-								<li>Remplissez tous les champs (voir ci-dessous)</li>
+								<li>Remplis tous les champs (voir ci-dessous)</li>
 								<li>
-									Cliquez sur <strong>"Save"</strong> en haut à droite
+									Clique sur <strong>"Save"</strong> en haut à droite
 								</li>
 							</ol>
 
@@ -364,7 +361,7 @@ Description : Maquilleuse pro à Bordeaux. Mariages, shooting photo, événement
 
 							<h4>Titre de l'article</h4>
 							<ul>
-								<li>Le titre principal de votre article</li>
+								<li>Le titre principal de ton article</li>
 								<li>
 									<strong>Exemple :</strong> "Comment réussir un maquillage de mariée naturel"
 								</li>
@@ -385,8 +382,8 @@ Description : Maquilleuse pro à Bordeaux. Mariages, shooting photo, événement
 									<code>https://cinquin-maeva.com/blog/maquillage-mariee-naturel</code>
 								</li>
 								<li>
-									<strong>Important :</strong> Ne modifiez pas le slug après la création, car cela casserait les
-									liens existants
+									<strong>Important :</strong> Ne modifiez pas le slug après la création, car cela casserait les liens
+									existants
 								</li>
 							</ul>
 
@@ -396,14 +393,14 @@ Description : Maquilleuse pro à Bordeaux. Mariages, shooting photo, événement
 								<li>Apparaît dans les listes d'articles et sur les réseaux sociaux</li>
 								<li>Doit donner envie de lire l'article complet</li>
 								<li>
-									<strong>Exemple :</strong> "Découvrez mes conseils pour un maquillage de mariée qui sublimera
-									votre beauté naturelle. Technique, produits et astuces d'une pro."
+									<strong>Exemple :</strong> "Découvre mes conseils pour un maquillage de mariée qui sublimera ta beauté
+									naturelle. Technique, produits et astuces d'une pro."
 								</li>
 							</ul>
 
 							<h4>Image principale (Featured Image)</h4>
 							<ul>
-								<li>L'image qui représente votre article</li>
+								<li>L'image qui représente ton article</li>
 								<li>Apparaît en haut de l'article et dans les listes</li>
 								<li>
 									<strong>Recommandation :</strong> Photo de haute qualité (1920x1080 minimum)
@@ -412,7 +409,7 @@ Description : Maquilleuse pro à Bordeaux. Mariages, shooting photo, événement
 							</ul>
 
 							<h4>Catégorie</h4>
-							<p>Choisissez parmi :</p>
+							<p>Choisis parmi :</p>
 							<ul>
 								<li>
 									<strong>Conseils Maquillage :</strong> Tutoriels et astuces beauté
@@ -435,55 +432,51 @@ Description : Maquilleuse pro à Bordeaux. Mariages, shooting photo, événement
 							</ul>
 
 							<h4>Contenu de l'article</h4>
-							<p>
-								C'est ici que vous rédigez votre article avec l'éditeur de texte enrichi. Vous pouvez utiliser :
-							</p>
+							<p>C'est ici que tu rédiges ton article avec l'éditeur de texte enrichi. Tu peux utiliser :</p>
 							<ul>
 								<li>
-									<strong>Titres (H2, H3, H4) :</strong> Structurez votre contenu
+									<strong>Titres (H2, H3, H4) :</strong> Structure ton contenu
 								</li>
 								<li>
-									<strong>Gras & Italique :</strong> Mettez en avant les points importants
+									<strong>Gras & Italique :</strong> Mets en avant les points importants
 								</li>
 								<li>
 									<strong>Listes :</strong> À puces ou numérotées
 								</li>
 								<li>
-									<strong>Liens :</strong> Ajoutez des liens internes ou externes
+									<strong>Liens :</strong> Ajoute des liens internes ou externes
 								</li>
 								<li>
-									<strong>Images :</strong> Insérez des photos dans votre contenu
+									<strong>Images :</strong> Insère des photos dans ton contenu
 								</li>
 								<li>
-									<strong>Citations :</strong> Mettez en avant des phrases clés
+									<strong>Citations :</strong> Mets en avant des phrases clés
 								</li>
 							</ul>
 
 							<p>
-								<strong>Astuce :</strong> Structurez votre article avec des titres clairs pour faciliter la
-								lecture.
+								<strong>Astuce :</strong> Structure ton article avec des titres clairs pour faciliter la lecture.
 							</p>
 
 							<h4>Statut</h4>
 							<p>Deux options :</p>
 							<ul>
 								<li>
-									<strong>Draft (Brouillon) :</strong> L'article n'est pas publié, vous seul pouvez le voir
+									<strong>Draft (Brouillon) :</strong> L'article n'est pas publié, toi seul peux le voir
 								</li>
 								<li>
 									<strong>Published (Publié) :</strong> L'article est visible par tous sur le site
 								</li>
 							</ul>
 							<p>
-								<strong>Conseil :</strong> Travaillez en mode Draft, puis publiez quand vous êtes satisfait du
-								résultat.
+								<strong>Conseil :</strong> Travaille en mode Draft, puis publie quand tu es satisfait du résultat.
 							</p>
 
 							<h4>Date de publication</h4>
 							<ul>
 								<li>Date à laquelle l'article sera considéré comme publié</li>
 								<li>Par défaut : aujourd'hui</li>
-								<li>Vous pouvez planifier une publication future en choisissant une date ultérieure</li>
+								<li>Tu peux planifier une publication future en choisissant une date ultérieure</li>
 							</ul>
 
 							<hr />
@@ -492,29 +485,28 @@ Description : Maquilleuse pro à Bordeaux. Mariages, shooting photo, événement
 
 							<h4>Méthode automatique (recommandée)</h4>
 							<ol>
-								<li>Remplissez d'abord le titre, l'extrait et le contenu de l'article</li>
+								<li>Remplis d'abord le titre, l'extrait et le contenu de l'article</li>
 								<li>
-									Cliquez sur <strong>"🤖 Générer SEO avec Gemini"</strong>
+									Clique sur <strong>"🤖 Générer SEO avec Gemini"</strong>
 								</li>
-								<li>L'IA analyse votre article et génère un SEO optimisé</li>
-								<li>Vérifiez et ajustez si besoin</li>
+								<li>L'IA analyse ton article et génère un SEO optimisé</li>
+								<li>Vérifie et ajuste si besoin</li>
 							</ol>
 
 							<h4>Méthode manuelle</h4>
 							<ul>
 								<li>
-									<strong>Titre SEO :</strong> Ex: "Maquillage de Mariée Naturel : Guide Complet 2024 | Maeva
-									Cinquin"
+									<strong>Titre SEO :</strong> Ex: "Maquillage de Mariée Naturel : Guide Complet 2024 | Maeva Cinquin"
 								</li>
 								<li>
-									<strong>Description SEO :</strong> Ex: "Apprenez à créer un maquillage de mariée naturel et
-									lumineux. Techniques pro, produits recommandés et astuces d'une maquilleuse expérimentée."
+									<strong>Description SEO :</strong> Ex: "Apprenez à créer un maquillage de mariée naturel et lumineux.
+									Techniques pro, produits recommandés et astuces d'une maquilleuse expérimentée."
 								</li>
 							</ul>
 
 							<p>
-								<strong>Conseil :</strong> Gemini génère parfait pour le SEO. Utilisez-le, puis personnalisez
-								selon votre style si besoin.
+								<strong>Conseil :</strong> Gemini est parfait pour le SEO. Utilise-le, puis personnalise selon ton style
+								si besoin.
 							</p>
 
 							<hr />
@@ -524,10 +516,10 @@ Description : Maquilleuse pro à Bordeaux. Mariages, shooting photo, événement
 								<li>
 									Allez dans <strong>Collections</strong> → <strong>Blog</strong>
 								</li>
-								<li>Cliquez sur l'article à modifier</li>
+								<li>Clique sur l'article à modifier</li>
 								<li>Modifiez les champs nécessaires</li>
 								<li>
-									Cliquez sur <strong>"Save"</strong>
+									Clique sur <strong>"Save"</strong>
 								</li>
 							</ol>
 
@@ -540,13 +532,13 @@ Description : Maquilleuse pro à Bordeaux. Mariages, shooting photo, événement
 								</li>
 								<li>Cochez la case à côté de l'article à supprimer</li>
 								<li>
-									Cliquez sur <strong>"Delete"</strong> en haut
+									Clique sur <strong>"Delete"</strong> en haut
 								</li>
 								<li>Confirmez la suppression</li>
 							</ol>
 							<p>
-								<strong>Attention :</strong> La suppression est définitive. Assurez-vous de ne plus avoir besoin de
-								cet article.
+								<strong>Attention :</strong> La suppression est définitive. Assure-toi de ne plus avoir besoin de cet
+								article.
 							</p>
 
 							<hr />
@@ -565,17 +557,16 @@ Description : Maquilleuse pro à Bordeaux. Mariages, shooting photo, événement
 							<h3>Télécharger une nouvelle image</h3>
 							<ol>
 								<li>
-									Cliquez sur <strong>"Upload New"</strong>
+									Clique sur <strong>"Upload New"</strong>
 								</li>
-								<li>Sélectionnez votre image (ou glissez-déposez)</li>
-								<li>Attendez le téléchargement</li>
+								<li>Sélectionne ton image (ou glisse-dépose)</li>
+								<li>Attends le téléchargement</li>
 							</ol>
 							<p>
 								<strong>Formats acceptés :</strong> JPG, PNG, WebP
 							</p>
 							<p>
-								<strong>Taille recommandée :</strong> Maximum 5 Mo par image (compressez tes images avant si
-								nécessaire)
+								<strong>Taille recommandée :</strong> Maximum 5 Mo par image (compressez tes images avant si nécessaire)
 							</p>
 
 							<hr />
@@ -588,45 +579,44 @@ Description : Maquilleuse pro à Bordeaux. Mariages, shooting photo, événement
 								<strong>Méthode automatique (avec Forvoyez) :</strong>
 							</p>
 							<ol>
-								<li>Ouvrez l'image dans la bibliothèque</li>
+								<li>Ouvre l'image dans la bibliothèque</li>
 								<li>
-									Cliquez sur <strong>"✨ Générer alt text"</strong>
+									Clique sur <strong>"✨ Générer alt text"</strong>
 								</li>
-								<li>Attendez quelques secondes</li>
+								<li>Attends quelques secondes</li>
 								<li>L'IA analyse l'image et génère une description</li>
 								<li>
-									<strong>Vérifiez le résultat</strong> et ajustez si nécessaire
+									<strong>Vérifie le résultat</strong> et ajuste si nécessaire
 								</li>
 								<li>
-									Cliquez sur <strong>"Save"</strong>
+									Clique sur <strong>"Save"</strong>
 								</li>
 							</ol>
 
 							<p>
-								<strong>Note importante :</strong> Lors de l'envoi de l'image, la génération automatique d'alt
-								text se lance en arrière-plan. Si après 10 minutes et un rafraîchissement de page (F5) vous n'avez
-								toujours rien dans le champ "alt", tu peux le remplir à la main ou réessayer avec le bouton
-								Forvoyez.
+								<strong>Note importante :</strong> Lors de l'envoi de l'image, la génération automatique d'alt text se
+								lance en arrière-plan. Si après 10 minutes et un rafraîchissement de page (F5) tu n'as toujours rien
+								dans le champ "alt", tu peux le remplir à la main ou réessayer avec le bouton Forvoyez.
 							</p>
 
 							<p>
 								<strong>Méthode manuelle :</strong>
 							</p>
 							<ol>
-								<li>Ouvrez l'image</li>
+								<li>Ouvre l'image</li>
 								<li>
-									Remplissez le champ <strong>"Alt Text"</strong>
+									Remplis le champ <strong>"Alt Text"</strong>
 								</li>
 								<li>
-									Cliquez sur <strong>"Save"</strong>
+									Clique sur <strong>"Save"</strong>
 								</li>
 							</ol>
 
 							<h4>Renommer l'image</h4>
 							<ul>
-								<li>Vous pouvez changer le nom du fichier pour mieux l'organiser</li>
+								<li>Tu peux changer le nom du fichier pour mieux l'organiser</li>
 								<li>
-									<strong>Conseil :</strong> Utilisez des noms descriptifs (ex:{' '}
+									<strong>Conseil :</strong> Utilise des noms descriptifs (ex:{' '}
 									<code>maquillage-mariee-bordeaux.jpg</code> au lieu de <code>IMG_1234.jpg</code>)
 								</li>
 							</ul>
@@ -638,38 +628,37 @@ Description : Maquilleuse pro à Bordeaux. Mariages, shooting photo, événement
 							<h4>Avant de télécharger</h4>
 							<ol>
 								<li>
-									<strong>Optimisez la taille :</strong> Si votre photo fait 10 Mo, compressez-la avant avec un
-									outil en ligne gratuit comme{' '}
+									<strong>Optimise la taille :</strong> Si ta photo fait 10 Mo, compresse-la avant avec un outil en
+									ligne gratuit comme{' '}
 									<a href="https://tinypng.com/" target="_blank" rel="noopener noreferrer">
 										TinyPNG
 									</a>{' '}
 									(ça économise de la place sur nos serveurs !)
 								</li>
 								<li>
-									<strong>Nommez correctement :</strong> Utilisez des noms clairs (ex:{' '}
+									<strong>Nomme correctement :</strong> Utilise des noms clairs (ex:{' '}
 									<code>maquillage-naturel-mariee.jpg</code>)
 								</li>
 								<li>
-									<strong>Vérifiez la qualité :</strong> L'image doit être nette et bien cadrée
+									<strong>Vérifie la qualité :</strong> L'image doit être nette et bien cadrée
 								</li>
 								<li>
-									<strong>Désactivez les filigranes :</strong> Si vous prenez des photos avec votre téléphone,
-									désactivez les filigranes automatiques (ex: "Shot on Redmi") dans les paramètres de l'appareil
-									photo
+									<strong>Désactive les filigranes :</strong> Si tu prends des photos avec ton téléphone, désactive les
+									filigranes automatiques (ex: "Shot on Redmi") dans les paramètres de l'appareil photo
 								</li>
 							</ol>
 
 							<h4>Après téléchargement</h4>
 							<ol>
 								<li>
-									<strong>Ajoutez toujours un Alt Text :</strong> Soit avec Forvoyez, soit manuellement
+									<strong>Ajoute toujours un Alt Text :</strong> Soit avec Forvoyez, soit manuellement
 								</li>
 								<li>
-									<strong>Soyez descriptif :</strong> "Maquillage artistique de mariée avec smokey eyes et lèvres
-									nude à Bordeaux" plutôt que "maquillage"
+									<strong>Soyez descriptif :</strong> "Maquillage artistique de mariée avec smokey eyes et lèvres nude à
+									Bordeaux" plutôt que "maquillage"
 								</li>
 								<li>
-									<strong>Incluez le lieu si pertinent :</strong> Aide le référencement local
+									<strong>Ajoute le lieu si pertinent :</strong> Aide le référencement local
 								</li>
 							</ol>
 
@@ -678,34 +667,34 @@ Description : Maquilleuse pro à Bordeaux. Mariages, shooting photo, événement
 							<h3>Génération d'Alt Text en masse</h3>
 							<p>Dans la collection Media, tu peux générer l'alt text pour plusieurs images à la fois :</p>
 							<ol>
-								<li>Cochez les cases des images concernées</li>
+								<li>Coche les cases des images concernées</li>
 								<li>
-									Cliquez sur le bouton <strong>"Bulk Alt Text"</strong> en haut
+									Clique sur le bouton <strong>"Bulk Alt Text"</strong> en haut
 								</li>
-								<li>Attendez que toutes les descriptions soient générées</li>
-								<li>Vérifiez et ajustez individuellement si besoin</li>
+								<li>Attends que toutes les descriptions soient générées</li>
+								<li>Vérifie et ajuste individuellement si besoin</li>
 							</ol>
 							<p>
-								<strong>Astuce :</strong> Pratique quand vous téléchargez beaucoup d'images d'un coup !
+								<strong>Astuce :</strong> Pratique quand tu télécharges beaucoup d'images d'un coup !
 							</p>
 
 							<hr />
 
 							<h3>Supprimer une image</h3>
 							<p>
-								<strong>Attention :</strong> Si vous supprimez une image utilisée quelque part sur le site, elle
+								<strong>Attention :</strong> Si tu supprimes une image utilisée quelque part sur le site, elle
 								disparaîtra de cette page.
 							</p>
 							<ol>
-								<li>Cochez la case à côté de l'image</li>
+								<li>Coche la case à côté de l'image</li>
 								<li>
-									Cliquez sur <strong>"Delete"</strong>
+									Clique sur <strong>"Delete"</strong>
 								</li>
 								<li>Confirmez</li>
 							</ol>
 							<p>
-								<strong>Avant de supprimer :</strong> Vérifiez que l'image n'est utilisée nulle part (articles de
-								blog, services, galerie, etc.).
+								<strong>Avant de supprimer :</strong> Vérifie que l'image n'est utilisée nulle part (articles de blog,
+								services, galerie, etc.).
 							</p>
 
 							<hr />
@@ -717,18 +706,18 @@ Description : Maquilleuse pro à Bordeaux. Mariages, shooting photo, événement
 							<p>
 								Menu de gauche → <strong>Collections</strong> → <strong>Services</strong>
 							</p>
-							<p>Les services sont vos prestations professionnelles : maquillage de mariée, shooting, etc.</p>
+							<p>Les services sont tes prestations professionnelles : maquillage de mariée, shooting, etc.</p>
 
 							<hr />
 
 							<h3>Créer un nouveau service</h3>
 							<ol>
 								<li>
-									Cliquez sur <strong>"Create New"</strong>
+									Clique sur <strong>"Create New"</strong>
 								</li>
-								<li>Remplissez tous les champs</li>
+								<li>Remplis tous les champs</li>
 								<li>
-									Cliquez sur <strong>"Save"</strong>
+									Clique sur <strong>"Save"</strong>
 								</li>
 							</ol>
 
@@ -738,7 +727,7 @@ Description : Maquilleuse pro à Bordeaux. Mariages, shooting photo, événement
 
 							<h4>Titre du service</h4>
 							<ul>
-								<li>Le nom de votre prestation</li>
+								<li>Le nom de ta prestation</li>
 								<li>
 									<strong>Exemple :</strong> "Maquillage de Mariée"
 								</li>
@@ -753,7 +742,7 @@ Description : Maquilleuse pro à Bordeaux. Mariages, shooting photo, événement
 									<strong>URL résultante :</strong> <code>https://cinquin-maeva.com/prestations/maquillage-mariee</code>
 								</li>
 								<li>
-									<strong>Important :</strong> Ne modifiez pas après création
+									<strong>Important :</strong> Ne modifie pas après création
 								</li>
 							</ul>
 
@@ -763,17 +752,17 @@ Description : Maquilleuse pro à Bordeaux. Mariages, shooting photo, événement
 								<li>Utilisée dans les cartes d'aperçu</li>
 								<li>Doit donner envie d'en savoir plus</li>
 								<li>
-									<strong>Exemple :</strong> "Un maquillage de mariée élégant et naturel qui sublimera votre
-									beauté le jour J. Essai maquillage offert."
+									<strong>Exemple :</strong> "Un maquillage de mariée élégant et naturel qui sublimera ta beauté le jour
+									J. Essai maquillage offert."
 								</li>
 							</ul>
 
 							<h4>Description complète</h4>
 							<ul>
 								<li>Texte enrichi avec mise en forme</li>
-								<li>Décrivez le service en détail</li>
-								<li>Incluez les tarifs, durée, ce qui est inclus</li>
-								<li>Vous êtes libre d'organiser cette section comme vous le souhaitez</li>
+								<li>Décris le service en détail</li>
+								<li>Inclue les tarifs, durée, ce qui est inclus</li>
+								<li>Tu es libre d'organiser cette section comme tu le souhaites</li>
 							</ul>
 
 							<h4>Image principale</h4>
@@ -786,7 +775,7 @@ Description : Maquilleuse pro à Bordeaux. Mariages, shooting photo, événement
 							</ul>
 
 							<h4>Catégorie</h4>
-							<p>Choisissez parmi :</p>
+							<p>Choisis parmi :</p>
 							<ul>
 								<li>
 									<strong>Maquillage :</strong> Tous les services de maquillage
@@ -806,11 +795,11 @@ Description : Maquilleuse pro à Bordeaux. Mariages, shooting photo, événement
 
 							<h3>SEO d'un service</h3>
 							<ol>
-								<li>Remplissez tous les champs du service</li>
+								<li>Remplis tous les champs du service</li>
 								<li>
-									Cliquez sur <strong>"🤖 Générer SEO avec Gemini"</strong>
+									Clique sur <strong>"🤖 Générer SEO avec Gemini"</strong>
 								</li>
-								<li>Vérifiez et ajustez</li>
+								<li>Vérifie et ajuste</li>
 								<li>Save</li>
 							</ol>
 
@@ -823,21 +812,21 @@ Description : Maquilleuse pro à Bordeaux. Mariages, shooting photo, événement
 							<p>
 								Menu de gauche → <strong>Collections</strong> → <strong>Galery</strong>
 							</p>
-							<p>La galerie permet de créer des albums photo de vos réalisations.</p>
+							<p>La galerie permet de créer des albums photo de tes réalisations.</p>
 
 							<hr />
 
 							<h3>Créer un nouvel album</h3>
 							<ol>
 								<li>
-									Cliquez sur <strong>"Create New"</strong>
+									Clique sur <strong>"Create New"</strong>
 								</li>
 								<li>Donnez un titre à l'album</li>
-								<li>Ajoutez une description</li>
+								<li>Ajoute une description</li>
 								<li>Sélectionnez une catégorie</li>
 								<li>Téléchargez ou sélectionnez des images</li>
 								<li>
-									Cliquez sur <strong>"Save"</strong>
+									Clique sur <strong>"Save"</strong>
 								</li>
 							</ol>
 
@@ -859,7 +848,7 @@ Description : Maquilleuse pro à Bordeaux. Mariages, shooting photo, événement
 							</ul>
 
 							<h4>Catégorie</h4>
-							<p>Choisissez parmi :</p>
+							<p>Choisis parmi :</p>
 							<ul>
 								<li>
 									<strong>Mariages :</strong> Photos de mariées
@@ -877,9 +866,9 @@ Description : Maquilleuse pro à Bordeaux. Mariages, shooting photo, événement
 
 							<h4>Images</h4>
 							<ul>
-								<li>Ajoutez autant d'images que vous voulez</li>
-								<li>Vérifiez que chaque image a un alt text</li>
-								<li>Organisez l'ordre si besoin</li>
+								<li>Ajoute autant d'images que tu veux</li>
+								<li>Vérifie que chaque image a un alt text</li>
+								<li>Organise l'ordre si besoin</li>
 							</ul>
 
 							<hr />
@@ -891,18 +880,18 @@ Description : Maquilleuse pro à Bordeaux. Mariages, shooting photo, événement
 							<p>
 								Menu de gauche → <strong>Collections</strong> → <strong>Testimonials</strong>
 							</p>
-							<p>Les témoignages renforcent votre crédibilité et rassurent les futurs clients.</p>
+							<p>Les témoignages renforcent ta crédibilité et rassurent les futurs clients.</p>
 
 							<hr />
 
 							<h3>Créer un nouveau témoignage</h3>
 							<ol>
 								<li>
-									Cliquez sur <strong>"Create New"</strong>
+									Clique sur <strong>"Create New"</strong>
 								</li>
-								<li>Remplissez les champs</li>
+								<li>Remplis les champs</li>
 								<li>
-									Cliquez sur <strong>"Save"</strong>
+									Clique sur <strong>"Save"</strong>
 								</li>
 							</ol>
 
@@ -923,16 +912,15 @@ Description : Maquilleuse pro à Bordeaux. Mariages, shooting photo, événement
 								<li>Le contenu du témoignage entre guillemets</li>
 								<li>Court et percutant (2-4 phrases)</li>
 								<li>
-									<strong>Exemple :</strong> "Maeva a su créer un maquillage parfait pour mon mariage. Naturel,
-									lumineux et qui a tenu toute la journée ! Professionnelle et à l'écoute, je recommande les yeux
-									fermés."
+									<strong>Exemple :</strong> "Maeva a su créer un maquillage parfait pour mon mariage. Naturel, lumineux
+									et qui a tenu toute la journée ! Professionnelle et à l'écoute, je recommande les yeux fermés."
 								</li>
 							</ul>
 
 							<h4>Note (facultatif)</h4>
 							<ul>
 								<li>Note sur 5 étoiles</li>
-								<li>Si le client a laissé une note, ajoutez-la ici</li>
+								<li>Si le client a laissé une note, ajoute-la ici</li>
 							</ul>
 
 							<h4>Photo du client (facultatif)</h4>
@@ -947,28 +935,27 @@ Description : Maquilleuse pro à Bordeaux. Mariages, shooting photo, événement
 
 							<h3>Pour un meilleur référencement</h3>
 
-							<h4>1. Utilisez Gemini pour gagner du temps</h4>
+							<h4>1. Utilise Gemini pour gagner du temps</h4>
 							<ul>
-								<li>Générez d'abord automatiquement</li>
-								<li>Puis personnalisez selon votre style</li>
+								<li>Génère d'abord automatiquement</li>
+								<li>Puis personnalise selon ton style</li>
 							</ul>
 
-							<h4>2. Incluez toujours votre localisation</h4>
+							<h4>2. Inclue toujours ta localisation</h4>
 							<ul>
-								<li>Mentionnez Bordeaux, Nouvelle-Aquitaine, ou les villes où vous intervenez</li>
-								<li>Améliore votre référencement local</li>
+								<li>Mentionne Bordeaux, Nouvelle-Aquitaine, ou les villes où tu interviens</li>
+								<li>Améliore ton référencement local</li>
 							</ul>
 
-							<h4>3. Mettez à jour régulièrement</h4>
+							<h4>3. Mets à jour régulièrement</h4>
 							<ul>
-								<li>Publiez de nouveaux articles de blog</li>
-								<li>Ajoutez de nouvelles photos à la galerie</li>
-								<li>Collectez et publiez des témoignages</li>
+								<li>Publie de nouveaux articles de blog</li>
+								<li>Ajoute de nouvelles photos à la galerie</li>
+								<li>Collecte et publie des témoignages</li>
 							</ul>
 
 							<p>
-								<strong>Plus vous aurez de contenu, de photos et d'éléments, meilleur sera votre
-								référencement !</strong>
+								<strong>Plus tu auras de contenu, de photos et d'éléments, meilleur sera ton référencement !</strong>
 							</p>
 
 							<hr />
@@ -981,16 +968,16 @@ Description : Maquilleuse pro à Bordeaux. Mariages, shooting photo, événement
 								<li>Résolution minimum : 1920x1080 pour les grandes images</li>
 							</ul>
 
-							<h4>2. Optimisez le poids</h4>
+							<h4>2. Optimise le poids</h4>
 							<ul>
-								<li>Compressez avant téléchargement avec TinyPNG</li>
+								<li>Compresse avant téléchargement avec TinyPNG</li>
 								<li>Cible : 200-500 Ko par image</li>
 							</ul>
 
 							<h4>3. Alt Text systématique</h4>
 							<ul>
-								<li>Utilisez Forvoyez pour gagner du temps</li>
-								<li>Relisez et ajustez toujours (c'est mieux, mais pas grave si vous ne le faites pas)</li>
+								<li>Utilise Forvoyez pour gagner du temps</li>
+								<li>Relis et ajuste toujours (c'est mieux, mais pas grave si tu ne le fais pas)</li>
 							</ul>
 
 							<h4>4. Nommage cohérent</h4>
@@ -1007,27 +994,27 @@ Description : Maquilleuse pro à Bordeaux. Mariages, shooting photo, événement
 
 							<h4>1. Soyez authentique</h4>
 							<ul>
-								<li>Parlez naturellement de votre travail</li>
-								<li>Partagez votre passion et votre expertise</li>
+								<li>Parle naturellement de ton travail</li>
+								<li>Partage ta passion et ton expertise</li>
 							</ul>
 
-							<h4>2. Pensez à vos clients</h4>
+							<h4>2. Pense à tes clients</h4>
 							<ul>
 								<li>Répondez à leurs questions</li>
 								<li>Donnez des conseils pratiques</li>
 								<li>Rassurez sur les tarifs, le déroulement</li>
 							</ul>
 
-							<h4>3. Structurez vos articles</h4>
+							<h4>3. Structure tes articles</h4>
 							<ul>
-								<li>Utilisez des titres et sous-titres clairs</li>
-								<li>Ajoutez des listes à puces</li>
-								<li>Insérez des images pour illustrer</li>
+								<li>Utilise des titres et sous-titres clairs</li>
+								<li>Ajoute des listes à puces</li>
+								<li>Insère des images pour illustrer</li>
 							</ul>
 
-							<h4>4. Ajoutez des appels à l'action</h4>
+							<h4>4. Ajoute des appels à l'action</h4>
 							<ul>
-								<li>"Prenez rendez-vous pour un essai"</li>
+								<li>"Prends rendez-vous pour un essai"</li>
 								<li>"Découvrez mes autres prestations"</li>
 								<li>"Contactez-moi pour un devis"</li>
 							</ul>
@@ -1039,81 +1026,81 @@ Description : Maquilleuse pro à Bordeaux. Mariages, shooting photo, événement
 							<h4>Chaque mois :</h4>
 							<ul>
 								<li>Publiez 1-2 nouveaux articles de blog</li>
-								<li>Ajoutez de nouvelles photos à la galerie</li>
-								<li>Collectez et ajoutez des témoignages clients</li>
+								<li>Ajoute de nouvelles photos à la galerie</li>
+								<li>Collecte et ajoute des témoignages clients</li>
 							</ul>
 
 							<h4>Tous les 3 mois :</h4>
 							<ul>
-								<li>Relisez vos services (tarifs, descriptions)</li>
-								<li>Vérifiez les liens</li>
-								<li>Actualisez les anciennes photos si besoin</li>
+								<li>Relis tes services (tarifs, descriptions)</li>
+								<li>Vérifie les liens</li>
+								<li>Actualise les anciennes photos si besoin</li>
 							</ul>
 
 							<h4>Annuellement :</h4>
 							<ul>
-								<li>Faites le tri dans tes images non utilisées</li>
-								<li>Relisez l'ensemble de votre contenu</li>
-								<li>Mettez à jour vos coordonnées si changement</li>
+								<li>Fais le tri dans tes images non utilisées</li>
+								<li>Relis l'ensemble de ton contenu</li>
+								<li>Mets à jour tes coordonnées si changement</li>
 							</ul>
 
 							<hr />
 
 							<h3>🛟 En cas de problème</h3>
 
-							<h4>Vous ne voyez pas tes modifications sur le site</h4>
+							<h4>Tu ne vois pas tes modifications sur le site</h4>
 							<ol>
 								<li>
-									Assurez-vous d'avoir cliqué sur <strong>"Save"</strong>
+									Assure-toi d'avoir cliqué sur <strong>"Save"</strong>
 								</li>
 								<li>
-									Attendez 2-3 minutes (le site met à jour le cache). Pour des raisons de performance, le design
-									se met à jour au bout d'1h environ
+									Attends 2-3 minutes (le site met à jour le cache). Pour des raisons de performance, le design se met à
+									jour au bout d'1h environ
 								</li>
-								<li>Rafraîchissez la page (Ctrl+F5 ou Cmd+Shift+R)</li>
+								<li>Rafraîchis la page (Ctrl+F5 ou Cmd+Shift+R)</li>
 							</ol>
 
 							<h4>Une image ne s'affiche pas</h4>
 							<ol>
 								<li>
-									Vérifiez que l'image est bien téléchargée dans <strong>Media</strong>
+									Vérifie que l'image est bien téléchargée dans <strong>Media</strong>
 								</li>
-								<li>Vérifiez que tu as bien sélectionné cette image dans le champ</li>
-								<li>Assurez-vous que l'image n'a pas été supprimée</li>
+								<li>Vérifie que tu as bien sélectionné cette image dans le champ</li>
+								<li>Assure-toi que l'image n'a pas été supprimée</li>
 							</ol>
 
 							<h4>Forvoyez ou Gemini ne fonctionne pas</h4>
 							<ol>
-								<li>Vérifiez que tu as une connexion internet</li>
-								<li>Réessayez dans quelques minutes</li>
-								<li>Si le problème persiste, utilisez la méthode manuelle</li>
-								<li>Contactez-moi si le problème continue</li>
+								<li>Vérifie que tu as une connexion internet</li>
+								<li>Réessaie dans quelques minutes</li>
+								<li>Si le problème persiste, utilise la méthode manuelle</li>
+								<li>Contacte-moi si le problème continue</li>
 							</ol>
 
-							<h4>Vous avez supprimé quelque chose par erreur</h4>
+							<h4>Tu as supprimé quelque chose par erreur</h4>
 							<p>
-								<strong>Contactez-moi immédiatement</strong> pour éviter de perdre trop de données. Des
-								sauvegardes sont effectuées régulièrement (toutes les 24h).
+								<strong>Contactez-moi immédiatement</strong> pour éviter de perdre trop de données. Des sauvegardes sont
+								effectuées régulièrement (toutes les 24h).
 							</p>
 
 							<hr />
 
 							<h2>🎉 Félicitations !</h2>
-							<p>Vous savez maintenant comment gérer l'intégralité du contenu de ton site web.</p>
+							<p>Tu sais maintenant comment gérer l'intégralité du contenu de ton site web.</p>
 
 							<p>
-								<strong>Rappelez-vous :</strong>
+								<strong>Rappelle-toi :</strong>
 							</p>
 							<ul>
-								<li>Soyez régulier dans les mises à jour</li>
-								<li>Ajoutez du contenu au fil du temps</li>
-								<li>Restez authentique et naturel</li>
-								<li>Utilisez Gemini et Forvoyez pour gagner du temps</li>
+								<li>Sois régulier dans les mises à jour</li>
+								<li>Ajoute du contenu au fil du temps</li>
+								<li>Reste authentique et naturel</li>
+								<li>Utilise Gemini et Forvoyez pour gagner du temps</li>
 							</ul>
 
 							<p>
-								<strong>Votre site est un outil vivant.</strong> Plus vous l'alimentez avec de nouveaux articles,
-								des photos de qualité et du contenu pertinent, plus il attirera de clients.
+								<strong>Ton site est un outil vivant.</strong> Plus tu l'alimentes avec de nouveaux articles, des photos
+								de qualité et du contenu pertinent, plus il attirera de clients.
 							</p>
 
 							<p>Bon courage ! 💄</p>
@@ -1125,10 +1112,7 @@ Description : Maquilleuse pro à Bordeaux. Mariages, shooting photo, événement
 						<div className="mt-12">
 							{/* Back to Admin */}
 							<div className="pt-8 border-t border-border">
-								<Link
-									href="/admin"
-									className="inline-flex items-center gap-2 text-primary hover:underline font-medium"
-								>
+								<Link href="/admin" className="inline-flex items-center gap-2 text-primary hover:underline font-medium">
 									← Retour au dashboard
 								</Link>
 							</div>

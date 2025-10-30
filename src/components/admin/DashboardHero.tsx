@@ -26,14 +26,14 @@ export default function DashboardHero(): React.JSX.Element {
 			<div className="mb-3 flex items-center justify-between gap-4">
 				<h2 className="m-0 text-lg font-medium">Website overview</h2>
 				<div className="flex gap-2">
-				<a
-					href="/cms/tutorials"
+					<a
+						href="/tuto"
 						className="inline-flex items-center gap-2 rounded-md bg-emerald-600 px-3 py-2 text-sm font-medium text-white hover:bg-emerald-700"
 					>
 						Tutorials
 					</a>
-          <a
-            href={UMAMI_SHARE_URL}
+					<a
+						href={UMAMI_SHARE_URL}
 						target="_blank"
 						rel="noreferrer noopener"
 						className="inline-flex items-center gap-2 rounded-md bg-neutral-700 px-3 py-2 text-sm font-medium text-white hover:bg-neutral-800"
@@ -45,9 +45,9 @@ export default function DashboardHero(): React.JSX.Element {
 
 			<div className="h-[72vh] max-h-[900px] w-full overflow-hidden rounded-lg border border-neutral-200 dark:border-neutral-800">
 				{!showFallback && (
-          <iframe
+					<iframe
 						title="Umami analytics"
-            src={UMAMI_SHARE_URL}
+						src={UMAMI_SHARE_URL}
 						className="h-full w-full border-0"
 						loading="lazy"
 						referrerPolicy="no-referrer"
@@ -66,16 +66,16 @@ export default function DashboardHero(): React.JSX.Element {
 							a new tab.
 						</p>
 						<div className="flex gap-2">
-              <a
-                href={UMAMI_SHARE_URL}
+							<a
+								href={UMAMI_SHARE_URL}
 								target="_blank"
 								rel="noreferrer noopener"
 								className="inline-flex items-center gap-2 rounded-md bg-neutral-700 px-3 py-2 text-sm font-medium text-white hover:bg-neutral-800"
 							>
 								Open Umami
 							</a>
-						<a
-							href="/cms/tutorials"
+							<a
+								href="/tuto"
 								className="inline-flex items-center gap-2 rounded-md bg-emerald-600 px-3 py-2 text-sm font-medium text-white hover:bg-emerald-700"
 							>
 								Tutorials
