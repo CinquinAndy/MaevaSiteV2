@@ -30,6 +30,12 @@ export default buildConfig({
 		importMap: {
 			baseDir: path.resolve(dirname),
 		},
+		components: {
+			beforeDashboard: ['@/components/admin/DashboardHero'],
+			afterNavLinks: ['@/components/admin/TutorialsNavLink'],
+		},
+		// Note: Payload v3 `admin.routes` is for overriding built-in views (login, account, etc.).
+		// Custom routes are not supported here; removed to satisfy types.
 	},
 	collections: [Users, Media, Blog, Galery, Services, Testimonials],
 	editor: lexicalEditor({

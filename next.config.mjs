@@ -36,6 +36,14 @@ const nextConfig = {
 			},
 		]
 	},
+	async rewrites() {
+		return [
+			{
+				source: '/admin/tutorials',
+				destination: '/cms/tutorials',
+			},
+		]
+	},
 	trailingSlash: false,
 	images: {
 		remotePatterns: [

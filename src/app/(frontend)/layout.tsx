@@ -67,7 +67,8 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 	return (
 		<html lang="fr" className={`${corinthia.variable} ${libreCaslonDisplay.variable} ${kalam.variable}`}>
 			<head>
-				<script async crossOrigin="anonymous" src="https://tweakcn.com/live-preview.min.js" />
+				{/* in dev only, not in production */}
+				{/* <script async crossOrigin="anonymous" src="https://tweakcn.com/live-preview.min.js" /> */}
 				{/* Adobe Fonts (Typekit) - urw-form font */}
 				<link rel="preconnect" href="https://use.typekit.net" />
 				<link rel="stylesheet" href="https://use.typekit.net/ayg0khv.css" />
@@ -77,7 +78,16 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 				<link rel="dns-prefetch" href="https://umami.wadefade.fr" />
 			</head>
 			<body className={`relative bg-background`}>
-				{/* <PatternBackground /> */}
+				{/* Google Analytics (GA4) */}
+				<Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=G-R6EEBXR1K8`} async />
+				<Script id="ga-gtag" strategy="afterInteractive">
+					{`
+						window.dataLayer = window.dataLayer || [];
+						function gtag(){dataLayer.push(arguments);} 
+						gtag('js', new Date());
+						gtag('config', 'G-R6EEBXR1K8', { anonymize_ip: true });
+					`}
+				</Script>
 				<Script
 					src="https://umami.wadefade.fr/script.js"
 					data-website-id="e8f25e84-b2f1-43c6-b574-5d9d3a65c75b"
@@ -85,14 +95,14 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 				/>
 
 				{/* Vertical Scroll Progress Indicator - Positioned Right Center */}
-				<div className="fixed hidden sm:block left-6 sm:left-auto sm:right-6 top-1/2 -translate-y-1/2 z-[200] h-[45vh] w-1 pointer-events-none">
+				<div className="fixed hidden sm:block left-6 sm:left-auto sm:right-6 top-1/2 -translate-y-1/2 z-200 h-[45vh] w-1 pointer-events-none">
 					{/* Background track */}
 					<div className="absolute inset-0 bg-white/40 rounded-full" />
 
 					{/* Progress indicator */}
 					<ScrollProgress
 						orientation="vertical"
-						className="absolute top-0 left-0 w-full h-full rounded-full bg-gradient-to-b from-primary via-secondary to-accent"
+						className="absolute top-0 left-0 w-full h-full rounded-full bg-linear-to-b from-primary via-secondary to-accent"
 						springOptions={{
 							stiffness: 100,
 							damping: 30,
