@@ -4,11 +4,10 @@
  */
 
 import 'dotenv/config'
-import { getPayload } from 'payload'
-import config from '@payload-config'
-import { readFileSync } from 'node:fs'
+import { createReadStream, readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { createReadStream } from 'node:fs'
+import config from '@payload-config'
+import { getPayload } from 'payload'
 
 interface AvatarMapping {
 	author: string
@@ -128,7 +127,7 @@ async function uploadAvatarsToPayload() {
 
 	// 4. Résumé
 	console.log('\n═══════════════════════════════════════════════════')
-	console.log('📊 RÉSUMÉ DE L\'UPLOAD')
+	console.log("📊 RÉSUMÉ DE L'UPLOAD")
 	console.log('')
 	console.log(`   📤 Uploadés sur S3: ${uploaded}`)
 	console.log(`   ♻️  Réutilisés (déjà en S3): ${linked - uploaded}`)
@@ -142,7 +141,7 @@ async function uploadAvatarsToPayload() {
 }
 
 // Exécuter le script
-uploadAvatarsToPayload().catch((error) => {
+uploadAvatarsToPayload().catch(error => {
 	console.error('❌ Erreur fatale:', error)
 	process.exit(1)
 })

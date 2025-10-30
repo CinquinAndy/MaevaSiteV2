@@ -3,7 +3,7 @@
  * Télécharge toutes les images de profil et les sauvegarde dans /public/avatars/
  */
 
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs'
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 interface GoogleReview {
@@ -125,7 +125,7 @@ async function downloadAllAvatars() {
 		}
 
 		// Petite pause pour éviter de surcharger Google
-		await new Promise((resolve) => setTimeout(resolve, 200))
+		await new Promise(resolve => setTimeout(resolve, 200))
 	}
 
 	// 4. Sauvegarder le mapping
@@ -161,7 +161,7 @@ async function downloadAllAvatars() {
 }
 
 // Exécuter le script
-downloadAllAvatars().catch((error) => {
+downloadAllAvatars().catch(error => {
 	console.error('❌ Erreur fatale:', error)
 	process.exit(1)
 })

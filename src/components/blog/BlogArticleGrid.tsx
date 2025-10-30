@@ -2,15 +2,13 @@
 
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import { useRef } from 'react'
-import type { Blog, Media } from '@/payload-types'
-import { ScrollingImage } from './ScrollingImage'
+import type { Blog } from '@/payload-types'
 
 interface BlogArticleGridProps {
 	post: Blog
-	featuredImage: Media | undefined
 }
 
-export function BlogArticleGrid({ post, featuredImage }: BlogArticleGridProps) {
+export function BlogArticleGrid({ post }: BlogArticleGridProps) {
 	const articleRef = useRef<HTMLDivElement>(null)
 
 	return (

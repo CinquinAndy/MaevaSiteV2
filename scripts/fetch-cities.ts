@@ -30,10 +30,7 @@ function calculateDistance(lat1: number, lon1: number, lat2: number, lon2: numbe
 	const dLon = ((lon2 - lon1) * Math.PI) / 180
 	const a =
 		Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-		Math.cos((lat1 * Math.PI) / 180) *
-			Math.cos((lat2 * Math.PI) / 180) *
-			Math.sin(dLon / 2) *
-			Math.sin(dLon / 2)
+		Math.cos((lat1 * Math.PI) / 180) * Math.cos((lat2 * Math.PI) / 180) * Math.sin(dLon / 2) * Math.sin(dLon / 2)
 	const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
 	return R * c
 }
@@ -47,7 +44,7 @@ function calculateDistance(lat1: number, lon1: number, lat2: number, lon2: numbe
 function calculateScore(population: number, distance: number, maxDistance: number): number {
 	// Distance: poids de 70% avec effet quadratique pour privilégier les villes très proches
 	const distanceWeight = 1 - distance / maxDistance // Plus proche = meilleur score
-	const distanceScore = Math.pow(distanceWeight, 2) * 0.7 // Effet quadratique + 70%
+	const distanceScore = distanceWeight ** 2 * 0.7 // Effet quadratique + 70%
 
 	// Population: poids de seulement 30%
 	const populationWeight = Math.min(population / 200000, 1) // Normaliser (cap à 200k pour éviter domination)
@@ -60,7 +57,7 @@ function calculateScore(population: number, distance: number, maxDistance: numbe
  * Récupère les villes via l'API Overpass (OpenStreetMap)
  */
 async function fetchCitiesFromOverpass(): Promise<City[]> {
-	console.log("🔍 Recherche des villes autour de Thonon-les-Bains...")
+	console.log('🔍 Recherche des villes autour de Thonon-les-Bains...')
 	console.log(`📍 Coordonnées: ${THONON_LAT}, ${THONON_LON}`)
 	console.log(`📏 Rayon: ${SEARCH_RADIUS_KM} km\n`)
 
@@ -74,8 +71,8 @@ async function fetchCitiesFromOverpass(): Promise<City[]> {
 	`
 
 	try {
-		const response = await fetch("https://overpass-api.de/api/interpreter", {
-			method: "POST",
+		const response = await fetch('https://overpass-api.de/api/interpreter', {
+			method: 'POST',
 			body: query,
 		})
 
@@ -93,7 +90,7 @@ async function fetchCitiesFromOverpass(): Promise<City[]> {
 				const distance = calculateDistance(THONON_LAT, THONON_LON, element.lat, element.lon)
 
 				// Déterminer le pays (approximatif basé sur la longitude)
-				const country = element.lon > 6.5 ? "Suisse" : "France"
+				const country = element.lon > 6.5 ? 'Suisse' : 'France'
 
 				return {
 					name: element.tags.name,
@@ -108,15 +105,15 @@ async function fetchCitiesFromOverpass(): Promise<City[]> {
 			.filter((city: City) => city.population > 1000) // Filtrer les très petites villes
 
 		// Calculer les scores
-		const maxDistance = Math.max(...cities.map((c) => c.distance))
-		cities.forEach((city) => {
+		const maxDistance = Math.max(...cities.map(c => c.distance))
+		cities.forEach(city => {
 			city.score = Math.round(calculateScore(city.population, city.distance, maxDistance) * 10) / 10
 		})
 
 		// Trier par score décroissant
 		return cities.sort((a, b) => b.score - a.score)
 	} catch (error) {
-		console.error("❌ Erreur lors de la récupération des villes:", error)
+		console.error('❌ Erreur lors de la récupération des villes:', error)
 		throw error
 	}
 }
@@ -126,36 +123,36 @@ async function fetchCitiesFromOverpass(): Promise<City[]> {
  */
 function displayResults(cities: City[], topN = 20) {
 	console.log(`\n🏆 TOP ${topN} VILLES PAR SCORE:\n`)
-	console.log("=" .repeat(100))
+	console.log('='.repeat(100))
 	console.log(
-		`${"Rang".padEnd(6)} ${"Ville".padEnd(25)} ${"Pays".padEnd(10)} ${"Population".padEnd(12)} ${"Distance".padEnd(12)} ${"Score".padEnd(10)}`,
+		`${'Rang'.padEnd(6)} ${'Ville'.padEnd(25)} ${'Pays'.padEnd(10)} ${'Population'.padEnd(12)} ${'Distance'.padEnd(12)} ${'Score'.padEnd(10)}`
 	)
-	console.log("=".repeat(100))
+	console.log('='.repeat(100))
 
 	cities.slice(0, topN).forEach((city, index) => {
 		const rank = `${index + 1}.`.padEnd(6)
 		const name = city.name.padEnd(25)
 		const country = city.country.padEnd(10)
-		const population = city.population.toLocaleString("fr-FR").padEnd(12)
+		const population = city.population.toLocaleString('fr-FR').padEnd(12)
 		const distance = `${city.distance} km`.padEnd(12)
 		const score = city.score.toFixed(1).padEnd(10)
 
 		console.log(`${rank} ${name} ${country} ${population} ${distance} ${score}`)
 	})
 
-	console.log("=".repeat(100))
+	console.log('='.repeat(100))
 
 	// Statistiques
 	const topCities = cities.slice(0, topN)
-	const frenchCities = topCities.filter((c) => c.country === "France").length
-	const swissCities = topCities.filter((c) => c.country === "Suisse").length
+	const frenchCities = topCities.filter(c => c.country === 'France').length
+	const swissCities = topCities.filter(c => c.country === 'Suisse').length
 
 	console.log(`\n📊 STATISTIQUES:`)
 	console.log(`   - Villes françaises: ${frenchCities}`)
 	console.log(`   - Villes suisses: ${swissCities}`)
 	console.log(`   - Distance moyenne: ${(topCities.reduce((sum, c) => sum + c.distance, 0) / topN).toFixed(1)} km`)
 	console.log(
-		`   - Population moyenne: ${Math.round(topCities.reduce((sum, c) => sum + c.population, 0) / topN).toLocaleString("fr-FR")}`,
+		`   - Population moyenne: ${Math.round(topCities.reduce((sum, c) => sum + c.population, 0) / topN).toLocaleString('fr-FR')}`
 	)
 }
 
@@ -168,7 +165,7 @@ async function saveToFile(cities: City[], topN = 20) {
 	const output = {
 		generatedAt: new Date().toISOString(),
 		baseLocation: {
-			name: "Thonon-les-Bains",
+			name: 'Thonon-les-Bains',
 			lat: THONON_LAT,
 			lon: THONON_LON,
 		},
@@ -187,15 +184,15 @@ async function saveToFile(cities: City[], topN = 20) {
 			score: city.score,
 		})),
 		statistics: {
-			frenchCities: topCities.filter((c) => c.country === "France").length,
-			swissCities: topCities.filter((c) => c.country === "Suisse").length,
+			frenchCities: topCities.filter(c => c.country === 'France').length,
+			swissCities: topCities.filter(c => c.country === 'Suisse').length,
 			averageDistance: Math.round((topCities.reduce((sum, c) => sum + c.distance, 0) / topN) * 10) / 10,
 			averagePopulation: Math.round(topCities.reduce((sum, c) => sum + c.population, 0) / topN),
 		},
 	}
 
-	const fs = await import("node:fs/promises")
-	await fs.writeFile("./scripts/cities-data.json", JSON.stringify(output, null, 2))
+	const fs = await import('node:fs/promises')
+	await fs.writeFile('./scripts/cities-data.json', JSON.stringify(output, null, 2))
 
 	console.log(`\n💾 Résultats sauvegardés dans: scripts/cities-data.json`)
 }
@@ -206,13 +203,13 @@ async function saveToFile(cities: City[], topN = 20) {
 function generateSEOList(cities: City[], topN = 150): string {
 	const topCities = cities.slice(0, topN)
 
-	const frenchCities = topCities.filter((c) => c.country === "France").map((c) => c.name)
-	const swissCities = topCities.filter((c) => c.country === "Suisse").map((c) => c.name)
+	const frenchCities = topCities.filter(c => c.country === 'France').map(c => c.name)
+	const swissCities = topCities.filter(c => c.country === 'Suisse').map(c => c.name)
 
-	let seoText = "\n📝 TEXTE POUR LE SEO:\n\n"
+	let seoText = '\n📝 TEXTE POUR LE SEO:\n\n'
 	seoText += "Zone d'intervention:\n"
-	seoText += `Haute-Savoie: ${frenchCities.join(", ")}\n`
-	seoText += `Suisse: ${swissCities.join(", ")}\n`
+	seoText += `Haute-Savoie: ${frenchCities.join(', ')}\n`
+	seoText += `Suisse: ${swissCities.join(', ')}\n`
 
 	console.log(seoText)
 
@@ -224,10 +221,10 @@ function generateSEOList(cities: City[], topN = 150): string {
  */
 async function main() {
 	try {
-		console.log("🚀 Démarrage du script de géolocalisation\n")
+		console.log('🚀 Démarrage du script de géolocalisation\n')
 
 		// Récupérer les villes via API
-		let cities = await fetchCitiesFromOverpass()
+		const cities = await fetchCitiesFromOverpass()
 
 		// Afficher les résultats
 		displayResults(cities, 150) // Afficher top 30 pour avoir une vue d'ensemble
@@ -238,9 +235,9 @@ async function main() {
 		// Sauvegarder dans un fichier
 		await saveToFile(cities, 150)
 
-		console.log("\n✅ Script terminé avec succès!")
+		console.log('\n✅ Script terminé avec succès!')
 	} catch (error) {
-		console.error("\n❌ Erreur:", error)
+		console.error('\n❌ Erreur:', error)
 		process.exit(1)
 	}
 }

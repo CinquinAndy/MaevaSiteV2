@@ -5,12 +5,7 @@
 			"label": "Format with Biome",
 			"type": "shell",
 			"command": "pnpm",
-			"args": [
-				"biome",
-				"format",
-				"--write",
-				"${file}"
-			],
+			"args": ["biome", "format", "--write", "${file}"],
 			"presentation": {
 				"reveal": "never",
 				"panel": "shared"
@@ -19,4 +14,3 @@
 		}
 	]
 }
-

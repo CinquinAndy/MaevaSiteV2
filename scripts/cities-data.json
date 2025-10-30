@@ -1,1626 +1,1626 @@
 {
-  "generatedAt": "2025-10-20T19:10:57.261Z",
-  "baseLocation": {
-    "name": "Thonon-les-Bains",
-    "lat": 46.3708,
-    "lon": 6.4792
-  },
-  "searchRadius": 150,
-  "totalCitiesFound": 164,
-  "topCities": [
-    {
-      "rank": 1,
-      "name": "Genève",
-      "country": "France",
-      "population": 191557,
-      "distance": 31.7,
-      "coordinates": {
-        "lat": 46.2017559,
-        "lon": 6.1466014
-      },
-      "score": 914.3
-    },
-    {
-      "rank": 2,
-      "name": "Lausanne",
-      "country": "Suisse",
-      "population": 133521,
-      "distance": 20.5,
-      "coordinates": {
-        "lat": 46.5218269,
-        "lon": 6.6327025
-      },
-      "score": 855.5
-    },
-    {
-      "rank": 3,
-      "name": "Thonon-les-Bains",
-      "country": "France",
-      "population": 37027,
-      "distance": 0.3,
-      "coordinates": {
-        "lat": 46.3731303,
-        "lon": 6.4779448
-      },
-      "score": 789.8
-    },
-    {
-      "rank": 4,
-      "name": "Évian-les-Bains",
-      "country": "Suisse",
-      "population": 9214,
-      "distance": 9.1,
-      "coordinates": {
-        "lat": 46.400979,
-        "lon": 6.5897931
-      },
-      "score": 640.7
-    },
-    {
-      "rank": 7,
-      "name": "Annecy",
-      "country": "France",
-      "population": 131715,
-      "distance": 59,
-      "coordinates": {
-        "lat": 45.8992348,
-        "lon": 6.1288847
-      },
-      "score": 586.9
-    },
-    {
-      "rank": 12,
-      "name": "Annemasse",
-      "country": "France",
-      "population": 37918,
-      "distance": 27.3,
-      "coordinates": {
-        "lat": 46.1934005,
-        "lon": 6.2341093
-      },
-      "score": 563.2
-    },
-    {
-      "rank": 19,
-      "name": "Lyon",
-      "country": "France",
-      "population": 522250,
-      "distance": 144.2,
-      "coordinates": {
-        "lat": 45.7578137,
-        "lon": 4.8320114
-      },
-      "score": 501
-    },
-    {
-      "rank": 24,
-      "name": "Montreux",
-      "country": "Suisse",
-      "population": 26208,
-      "distance": 33.9,
-      "coordinates": {
-        "lat": 46.4310831,
-        "lon": 6.9129921
-      },
-      "score": 484.9
-    },
-    {
-      "rank": 25,
-      "name": "Gaillard",
-      "country": "France",
-      "population": 10175,
-      "distance": 29.3,
-      "coordinates": {
-        "lat": 46.1838437,
-        "lon": 6.211169
-      },
-      "score": 478.7
-    },
-    {
-      "rank": 26,
-      "name": "Chêne-Bougeries",
-      "country": "France",
-      "population": 10642,
-      "distance": 29.8,
-      "coordinates": {
-        "lat": 46.1963639,
-        "lon": 6.1854072
-      },
-      "score": 476.1
-    },
-    {
-      "rank": 27,
-      "name": "Carouge",
-      "country": "France",
-      "population": 20910,
-      "distance": 33.3,
-      "coordinates": {
-        "lat": 46.1846691,
-        "lon": 6.1396839
-      },
-      "score": 476
-    },
-    {
-      "rank": 28,
-      "name": "La Tour-de-Peilz",
-      "country": "Suisse",
-      "population": 10974,
-      "distance": 30.4,
-      "coordinates": {
-        "lat": 46.4537524,
-        "lon": 6.8569063
-      },
-      "score": 472.5
-    },
-    {
-      "rank": 29,
-      "name": "Le Grand-Saconnex",
-      "country": "France",
-      "population": 11911,
-      "distance": 30.9,
-      "coordinates": {
-        "lat": 46.2363321,
-        "lon": 6.126532
-      },
-      "score": 471.1
-    },
-    {
-      "rank": 30,
-      "name": "Ferney-Voltaire",
-      "country": "France",
-      "population": 10920,
-      "distance": 31.1,
-      "coordinates": {
-        "lat": 46.2567057,
-        "lon": 6.1096409
-      },
-      "score": 467.1
-    },
-    {
-      "rank": 31,
-      "name": "Meyrin",
-      "country": "France",
-      "population": 21866,
-      "distance": 35.1,
-      "coordinates": {
-        "lat": 46.2283226,
-        "lon": 6.0712016
-      },
-      "score": 465.4
-    },
-    {
-      "rank": 32,
-      "name": "Gex",
-      "country": "France",
-      "population": 13078,
-      "distance": 32.6,
-      "coordinates": {
-        "lat": 46.333849,
-        "lon": 6.0577244
-      },
-      "score": 461.5
-    },
-    {
-      "rank": 33,
-      "name": "Bonneville",
-      "country": "France",
-      "population": 12895,
-      "distance": 33.1,
-      "coordinates": {
-        "lat": 46.0775797,
-        "lon": 6.4086189
-      },
-      "score": 457.4
-    },
-    {
-      "rank": 34,
-      "name": "Cluses",
-      "country": "Suisse",
-      "population": 17164,
-      "distance": 35.4,
-      "coordinates": {
-        "lat": 46.0603171,
-        "lon": 6.5804218
-      },
-      "score": 451.5
-    },
-    {
-      "rank": 35,
-      "name": "Lancy",
-      "country": "France",
-      "population": 10919,
-      "distance": 34.4,
-      "coordinates": {
-        "lat": 46.1839156,
-        "lon": 6.1224047
-      },
-      "score": 443
-    },
-    {
-      "rank": 36,
-      "name": "Monthey",
-      "country": "Suisse",
-      "population": 18178,
-      "distance": 38.3,
-      "coordinates": {
-        "lat": 46.252844,
-        "lon": 6.9478263
-      },
-      "score": 433.6
-    },
-    {
-      "rank": 37,
-      "name": "Plan-les-Ouates",
-      "country": "France",
-      "population": 10657,
-      "distance": 35.8,
-      "coordinates": {
-        "lat": 46.1683113,
-        "lon": 6.117887
-      },
-      "score": 432.4
-    },
-    {
-      "rank": 38,
-      "name": "La Roche-sur-Foron",
-      "country": "France",
-      "population": 11263,
-      "distance": 36.1,
-      "coordinates": {
-        "lat": 46.0672189,
-        "lon": 6.3121658
-      },
-      "score": 431.8
-    },
-    {
-      "rank": 39,
-      "name": "Saint-Genis-Pouilly",
-      "country": "France",
-      "population": 14558,
-      "distance": 38,
-      "coordinates": {
-        "lat": 46.243244,
-        "lon": 6.0207779
-      },
-      "score": 426.7
-    },
-    {
-      "rank": 40,
-      "name": "Saint-Julien-en-Genevois",
-      "country": "France",
-      "population": 15840,
-      "distance": 39.6,
-      "coordinates": {
-        "lat": 46.1444789,
-        "lon": 6.0812467
-      },
-      "score": 418.8
-    },
-    {
-      "rank": 41,
-      "name": "Aigle",
-      "country": "Suisse",
-      "population": 11412,
-      "distance": 38,
-      "coordinates": {
-        "lat": 46.3179006,
-        "lon": 6.9688929
-      },
-      "score": 418.8
-    },
-    {
-      "rank": 42,
-      "name": "Bernex",
-      "country": "France",
-      "population": 9866,
-      "distance": 38.1,
-      "coordinates": {
-        "lat": 46.1746582,
-        "lon": 6.0721811
-      },
-      "score": 414.2
-    },
-    {
-      "rank": 43,
-      "name": "Bern",
-      "country": "Suisse",
-      "population": 128848,
-      "distance": 98.2,
-      "coordinates": {
-        "lat": 46.9484742,
-        "lon": 7.4521749
-      },
-      "score": 405.6
-    },
-    {
-      "rank": 44,
-      "name": "Yverdon-les-Bains",
-      "country": "Suisse",
-      "population": 29406,
-      "distance": 47,
-      "coordinates": {
-        "lat": 46.7785711,
-        "lon": 6.6409158
-      },
-      "score": 403.6
-    },
-    {
-      "rank": 45,
-      "name": "Villeurbanne",
-      "country": "France",
-      "population": 156928,
-      "distance": 139.6,
-      "coordinates": {
-        "lat": 45.7733573,
-        "lon": 4.8868454
-      },
-      "score": 395.7
-    },
-    {
-      "rank": 46,
-      "name": "Grenoble",
-      "country": "France",
-      "population": 157477,
-      "distance": 143.6,
-      "coordinates": {
-        "lat": 45.1875602,
-        "lon": 5.7357819
-      },
-      "score": 395
-    },
-    {
-      "rank": 47,
-      "name": "Besançon",
-      "country": "France",
-      "population": 119198,
-      "distance": 102.5,
-      "coordinates": {
-        "lat": 47.2380222,
-        "lon": 6.0243622
-      },
-      "score": 368.2
-    },
-    {
-      "rank": 48,
-      "name": "Bulle",
-      "country": "Suisse",
-      "population": 27101,
-      "distance": 52.2,
-      "coordinates": {
-        "lat": 46.6190969,
-        "lon": 7.0581152
-      },
-      "score": 365.3
-    },
-    {
-      "rank": 49,
-      "name": "Sallanches",
-      "country": "Suisse",
-      "population": 17133,
-      "distance": 49.7,
-      "coordinates": {
-        "lat": 45.9361246,
-        "lon": 6.6302551
-      },
-      "score": 355.8
-    },
-    {
-      "rank": 50,
-      "name": "Saint-Claude",
-      "country": "France",
-      "population": 8727,
-      "distance": 47.2,
-      "coordinates": {
-        "lat": 46.3874699,
-        "lon": 5.8643866
-      },
-      "score": 350.6
-    },
-    {
-      "rank": 51,
-      "name": "Martigny",
-      "country": "Suisse",
-      "population": 21759,
-      "distance": 54.5,
-      "coordinates": {
-        "lat": 46.103115,
-        "lon": 7.0727354
-      },
-      "score": 338.1
-    },
-    {
-      "rank": 52,
-      "name": "Passy",
-      "country": "Suisse",
-      "population": 11068,
-      "distance": 52.2,
-      "coordinates": {
-        "lat": 45.9232994,
-        "lon": 6.6845339
-      },
-      "score": 325.2
-    },
-    {
-      "rank": 53,
-      "name": "Annecy-le-Vieux",
-      "country": "France",
-      "population": 19968,
-      "distance": 56.5,
-      "coordinates": {
-        "lat": 45.9191358,
-        "lon": 6.1420652
-      },
-      "score": 321.9
-    },
-    {
-      "rank": 54,
-      "name": "Valserhône",
-      "country": "France",
-      "population": 16295,
-      "distance": 58.3,
-      "coordinates": {
-        "lat": 46.1098129,
-        "lon": 5.8213091
-      },
-      "score": 302.3
-    },
-    {
-      "rank": 55,
-      "name": "Cran-Gevrier",
-      "country": "France",
-      "population": 17227,
-      "distance": 58.9,
-      "coordinates": {
-        "lat": 45.9079102,
-        "lon": 6.106538
-      },
-      "score": 301.3
-    },
-    {
-      "rank": 56,
-      "name": "Pontarlier",
-      "country": "France",
-      "population": 17849,
-      "distance": 60.1,
-      "coordinates": {
-        "lat": 46.9040348,
-        "lon": 6.3546345
-      },
-      "score": 296.1
-    },
-    {
-      "rank": 57,
-      "name": "Seynod",
-      "country": "France",
-      "population": 18842,
-      "distance": 61.1,
-      "coordinates": {
-        "lat": 45.8880398,
-        "lon": 6.0992785
-      },
-      "score": 293
-    },
-    {
-      "rank": 58,
-      "name": "Bellegarde-sur-Valserine",
-      "country": "France",
-      "population": 11326,
-      "distance": 58.1,
-      "coordinates": {
-        "lat": 46.1076476,
-        "lon": 5.8261219
-      },
-      "score": 291.1
-    },
-    {
-      "rank": 59,
-      "name": "Sion",
-      "country": "Suisse",
-      "population": 34599,
-      "distance": 69.3,
-      "coordinates": {
-        "lat": 46.2311749,
-        "lon": 7.3588795
-      },
-      "score": 289.1
-    },
-    {
-      "rank": 60,
-      "name": "Fribourg",
-      "country": "Suisse",
-      "population": 37485,
-      "distance": 71.1,
-      "coordinates": {
-        "lat": 46.8055656,
-        "lon": 7.1612669
-      },
-      "score": 287.4
-    },
-    {
-      "rank": 61,
-      "name": "Chamonix-Mont-Blanc",
-      "country": "Suisse",
-      "population": 8642,
-      "distance": 58.1,
-      "coordinates": {
-        "lat": 45.9246705,
-        "lon": 6.8727506
-      },
-      "score": 284.4
-    },
-    {
-      "rank": 62,
-      "name": "Oyonnax",
-      "country": "France",
-      "population": 22277,
-      "distance": 64.5,
-      "coordinates": {
-        "lat": 46.2575174,
-        "lon": 5.6556181
-      },
-      "score": 283.1
-    },
-    {
-      "rank": 63,
-      "name": "Payerne",
-      "country": "Suisse",
-      "population": 10545,
-      "distance": 61.1,
-      "coordinates": {
-        "lat": 46.8208047,
-        "lon": 6.939126
-      },
-      "score": 272.2
-    },
-    {
-      "rank": 64,
-      "name": "Champagnole",
-      "country": "France",
-      "population": 8000,
-      "distance": 60.3,
-      "coordinates": {
-        "lat": 46.7456049,
-        "lon": 5.9083581
-      },
-      "score": 270.3
-    },
-    {
-      "rank": 65,
-      "name": "Neuchâtel",
-      "country": "Suisse",
-      "population": 33641,
-      "distance": 76.9,
-      "coordinates": {
-        "lat": 46.9895828,
-        "lon": 6.9292641
-      },
-      "score": 250.3
-    },
-    {
-      "rank": 66,
-      "name": "Villars-sur-Glâne",
-      "country": "Suisse",
-      "population": 12507,
-      "distance": 67.5,
-      "coordinates": {
-        "lat": 46.791321,
-        "lon": 7.1161892
-      },
-      "score": 243
-    },
-    {
-      "rank": 67,
-      "name": "Rumilly",
-      "country": "France",
-      "population": 15998,
-      "distance": 69.6,
-      "coordinates": {
-        "lat": 45.8672156,
-        "lon": 5.9425679
-      },
-      "score": 241.1
-    },
-    {
-      "rank": 68,
-      "name": "Chambéry",
-      "country": "France",
-      "population": 59856,
-      "distance": 99.3,
-      "coordinates": {
-        "lat": 45.5662672,
-        "lon": 5.9203636
-      },
-      "score": 229.6
-    },
-    {
-      "rank": 69,
-      "name": "La Chaux-de-Fonds",
-      "country": "Suisse",
-      "population": 39027,
-      "distance": 85.8,
-      "coordinates": {
-        "lat": 47.1031321,
-        "lon": 6.8325778
-      },
-      "score": 225.8
-    },
-    {
-      "rank": 70,
-      "name": "Albertville",
-      "country": "France",
-      "population": 19812,
-      "distance": 77.6,
-      "coordinates": {
-        "lat": 45.6754622,
-        "lon": 6.3925417
-      },
-      "score": 212.6
-    },
-    {
-      "rank": 71,
-      "name": "Biel/Bienne",
-      "country": "Suisse",
-      "population": 56378,
-      "distance": 103.5,
-      "coordinates": {
-        "lat": 47.1402077,
-        "lon": 7.2439029
-      },
-      "score": 208.2
-    },
-    {
-      "rank": 72,
-      "name": "Lons-le-Saunier",
-      "country": "France",
-      "population": 17043,
-      "distance": 78,
-      "coordinates": {
-        "lat": 46.6727037,
-        "lon": 5.5589973
-      },
-      "score": 203.9
-    },
-    {
-      "rank": 73,
-      "name": "Aix-les-Bains",
-      "country": "France",
-      "population": 31874,
-      "distance": 87.5,
-      "coordinates": {
-        "lat": 45.6886292,
-        "lon": 5.9146362
-      },
-      "score": 201.2
-    },
-    {
-      "rank": 74,
-      "name": "Köniz",
-      "country": "Suisse",
-      "population": 39794,
-      "distance": 94,
-      "coordinates": {
-        "lat": 46.9222385,
-        "lon": 7.4130582
-      },
-      "score": 197
-    },
-    {
-      "rank": 75,
-      "name": "Thun",
-      "country": "Suisse",
-      "population": 43905,
-      "distance": 97.8,
-      "coordinates": {
-        "lat": 46.7582827,
-        "lon": 7.628086
-      },
-      "score": 194.5
-    },
-    {
-      "rank": 76,
-      "name": "Sierre",
-      "country": "Suisse",
-      "population": 16711,
-      "distance": 81.3,
-      "coordinates": {
-        "lat": 46.2922522,
-        "lon": 7.5323195
-      },
-      "score": 188.6
-    },
-    {
-      "rank": 77,
-      "name": "Bourg-en-Bresse",
-      "country": "France",
-      "population": 41525,
-      "distance": 98.1,
-      "coordinates": {
-        "lat": 46.2051192,
-        "lon": 5.2250324
-      },
-      "score": 187.6
-    },
-    {
-      "rank": 78,
-      "name": "Le Locle",
-      "country": "Suisse",
-      "population": 10529,
-      "distance": 78.8,
-      "coordinates": {
-        "lat": 47.0555907,
-        "lon": 6.745454
-      },
-      "score": 184
-    },
-    {
-      "rank": 79,
-      "name": "Morteau",
-      "country": "Suisse",
-      "population": 6867,
-      "distance": 76.9,
-      "coordinates": {
-        "lat": 47.0569367,
-        "lon": 6.6047189
-      },
-      "score": 183.4
-    },
-    {
-      "rank": 80,
-      "name": "Murten",
-      "country": "Suisse",
-      "population": 8222,
-      "distance": 78.8,
-      "coordinates": {
-        "lat": 46.9288643,
-        "lon": 7.1163909
-      },
-      "score": 178.3
-    },
-    {
-      "rank": 81,
-      "name": "Poligny",
-      "country": "France",
-      "population": 4011,
-      "distance": 78.3,
-      "coordinates": {
-        "lat": 46.8348315,
-        "lon": 5.7086562
-      },
-      "score": 170
-    },
-    {
-      "rank": 82,
-      "name": "Vénissieux",
-      "country": "France",
-      "population": 66363,
-      "distance": 144,
-      "coordinates": {
-        "lat": 45.6977109,
-        "lon": 4.8855966
-      },
-      "score": 167
-    },
-    {
-      "rank": 83,
-      "name": "Aosta - Aoste",
-      "country": "Suisse",
-      "population": 30000,
-      "distance": 95.8,
-      "coordinates": {
-        "lat": 45.7370885,
-        "lon": 7.3196649
-      },
-      "score": 166.4
-    },
-    {
-      "rank": 84,
-      "name": "Bourg-Saint-Maurice",
-      "country": "Suisse",
-      "population": 7187,
-      "distance": 86.6,
-      "coordinates": {
-        "lat": 45.6186105,
-        "lon": 6.7695277
-      },
-      "score": 143
-    },
-    {
-      "rank": 85,
-      "name": "Vaulx-en-Velin",
-      "country": "France",
-      "population": 52139,
-      "distance": 137.1,
-      "coordinates": {
-        "lat": 45.7784255,
-        "lon": 4.9206153
-      },
-      "score": 135.5
-    },
-    {
-      "rank": 86,
-      "name": "Belley",
-      "country": "France",
-      "population": 9239,
-      "distance": 91.3,
-      "coordinates": {
-        "lat": 45.760758,
-        "lon": 5.6861466
-      },
-      "score": 130.3
-    },
-    {
-      "rank": 87,
-      "name": "Saint-Priest",
-      "country": "France",
-      "population": 48822,
-      "distance": 140.2,
-      "coordinates": {
-        "lat": 45.6965347,
-        "lon": 4.9441635
-      },
-      "score": 125
-    },
-    {
-      "rank": 88,
-      "name": "Ambérieu-en-Bugey",
-      "country": "France",
-      "population": 14854,
-      "distance": 97.7,
-      "coordinates": {
-        "lat": 45.9584309,
-        "lon": 5.3595099
-      },
-      "score": 122.2
-    },
-    {
-      "rank": 89,
-      "name": "Chalon-sur-Saône",
-      "country": "France",
-      "population": 45031,
-      "distance": 132.4,
-      "coordinates": {
-        "lat": 46.7831001,
-        "lon": 4.8534326
-      },
-      "score": 122.2
-    },
-    {
-      "rank": 90,
-      "name": "Steffisburg",
-      "country": "Suisse",
-      "population": 15816,
-      "distance": 99.3,
-      "coordinates": {
-        "lat": 46.7774738,
-        "lon": 7.6354195
-      },
-      "score": 119.5
-    },
-    {
-      "rank": 91,
-      "name": "Belp",
-      "country": "Suisse",
-      "population": 11548,
-      "distance": 96.9,
-      "coordinates": {
-        "lat": 46.88978,
-        "lon": 7.498388
-      },
-      "score": 116.6
-    },
-    {
-      "rank": 92,
-      "name": "La Motte-Servolex",
-      "country": "France",
-      "population": 12299,
-      "distance": 97.7,
-      "coordinates": {
-        "lat": 45.5984113,
-        "lon": 5.8767935
-      },
-      "score": 115.8
-    },
-    {
-      "rank": 93,
-      "name": "Muri bei Bern",
-      "country": "Suisse",
-      "population": 13712,
-      "distance": 98.9,
-      "coordinates": {
-        "lat": 46.9290477,
-        "lon": 7.4870909
-      },
-      "score": 115.5
-    },
-    {
-      "rank": 94,
-      "name": "Ostermundigen",
-      "country": "Suisse",
-      "population": 16185,
-      "distance": 101.1,
-      "coordinates": {
-        "lat": 46.9582779,
-        "lon": 7.4911242
-      },
-      "score": 114.9
-    },
-    {
-      "rank": 95,
-      "name": "Belfort",
-      "country": "Suisse",
-      "population": 45155,
-      "distance": 143.9,
-      "coordinates": {
-        "lat": 47.6379599,
-        "lon": 6.8628942
-      },
-      "score": 114
-    },
-    {
-      "rank": 96,
-      "name": "Spiez",
-      "country": "Suisse",
-      "population": 12027,
-      "distance": 98.4,
-      "coordinates": {
-        "lat": 46.6919473,
-        "lon": 7.6774655
-      },
-      "score": 112.9
-    },
-    {
-      "rank": 97,
-      "name": "Lyss",
-      "country": "Suisse",
-      "population": 14080,
-      "distance": 100.2,
-      "coordinates": {
-        "lat": 47.0721368,
-        "lon": 7.305262
-      },
-      "score": 112.4
-    },
-    {
-      "rank": 98,
-      "name": "Caluire-et-Cuire",
-      "country": "France",
-      "population": 43572,
-      "distance": 141.4,
-      "coordinates": {
-        "lat": 45.7969952,
-        "lon": 4.8423304
-      },
-      "score": 111.2
-    },
-    {
-      "rank": 99,
-      "name": "Münsingen",
-      "country": "Suisse",
-      "population": 13113,
-      "distance": 99.9,
-      "coordinates": {
-        "lat": 46.8739775,
-        "lon": 7.5631943
-      },
-      "score": 110.9
-    },
-    {
-      "rank": 100,
-      "name": "Bron",
-      "country": "France",
-      "population": 43049,
-      "distance": 140.3,
-      "coordinates": {
-        "lat": 45.7337532,
-        "lon": 4.9092352
-      },
-      "score": 110.5
-    },
-    {
-      "rank": 101,
-      "name": "Dole",
-      "country": "France",
-      "population": 23775,
-      "distance": 109.9,
-      "coordinates": {
-        "lat": 47.0921047,
-        "lon": 5.4925463
-      },
-      "score": 109.5
-    },
-    {
-      "rank": 102,
-      "name": "La Ravoire",
-      "country": "France",
-      "population": 9042,
-      "distance": 98.7,
-      "coordinates": {
-        "lat": 45.5586324,
-        "lon": 5.9643319
-      },
-      "score": 104.5
-    },
-    {
-      "rank": 103,
-      "name": "Mâcon",
-      "country": "France",
-      "population": 34448,
-      "distance": 126.7,
-      "coordinates": {
-        "lat": 46.3036683,
-        "lon": 4.8322266
-      },
-      "score": 103
-    },
-    {
-      "rank": 104,
-      "name": "Meyzieu",
-      "country": "France",
-      "population": 35882,
-      "distance": 131.6,
-      "coordinates": {
-        "lat": 45.7764637,
-        "lon": 5.0044767
-      },
-      "score": 100.2
-    },
-    {
-      "rank": 105,
-      "name": "Ittigen",
-      "country": "Suisse",
-      "population": 11067,
-      "distance": 102.1,
-      "coordinates": {
-        "lat": 46.9790726,
-        "lon": 7.4815213
-      },
-      "score": 99
-    },
-    {
-      "rank": 106,
-      "name": "Saint-Martin-d'Hères",
-      "country": "France",
-      "population": 38454,
-      "distance": 143.5,
-      "coordinates": {
-        "lat": 45.1836683,
-        "lon": 5.75448
-      },
-      "score": 97.4
-    },
-    {
-      "rank": 107,
-      "name": "Zollikofen",
-      "country": "Suisse",
-      "population": 10041,
-      "distance": 102,
-      "coordinates": {
-        "lat": 46.9959463,
-        "lon": 7.4576417
-      },
-      "score": 96.8
-    },
-    {
-      "rank": 108,
-      "name": "Worb",
-      "country": "Suisse",
-      "population": 11449,
-      "distance": 103.6,
-      "coordinates": {
-        "lat": 46.9308618,
-        "lon": 7.5645522
-      },
-      "score": 95.6
-    },
-    {
-      "rank": 109,
-      "name": "Louhans",
-      "country": "France",
-      "population": 6454,
-      "distance": 100.3,
-      "coordinates": {
-        "lat": 46.6291425,
-        "lon": 5.2232175
-      },
-      "score": 93
-    },
-    {
-      "rank": 110,
-      "name": "Échirolles",
-      "country": "France",
-      "population": 36849,
-      "distance": 148.2,
-      "coordinates": {
-        "lat": 45.1481694,
-        "lon": 5.718687
-      },
-      "score": 92.2
-    },
-    {
-      "rank": 111,
-      "name": "Villefranche-sur-Saône",
-      "country": "France",
-      "population": 35913,
-      "distance": 141.5,
-      "coordinates": {
-        "lat": 45.9864749,
-        "lon": 4.726611
-      },
-      "score": 92
-    },
-    {
-      "rank": 112,
-      "name": "Bourgoin-Jallieu",
-      "country": "France",
-      "population": 29577,
-      "distance": 127.4,
-      "coordinates": {
-        "lat": 45.5860438,
-        "lon": 5.2772265
-      },
-      "score": 89.8
-    },
-    {
-      "rank": 113,
-      "name": "Rillieux-la-Pape",
-      "country": "France",
-      "population": 31247,
-      "distance": 136.2,
-      "coordinates": {
-        "lat": 45.823514,
-        "lon": 4.8994366
-      },
-      "score": 84
-    },
-    {
-      "rank": 114,
-      "name": "Décines-Charpieu",
-      "country": "France",
-      "population": 29731,
-      "distance": 134.5,
-      "coordinates": {
-        "lat": 45.773606,
-        "lon": 4.9633314
-      },
-      "score": 81.8
-    },
-    {
-      "rank": 115,
-      "name": "Grenchen",
-      "country": "Suisse",
-      "population": 16401,
-      "distance": 114.9,
-      "coordinates": {
-        "lat": 47.1911495,
-        "lon": 7.3967199
-      },
-      "score": 79.3
-    },
-    {
-      "rank": 116,
-      "name": "Montbéliard",
-      "country": "Suisse",
-      "population": 25573,
-      "distance": 129,
-      "coordinates": {
-        "lat": 47.5102368,
-        "lon": 6.7977564
-      },
-      "score": 77.7
-    },
-    {
-      "rank": 117,
-      "name": "Zermatt",
-      "country": "Suisse",
-      "population": 5786,
-      "distance": 105.2,
-      "coordinates": {
-        "lat": 46.0212076,
-        "lon": 7.749254
-      },
-      "score": 76.9
-    },
-    {
-      "rank": 118,
-      "name": "Burgdorf",
-      "country": "Suisse",
-      "population": 16228,
-      "distance": 115.9,
-      "coordinates": {
-        "lat": 47.0571316,
-        "lon": 7.6237466
-      },
-      "score": 76.7
-    },
-    {
-      "rank": 119,
-      "name": "Visp",
-      "country": "Suisse",
-      "population": 7281,
-      "distance": 108,
-      "coordinates": {
-        "lat": 46.2913113,
-        "lon": 7.8811918
-      },
-      "score": 73.1
-    },
-    {
-      "rank": 120,
-      "name": "Brig",
-      "country": "Suisse",
-      "population": 12823,
-      "distance": 116,
-      "coordinates": {
-        "lat": 46.3163457,
-        "lon": 7.9879473
-      },
-      "score": 68
-    },
-    {
-      "rank": 121,
-      "name": "Oullins",
-      "country": "France",
-      "population": 26512,
-      "distance": 148.4,
-      "coordinates": {
-        "lat": 45.7153254,
-        "lon": 4.8039331
-      },
-      "score": 66.4
-    },
-    {
-      "rank": 122,
-      "name": "Solothurn",
-      "country": "Suisse",
-      "population": 16599,
-      "distance": 123.2,
-      "coordinates": {
-        "lat": 47.2081355,
-        "lon": 7.5384045
-      },
-      "score": 63.8
-    },
-    {
-      "rank": 123,
-      "name": "Voiron",
-      "country": "France",
-      "population": 20891,
-      "distance": 131.5,
-      "coordinates": {
-        "lat": 45.3631386,
-        "lon": 5.5910751
-      },
-      "score": 62.9
-    },
-    {
-      "rank": 124,
-      "name": "Interlaken",
-      "country": "Suisse",
-      "population": 5504,
-      "distance": 111.2,
-      "coordinates": {
-        "lat": 46.6855231,
-        "lon": 7.8585139
-      },
-      "score": 60.6
-    },
-    {
-      "rank": 125,
-      "name": "Ivrea",
-      "country": "Suisse",
-      "population": 23536,
-      "distance": 147.5,
-      "coordinates": {
-        "lat": 45.4673791,
-        "lon": 7.874797
-      },
-      "score": 59
-    },
-    {
-      "rank": 126,
-      "name": "L'Isle-d'Abeau",
-      "country": "France",
-      "population": 17206,
-      "distance": 127.4,
-      "coordinates": {
-        "lat": 45.6230017,
-        "lon": 5.2298398
-      },
-      "score": 58.9
-    },
-    {
-      "rank": 127,
-      "name": "Fontaine",
-      "country": "France",
-      "population": 22891,
-      "distance": 144.5,
-      "coordinates": {
-        "lat": 45.1950183,
-        "lon": 5.6869624
-      },
-      "score": 58.2
-    },
-    {
-      "rank": 128,
-      "name": "Villefontaine",
-      "country": "France",
-      "population": 19083,
-      "distance": 132.3,
-      "coordinates": {
-        "lat": 45.614003,
-        "lon": 5.1580574
-      },
-      "score": 57.5
-    },
-    {
-      "rank": 129,
-      "name": "Tassin-la-Demi-Lune",
-      "country": "France",
-      "population": 22676,
-      "distance": 148.6,
-      "coordinates": {
-        "lat": 45.7598386,
-        "lon": 4.7657747
-      },
-      "score": 56.8
-    },
-    {
-      "rank": 130,
-      "name": "Sainte-Foy-lès-Lyon",
-      "country": "France",
-      "population": 21858,
-      "distance": 148,
-      "coordinates": {
-        "lat": 45.7362255,
-        "lon": 4.7934767
-      },
-      "score": 54.8
-    },
-    {
-      "rank": 131,
-      "name": "Audincourt",
-      "country": "Suisse",
-      "population": 13944,
-      "distance": 126.6,
-      "coordinates": {
-        "lat": 47.4819786,
-        "lon": 6.8413684
-      },
-      "score": 51.9
-    },
-    {
-      "rank": 132,
-      "name": "Beaune",
-      "country": "France",
-      "population": 20032,
-      "distance": 144.7,
-      "coordinates": {
-        "lat": 47.0239064,
-        "lon": 4.8380426
-      },
-      "score": 51
-    },
-    {
-      "rank": 133,
-      "name": "Meylan",
-      "country": "France",
-      "population": 18573,
-      "distance": 140.1,
-      "coordinates": {
-        "lat": 45.2097372,
-        "lon": 5.778361
-      },
-      "score": 49.5
-    },
-    {
-      "rank": 134,
-      "name": "Saint-Fons",
-      "country": "France",
-      "population": 19360,
-      "distance": 145.5,
-      "coordinates": {
-        "lat": 45.708491,
-        "lon": 4.8532593
-      },
-      "score": 49
-    },
-    {
-      "rank": 135,
-      "name": "La Tour-du-Pin",
-      "country": "France",
-      "population": 8138,
-      "distance": 120.1,
-      "coordinates": {
-        "lat": 45.5666202,
-        "lon": 5.4424054
-      },
-      "score": 48.2
-    },
-    {
-      "rank": 136,
-      "name": "Domodossola",
-      "country": "Suisse",
-      "population": 18466,
-      "distance": 142.3,
-      "coordinates": {
-        "lat": 46.1152451,
-        "lon": 8.2920459
-      },
-      "score": 48
-    },
-    {
-      "rank": 137,
-      "name": "Valentigney",
-      "country": "Suisse",
-      "population": 10765,
-      "distance": 124.3,
-      "coordinates": {
-        "lat": 47.4622925,
-        "lon": 6.8308784
-      },
-      "score": 47.5
-    },
-    {
-      "rank": 138,
-      "name": "Écully",
-      "country": "France",
-      "population": 18361,
-      "distance": 146.9,
-      "coordinates": {
-        "lat": 45.7754498,
-        "lon": 4.7785644
-      },
-      "score": 46.2
-    },
-    {
-      "rank": 139,
-      "name": "Saint-Égrève",
-      "country": "France",
-      "population": 16995,
-      "distance": 140.9,
-      "coordinates": {
-        "lat": 45.2325079,
-        "lon": 5.681781
-      },
-      "score": 45.1
-    },
-    {
-      "rank": 140,
-      "name": "Moutier",
-      "country": "Suisse",
-      "population": 7553,
-      "distance": 121.7,
-      "coordinates": {
-        "lat": 47.2796142,
-        "lon": 7.3704192
-      },
-      "score": 43.8
-    },
-    {
-      "rank": 141,
-      "name": "Delémont",
-      "country": "Suisse",
-      "population": 11809,
-      "distance": 128.7,
-      "coordinates": {
-        "lat": 47.3615882,
-        "lon": 7.354445
-      },
-      "score": 43.6
-    },
-    {
-      "rank": 142,
-      "name": "Saint-Jean-de-Maurienne",
-      "country": "France",
-      "population": 7536,
-      "distance": 122,
-      "coordinates": {
-        "lat": 45.2775475,
-        "lon": 6.345172
-      },
-      "score": 43.2
-    },
-    {
-      "rank": 143,
-      "name": "Genas",
-      "country": "France",
-      "population": 13483,
-      "distance": 134.6,
-      "coordinates": {
-        "lat": 45.7330585,
-        "lon": 4.9965605
-      },
-      "score": 41.1
-    },
-    {
-      "rank": 144,
-      "name": "Langenthal",
-      "country": "Suisse",
-      "population": 14000,
-      "distance": 136.7,
-      "coordinates": {
-        "lat": 47.2116019,
-        "lon": 7.788786
-      },
-      "score": 40.5
-    },
-    {
-      "rank": 145,
-      "name": "Vesoul",
-      "country": "France",
-      "population": 15130,
-      "distance": 141,
-      "coordinates": {
-        "lat": 47.6197395,
-        "lon": 6.1544694
-      },
-      "score": 40.3
-    },
-    {
-      "rank": 146,
-      "name": "Tournus",
-      "country": "France",
-      "population": 5627,
-      "distance": 121.9,
-      "coordinates": {
-        "lat": 46.5617373,
-        "lon": 4.9122425
-      },
-      "score": 38.6
-    },
-    {
-      "rank": 147,
-      "name": "Francheville",
-      "country": "France",
-      "population": 15204,
-      "distance": 150,
-      "coordinates": {
-        "lat": 45.735748,
-        "lon": 4.7647304
-      },
-      "score": 38
-    },
-    {
-      "rank": 148,
-      "name": "Mions",
-      "country": "France",
-      "population": 13707,
-      "distance": 141.4,
-      "coordinates": {
-        "lat": 45.6638963,
-        "lon": 4.9570975
-      },
-      "score": 36.6
-    },
-    {
-      "rank": 149,
-      "name": "Porrentruy",
-      "country": "Suisse",
-      "population": 6574,
-      "distance": 124.9,
-      "coordinates": {
-        "lat": 47.4171297,
-        "lon": 7.0761342
-      },
-      "score": 36
-    },
-    {
-      "rank": 150,
-      "name": "Miribel",
-      "country": "France",
-      "population": 10225,
-      "distance": 132.5,
-      "coordinates": {
-        "lat": 45.8235227,
-        "lon": 4.9528525
-      },
-      "score": 35.1
-    }
-  ],
-  "statistics": {
-    "frenchCities": 86,
-    "swissCities": 64,
-    "averageDistance": 85.7,
-    "averagePopulation": 28903
-  }
+	"generatedAt": "2025-10-20T19:10:57.261Z",
+	"baseLocation": {
+		"name": "Thonon-les-Bains",
+		"lat": 46.3708,
+		"lon": 6.4792
+	},
+	"searchRadius": 150,
+	"totalCitiesFound": 164,
+	"topCities": [
+		{
+			"rank": 1,
+			"name": "Genève",
+			"country": "France",
+			"population": 191557,
+			"distance": 31.7,
+			"coordinates": {
+				"lat": 46.2017559,
+				"lon": 6.1466014
+			},
+			"score": 914.3
+		},
+		{
+			"rank": 2,
+			"name": "Lausanne",
+			"country": "Suisse",
+			"population": 133521,
+			"distance": 20.5,
+			"coordinates": {
+				"lat": 46.5218269,
+				"lon": 6.6327025
+			},
+			"score": 855.5
+		},
+		{
+			"rank": 3,
+			"name": "Thonon-les-Bains",
+			"country": "France",
+			"population": 37027,
+			"distance": 0.3,
+			"coordinates": {
+				"lat": 46.3731303,
+				"lon": 6.4779448
+			},
+			"score": 789.8
+		},
+		{
+			"rank": 4,
+			"name": "Évian-les-Bains",
+			"country": "Suisse",
+			"population": 9214,
+			"distance": 9.1,
+			"coordinates": {
+				"lat": 46.400979,
+				"lon": 6.5897931
+			},
+			"score": 640.7
+		},
+		{
+			"rank": 7,
+			"name": "Annecy",
+			"country": "France",
+			"population": 131715,
+			"distance": 59,
+			"coordinates": {
+				"lat": 45.8992348,
+				"lon": 6.1288847
+			},
+			"score": 586.9
+		},
+		{
+			"rank": 12,
+			"name": "Annemasse",
+			"country": "France",
+			"population": 37918,
+			"distance": 27.3,
+			"coordinates": {
+				"lat": 46.1934005,
+				"lon": 6.2341093
+			},
+			"score": 563.2
+		},
+		{
+			"rank": 19,
+			"name": "Lyon",
+			"country": "France",
+			"population": 522250,
+			"distance": 144.2,
+			"coordinates": {
+				"lat": 45.7578137,
+				"lon": 4.8320114
+			},
+			"score": 501
+		},
+		{
+			"rank": 24,
+			"name": "Montreux",
+			"country": "Suisse",
+			"population": 26208,
+			"distance": 33.9,
+			"coordinates": {
+				"lat": 46.4310831,
+				"lon": 6.9129921
+			},
+			"score": 484.9
+		},
+		{
+			"rank": 25,
+			"name": "Gaillard",
+			"country": "France",
+			"population": 10175,
+			"distance": 29.3,
+			"coordinates": {
+				"lat": 46.1838437,
+				"lon": 6.211169
+			},
+			"score": 478.7
+		},
+		{
+			"rank": 26,
+			"name": "Chêne-Bougeries",
+			"country": "France",
+			"population": 10642,
+			"distance": 29.8,
+			"coordinates": {
+				"lat": 46.1963639,
+				"lon": 6.1854072
+			},
+			"score": 476.1
+		},
+		{
+			"rank": 27,
+			"name": "Carouge",
+			"country": "France",
+			"population": 20910,
+			"distance": 33.3,
+			"coordinates": {
+				"lat": 46.1846691,
+				"lon": 6.1396839
+			},
+			"score": 476
+		},
+		{
+			"rank": 28,
+			"name": "La Tour-de-Peilz",
+			"country": "Suisse",
+			"population": 10974,
+			"distance": 30.4,
+			"coordinates": {
+				"lat": 46.4537524,
+				"lon": 6.8569063
+			},
+			"score": 472.5
+		},
+		{
+			"rank": 29,
+			"name": "Le Grand-Saconnex",
+			"country": "France",
+			"population": 11911,
+			"distance": 30.9,
+			"coordinates": {
+				"lat": 46.2363321,
+				"lon": 6.126532
+			},
+			"score": 471.1
+		},
+		{
+			"rank": 30,
+			"name": "Ferney-Voltaire",
+			"country": "France",
+			"population": 10920,
+			"distance": 31.1,
+			"coordinates": {
+				"lat": 46.2567057,
+				"lon": 6.1096409
+			},
+			"score": 467.1
+		},
+		{
+			"rank": 31,
+			"name": "Meyrin",
+			"country": "France",
+			"population": 21866,
+			"distance": 35.1,
+			"coordinates": {
+				"lat": 46.2283226,
+				"lon": 6.0712016
+			},
+			"score": 465.4
+		},
+		{
+			"rank": 32,
+			"name": "Gex",
+			"country": "France",
+			"population": 13078,
+			"distance": 32.6,
+			"coordinates": {
+				"lat": 46.333849,
+				"lon": 6.0577244
+			},
+			"score": 461.5
+		},
+		{
+			"rank": 33,
+			"name": "Bonneville",
+			"country": "France",
+			"population": 12895,
+			"distance": 33.1,
+			"coordinates": {
+				"lat": 46.0775797,
+				"lon": 6.4086189
+			},
+			"score": 457.4
+		},
+		{
+			"rank": 34,
+			"name": "Cluses",
+			"country": "Suisse",
+			"population": 17164,
+			"distance": 35.4,
+			"coordinates": {
+				"lat": 46.0603171,
+				"lon": 6.5804218
+			},
+			"score": 451.5
+		},
+		{
+			"rank": 35,
+			"name": "Lancy",
+			"country": "France",
+			"population": 10919,
+			"distance": 34.4,
+			"coordinates": {
+				"lat": 46.1839156,
+				"lon": 6.1224047
+			},
+			"score": 443
+		},
+		{
+			"rank": 36,
+			"name": "Monthey",
+			"country": "Suisse",
+			"population": 18178,
+			"distance": 38.3,
+			"coordinates": {
+				"lat": 46.252844,
+				"lon": 6.9478263
+			},
+			"score": 433.6
+		},
+		{
+			"rank": 37,
+			"name": "Plan-les-Ouates",
+			"country": "France",
+			"population": 10657,
+			"distance": 35.8,
+			"coordinates": {
+				"lat": 46.1683113,
+				"lon": 6.117887
+			},
+			"score": 432.4
+		},
+		{
+			"rank": 38,
+			"name": "La Roche-sur-Foron",
+			"country": "France",
+			"population": 11263,
+			"distance": 36.1,
+			"coordinates": {
+				"lat": 46.0672189,
+				"lon": 6.3121658
+			},
+			"score": 431.8
+		},
+		{
+			"rank": 39,
+			"name": "Saint-Genis-Pouilly",
+			"country": "France",
+			"population": 14558,
+			"distance": 38,
+			"coordinates": {
+				"lat": 46.243244,
+				"lon": 6.0207779
+			},
+			"score": 426.7
+		},
+		{
+			"rank": 40,
+			"name": "Saint-Julien-en-Genevois",
+			"country": "France",
+			"population": 15840,
+			"distance": 39.6,
+			"coordinates": {
+				"lat": 46.1444789,
+				"lon": 6.0812467
+			},
+			"score": 418.8
+		},
+		{
+			"rank": 41,
+			"name": "Aigle",
+			"country": "Suisse",
+			"population": 11412,
+			"distance": 38,
+			"coordinates": {
+				"lat": 46.3179006,
+				"lon": 6.9688929
+			},
+			"score": 418.8
+		},
+		{
+			"rank": 42,
+			"name": "Bernex",
+			"country": "France",
+			"population": 9866,
+			"distance": 38.1,
+			"coordinates": {
+				"lat": 46.1746582,
+				"lon": 6.0721811
+			},
+			"score": 414.2
+		},
+		{
+			"rank": 43,
+			"name": "Bern",
+			"country": "Suisse",
+			"population": 128848,
+			"distance": 98.2,
+			"coordinates": {
+				"lat": 46.9484742,
+				"lon": 7.4521749
+			},
+			"score": 405.6
+		},
+		{
+			"rank": 44,
+			"name": "Yverdon-les-Bains",
+			"country": "Suisse",
+			"population": 29406,
+			"distance": 47,
+			"coordinates": {
+				"lat": 46.7785711,
+				"lon": 6.6409158
+			},
+			"score": 403.6
+		},
+		{
+			"rank": 45,
+			"name": "Villeurbanne",
+			"country": "France",
+			"population": 156928,
+			"distance": 139.6,
+			"coordinates": {
+				"lat": 45.7733573,
+				"lon": 4.8868454
+			},
+			"score": 395.7
+		},
+		{
+			"rank": 46,
+			"name": "Grenoble",
+			"country": "France",
+			"population": 157477,
+			"distance": 143.6,
+			"coordinates": {
+				"lat": 45.1875602,
+				"lon": 5.7357819
+			},
+			"score": 395
+		},
+		{
+			"rank": 47,
+			"name": "Besançon",
+			"country": "France",
+			"population": 119198,
+			"distance": 102.5,
+			"coordinates": {
+				"lat": 47.2380222,
+				"lon": 6.0243622
+			},
+			"score": 368.2
+		},
+		{
+			"rank": 48,
+			"name": "Bulle",
+			"country": "Suisse",
+			"population": 27101,
+			"distance": 52.2,
+			"coordinates": {
+				"lat": 46.6190969,
+				"lon": 7.0581152
+			},
+			"score": 365.3
+		},
+		{
+			"rank": 49,
+			"name": "Sallanches",
+			"country": "Suisse",
+			"population": 17133,
+			"distance": 49.7,
+			"coordinates": {
+				"lat": 45.9361246,
+				"lon": 6.6302551
+			},
+			"score": 355.8
+		},
+		{
+			"rank": 50,
+			"name": "Saint-Claude",
+			"country": "France",
+			"population": 8727,
+			"distance": 47.2,
+			"coordinates": {
+				"lat": 46.3874699,
+				"lon": 5.8643866
+			},
+			"score": 350.6
+		},
+		{
+			"rank": 51,
+			"name": "Martigny",
+			"country": "Suisse",
+			"population": 21759,
+			"distance": 54.5,
+			"coordinates": {
+				"lat": 46.103115,
+				"lon": 7.0727354
+			},
+			"score": 338.1
+		},
+		{
+			"rank": 52,
+			"name": "Passy",
+			"country": "Suisse",
+			"population": 11068,
+			"distance": 52.2,
+			"coordinates": {
+				"lat": 45.9232994,
+				"lon": 6.6845339
+			},
+			"score": 325.2
+		},
+		{
+			"rank": 53,
+			"name": "Annecy-le-Vieux",
+			"country": "France",
+			"population": 19968,
+			"distance": 56.5,
+			"coordinates": {
+				"lat": 45.9191358,
+				"lon": 6.1420652
+			},
+			"score": 321.9
+		},
+		{
+			"rank": 54,
+			"name": "Valserhône",
+			"country": "France",
+			"population": 16295,
+			"distance": 58.3,
+			"coordinates": {
+				"lat": 46.1098129,
+				"lon": 5.8213091
+			},
+			"score": 302.3
+		},
+		{
+			"rank": 55,
+			"name": "Cran-Gevrier",
+			"country": "France",
+			"population": 17227,
+			"distance": 58.9,
+			"coordinates": {
+				"lat": 45.9079102,
+				"lon": 6.106538
+			},
+			"score": 301.3
+		},
+		{
+			"rank": 56,
+			"name": "Pontarlier",
+			"country": "France",
+			"population": 17849,
+			"distance": 60.1,
+			"coordinates": {
+				"lat": 46.9040348,
+				"lon": 6.3546345
+			},
+			"score": 296.1
+		},
+		{
+			"rank": 57,
+			"name": "Seynod",
+			"country": "France",
+			"population": 18842,
+			"distance": 61.1,
+			"coordinates": {
+				"lat": 45.8880398,
+				"lon": 6.0992785
+			},
+			"score": 293
+		},
+		{
+			"rank": 58,
+			"name": "Bellegarde-sur-Valserine",
+			"country": "France",
+			"population": 11326,
+			"distance": 58.1,
+			"coordinates": {
+				"lat": 46.1076476,
+				"lon": 5.8261219
+			},
+			"score": 291.1
+		},
+		{
+			"rank": 59,
+			"name": "Sion",
+			"country": "Suisse",
+			"population": 34599,
+			"distance": 69.3,
+			"coordinates": {
+				"lat": 46.2311749,
+				"lon": 7.3588795
+			},
+			"score": 289.1
+		},
+		{
+			"rank": 60,
+			"name": "Fribourg",
+			"country": "Suisse",
+			"population": 37485,
+			"distance": 71.1,
+			"coordinates": {
+				"lat": 46.8055656,
+				"lon": 7.1612669
+			},
+			"score": 287.4
+		},
+		{
+			"rank": 61,
+			"name": "Chamonix-Mont-Blanc",
+			"country": "Suisse",
+			"population": 8642,
+			"distance": 58.1,
+			"coordinates": {
+				"lat": 45.9246705,
+				"lon": 6.8727506
+			},
+			"score": 284.4
+		},
+		{
+			"rank": 62,
+			"name": "Oyonnax",
+			"country": "France",
+			"population": 22277,
+			"distance": 64.5,
+			"coordinates": {
+				"lat": 46.2575174,
+				"lon": 5.6556181
+			},
+			"score": 283.1
+		},
+		{
+			"rank": 63,
+			"name": "Payerne",
+			"country": "Suisse",
+			"population": 10545,
+			"distance": 61.1,
+			"coordinates": {
+				"lat": 46.8208047,
+				"lon": 6.939126
+			},
+			"score": 272.2
+		},
+		{
+			"rank": 64,
+			"name": "Champagnole",
+			"country": "France",
+			"population": 8000,
+			"distance": 60.3,
+			"coordinates": {
+				"lat": 46.7456049,
+				"lon": 5.9083581
+			},
+			"score": 270.3
+		},
+		{
+			"rank": 65,
+			"name": "Neuchâtel",
+			"country": "Suisse",
+			"population": 33641,
+			"distance": 76.9,
+			"coordinates": {
+				"lat": 46.9895828,
+				"lon": 6.9292641
+			},
+			"score": 250.3
+		},
+		{
+			"rank": 66,
+			"name": "Villars-sur-Glâne",
+			"country": "Suisse",
+			"population": 12507,
+			"distance": 67.5,
+			"coordinates": {
+				"lat": 46.791321,
+				"lon": 7.1161892
+			},
+			"score": 243
+		},
+		{
+			"rank": 67,
+			"name": "Rumilly",
+			"country": "France",
+			"population": 15998,
+			"distance": 69.6,
+			"coordinates": {
+				"lat": 45.8672156,
+				"lon": 5.9425679
+			},
+			"score": 241.1
+		},
+		{
+			"rank": 68,
+			"name": "Chambéry",
+			"country": "France",
+			"population": 59856,
+			"distance": 99.3,
+			"coordinates": {
+				"lat": 45.5662672,
+				"lon": 5.9203636
+			},
+			"score": 229.6
+		},
+		{
+			"rank": 69,
+			"name": "La Chaux-de-Fonds",
+			"country": "Suisse",
+			"population": 39027,
+			"distance": 85.8,
+			"coordinates": {
+				"lat": 47.1031321,
+				"lon": 6.8325778
+			},
+			"score": 225.8
+		},
+		{
+			"rank": 70,
+			"name": "Albertville",
+			"country": "France",
+			"population": 19812,
+			"distance": 77.6,
+			"coordinates": {
+				"lat": 45.6754622,
+				"lon": 6.3925417
+			},
+			"score": 212.6
+		},
+		{
+			"rank": 71,
+			"name": "Biel/Bienne",
+			"country": "Suisse",
+			"population": 56378,
+			"distance": 103.5,
+			"coordinates": {
+				"lat": 47.1402077,
+				"lon": 7.2439029
+			},
+			"score": 208.2
+		},
+		{
+			"rank": 72,
+			"name": "Lons-le-Saunier",
+			"country": "France",
+			"population": 17043,
+			"distance": 78,
+			"coordinates": {
+				"lat": 46.6727037,
+				"lon": 5.5589973
+			},
+			"score": 203.9
+		},
+		{
+			"rank": 73,
+			"name": "Aix-les-Bains",
+			"country": "France",
+			"population": 31874,
+			"distance": 87.5,
+			"coordinates": {
+				"lat": 45.6886292,
+				"lon": 5.9146362
+			},
+			"score": 201.2
+		},
+		{
+			"rank": 74,
+			"name": "Köniz",
+			"country": "Suisse",
+			"population": 39794,
+			"distance": 94,
+			"coordinates": {
+				"lat": 46.9222385,
+				"lon": 7.4130582
+			},
+			"score": 197
+		},
+		{
+			"rank": 75,
+			"name": "Thun",
+			"country": "Suisse",
+			"population": 43905,
+			"distance": 97.8,
+			"coordinates": {
+				"lat": 46.7582827,
+				"lon": 7.628086
+			},
+			"score": 194.5
+		},
+		{
+			"rank": 76,
+			"name": "Sierre",
+			"country": "Suisse",
+			"population": 16711,
+			"distance": 81.3,
+			"coordinates": {
+				"lat": 46.2922522,
+				"lon": 7.5323195
+			},
+			"score": 188.6
+		},
+		{
+			"rank": 77,
+			"name": "Bourg-en-Bresse",
+			"country": "France",
+			"population": 41525,
+			"distance": 98.1,
+			"coordinates": {
+				"lat": 46.2051192,
+				"lon": 5.2250324
+			},
+			"score": 187.6
+		},
+		{
+			"rank": 78,
+			"name": "Le Locle",
+			"country": "Suisse",
+			"population": 10529,
+			"distance": 78.8,
+			"coordinates": {
+				"lat": 47.0555907,
+				"lon": 6.745454
+			},
+			"score": 184
+		},
+		{
+			"rank": 79,
+			"name": "Morteau",
+			"country": "Suisse",
+			"population": 6867,
+			"distance": 76.9,
+			"coordinates": {
+				"lat": 47.0569367,
+				"lon": 6.6047189
+			},
+			"score": 183.4
+		},
+		{
+			"rank": 80,
+			"name": "Murten",
+			"country": "Suisse",
+			"population": 8222,
+			"distance": 78.8,
+			"coordinates": {
+				"lat": 46.9288643,
+				"lon": 7.1163909
+			},
+			"score": 178.3
+		},
+		{
+			"rank": 81,
+			"name": "Poligny",
+			"country": "France",
+			"population": 4011,
+			"distance": 78.3,
+			"coordinates": {
+				"lat": 46.8348315,
+				"lon": 5.7086562
+			},
+			"score": 170
+		},
+		{
+			"rank": 82,
+			"name": "Vénissieux",
+			"country": "France",
+			"population": 66363,
+			"distance": 144,
+			"coordinates": {
+				"lat": 45.6977109,
+				"lon": 4.8855966
+			},
+			"score": 167
+		},
+		{
+			"rank": 83,
+			"name": "Aosta - Aoste",
+			"country": "Suisse",
+			"population": 30000,
+			"distance": 95.8,
+			"coordinates": {
+				"lat": 45.7370885,
+				"lon": 7.3196649
+			},
+			"score": 166.4
+		},
+		{
+			"rank": 84,
+			"name": "Bourg-Saint-Maurice",
+			"country": "Suisse",
+			"population": 7187,
+			"distance": 86.6,
+			"coordinates": {
+				"lat": 45.6186105,
+				"lon": 6.7695277
+			},
+			"score": 143
+		},
+		{
+			"rank": 85,
+			"name": "Vaulx-en-Velin",
+			"country": "France",
+			"population": 52139,
+			"distance": 137.1,
+			"coordinates": {
+				"lat": 45.7784255,
+				"lon": 4.9206153
+			},
+			"score": 135.5
+		},
+		{
+			"rank": 86,
+			"name": "Belley",
+			"country": "France",
+			"population": 9239,
+			"distance": 91.3,
+			"coordinates": {
+				"lat": 45.760758,
+				"lon": 5.6861466
+			},
+			"score": 130.3
+		},
+		{
+			"rank": 87,
+			"name": "Saint-Priest",
+			"country": "France",
+			"population": 48822,
+			"distance": 140.2,
+			"coordinates": {
+				"lat": 45.6965347,
+				"lon": 4.9441635
+			},
+			"score": 125
+		},
+		{
+			"rank": 88,
+			"name": "Ambérieu-en-Bugey",
+			"country": "France",
+			"population": 14854,
+			"distance": 97.7,
+			"coordinates": {
+				"lat": 45.9584309,
+				"lon": 5.3595099
+			},
+			"score": 122.2
+		},
+		{
+			"rank": 89,
+			"name": "Chalon-sur-Saône",
+			"country": "France",
+			"population": 45031,
+			"distance": 132.4,
+			"coordinates": {
+				"lat": 46.7831001,
+				"lon": 4.8534326
+			},
+			"score": 122.2
+		},
+		{
+			"rank": 90,
+			"name": "Steffisburg",
+			"country": "Suisse",
+			"population": 15816,
+			"distance": 99.3,
+			"coordinates": {
+				"lat": 46.7774738,
+				"lon": 7.6354195
+			},
+			"score": 119.5
+		},
+		{
+			"rank": 91,
+			"name": "Belp",
+			"country": "Suisse",
+			"population": 11548,
+			"distance": 96.9,
+			"coordinates": {
+				"lat": 46.88978,
+				"lon": 7.498388
+			},
+			"score": 116.6
+		},
+		{
+			"rank": 92,
+			"name": "La Motte-Servolex",
+			"country": "France",
+			"population": 12299,
+			"distance": 97.7,
+			"coordinates": {
+				"lat": 45.5984113,
+				"lon": 5.8767935
+			},
+			"score": 115.8
+		},
+		{
+			"rank": 93,
+			"name": "Muri bei Bern",
+			"country": "Suisse",
+			"population": 13712,
+			"distance": 98.9,
+			"coordinates": {
+				"lat": 46.9290477,
+				"lon": 7.4870909
+			},
+			"score": 115.5
+		},
+		{
+			"rank": 94,
+			"name": "Ostermundigen",
+			"country": "Suisse",
+			"population": 16185,
+			"distance": 101.1,
+			"coordinates": {
+				"lat": 46.9582779,
+				"lon": 7.4911242
+			},
+			"score": 114.9
+		},
+		{
+			"rank": 95,
+			"name": "Belfort",
+			"country": "Suisse",
+			"population": 45155,
+			"distance": 143.9,
+			"coordinates": {
+				"lat": 47.6379599,
+				"lon": 6.8628942
+			},
+			"score": 114
+		},
+		{
+			"rank": 96,
+			"name": "Spiez",
+			"country": "Suisse",
+			"population": 12027,
+			"distance": 98.4,
+			"coordinates": {
+				"lat": 46.6919473,
+				"lon": 7.6774655
+			},
+			"score": 112.9
+		},
+		{
+			"rank": 97,
+			"name": "Lyss",
+			"country": "Suisse",
+			"population": 14080,
+			"distance": 100.2,
+			"coordinates": {
+				"lat": 47.0721368,
+				"lon": 7.305262
+			},
+			"score": 112.4
+		},
+		{
+			"rank": 98,
+			"name": "Caluire-et-Cuire",
+			"country": "France",
+			"population": 43572,
+			"distance": 141.4,
+			"coordinates": {
+				"lat": 45.7969952,
+				"lon": 4.8423304
+			},
+			"score": 111.2
+		},
+		{
+			"rank": 99,
+			"name": "Münsingen",
+			"country": "Suisse",
+			"population": 13113,
+			"distance": 99.9,
+			"coordinates": {
+				"lat": 46.8739775,
+				"lon": 7.5631943
+			},
+			"score": 110.9
+		},
+		{
+			"rank": 100,
+			"name": "Bron",
+			"country": "France",
+			"population": 43049,
+			"distance": 140.3,
+			"coordinates": {
+				"lat": 45.7337532,
+				"lon": 4.9092352
+			},
+			"score": 110.5
+		},
+		{
+			"rank": 101,
+			"name": "Dole",
+			"country": "France",
+			"population": 23775,
+			"distance": 109.9,
+			"coordinates": {
+				"lat": 47.0921047,
+				"lon": 5.4925463
+			},
+			"score": 109.5
+		},
+		{
+			"rank": 102,
+			"name": "La Ravoire",
+			"country": "France",
+			"population": 9042,
+			"distance": 98.7,
+			"coordinates": {
+				"lat": 45.5586324,
+				"lon": 5.9643319
+			},
+			"score": 104.5
+		},
+		{
+			"rank": 103,
+			"name": "Mâcon",
+			"country": "France",
+			"population": 34448,
+			"distance": 126.7,
+			"coordinates": {
+				"lat": 46.3036683,
+				"lon": 4.8322266
+			},
+			"score": 103
+		},
+		{
+			"rank": 104,
+			"name": "Meyzieu",
+			"country": "France",
+			"population": 35882,
+			"distance": 131.6,
+			"coordinates": {
+				"lat": 45.7764637,
+				"lon": 5.0044767
+			},
+			"score": 100.2
+		},
+		{
+			"rank": 105,
+			"name": "Ittigen",
+			"country": "Suisse",
+			"population": 11067,
+			"distance": 102.1,
+			"coordinates": {
+				"lat": 46.9790726,
+				"lon": 7.4815213
+			},
+			"score": 99
+		},
+		{
+			"rank": 106,
+			"name": "Saint-Martin-d'Hères",
+			"country": "France",
+			"population": 38454,
+			"distance": 143.5,
+			"coordinates": {
+				"lat": 45.1836683,
+				"lon": 5.75448
+			},
+			"score": 97.4
+		},
+		{
+			"rank": 107,
+			"name": "Zollikofen",
+			"country": "Suisse",
+			"population": 10041,
+			"distance": 102,
+			"coordinates": {
+				"lat": 46.9959463,
+				"lon": 7.4576417
+			},
+			"score": 96.8
+		},
+		{
+			"rank": 108,
+			"name": "Worb",
+			"country": "Suisse",
+			"population": 11449,
+			"distance": 103.6,
+			"coordinates": {
+				"lat": 46.9308618,
+				"lon": 7.5645522
+			},
+			"score": 95.6
+		},
+		{
+			"rank": 109,
+			"name": "Louhans",
+			"country": "France",
+			"population": 6454,
+			"distance": 100.3,
+			"coordinates": {
+				"lat": 46.6291425,
+				"lon": 5.2232175
+			},
+			"score": 93
+		},
+		{
+			"rank": 110,
+			"name": "Échirolles",
+			"country": "France",
+			"population": 36849,
+			"distance": 148.2,
+			"coordinates": {
+				"lat": 45.1481694,
+				"lon": 5.718687
+			},
+			"score": 92.2
+		},
+		{
+			"rank": 111,
+			"name": "Villefranche-sur-Saône",
+			"country": "France",
+			"population": 35913,
+			"distance": 141.5,
+			"coordinates": {
+				"lat": 45.9864749,
+				"lon": 4.726611
+			},
+			"score": 92
+		},
+		{
+			"rank": 112,
+			"name": "Bourgoin-Jallieu",
+			"country": "France",
+			"population": 29577,
+			"distance": 127.4,
+			"coordinates": {
+				"lat": 45.5860438,
+				"lon": 5.2772265
+			},
+			"score": 89.8
+		},
+		{
+			"rank": 113,
+			"name": "Rillieux-la-Pape",
+			"country": "France",
+			"population": 31247,
+			"distance": 136.2,
+			"coordinates": {
+				"lat": 45.823514,
+				"lon": 4.8994366
+			},
+			"score": 84
+		},
+		{
+			"rank": 114,
+			"name": "Décines-Charpieu",
+			"country": "France",
+			"population": 29731,
+			"distance": 134.5,
+			"coordinates": {
+				"lat": 45.773606,
+				"lon": 4.9633314
+			},
+			"score": 81.8
+		},
+		{
+			"rank": 115,
+			"name": "Grenchen",
+			"country": "Suisse",
+			"population": 16401,
+			"distance": 114.9,
+			"coordinates": {
+				"lat": 47.1911495,
+				"lon": 7.3967199
+			},
+			"score": 79.3
+		},
+		{
+			"rank": 116,
+			"name": "Montbéliard",
+			"country": "Suisse",
+			"population": 25573,
+			"distance": 129,
+			"coordinates": {
+				"lat": 47.5102368,
+				"lon": 6.7977564
+			},
+			"score": 77.7
+		},
+		{
+			"rank": 117,
+			"name": "Zermatt",
+			"country": "Suisse",
+			"population": 5786,
+			"distance": 105.2,
+			"coordinates": {
+				"lat": 46.0212076,
+				"lon": 7.749254
+			},
+			"score": 76.9
+		},
+		{
+			"rank": 118,
+			"name": "Burgdorf",
+			"country": "Suisse",
+			"population": 16228,
+			"distance": 115.9,
+			"coordinates": {
+				"lat": 47.0571316,
+				"lon": 7.6237466
+			},
+			"score": 76.7
+		},
+		{
+			"rank": 119,
+			"name": "Visp",
+			"country": "Suisse",
+			"population": 7281,
+			"distance": 108,
+			"coordinates": {
+				"lat": 46.2913113,
+				"lon": 7.8811918
+			},
+			"score": 73.1
+		},
+		{
+			"rank": 120,
+			"name": "Brig",
+			"country": "Suisse",
+			"population": 12823,
+			"distance": 116,
+			"coordinates": {
+				"lat": 46.3163457,
+				"lon": 7.9879473
+			},
+			"score": 68
+		},
+		{
+			"rank": 121,
+			"name": "Oullins",
+			"country": "France",
+			"population": 26512,
+			"distance": 148.4,
+			"coordinates": {
+				"lat": 45.7153254,
+				"lon": 4.8039331
+			},
+			"score": 66.4
+		},
+		{
+			"rank": 122,
+			"name": "Solothurn",
+			"country": "Suisse",
+			"population": 16599,
+			"distance": 123.2,
+			"coordinates": {
+				"lat": 47.2081355,
+				"lon": 7.5384045
+			},
+			"score": 63.8
+		},
+		{
+			"rank": 123,
+			"name": "Voiron",
+			"country": "France",
+			"population": 20891,
+			"distance": 131.5,
+			"coordinates": {
+				"lat": 45.3631386,
+				"lon": 5.5910751
+			},
+			"score": 62.9
+		},
+		{
+			"rank": 124,
+			"name": "Interlaken",
+			"country": "Suisse",
+			"population": 5504,
+			"distance": 111.2,
+			"coordinates": {
+				"lat": 46.6855231,
+				"lon": 7.8585139
+			},
+			"score": 60.6
+		},
+		{
+			"rank": 125,
+			"name": "Ivrea",
+			"country": "Suisse",
+			"population": 23536,
+			"distance": 147.5,
+			"coordinates": {
+				"lat": 45.4673791,
+				"lon": 7.874797
+			},
+			"score": 59
+		},
+		{
+			"rank": 126,
+			"name": "L'Isle-d'Abeau",
+			"country": "France",
+			"population": 17206,
+			"distance": 127.4,
+			"coordinates": {
+				"lat": 45.6230017,
+				"lon": 5.2298398
+			},
+			"score": 58.9
+		},
+		{
+			"rank": 127,
+			"name": "Fontaine",
+			"country": "France",
+			"population": 22891,
+			"distance": 144.5,
+			"coordinates": {
+				"lat": 45.1950183,
+				"lon": 5.6869624
+			},
+			"score": 58.2
+		},
+		{
+			"rank": 128,
+			"name": "Villefontaine",
+			"country": "France",
+			"population": 19083,
+			"distance": 132.3,
+			"coordinates": {
+				"lat": 45.614003,
+				"lon": 5.1580574
+			},
+			"score": 57.5
+		},
+		{
+			"rank": 129,
+			"name": "Tassin-la-Demi-Lune",
+			"country": "France",
+			"population": 22676,
+			"distance": 148.6,
+			"coordinates": {
+				"lat": 45.7598386,
+				"lon": 4.7657747
+			},
+			"score": 56.8
+		},
+		{
+			"rank": 130,
+			"name": "Sainte-Foy-lès-Lyon",
+			"country": "France",
+			"population": 21858,
+			"distance": 148,
+			"coordinates": {
+				"lat": 45.7362255,
+				"lon": 4.7934767
+			},
+			"score": 54.8
+		},
+		{
+			"rank": 131,
+			"name": "Audincourt",
+			"country": "Suisse",
+			"population": 13944,
+			"distance": 126.6,
+			"coordinates": {
+				"lat": 47.4819786,
+				"lon": 6.8413684
+			},
+			"score": 51.9
+		},
+		{
+			"rank": 132,
+			"name": "Beaune",
+			"country": "France",
+			"population": 20032,
+			"distance": 144.7,
+			"coordinates": {
+				"lat": 47.0239064,
+				"lon": 4.8380426
+			},
+			"score": 51
+		},
+		{
+			"rank": 133,
+			"name": "Meylan",
+			"country": "France",
+			"population": 18573,
+			"distance": 140.1,
+			"coordinates": {
+				"lat": 45.2097372,
+				"lon": 5.778361
+			},
+			"score": 49.5
+		},
+		{
+			"rank": 134,
+			"name": "Saint-Fons",
+			"country": "France",
+			"population": 19360,
+			"distance": 145.5,
+			"coordinates": {
+				"lat": 45.708491,
+				"lon": 4.8532593
+			},
+			"score": 49
+		},
+		{
+			"rank": 135,
+			"name": "La Tour-du-Pin",
+			"country": "France",
+			"population": 8138,
+			"distance": 120.1,
+			"coordinates": {
+				"lat": 45.5666202,
+				"lon": 5.4424054
+			},
+			"score": 48.2
+		},
+		{
+			"rank": 136,
+			"name": "Domodossola",
+			"country": "Suisse",
+			"population": 18466,
+			"distance": 142.3,
+			"coordinates": {
+				"lat": 46.1152451,
+				"lon": 8.2920459
+			},
+			"score": 48
+		},
+		{
+			"rank": 137,
+			"name": "Valentigney",
+			"country": "Suisse",
+			"population": 10765,
+			"distance": 124.3,
+			"coordinates": {
+				"lat": 47.4622925,
+				"lon": 6.8308784
+			},
+			"score": 47.5
+		},
+		{
+			"rank": 138,
+			"name": "Écully",
+			"country": "France",
+			"population": 18361,
+			"distance": 146.9,
+			"coordinates": {
+				"lat": 45.7754498,
+				"lon": 4.7785644
+			},
+			"score": 46.2
+		},
+		{
+			"rank": 139,
+			"name": "Saint-Égrève",
+			"country": "France",
+			"population": 16995,
+			"distance": 140.9,
+			"coordinates": {
+				"lat": 45.2325079,
+				"lon": 5.681781
+			},
+			"score": 45.1
+		},
+		{
+			"rank": 140,
+			"name": "Moutier",
+			"country": "Suisse",
+			"population": 7553,
+			"distance": 121.7,
+			"coordinates": {
+				"lat": 47.2796142,
+				"lon": 7.3704192
+			},
+			"score": 43.8
+		},
+		{
+			"rank": 141,
+			"name": "Delémont",
+			"country": "Suisse",
+			"population": 11809,
+			"distance": 128.7,
+			"coordinates": {
+				"lat": 47.3615882,
+				"lon": 7.354445
+			},
+			"score": 43.6
+		},
+		{
+			"rank": 142,
+			"name": "Saint-Jean-de-Maurienne",
+			"country": "France",
+			"population": 7536,
+			"distance": 122,
+			"coordinates": {
+				"lat": 45.2775475,
+				"lon": 6.345172
+			},
+			"score": 43.2
+		},
+		{
+			"rank": 143,
+			"name": "Genas",
+			"country": "France",
+			"population": 13483,
+			"distance": 134.6,
+			"coordinates": {
+				"lat": 45.7330585,
+				"lon": 4.9965605
+			},
+			"score": 41.1
+		},
+		{
+			"rank": 144,
+			"name": "Langenthal",
+			"country": "Suisse",
+			"population": 14000,
+			"distance": 136.7,
+			"coordinates": {
+				"lat": 47.2116019,
+				"lon": 7.788786
+			},
+			"score": 40.5
+		},
+		{
+			"rank": 145,
+			"name": "Vesoul",
+			"country": "France",
+			"population": 15130,
+			"distance": 141,
+			"coordinates": {
+				"lat": 47.6197395,
+				"lon": 6.1544694
+			},
+			"score": 40.3
+		},
+		{
+			"rank": 146,
+			"name": "Tournus",
+			"country": "France",
+			"population": 5627,
+			"distance": 121.9,
+			"coordinates": {
+				"lat": 46.5617373,
+				"lon": 4.9122425
+			},
+			"score": 38.6
+		},
+		{
+			"rank": 147,
+			"name": "Francheville",
+			"country": "France",
+			"population": 15204,
+			"distance": 150,
+			"coordinates": {
+				"lat": 45.735748,
+				"lon": 4.7647304
+			},
+			"score": 38
+		},
+		{
+			"rank": 148,
+			"name": "Mions",
+			"country": "France",
+			"population": 13707,
+			"distance": 141.4,
+			"coordinates": {
+				"lat": 45.6638963,
+				"lon": 4.9570975
+			},
+			"score": 36.6
+		},
+		{
+			"rank": 149,
+			"name": "Porrentruy",
+			"country": "Suisse",
+			"population": 6574,
+			"distance": 124.9,
+			"coordinates": {
+				"lat": 47.4171297,
+				"lon": 7.0761342
+			},
+			"score": 36
+		},
+		{
+			"rank": 150,
+			"name": "Miribel",
+			"country": "France",
+			"population": 10225,
+			"distance": 132.5,
+			"coordinates": {
+				"lat": 45.8235227,
+				"lon": 4.9528525
+			},
+			"score": 35.1
+		}
+	],
+	"statistics": {
+		"frenchCities": 86,
+		"swissCities": 64,
+		"averageDistance": 85.7,
+		"averagePopulation": 28903
+	}
 }
