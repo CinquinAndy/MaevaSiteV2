@@ -81,8 +81,8 @@ importers:
         specifier: 1.9.21
         version: 1.9.21
       ai:
-        specifier: 5.0.106
-        version: 5.0.106(zod@4.1.12)
+        specifier: 5.0.108
+        version: 5.0.108(zod@4.1.12)
       cheerio:
         specifier: 1.1.2
         version: 1.1.2
@@ -2773,8 +2773,8 @@ packages:
     resolution: {integrity: sha512-kja8j7PjmncONqaTsB8fQ+wE2mSU2DJ9D4XKoJ5PFWIdRMa6SLSN1ff4mOr4jCbfRSsxR4keIiySJU0N9T5hIQ==}
     engines: {node: '>= 8.0.0'}
 
-  ai@5.0.106:
-    resolution: {integrity: sha512-M5obwavxSJJ3tGlAFqI6eltYNJB0D20X6gIBCFx/KVorb/X1fxVVfiZZpZb+Gslu4340droSOjT0aKQFCarNVg==}
+  ai@5.0.108:
+    resolution: {integrity: sha512-Jex3Lb7V41NNpuqJHKgrwoU6BCLHdI1Pg4qb4GJH4jRIDRXUBySJErHjyN4oTCwbiYCeb/8II9EnqSRPq9EifA==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
@@ -8361,7 +8361,7 @@ snapshots:
     dependencies:
       humanize-ms: 1.2.1
 
-  ai@5.0.106(zod@4.1.12):
+  ai@5.0.108(zod@4.1.12):
     dependencies:
       '@ai-sdk/gateway': 2.0.18(zod@4.1.12)
       '@ai-sdk/provider': 2.0.0
