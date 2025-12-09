@@ -16,7 +16,7 @@ importers:
         version: 3.4.2
       '@gsap/react':
         specifier: 2.1.2
-        version: 2.1.2(gsap@3.13.0)(react@19.2.1)
+        version: 2.1.2(gsap@3.14.1)(react@19.2.1)
       '@payloadcms/db-postgres':
         specifier: 3.67.0
         version: 3.67.0(@opentelemetry/api@1.9.0)(payload@3.67.0(graphql@16.12.0)(typescript@5.9.3))
@@ -111,8 +111,8 @@ importers:
         specifier: 16.12.0
         version: 16.12.0
       gsap:
-        specifier: 3.13.0
-        version: 3.13.0
+        specifier: 3.14.1
+        version: 3.14.1
       leaflet:
         specifier: 1.9.4
         version: 1.9.4
@@ -3583,8 +3583,8 @@ packages:
     resolution: {integrity: sha512-DKKrynuQRne0PNpEbzuEdHlYOMksHSUI8Zc9Unei5gTsMNA2/vMpoMz/yKba50pejK56qj98qM0SjYxAKi13gQ==}
     engines: {node: ^12.22.0 || ^14.16.0 || ^16.0.0 || >=17.0.0}
 
-  gsap@3.13.0:
-    resolution: {integrity: sha512-QL7MJ2WMjm1PHWsoFrAQH/J8wUeqZvMtHO58qdekHpCfhvhSL4gSiz6vJf5EeMP0LOn3ZCprL2ki/gjED8ghVw==}
+  gsap@3.14.1:
+    resolution: {integrity: sha512-nOFRJpVu+U0IPgKzfC5MEdZrJ1iVidGaOuxK0+Un+7vMOHa5rw/SKOaMaRRyHZiJKaeAEALTBwnj6R3gifyGBw==}
 
   has-symbols@1.1.0:
     resolution: {integrity: sha512-1cDNdwJ2Jaohmb3sg4OmKaMBwuC48sYni5HUw2DvsC8LjGTLK9h+eb1X6RyuOHe4hT0ULCW68iomhjUoKUqlPQ==}
@@ -6560,9 +6560,9 @@ snapshots:
     dependencies:
       crypto-js: 4.2.0
 
-  '@gsap/react@2.1.2(gsap@3.13.0)(react@19.2.1)':
+  '@gsap/react@2.1.2(gsap@3.14.1)(react@19.2.1)':
     dependencies:
-      gsap: 3.13.0
+      gsap: 3.14.1
       react: 19.2.1
 
   '@img/colour@1.0.0': {}
@@ -9139,7 +9139,7 @@ snapshots:
 
   graphql@16.12.0: {}
 
-  gsap@3.13.0: {}
+  gsap@3.14.1: {}
 
   has-symbols@1.1.0: {}
 
