@@ -81,8 +81,8 @@ importers:
         specifier: 1.9.21
         version: 1.9.21
       ai:
-        specifier: 5.0.110
-        version: 5.0.110(zod@4.1.12)
+        specifier: 5.0.112
+        version: 5.0.112(zod@4.1.12)
       cheerio:
         specifier: 1.1.2
         version: 1.1.2
@@ -213,20 +213,14 @@ packages:
   '@acemir/cssom@0.9.28':
     resolution: {integrity: sha512-LuS6IVEivI75vKN8S04qRD+YySP0RmU/cV8UNukhQZvprxF+76Z43TNo/a08eCodaGhT1Us8etqS1ZRY9/Or0A==}
 
-  '@ai-sdk/gateway@2.0.19':
-    resolution: {integrity: sha512-cybb+k/3Kj9BX+Am1mun3dafZsHQLIzW2A4fu5FVTLSIGXXbcuXwXNNdYMGs+B0y6RYOQ8VHbf1QslMSDIxQMA==}
+  '@ai-sdk/gateway@2.0.21':
+    resolution: {integrity: sha512-BwV7DU/lAm3Xn6iyyvZdWgVxgLu3SNXzl5y57gMvkW4nGhAOV5269IrJzQwGt03bb107sa6H6uJwWxc77zXoGA==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
 
   '@ai-sdk/google@2.0.46':
     resolution: {integrity: sha512-8PK6u4sGE/kXebd7ZkTp+0aya4kNqzoqpS5m7cHY2NfTK6fhPc6GNvE+MZIZIoHQTp5ed86wGBdeBPpFaaUtyg==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      zod: ^3.25.76 || ^4.1.8
-
-  '@ai-sdk/provider-utils@3.0.18':
-    resolution: {integrity: sha512-ypv1xXMsgGcNKUP+hglKqtdDuMg68nWHucPPAhIENrbFAI+xCHiqPVN8Zllxyv1TNZwGWUghPxJXU+Mqps0YRQ==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
@@ -2790,8 +2784,8 @@ packages:
     resolution: {integrity: sha512-kja8j7PjmncONqaTsB8fQ+wE2mSU2DJ9D4XKoJ5PFWIdRMa6SLSN1ff4mOr4jCbfRSsxR4keIiySJU0N9T5hIQ==}
     engines: {node: '>= 8.0.0'}
 
-  ai@5.0.110:
-    resolution: {integrity: sha512-ZBq+5bvef4e5qoIG4U6NJ1UpCPWGjuaWERHXbHu2T2ND3c02nJ2zlnjm+N6zAAplQPxwqm7Sb16mrRX5uQNWtQ==}
+  ai@5.0.112:
+    resolution: {integrity: sha512-Y0dluYpe5wn81UkfHbZL78mH6CsceUfMiu4oPRaWZvjlmcoXSPdEAsPcYbOjvX8ZPvQc6m4kNZhkcEXmT2ln4w==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
@@ -4173,6 +4167,7 @@ packages:
   next@15.5.7:
     resolution: {integrity: sha512-+t2/0jIJ48kUpGKkdlhgkv+zPTEOoXyr60qXe68eB/pl3CMJaLeIGjzp5D6Oqt25hCBiBTt8wEeeAzfJvUKnPQ==}
     engines: {node: ^18.18.0 || ^19.8.0 || >= 20.0.0}
+    deprecated: This version has a security vulnerability. Please upgrade to a patched version. See https://nextjs.org/blog/security-update-2025-12-11 for more details.
     hasBin: true
     peerDependencies:
       '@opentelemetry/api': ^1.1.0
@@ -5339,10 +5334,10 @@ snapshots:
 
   '@acemir/cssom@0.9.28': {}
 
-  '@ai-sdk/gateway@2.0.19(zod@4.1.12)':
+  '@ai-sdk/gateway@2.0.21(zod@4.1.12)':
     dependencies:
       '@ai-sdk/provider': 2.0.0
-      '@ai-sdk/provider-utils': 3.0.18(zod@4.1.12)
+      '@ai-sdk/provider-utils': 3.0.19(zod@4.1.12)
       '@vercel/oidc': 3.0.5
       zod: 4.1.12
 
@@ -5350,13 +5345,6 @@ snapshots:
     dependencies:
       '@ai-sdk/provider': 2.0.0
       '@ai-sdk/provider-utils': 3.0.19(zod@4.1.12)
-      zod: 4.1.12
-
-  '@ai-sdk/provider-utils@3.0.18(zod@4.1.12)':
-    dependencies:
-      '@ai-sdk/provider': 2.0.0
-      '@standard-schema/spec': 1.0.0
-      eventsource-parser: 3.0.6
       zod: 4.1.12
 
   '@ai-sdk/provider-utils@3.0.19(zod@4.1.12)':
@@ -8397,11 +8385,11 @@ snapshots:
     dependencies:
       humanize-ms: 1.2.1
 
-  ai@5.0.110(zod@4.1.12):
+  ai@5.0.112(zod@4.1.12):
     dependencies:
-      '@ai-sdk/gateway': 2.0.19(zod@4.1.12)
+      '@ai-sdk/gateway': 2.0.21(zod@4.1.12)
       '@ai-sdk/provider': 2.0.0
-      '@ai-sdk/provider-utils': 3.0.18(zod@4.1.12)
+      '@ai-sdk/provider-utils': 3.0.19(zod@4.1.12)
       '@opentelemetry/api': 1.9.0
       zod: 4.1.12
 
