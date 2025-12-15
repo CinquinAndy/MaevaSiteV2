@@ -44,7 +44,7 @@
 		"@react-email/components": "0.5.7",
 		"@react-three/drei": "10.7.7",
 		"@react-three/fiber": "9.4.2",
-		"@tabler/icons-react": "3.35.0",
+		"@tabler/icons-react": "3.36.0",
 		"@tailwindcss/postcss": "4.1.18",
 		"@tailwindcss/typography": "0.5.19",
 		"@types/leaflet": "1.9.21",
