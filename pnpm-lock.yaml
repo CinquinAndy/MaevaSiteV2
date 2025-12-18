@@ -205,8 +205,8 @@ importers:
         specifier: 5.9.3
         version: 5.9.3
       vite-tsconfig-paths:
-        specifier: 5.1.4
-        version: 5.1.4(typescript@5.9.3)(vite@7.1.10(@types/node@24.10.4)(jiti@2.6.1)(lightningcss@1.30.2)(sass@1.77.4)(tsx@4.21.0))
+        specifier: 6.0.3
+        version: 6.0.3(typescript@5.9.3)(vite@7.1.10(@types/node@24.10.4)(jiti@2.6.1)(lightningcss@1.30.2)(sass@1.77.4)(tsx@4.21.0))
 
 packages:
 
@@ -5135,8 +5135,8 @@ packages:
   vfile-message@4.0.3:
     resolution: {integrity: sha512-QTHzsGd1EhbZs4AsQ20JX1rC3cOlt/IWJruk893DfLRr57lcnOeMaWG4K0JrRta4mIJZKth2Au3mM3u03/JWKw==}
 
-  vite-tsconfig-paths@5.1.4:
-    resolution: {integrity: sha512-cYj0LRuLV2c2sMqhqhGpaO3LretdtMn/BVX4cPLanIZuwwrkVl+lK84E/miEXkCHWXuq65rhNN4rXsBcOB3S4w==}
+  vite-tsconfig-paths@6.0.3:
+    resolution: {integrity: sha512-7bL7FPX/DSviaZGYUKowWF1AiDVWjMjxNbE8lyaVGDezkedWqfGhlnQ4BZXre0ZN5P4kAgIJfAlgFDVyjrCIyg==}
     peerDependencies:
       vite: '*'
     peerDependenciesMeta:
@@ -10846,7 +10846,7 @@ snapshots:
       '@types/unist': 3.0.3
       unist-util-stringify-position: 4.0.0
 
-  vite-tsconfig-paths@5.1.4(typescript@5.9.3)(vite@7.1.10(@types/node@24.10.4)(jiti@2.6.1)(lightningcss@1.30.2)(sass@1.77.4)(tsx@4.21.0)):
+  vite-tsconfig-paths@6.0.3(typescript@5.9.3)(vite@7.1.10(@types/node@24.10.4)(jiti@2.6.1)(lightningcss@1.30.2)(sass@1.77.4)(tsx@4.21.0)):
     dependencies:
       debug: 4.4.3
       globrex: 0.1.2
