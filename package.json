@@ -24,7 +24,7 @@
 		"sync:reviews": "pnpm scrape:reviews && pnpm clean:reviews && pnpm import:reviews sync && pnpm download:avatars && pnpm upload:avatars"
 	},
 	"dependencies": {
-		"@ai-sdk/google": "2.0.49",
+		"@ai-sdk/google": "2.0.51",
 		"@googlemaps/google-maps-services-js": "3.4.2",
 		"@gsap/react": "2.1.2",
 		"@payloadcms/db-postgres": "3.69.0",
