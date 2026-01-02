@@ -33,6 +33,20 @@ export const metadata: Metadata = {
 		title: 'Maeva Cinquin',
 	},
 	manifest: '/manifest.json',
+	openGraph: {
+		images: [
+			{
+				url: '/og-mae.webp',
+				width: 1200,
+				height: 630,
+				alt: 'Maeva Cinquin - Maquilleuse Professionnelle',
+			},
+		],
+	},
+	twitter: {
+		card: 'summary_large_image',
+		images: ['/og-mae.webp'],
+	},
 	// Autoriser l'indexation pour la production
 	robots: {
 		index: true,

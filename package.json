@@ -21,8 +21,9 @@
 		"import:reviews": "tsx scripts/import-google-reviews-to-payload.ts",
 		"download:avatars": "tsx scripts/download-review-avatars.ts",
 		"upload:avatars": "tsx scripts/upload-avatars-to-payload.ts",
-		"sync:reviews": "pnpm scrape:reviews && pnpm clean:reviews && pnpm import:reviews sync && pnpm download:avatars && pnpm upload:avatars"
+		"sync:reviews": "bun scrape:reviews && bun clean:reviews && bun import:reviews sync && bun download:avatars && bun upload:avatars"
 	},
+	"packageManager": "bun@1.2.17",
 	"dependencies": {
 		"@ai-sdk/google": "2.0.52",
 		"@googlemaps/google-maps-services-js": "3.4.2",

@@ -135,5 +135,5 @@ export const PAGE_SEO = {
 /**
  * Image par défaut pour Open Graph et Twitter cards
  */
-export const DEFAULT_OG_IMAGE = '/og-image.jpg' // À créer
+export const DEFAULT_OG_IMAGE = '/og-mae.webp'
 export const TWITTER_HANDLE = '@makeup.artist.dream'
