@@ -57,7 +57,7 @@
 		"cross-env": "10.1.0",
 		"dotenv": "17.2.3",
 		"embla-carousel-react": "8.6.0",
-		"framer-motion": "12.25.0",
+		"framer-motion": "12.26.1",
 		"graphql": "16.12.0",
 		"gsap": "3.14.2",
 		"leaflet": "1.9.4",
