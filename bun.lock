@@ -29,7 +29,7 @@
         "@tailwindcss/postcss": "4.2.1",
         "@tailwindcss/typography": "0.5.19",
         "@types/leaflet": "1.9.21",
-        "ai": "5.0.149",
+        "ai": "5.0.150",
         "cheerio": "1.2.0",
         "class-variance-authority": "0.7.1",
         "clsx": "2.1.1",
@@ -79,7 +79,7 @@
   "packages": {
     "@acemir/cssom": ["@acemir/cssom@0.9.30", "", {}, "sha512-9CnlMCI0LmCIq0olalQqdWrJHPzm0/tw3gzOA9zJSgvFX7Xau3D24mAGa4BtwxwY69nsuJW6kQqqCzf/mEcQgg=="],
 
-    "@ai-sdk/gateway": ["@ai-sdk/gateway@2.0.54", "", { "dependencies": { "@ai-sdk/provider": "2.0.1", "@ai-sdk/provider-utils": "3.0.22", "@vercel/oidc": "3.1.0" }, "peerDependencies": { "zod": "^3.25.76 || ^4.1.8" } }, "sha512-bK47JS1IYanXc5ruhfEVLDUcig7Im3gQr5p52AB4x//mT/wcGLf85SxwGWzw42pyOsW8ee38Wy567WWJc90s/A=="],
+    "@ai-sdk/gateway": ["@ai-sdk/gateway@2.0.55", "", { "dependencies": { "@ai-sdk/provider": "2.0.1", "@ai-sdk/provider-utils": "3.0.22", "@vercel/oidc": "3.1.0" }, "peerDependencies": { "zod": "^3.25.76 || ^4.1.8" } }, "sha512-YDSA2eIQOfByg2Cd1FDtulqYNRSvXzwlHQRHvTl2VbX7oTr+MmR1g/21i5RdK+o15irqB/5VQNVOB0zOVY828Q=="],
 
     "@ai-sdk/google": ["@ai-sdk/google@2.0.60", "", { "dependencies": { "@ai-sdk/provider": "2.0.1", "@ai-sdk/provider-utils": "3.0.22" }, "peerDependencies": { "zod": "^3.25.76 || ^4.1.8" } }, "sha512-7E3yoeQwynxWRcROAld85U2NW8IDOWkByC+g9zzZ1QzjKr1N9xFWF0F7XfXW09B/CGM+RTk2kqLJ0v7urBSYeQ=="],
 
@@ -951,7 +951,7 @@
 
     "agentkeepalive": ["agentkeepalive@4.6.0", "", { "dependencies": { "humanize-ms": "^1.2.1" } }, "sha512-kja8j7PjmncONqaTsB8fQ+wE2mSU2DJ9D4XKoJ5PFWIdRMa6SLSN1ff4mOr4jCbfRSsxR4keIiySJU0N9T5hIQ=="],
 
-    "ai": ["ai@5.0.149", "", { "dependencies": { "@ai-sdk/gateway": "2.0.54", "@ai-sdk/provider": "2.0.1", "@ai-sdk/provider-utils": "3.0.22", "@opentelemetry/api": "1.9.0" }, "peerDependencies": { "zod": "^3.25.76 || ^4.1.8" } }, "sha512-ebOvqbUZ4njabaKC7gpuFBbNsyvH8y/9eyIDgKefu9PB8j5GdkWKsXNtPxhz4PDFnDb0GClCtsJ4j/gWy71UNg=="],
+    "ai": ["ai@5.0.150", "", { "dependencies": { "@ai-sdk/gateway": "2.0.55", "@ai-sdk/provider": "2.0.1", "@ai-sdk/provider-utils": "3.0.22", "@opentelemetry/api": "1.9.0" }, "peerDependencies": { "zod": "^3.25.76 || ^4.1.8" } }, "sha512-a1tY3kt6NVDKU3ZTdVWDu0RwHpwXCKG0qVzqDVI6kkwnlKFvQRJsq7mPYjI0YSWFkt5DjL/Aq9NrDY4FhgUTyQ=="],
 
     "ajv": ["ajv@8.17.1", "", { "dependencies": { "fast-deep-equal": "^3.1.3", "fast-uri": "^3.0.1", "json-schema-traverse": "^1.0.0", "require-from-string": "^2.0.2" } }, "sha512-B/gBuNg5SiMTrPkC+A2+cW0RszwxYmn6VYxB/inlBStS5nx6xHIt/ehKRhIMhqusl7a8LjQoZnjCs5vhwxOQ1g=="],
 
