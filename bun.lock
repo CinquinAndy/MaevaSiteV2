@@ -5,7 +5,7 @@
     "": {
       "name": "cinquin-maeva",
       "dependencies": {
-        "@ai-sdk/google": "2.0.73",
+        "@ai-sdk/google": "2.0.74",
         "@googlemaps/google-maps-services-js": "3.4.2",
         "@gsap/react": "2.1.2",
         "@payloadcms/db-postgres": "3.84.1",
@@ -81,7 +81,7 @@
 
     "@ai-sdk/gateway": ["@ai-sdk/gateway@2.0.89", "", { "dependencies": { "@ai-sdk/provider": "2.0.3", "@ai-sdk/provider-utils": "3.0.25", "@vercel/oidc": "3.1.0" }, "peerDependencies": { "zod": "^3.25.76 || ^4.1.8" } }, "sha512-oIIsLOTgfuFIg6HGQ3d5gXjUvgx2YKav10T4t+sexnQj1anw6WoMDdSAT24igbfgWrC+Cf2tmlLeRhBUxdsZ9g=="],
 
-    "@ai-sdk/google": ["@ai-sdk/google@2.0.73", "", { "dependencies": { "@ai-sdk/provider": "2.0.3", "@ai-sdk/provider-utils": "3.0.25" }, "peerDependencies": { "zod": "^3.25.76 || ^4.1.8" } }, "sha512-XbYFFSnr8ddK1pHNP7rALOY6s3JScRFcS6dXFFqMkK9ZY/CoGRwYHlSex7+NTcC2m1L1Y3NrfyUU7RD4jYV+ag=="],
+    "@ai-sdk/google": ["@ai-sdk/google@2.0.74", "", { "dependencies": { "@ai-sdk/provider": "2.0.3", "@ai-sdk/provider-utils": "3.0.25" }, "peerDependencies": { "zod": "^3.25.76 || ^4.1.8" } }, "sha512-Lhw1742RXc+4pRIvqVXa0jdl5+qdpmw8lj0lm6OchUg9rVGHzymlaxe7CDiYX5U2af4jbjKeTY22LDi3bIycgQ=="],
 
     "@ai-sdk/provider": ["@ai-sdk/provider@2.0.3", "", { "dependencies": { "json-schema": "^0.4.0" } }, "sha512-h88OPkavHTiN9tMn2l5awAznGB0lXzjcLhgR1/rvjB2zlLprsNxbM2tt6OJsHUxduLC3klq0/eqaSf6fX5XVww=="],
 
