@@ -38,7 +38,7 @@
         "dotenv": "17.4.2",
         "embla-carousel-react": "8.6.0",
         "framer-motion": "12.39.0",
-        "graphql": "16.14.0",
+        "graphql": "16.14.2",
         "gsap": "3.15.0",
         "leaflet": "1.9.4",
         "lucide-react": "0.562.0",
@@ -1287,7 +1287,7 @@
 
     "graceful-fs": ["graceful-fs@4.2.11", "https://registry.npmjs.com/graceful-fs/-/graceful-fs-4.2.11.tgz", {}, "sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ=="],
 
-    "graphql": ["graphql@16.14.0", "", {}, "sha512-BBvQ/406p+4CZbTpCbVPSxfzrZrbnuWSP1ELYgyS6B+hNeKzgrdB4JczCa5VZUBQrDa9hUngm0KnexY6pJRN5Q=="],
+    "graphql": ["graphql@16.14.2", "", {}, "sha512-Chq1s4CY7jmh8gO2qvLIJyfCDIN+EHLFW/9iShnp1z8FjBQMoodWP1kDC36VAMXXIvAjj4ARa7ntfAV2BrjsbA=="],
 
     "graphql-http": ["graphql-http@1.22.4", "https://registry.npmjs.com/graphql-http/-/graphql-http-1.22.4.tgz", { "peerDependencies": { "graphql": ">=0.11 <=16" } }, "sha512-OC3ucK988teMf+Ak/O+ZJ0N2ukcgrEurypp8ePyJFWq83VzwRAmHxxr+XxrMpxO/FIwI4a7m/Fzv3tWGJv0wPA=="],
 
