@@ -29,7 +29,7 @@
         "@tailwindcss/postcss": "4.3.2",
         "@tailwindcss/typography": "0.5.19",
         "@types/leaflet": "1.9.21",
-        "ai": "5.0.221",
+        "ai": "5.0.222",
         "cheerio": "1.2.0",
         "class-variance-authority": "0.7.1",
         "clsx": "2.1.1",
@@ -79,7 +79,7 @@
   "packages": {
     "@acemir/cssom": ["@acemir/cssom@0.9.30", "https://registry.npmjs.com/@acemir/cssom/-/cssom-0.9.30.tgz", {}, "sha512-9CnlMCI0LmCIq0olalQqdWrJHPzm0/tw3gzOA9zJSgvFX7Xau3D24mAGa4BtwxwY69nsuJW6kQqqCzf/mEcQgg=="],
 
-    "@ai-sdk/gateway": ["@ai-sdk/gateway@2.0.120", "", { "dependencies": { "@ai-sdk/provider": "2.0.3", "@ai-sdk/provider-utils": "3.0.30", "@vercel/oidc": "3.1.0" }, "peerDependencies": { "zod": "^3.25.76 || ^4.1.8" } }, "sha512-fqb/NZ8ieIdCMpmyYik9qW5DGH8iACWKROLUgrGWnOj6N/NOiNab2ADjP+zXCdjMOtn9T6Jq9kyJLkNP/sZC7g=="],
+    "@ai-sdk/gateway": ["@ai-sdk/gateway@2.0.121", "", { "dependencies": { "@ai-sdk/provider": "2.0.3", "@ai-sdk/provider-utils": "3.0.30", "@vercel/oidc": "3.1.0" }, "peerDependencies": { "zod": "^3.25.76 || ^4.1.8" } }, "sha512-H5m+5rTovokYFVS9Wb+utB/Gjup9taIKxihBzSv+rVNGd2TYHJVk8/ldTMYnughTGNOUQLLI6RB6zimCXoDNzg=="],
 
     "@ai-sdk/google": ["@ai-sdk/google@2.0.85", "", { "dependencies": { "@ai-sdk/provider": "2.0.3", "@ai-sdk/provider-utils": "3.0.30" }, "peerDependencies": { "zod": "^3.25.76 || ^4.1.8" } }, "sha512-Ubih0FtKJY1ZfKzXh003OOGk8tBv0U8SwZ50rR8SUJqUrMyLfGrWt57pQAkldFOoBoVkvJYBohf7ycpTLoIA+A=="],
 
@@ -961,7 +961,7 @@
 
     "agentkeepalive": ["agentkeepalive@4.6.0", "https://registry.npmjs.com/agentkeepalive/-/agentkeepalive-4.6.0.tgz", { "dependencies": { "humanize-ms": "^1.2.1" } }, "sha512-kja8j7PjmncONqaTsB8fQ+wE2mSU2DJ9D4XKoJ5PFWIdRMa6SLSN1ff4mOr4jCbfRSsxR4keIiySJU0N9T5hIQ=="],
 
-    "ai": ["ai@5.0.221", "", { "dependencies": { "@ai-sdk/gateway": "2.0.120", "@ai-sdk/provider": "2.0.3", "@ai-sdk/provider-utils": "3.0.30", "@opentelemetry/api": "1.9.0" }, "peerDependencies": { "zod": "^3.25.76 || ^4.1.8" } }, "sha512-bO3rwC/y0tyYxs4E2fA8t2jDHdy5L7JPKznCFuCtq8Hnh/66GcrsSvGjEXX+V6dnl2cmxhsQrZ3JDsiCig1n1w=="],
+    "ai": ["ai@5.0.222", "", { "dependencies": { "@ai-sdk/gateway": "2.0.121", "@ai-sdk/provider": "2.0.3", "@ai-sdk/provider-utils": "3.0.30", "@opentelemetry/api": "1.9.0" }, "peerDependencies": { "zod": "^3.25.76 || ^4.1.8" } }, "sha512-RdTURjrJXJFMOs7vsojKbeRdoeTSHjQ3VvavR7WHfQZF93enBpl584Un6bh2C86UjcECFPk7JEpCxqNFbh1HmA=="],
 
     "ajv": ["ajv@8.18.0", "", { "dependencies": { "fast-deep-equal": "^3.1.3", "fast-uri": "^3.0.1", "json-schema-traverse": "^1.0.0", "require-from-string": "^2.0.2" } }, "sha512-PlXPeEWMXMZ7sPYOHqmDyCJzcfNrUr3fGNKtezX14ykXOEIvyK81d+qydx89KY5O71FKMPaQ2vBfBFI5NHR63A=="],
 
