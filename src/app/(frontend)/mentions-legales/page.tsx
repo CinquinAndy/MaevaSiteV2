@@ -155,9 +155,9 @@ export default function MentionsLegalesPage() {
 								<br />
 								<strong>netcup GmbH</strong>
 								<br />
-								Daimlerstraße 25
+								Emmy-Noether-Straße 10
 								<br />
-								76185 Karlsruhe
+								76131 Karlsruhe
 								<br />
 								Allemagne
 							</p>
@@ -172,8 +172,8 @@ export default function MentionsLegalesPage() {
 							</p>
 							<p>
 								Toute reproduction ou représentation totale ou partielle de son contenu, images, textes, sons, par
-								quelque procédé utilisé, sans l'autorisation préalable de la société 'Cinquin Andy' ou celle de 'Artist
-								Make Up Dream – Maeva Cinquin', est strictement interdite.
+								quelque procédé utilisé, sans l'autorisation préalable de l'entreprise individuelle 'Cinquin Andy' ou
+								celle de 'Artist Make Up Dream – Maeva Cinquin', est strictement interdite.
 							</p>
 							<p>
 								Toute violation constituera une sanction et fera l'objet de poursuites conformément aux dispositions des
@@ -189,10 +189,11 @@ export default function MentionsLegalesPage() {
 								<br />
 								Cinquin Andy
 								<br />
-								SIRET : 880 505 276 00027
-								<br />4 Impasse de la Marchaisière
+								SIRET : 880 505 276 00035
 								<br />
-								44115 Haute-Goulaine
+								1250 Chemin de la Renouillère
+								<br />
+								74140 Sciez
 								<br />
 								Téléphone : 06 21 58 26 84
 								<br />
