@@ -1,11 +1,10 @@
-# What `docker build` may read: everything is refused, then what the build needs is let through.
-# A local .env, the git history or the tooling folders never reach the builder.
-*
-!package.json
-!bun.lock
-!next.config.mjs
-!tsconfig.json
-!postcss.config.mjs
-!tailwind.config.ts
-!src
-!public
+# What `docker build` must not read: dependencies and build output (rebuilt inside the image),
+# the git history, and every local environment file, so no secret ever reaches the builder.
+node_modules
+.next
+.git
+.env
+.env.*
+!.env.example
+.vscode
+.cursorignore
