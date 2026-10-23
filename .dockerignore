@@ -1,0 +1,11 @@
+# What `docker build` may read: everything is refused, then what the build needs is let through.
+# A local .env, the git history or the tooling folders never reach the builder.
+*
+!package.json
+!bun.lock
+!next.config.mjs
+!tsconfig.json
+!postcss.config.mjs
+!tailwind.config.ts
+!src
+!public
