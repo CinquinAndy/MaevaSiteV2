@@ -34,6 +34,9 @@ export const metadata: Metadata = {
 	},
 	manifest: '/manifest.json',
 	openGraph: {
+		type: 'website',
+		siteName: 'Maeva Cinquin - Makeup Artist',
+		locale: 'fr_FR',
 		images: [
 			{
 				url: '/og-mae.webp',
