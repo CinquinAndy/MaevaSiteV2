@@ -10,6 +10,49 @@ export const SITE_CONFIG = {
 	author: 'Maeva Cinquin',
 } as const
 
+/** Image de partage par défaut (même que celle du layout) */
+const DEFAULT_SHARE_IMAGE = {
+	url: `${SITE_CONFIG.url}/og-mae.webp`,
+	width: 1200,
+	height: 630,
+	alt: 'Maeva Cinquin - Maquilleuse Professionnelle',
+}
+
+/**
+ * Open Graph et Twitter d'une page de détail. Une page qui définit son propre `openGraph`
+ * remplace entièrement celui du layout : sans ceci, ses partages n'ont ni image, ni nom de site, ni langue.
+ */
+function shareMetadata(params: {
+	title: string
+	description: string
+	url: string
+	type: 'article' | 'website'
+	image?: string
+	imageAlt?: string
+	publishedTime?: string
+}): Pick<Metadata, 'openGraph' | 'twitter'> {
+	const { title, description, url, type, image, imageAlt, publishedTime } = params
+	const images = image ? [{ url: image, alt: imageAlt || title }] : [DEFAULT_SHARE_IMAGE]
+
+	return {
+		openGraph: {
+			title,
+			description,
+			url,
+			siteName: SITE_CONFIG.name,
+			locale: 'fr_FR',
+			images,
+			...(type === 'article' ? { type: 'article', publishedTime } : { type: 'website' }),
+		},
+		twitter: {
+			card: 'summary_large_image',
+			title,
+			description,
+			images: images.map(item => item.url),
+		},
+	}
+}
+
 /**
  * Génère les métadonnées SEO de base pour le site
  */
@@ -306,7 +349,7 @@ export function generateBlogPostMetadata(params: {
 	seoDescription?: string
 }): Metadata {
 	const baseSEO = generateBaseSEO()
-	const { title, excerpt, slug, seoTitle, seoDescription } = params
+	const { title, excerpt, featuredImage, slug, publishedDate, seoTitle, seoDescription } = params
 
 	const metaTitle = seoTitle || `${title} | Blog Maeva Cinquin`
 	const metaDescription = seoDescription || excerpt || title
@@ -315,17 +358,15 @@ export function generateBlogPostMetadata(params: {
 		...baseSEO,
 		title: metaTitle,
 		description: metaDescription,
-		openGraph: {
+		...shareMetadata({
 			title: metaTitle,
 			description: metaDescription,
-			type: 'article',
 			url: `${SITE_CONFIG.url}/blog/${slug}`,
-		},
-		twitter: {
-			card: 'summary_large_image',
-			title: metaTitle,
-			description: metaDescription,
-		},
+			type: 'article',
+			image: featuredImage,
+			imageAlt: title,
+			publishedTime: publishedDate,
+		}),
 		alternates: {
 			canonical: `${SITE_CONFIG.url}/blog/${slug}`,
 		},
@@ -392,7 +433,7 @@ export function generateGaleryItemMetadata(params: {
 	seoDescription?: string
 }): Metadata {
 	const baseSEO = generateBaseSEO()
-	const { title, description, slug, seoTitle, seoDescription } = params
+	const { title, description, coverImage, slug, seoTitle, seoDescription } = params
 
 	const metaTitle = seoTitle || `${title} | Galerie Maeva Cinquin`
 	const metaDescription = seoDescription || description || title
@@ -401,17 +442,14 @@ export function generateGaleryItemMetadata(params: {
 		...baseSEO,
 		title: metaTitle,
 		description: metaDescription,
-		openGraph: {
+		...shareMetadata({
 			title: metaTitle,
 			description: metaDescription,
-			type: 'website',
 			url: `${SITE_CONFIG.url}/galerie/${slug}`,
-		},
-		twitter: {
-			card: 'summary_large_image',
-			title: metaTitle,
-			description: metaDescription,
-		},
+			type: 'website',
+			image: coverImage,
+			imageAlt: title,
+		}),
 		alternates: {
 			canonical: `${SITE_CONFIG.url}/galerie/${slug}`,
 		},
@@ -426,7 +464,7 @@ export function generateGaleryJsonLd(params: { title: string; description?: stri
 
 	return {
 		'@context': 'https://schema.org',
-		'@type': 'ImageGalery',
+		'@type': 'ImageGallery',
 		name: title,
 		description: description || title,
 		url: `${SITE_CONFIG.url}/galerie/${slug}`,
@@ -458,7 +496,7 @@ export function generateServiceItemMetadata(params: {
 	seoDescription?: string
 }): Metadata {
 	const baseSEO = generateBaseSEO()
-	const { title, shortDescription, slug, seoTitle, seoDescription } = params
+	const { title, shortDescription, featuredImage, slug, seoTitle, seoDescription } = params
 	const cities = getCityNamesForSEO()
 
 	const metaTitle = seoTitle || `${title} | Prestations Maeva Cinquin`
@@ -471,17 +509,14 @@ export function generateServiceItemMetadata(params: {
 		...baseSEO,
 		title: metaTitle,
 		description: metaDescription,
-		openGraph: {
+		...shareMetadata({
 			title: metaTitle,
 			description: metaDescription,
-			type: 'website',
 			url: `${SITE_CONFIG.url}/prestations/${slug}`,
-		},
-		twitter: {
-			card: 'summary_large_image',
-			title: metaTitle,
-			description: metaDescription,
-		},
+			type: 'website',
+			image: featuredImage,
+			imageAlt: title,
+		}),
 		alternates: {
 			canonical: `${SITE_CONFIG.url}/prestations/${slug}`,
 		},

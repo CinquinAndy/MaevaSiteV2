@@ -11,6 +11,8 @@ export const metadata: Metadata = {
 	title: "Guide d'Utilisation - Maeva Cinquin CMS",
 	description:
 		"Apprends à gérer ton site avec Payload CMS : créer des articles, optimiser le SEO, utiliser l'IA Gemini et gérer tes médias.",
+	// Guide réservé à l'administration (redirige vers /admin sans session) : hors index
+	robots: { index: false, follow: false },
 }
 
 export default async function Page(): Promise<React.JSX.Element> {
