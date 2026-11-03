@@ -2,19 +2,16 @@
 
 import { Resend } from 'resend'
 import { ContactFormEmail } from '@/emails/contact-form-email'
+import { type ContactFormData, validateContactForm } from '@/lib/contact-validation'
 
-const resend = new Resend(process.env.RESEND_TOKEN)
+export type { ContactFormData } from '@/lib/contact-validation'
 
-export interface ContactFormData {
-	name: string
-	email: string
-	phone: string
-	address?: string
-	city?: string
-	postalCode?: string
-	message: string
-	gardenSize?: string
-}
+// Expéditeur sur un domaine vérifié dans le compte Resend (andy-cinquin.com).
+// L'ancien expéditeur contact@email.andy-cinquin.fr n'est plus vérifié : Resend répondait 403.
+const FROM = 'Cinquin Maeva - Website <contact@andy-cinquin.com>'
+const TO = ['maevacinquin1@gmail.com']
+
+const SEND_ERROR_MESSAGE = "Une erreur s'est produite lors de l'envoi du message. Veuillez réessayer."
 
 export interface ContactFormResponse {
 	success: boolean
@@ -22,33 +19,30 @@ export interface ContactFormResponse {
 	error?: string
 }
 
+// Client créé à l'appel : une clé absente ne fait plus planter le module au chargement.
+function getResend(): Resend | null {
+	const apiKey = process.env.RESEND_TOKEN
+	return apiKey ? new Resend(apiKey) : null
+}
+
 export async function submitContactForm(formData: ContactFormData): Promise<ContactFormResponse> {
 	try {
-		// Validation basique
-		if (!formData.name || !formData.email || !formData.phone || !formData.message) {
-			return {
-				success: false,
-				message: 'Veuillez remplir tous les champs obligatoires.',
-				error: 'VALIDATION_ERROR',
-			}
+		const invalid = validateContactForm(formData)
+		if (invalid) {
+			return { success: false, message: invalid.message, error: invalid.error }
 		}
 
-		// Validation de l'email
-		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-		if (!emailRegex.test(formData.email)) {
-			return {
-				success: false,
-				message: 'Veuillez entrer une adresse email valide.',
-				error: 'INVALID_EMAIL',
-			}
+		const resend = getResend()
+		if (!resend) {
+			console.error('Formulaire de contact : RESEND_TOKEN absent, envoi impossible.')
+			return { success: false, message: SEND_ERROR_MESSAGE, error: 'CONFIG_ERROR' }
 		}
 
-		// Envoyer l'email via Resend avec React Email
-		const { error } = await resend.emails.send({
-			from: 'Cinquin Maeva - Website <contact@email.andy-cinquin.fr>',
-			to: ['maevacinquin1@gmail.com'],
-			replyTo: formData.email,
-			subject: `Nouvelle demande de contact de ${formData.name}`,
+		const { data, error } = await resend.emails.send({
+			from: FROM,
+			to: TO,
+			replyTo: formData.email.trim(),
+			subject: `Nouvelle demande de contact de ${formData.name.trim()}`,
 			react: ContactFormEmail({
 				name: formData.name,
 				email: formData.email,
@@ -61,20 +55,18 @@ export async function submitContactForm(formData: ContactFormData): Promise<Cont
 		})
 
 		if (error) {
-			console.error('Erreur Resend:', error)
-			return {
-				success: false,
-				message: "Une erreur s'est produite lors de l'envoi du message. Veuillez réessayer.",
-				error: 'RESEND_ERROR',
-			}
+			// Pas de données du visiteur dans les journaux : seulement le retour de Resend.
+			console.error('Erreur Resend:', { name: error.name, statusCode: error.statusCode, message: error.message })
+			return { success: false, message: SEND_ERROR_MESSAGE, error: 'RESEND_ERROR' }
 		}
 
+		console.info('Formulaire de contact envoyé, id Resend :', data?.id)
 		return {
 			success: true,
 			message: 'Votre demande a été envoyée avec succès ! Je vous répondrai sous 48h.',
 		}
 	} catch (error) {
-		console.error('Erreur lors de la soumission du formulaire:', error)
+		console.error('Erreur lors de la soumission du formulaire:', error instanceof Error ? error.message : error)
 		return {
 			success: false,
 			message: "Une erreur inattendue s'est produite. Veuillez réessayer plus tard.",
