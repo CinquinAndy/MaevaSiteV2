@@ -4,8 +4,6 @@ import { Resend } from 'resend'
 import { ContactFormEmail } from '@/emails/contact-form-email'
 import { type ContactFormData, validateContactForm } from '@/lib/contact-validation'
 
-export type { ContactFormData } from '@/lib/contact-validation'
-
 // Expéditeur sur un domaine vérifié dans le compte Resend (andy-cinquin.com).
 // L'ancien expéditeur contact@email.andy-cinquin.fr n'est plus vérifié : Resend répondait 403.
 const FROM = 'Cinquin Maeva - Website <contact@andy-cinquin.com>'
