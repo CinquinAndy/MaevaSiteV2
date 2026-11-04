@@ -45,7 +45,7 @@
 		"@radix-ui/react-tabs": "1.1.21",
 		"@react-email/components": "1.0.12",
 		"@react-three/drei": "10.7.9",
-		"@react-three/fiber": "9.6.1",
+		"@react-three/fiber": "9.8.2",
 		"@tabler/icons-react": "3.46.0",
 		"@tailwindcss/postcss": "4.3.4",
 		"@tailwindcss/typography": "0.5.20",
