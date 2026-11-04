@@ -11,3 +11,5 @@ public/wordpress
 google-credentials.json
 reviews-data/
 tsconfig.tsbuildinfo
+# Deployment id written by the Dockerfile (see src/scripts/build-ids.mjs)
+/.deployment-id
