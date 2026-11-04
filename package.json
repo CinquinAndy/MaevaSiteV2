@@ -24,7 +24,7 @@
 		"upload:avatars": "tsx scripts/upload-avatars-to-payload.ts",
 		"sync:reviews": "bun scrape:reviews && bun clean:reviews && bun import:reviews sync && bun download:avatars && bun upload:avatars"
 	},
-	"packageManager": "bun@1.3.14",
+	"packageManager": "bun@1.4.4",
 	"dependencies": {
 		"@ai-sdk/google": "2.0.108",
 		"@googlemaps/google-maps-services-js": "3.4.2",
