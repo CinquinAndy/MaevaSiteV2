@@ -49,7 +49,7 @@
 		"@tabler/icons-react": "3.46.0",
 		"@tailwindcss/postcss": "4.3.3",
 		"@tailwindcss/typography": "0.5.20",
-		"@types/leaflet": "1.9.21",
+		"@types/leaflet": "1.9.22",
 		"ai": "5.0.223",
 		"cheerio": "1.2.0",
 		"class-variance-authority": "0.7.1",
