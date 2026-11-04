@@ -5,6 +5,7 @@ type Reponse = { data: { id: string } | null; error: { name: string; statusCode:
 let reponse: Reponse = { data: { id: 'test-id' }, error: null }
 const envois: Record<string, unknown>[] = []
 const clesUtilisees: (string | undefined)[] = []
+const optionsEnvois: ({ idempotencyKey?: string } | undefined)[] = []
 
 mock.module('resend', () => ({
 	Resend: class {
@@ -12,8 +13,9 @@ mock.module('resend', () => ({
 			clesUtilisees.push(cle)
 		}
 		emails = {
-			send: async (payload: Record<string, unknown>) => {
+			send: async (payload: Record<string, unknown>, options?: { idempotencyKey?: string }) => {
 				envois.push(payload)
+				optionsEnvois.push(options)
 				return reponse
 			},
 		}
@@ -43,6 +45,7 @@ describe('submitContactForm', () => {
 		reponse = { data: { id: 'test-id' }, error: null }
 		envois.length = 0
 		clesUtilisees.length = 0
+		optionsEnvois.length = 0
 		consoleError = spyOn(console, 'error').mockImplementation(() => {})
 		consoleInfo = spyOn(console, 'info').mockImplementation(() => {})
 	})
@@ -96,5 +99,25 @@ describe('submitContactForm', () => {
 		reponse = undefined as unknown as Reponse
 		const resultat = await submitContactForm(formulaire)
 		expect(resultat.error).toBe('UNKNOWN_ERROR')
+	})
+
+	test('identifiant d’envoi valide : clé d’idempotence Resend (pas de double envoi au renvoi)', async () => {
+		const submissionId = '3f2b8c1e-9a4d-4e6f-8b7a-1c2d3e4f5a6b'
+		const premier = await submitContactForm({ ...formulaire, submissionId })
+		const renvoi = await submitContactForm({ ...formulaire, submissionId })
+		expect(premier.success).toBe(true)
+		expect(renvoi.success).toBe(true)
+		expect(optionsEnvois).toEqual([
+			{ idempotencyKey: `contact-form/${submissionId}` },
+			{ idempotencyKey: `contact-form/${submissionId}` },
+		])
+	})
+
+	test('identifiant d’envoi absent ou mal formé : envoi sans clé d’idempotence', async () => {
+		await submitContactForm(formulaire)
+		await submitContactForm({ ...formulaire, submissionId: 'pas-un-uuid' })
+		await submitContactForm({ ...formulaire, submissionId: { $ne: 1 } as unknown as string })
+		expect(envois).toHaveLength(3)
+		expect(optionsEnvois).toEqual([undefined, undefined, undefined])
 	})
 })

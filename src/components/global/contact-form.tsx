@@ -1,47 +1,111 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner'
 import { submitContactForm } from '@/actions/contact'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
+import {
+	CONTACT_FIELD_NAMES,
+	type ContactDraftFields,
+	clearContactDraft,
+	fieldsFingerprint,
+	fieldsFromFormData,
+	planSubmitFailure,
+	resumeContactDraft,
+	submissionIdFor,
+} from '@/lib/contact-draft'
+
+function getSessionStorage(): Storage | null {
+	try {
+		return window.sessionStorage
+	} catch {
+		return null
+	}
+}
+
+/** Remet dans les champs (non contrôlés) ce que le visiteur avait tapé avant le rechargement. */
+function fillForm(form: HTMLFormElement, fields: ContactDraftFields) {
+	for (const name of CONTACT_FIELD_NAMES) {
+		const field = form.elements.namedItem(name)
+		if (field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement) field.value = fields[name]
+	}
+}
 
 export function ContactForm() {
 	const [isSubmitting, setIsSubmitting] = useState(false)
 
-	async function handleSubmit(formData: FormData) {
+	const formRef = useRef<HTMLFormElement>(null)
+	// Identifiant de l'envoi en cours (clé d'idempotence côté serveur) et empreinte des champs envoyés.
+	const submissionRef = useRef<{ submissionId: string; fingerprint: string } | null>(null)
+	// true pendant l'envoi relancé automatiquement après rechargement.
+	const autoRetryRef = useRef(false)
+
+	// Après une mise à jour du site : restaurer ce que le visiteur avait tapé et renvoyer une seule fois.
+	useEffect(() => {
+		const form = formRef.current
+		const resumed = resumeContactDraft(getSessionStorage())
+		if (!form || !resumed) return
+		fillForm(form, resumed.draft.fields)
+		submissionRef.current = {
+			submissionId: resumed.draft.submissionId,
+			fingerprint: fieldsFingerprint(resumed.draft.fields),
+		}
+		if (!resumed.autoRetry) return
+		autoRetryRef.current = true
+		// L'événement submit est traité tout de suite : handleSubmit a déjà lu le drapeau au retour.
+		form.requestSubmit()
+		autoRetryRef.current = false
+	}, [])
+
+	// onSubmit plutôt que <form action> : React ne vide plus les champs après un échec.
+	async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+		event.preventDefault()
+		const form = event.currentTarget
+		// Lu avant tout changement d'état : les champs désactivés pendant l'envoi ne sont pas dans FormData.
+		const fields = fieldsFromFormData(new FormData(form))
+		const isAutoRetry = autoRetryRef.current
+		autoRetryRef.current = false
+		const submission = submissionIdFor(submissionRef.current, fields)
+		submissionRef.current = submission
+
 		setIsSubmitting(true)
 
 		try {
-			// Convert FormData to ContactFormData object
-			const data = {
-				name: formData.get('name') as string,
-				email: formData.get('email') as string,
-				phone: formData.get('phone') as string,
-				city: formData.get('city') as string,
-				postalCode: formData.get('postalCode') as string,
-				message: formData.get('message') as string,
-			}
-
-			const result = await submitContactForm(data)
+			const result = await submitContactForm({ ...fields, submissionId: submission.submissionId })
 
 			if (result.success) {
+				clearContactDraft(getSessionStorage())
+				submissionRef.current = null
 				toast.success('Message envoyé !', {
 					description: 'Merci pour votre message ! Je vous répondrai dans les plus brefs délais.',
 				})
 				// Reset form
-				const form = document.querySelector('form') as HTMLFormElement
-				form?.reset()
+				form.reset()
 			} else {
 				toast.error('Erreur', {
 					description: result.message || 'Une erreur est survenue. Veuillez réessayer.',
 				})
 			}
-		} catch (_error) {
+		} catch (error) {
+			// Site mis à jour pendant que la page était ouverte (action introuvable), coupure réseau ou réponse
+			// non reconnue : on garde le message et on recharge la page pour le renvoyer une fois automatiquement.
+			const plan = planSubmitFailure({
+				error,
+				fields,
+				submissionId: submission.submissionId,
+				isAutoRetry,
+				storage: getSessionStorage(),
+			})
+			if (plan.action === 'reload') {
+				window.location.reload()
+				return
+			}
 			toast.error('Erreur', {
-				description: 'Une erreur est survenue. Veuillez réessayer.',
+				description: plan.action === 'show-message' ? plan.message : 'Une erreur est survenue. Veuillez réessayer.',
+				...(plan.action === 'show-message' ? { duration: 8000 } : {}),
 			})
 		} finally {
 			setIsSubmitting(false)
@@ -49,7 +113,7 @@ export function ContactForm() {
 	}
 
 	return (
-		<form action={handleSubmit} className="space-y-6" id="contact">
+		<form ref={formRef} onSubmit={handleSubmit} className="space-y-6" id="contact">
 			{/* Nom */}
 			<div className="space-y-2">
 				<Label htmlFor="name">

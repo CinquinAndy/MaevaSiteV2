@@ -33,8 +33,16 @@ ARG GEMINI_API_KEY
 ARG RESEND_TOKEN
 ARG REVALIDATE_SECRET
 ARG NEXT_PUBLIC_SERVER_URL
+# Version skew (a page opened before a deploy), see src/scripts/build-ids.mjs:
+# - Stable Server Actions key across builds (derived from PAYLOAD_SECRET, unless Coolify provides
+#   NEXT_SERVER_ACTIONS_ENCRYPTION_KEY): the id of submitContactForm no longer changes on every deploy.
+# - .deployment-id: `deploymentId` of next.config.mjs, the commit when Coolify passes SOURCE_COMMIT.
+ARG NEXT_SERVER_ACTIONS_ENCRYPTION_KEY
+ARG SOURCE_COMMIT
 ENV NEXT_TELEMETRY_DISABLED=1
-RUN bun run build
+RUN node src/scripts/build-ids.mjs deployment-id > .deployment-id \
+	&& NEXT_SERVER_ACTIONS_ENCRYPTION_KEY="${NEXT_SERVER_ACTIONS_ENCRYPTION_KEY:-$(node src/scripts/build-ids.mjs server-actions-key)}" \
+	bun run build
 
 # 3. What runs. The app is copied whole: `next start` needs .next, node_modules and the sources
 #    that next.config.ts and the Payload config import.
