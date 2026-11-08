@@ -26,7 +26,7 @@
 	},
 	"packageManager": "bun@1.4.4",
 	"dependencies": {
-		"@ai-sdk/google": "2.0.108",
+		"@ai-sdk/google": "2.0.109",
 		"@googlemaps/google-maps-services-js": "3.4.2",
 		"@gsap/react": "2.1.2",
 		"@payloadcms/db-postgres": "3.93.0",
