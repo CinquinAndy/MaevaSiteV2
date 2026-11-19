@@ -19,6 +19,8 @@ const nextConfig = {
 	// Your Next.js config here
 	outputFileTracingRoot: import.meta.dirname,
 	deploymentId: readDeploymentId(),
+	// Pas d'en-tête « X-Powered-By: Next.js » : inutile d'annoncer la pile aux scanners.
+	poweredByHeader: false,
 	webpack: webpackConfig => {
 		webpackConfig.resolve.extensionAlias = {
 			'.cjs': ['.cts', '.cjs'],
@@ -29,7 +31,6 @@ const nextConfig = {
 		return webpackConfig
 	},
 	async headers() {
-		// Phase 1: Basic security headers that shouldn't interfere with PayPal
 		await Promise.resolve() // Satisfy async requirement
 		return [
 			{
@@ -44,8 +45,28 @@ const nextConfig = {
 						key: 'Referrer-Policy',
 					},
 					{
-						value: '1; mode=block',
+						// Filtre XSS des anciens navigateurs : désactivé, il créait plus de failles qu'il n'en bouchait.
+						value: '0',
 						key: 'X-XSS-Protection',
+					},
+					{
+						// HTTPS imposé pendant un an (le site est déjà servi en HTTPS par Coolify).
+						value: 'max-age=31536000',
+						key: 'Strict-Transport-Security',
+					},
+					{
+						// Le site (et la page de connexion de l'admin) ne peut pas être affiché dans un cadre
+						// d'un autre site : protège contre le détournement de clic.
+						value: 'SAMEORIGIN',
+						key: 'X-Frame-Options',
+					},
+					{
+						value: "frame-ancestors 'self'",
+						key: 'Content-Security-Policy',
+					},
+					{
+						value: 'camera=(), microphone=(), geolocation=(), payment=(), usb=()',
+						key: 'Permissions-Policy',
 					},
 				],
 			},
@@ -54,7 +75,9 @@ const nextConfig = {
 	trailingSlash: false,
 	images: {
 		remotePatterns: [
-			{ protocol: 'http', hostname: 'localhost' },
+			// localhost seulement en développement : en production, l'optimiseur d'images ne doit rien aller
+			// chercher sur le serveur lui-même.
+			...(process.env.NODE_ENV === 'production' ? [] : [{ protocol: 'http', hostname: 'localhost' }]),
 			{ protocol: 'https', hostname: '*.cinquin-maeva.com' },
 			{ protocol: 'https', hostname: 'cinquin-maeva.com' },
 			{ protocol: 'https', hostname: '*.andy-cinquin.fr' },

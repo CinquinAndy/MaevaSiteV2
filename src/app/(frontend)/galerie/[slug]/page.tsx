@@ -8,6 +8,7 @@ import { Blob3, Blob5, Blob6, Blob7, Blob8, Blob9 } from '@/components/blobs/blo
 import { Badge } from '@/components/ui/badge'
 import { BentoGalery } from '@/components/ui/bento-galery'
 import { generateGaleryItemMetadata, generateGaleryJsonLd } from '@/lib/seo'
+import { serializeJsonLd } from '@/lib/seo/json-ld'
 import type { Galery, Media } from '@/payload-types'
 
 const categoryLabels: Record<string, string> = {
@@ -117,7 +118,7 @@ export default async function GaleryDetailPage({ params }: { params: Promise<{ s
 	return (
 		<>
 			{/* JSON-LD Schema pour SEO */}
-			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }} />
 
 			{/* Hero Banner */}
 			<FadeIn>

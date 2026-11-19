@@ -8,6 +8,7 @@ import { Blob2, Blob3, Blob4, Blob6, Blob8, Blob9 } from '@/components/blobs/blo
 import { BlogArticleGrid } from '@/components/blog/BlogArticleGrid'
 import { Badge } from '@/components/ui/badge'
 import { generateBlogPostJsonLd, generateBlogPostMetadata } from '@/lib/seo'
+import { serializeJsonLd } from '@/lib/seo/json-ld'
 import type { Blog, Media } from '@/payload-types'
 
 const categoryLabels: Record<string, string> = {
@@ -116,7 +117,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 	return (
 		<>
 			{/* JSON-LD Schema pour SEO */}
-			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }} />
 
 			{/* Hero Banner */}
 			<FadeIn>

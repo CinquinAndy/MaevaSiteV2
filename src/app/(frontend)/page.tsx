@@ -6,6 +6,7 @@ import { LatestGalerySection } from '@/components/home/latest-galery-section'
 import { ServicesSection } from '@/components/home/services-section'
 import { TestimonialsSection } from '@/components/home/testimonials-section'
 import { generateHomeJsonLd, generateHomeMetadata } from '@/lib/seo'
+import { serializeJsonLd } from '@/lib/seo/json-ld'
 
 export const metadata = generateHomeMetadata()
 
@@ -18,7 +19,7 @@ export default async function HomePage() {
 	return (
 		<>
 			{/* JSON-LD Schema pour SEO */}
-			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }} />
 
 			<div className="w-full h-full">
 				{/* Hero Section */}
