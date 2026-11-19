@@ -1,5 +1,6 @@
 'use client'
 
+import Script from 'next/script'
 import { useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner'
 import { submitContactForm } from '@/actions/contact'
@@ -17,6 +18,37 @@ import {
 	resumeContactDraft,
 	submissionIdFor,
 } from '@/lib/contact-draft'
+import { HONEYPOT_FIELD } from '@/lib/security/spam'
+
+/**
+ * Clé publique du widget Turnstile « cinquin-maeva.com contact » (compte Cloudflare d'Andy).
+ * En développement : clé de test de Cloudflare, qui passe toujours (le serveur ignore alors la vérification).
+ */
+const TURNSTILE_SITE_KEY =
+	process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ||
+	(process.env.NODE_ENV === 'production' ? '0x4AAAAAAGI9fX7BRpZ15PDm' : '1x00000000000000000000AA')
+
+interface TurnstileApi {
+	render: (
+		element: HTMLElement,
+		options: {
+			sitekey: string
+			callback: (token: string) => void
+			'expired-callback': () => void
+			'error-callback': () => void
+			language?: string
+			theme?: 'auto' | 'light' | 'dark'
+		}
+	) => string
+	reset: (widgetId?: string) => void
+	remove: (widgetId?: string) => void
+}
+
+declare global {
+	interface Window {
+		turnstile?: TurnstileApi
+	}
+}
 
 function getSessionStorage(): Storage | null {
 	try {
@@ -42,6 +74,56 @@ export function ContactForm() {
 	const submissionRef = useRef<{ submissionId: string; fingerprint: string } | null>(null)
 	// true pendant l'envoi relancé automatiquement après rechargement.
 	const autoRetryRef = useRef(false)
+	// Renvoi automatique en attente du jeton Turnstile (le widget n'en a pas encore produit au chargement).
+	const pendingAutoRetryRef = useRef(false)
+	// Widget Turnstile : conteneur, identifiant et dernier jeton (à usage unique, valable environ 5 minutes).
+	const turnstileContainerRef = useRef<HTMLDivElement>(null)
+	const turnstileWidgetRef = useRef<string | null>(null)
+	const turnstileTokenRef = useRef<string | null>(null)
+
+	function submitAutoRetry() {
+		const form = formRef.current
+		if (!form) return
+		pendingAutoRetryRef.current = false
+		autoRetryRef.current = true
+		// L'événement submit est traité tout de suite : handleSubmit a déjà lu le drapeau au retour.
+		form.requestSubmit()
+		autoRetryRef.current = false
+	}
+
+	/** Affiche le widget une fois le script chargé (aussi après une navigation côté client). */
+	function renderTurnstile() {
+		const container = turnstileContainerRef.current
+		if (!window.turnstile || !container || turnstileWidgetRef.current) return
+		turnstileWidgetRef.current = window.turnstile.render(container, {
+			sitekey: TURNSTILE_SITE_KEY,
+			language: 'fr',
+			theme: 'auto',
+			callback: token => {
+				turnstileTokenRef.current = token
+				if (pendingAutoRetryRef.current) submitAutoRetry()
+			},
+			'expired-callback': () => {
+				turnstileTokenRef.current = null
+			},
+			'error-callback': () => {
+				turnstileTokenRef.current = null
+			},
+		})
+	}
+
+	/** Un jeton ne sert qu'une fois : on en redemande un après chaque tentative. */
+	function resetTurnstile() {
+		turnstileTokenRef.current = null
+		if (turnstileWidgetRef.current) window.turnstile?.reset(turnstileWidgetRef.current)
+	}
+
+	useEffect(() => {
+		return () => {
+			if (turnstileWidgetRef.current) window.turnstile?.remove(turnstileWidgetRef.current)
+			turnstileWidgetRef.current = null
+		}
+	}, [])
 
 	// Après une mise à jour du site : restaurer ce que le visiteur avait tapé et renvoyer une seule fois.
 	useEffect(() => {
@@ -54,10 +136,9 @@ export function ContactForm() {
 			fingerprint: fieldsFingerprint(resumed.draft.fields),
 		}
 		if (!resumed.autoRetry) return
-		autoRetryRef.current = true
-		// L'événement submit est traité tout de suite : handleSubmit a déjà lu le drapeau au retour.
-		form.requestSubmit()
-		autoRetryRef.current = false
+		// Le renvoi part dès que Turnstile a produit un jeton (tout de suite s'il en a déjà un).
+		pendingAutoRetryRef.current = true
+		if (turnstileTokenRef.current) submitAutoRetry()
 	}, [])
 
 	// onSubmit plutôt que <form action> : React ne vide plus les champs après un échec.
@@ -68,13 +149,27 @@ export function ContactForm() {
 		const fields = fieldsFromFormData(new FormData(form))
 		const isAutoRetry = autoRetryRef.current
 		autoRetryRef.current = false
+		const turnstileToken = turnstileTokenRef.current
+		if (!turnstileToken) {
+			toast.info('Vérification anti-robot en cours', {
+				description:
+					'Patientez quelques secondes puis renvoyez. Si le blocage persiste, écrivez directement par email.',
+			})
+			return
+		}
+		const honeypot = new FormData(form).get(HONEYPOT_FIELD)
 		const submission = submissionIdFor(submissionRef.current, fields)
 		submissionRef.current = submission
 
 		setIsSubmitting(true)
 
 		try {
-			const result = await submitContactForm({ ...fields, submissionId: submission.submissionId })
+			const result = await submitContactForm({
+				...fields,
+				submissionId: submission.submissionId,
+				turnstileToken,
+				website: typeof honeypot === 'string' ? honeypot : '',
+			})
 
 			if (result.success) {
 				clearContactDraft(getSessionStorage())
@@ -108,6 +203,7 @@ export function ContactForm() {
 				...(plan.action === 'show-message' ? { duration: 8000 } : {}),
 			})
 		} finally {
+			resetTurnstile()
 			setIsSubmitting(false)
 		}
 	}
@@ -139,8 +235,10 @@ export function ContactForm() {
 
 			{/* Téléphone */}
 			<div className="space-y-2">
-				<Label htmlFor="phone">Téléphone</Label>
-				<Input id="phone" name="phone" type="tel" placeholder="06 12 34 56 78" disabled={isSubmitting} />
+				<Label htmlFor="phone">
+					Téléphone <span className="text-destructive text-xl font-bold">*</span>
+				</Label>
+				<Input id="phone" name="phone" type="tel" required placeholder="06 12 34 56 78" disabled={isSubmitting} />
 			</div>
 
 			{/* Ville */}
@@ -169,6 +267,20 @@ export function ContactForm() {
 					disabled={isSubmitting}
 				/>
 			</div>
+
+			{/* Champ piège : invisible pour les visiteurs, rempli par les robots qui remplissent tout. */}
+			<div aria-hidden="true" className="absolute left-[-10000px] top-auto h-px w-px overflow-hidden">
+				<label htmlFor={HONEYPOT_FIELD}>Ne pas remplir ce champ</label>
+				<input id={HONEYPOT_FIELD} name={HONEYPOT_FIELD} type="text" tabIndex={-1} autoComplete="off" />
+			</div>
+
+			{/* Cloudflare Turnstile : vérification anti-robot, le plus souvent invisible pour le visiteur. */}
+			<Script
+				src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
+				strategy="afterInteractive"
+				onReady={renderTurnstile}
+			/>
+			<div ref={turnstileContainerRef} className="min-h-[65px]" />
 
 			{/* Submit Button */}
 			<Button type="submit" className="w-full" disabled={isSubmitting}>

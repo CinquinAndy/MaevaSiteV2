@@ -3,6 +3,8 @@
 import { Resend } from 'resend'
 import { ContactFormEmail } from '@/emails/contact-form-email'
 import { type ContactFormData, normalizeSubmissionId, validateContactForm } from '@/lib/contact-validation'
+import { containsLink, isHoneypotFilled, looksLikeBotText } from '@/lib/security/spam'
+import { verifyTurnstile } from '@/lib/security/turnstile'
 
 // Expéditeur sur un domaine vérifié dans le compte Resend (andy-cinquin.com).
 // L'ancien expéditeur contact@email.andy-cinquin.fr n'est plus vérifié : Resend répondait 403.
@@ -10,6 +12,9 @@ const FROM = 'Cinquin Maeva - Website <contact@andy-cinquin.com>'
 const TO = ['maevacinquin1@gmail.com']
 
 const SEND_ERROR_MESSAGE = "Une erreur s'est produite lors de l'envoi du message. Veuillez réessayer."
+const SUCCESS_MESSAGE = 'Votre demande a été envoyée avec succès ! Je vous répondrai sous 48h.'
+const CAPTCHA_ERROR_MESSAGE =
+	"La vérification anti-robot n'a pas abouti. Patientez quelques secondes puis renvoyez le message."
 
 export interface ContactFormResponse {
 	success: boolean
@@ -30,6 +35,19 @@ export async function submitContactForm(formData: ContactFormData): Promise<Cont
 			return { success: false, message: invalid.message, error: invalid.error }
 		}
 
+		// Robots : champ piège rempli ou texte au hasard. Réponse de succès habituelle, rien n'est envoyé.
+		if (isHoneypotFilled(formData.website) || looksLikeBotText(formData)) {
+			console.info('Formulaire de contact : envoi de robot écarté.')
+			return { success: true, message: SUCCESS_MESSAGE }
+		}
+
+		// Cloudflare Turnstile : le jeton est vérifié ici, l'action pouvant être appelée sans passer par la page.
+		const turnstile = await verifyTurnstile(formData.turnstileToken)
+		if (!turnstile.success) {
+			console.warn('Formulaire de contact : Turnstile refusé.', turnstile.errorCodes)
+			return { success: false, message: CAPTCHA_ERROR_MESSAGE, error: 'CAPTCHA_FAILED' }
+		}
+
 		const resend = getResend()
 		if (!resend) {
 			console.error('Formulaire de contact : RESEND_TOKEN absent, envoi impossible.')
@@ -46,7 +64,7 @@ export async function submitContactForm(formData: ContactFormData): Promise<Cont
 				from: FROM,
 				to: TO,
 				replyTo: formData.email.trim(),
-				subject: `Nouvelle demande de contact de ${formData.name.trim()}`,
+				subject: `${containsLink(formData.message) ? '[Lien dans le message] ' : ''}Nouvelle demande de contact de ${formData.name.trim()}`,
 				react: ContactFormEmail({
 					name: formData.name,
 					email: formData.email,
@@ -67,10 +85,7 @@ export async function submitContactForm(formData: ContactFormData): Promise<Cont
 		}
 
 		console.info('Formulaire de contact envoyé, id Resend :', data?.id)
-		return {
-			success: true,
-			message: 'Votre demande a été envoyée avec succès ! Je vous répondrai sous 48h.',
-		}
+		return { success: true, message: SUCCESS_MESSAGE }
 	} catch (error) {
 		console.error('Erreur lors de la soumission du formulaire:', error instanceof Error ? error.message : error)
 		return {
