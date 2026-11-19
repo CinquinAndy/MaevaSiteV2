@@ -1,3 +1,4 @@
+import { createHash, timingSafeEqual } from 'node:crypto'
 import { revalidatePath } from 'next/cache'
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
@@ -28,6 +29,13 @@ import { NextResponse } from 'next/server'
  * 3. Revalider plusieurs paths:
  *    { secret: "...", paths: ["/", "/blog", "/galerie"] }
  */
+/** Comparaison à temps constant (empreintes de même longueur) : le temps de réponse ne trahit pas le secret. */
+function isSameSecret(given: unknown, expected: string): boolean {
+	if (typeof given !== 'string') return false
+	const digest = (value: string) => createHash('sha256').update(value).digest()
+	return timingSafeEqual(digest(given), digest(expected))
+}
+
 export async function POST(request: NextRequest) {
 	try {
 		const body = await request.json()
@@ -40,7 +48,7 @@ export async function POST(request: NextRequest) {
 			return NextResponse.json({ error: 'Revalidation not configured' }, { status: 500 })
 		}
 
-		if (secret !== revalidateSecret) {
+		if (!isSameSecret(secret, revalidateSecret)) {
 			console.error('[Revalidate] Invalid secret provided')
 			return NextResponse.json({ error: 'Invalid secret' }, { status: 401 })
 		}

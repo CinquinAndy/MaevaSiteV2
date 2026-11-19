@@ -12,6 +12,10 @@ export interface ContactFormData {
 	 * après une mise à jour du site : sert de clé d'idempotence chez Resend pour ne jamais envoyer deux fois.
 	 */
 	submissionId?: string
+	/** Jeton Cloudflare Turnstile produit par le widget de la page. */
+	turnstileToken?: string
+	/** Champ piège caché (voir HONEYPOT_FIELD) : vide pour un visiteur. */
+	website?: string
 }
 
 const SUBMISSION_ID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i

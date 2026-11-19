@@ -3,11 +3,15 @@ import { NextResponse } from 'next/server'
 import { getPayload } from 'payload'
 import type { PageContext } from '@/lib/gemini/generate-seo'
 import { generateSeoContent } from '@/lib/gemini/generate-seo'
+import { requireAdmin } from '@/lib/payload/require-admin'
 import config from '@/payload.config'
 
 type CollectionSlug = 'users' | 'media' | 'blog' | 'galery' | 'services' | 'testimonials'
 
 export async function POST(req: NextRequest) {
+	const unauthorized = await requireAdmin(req.headers)
+	if (unauthorized) return unauthorized
+
 	try {
 		const { documentId, collectionSlug } = await req.json()
 

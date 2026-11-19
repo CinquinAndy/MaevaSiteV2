@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, mock, spyOn, test } from 'bun:test'
+import { afterAll, afterEach, beforeEach, describe, expect, mock, spyOn, test } from 'bun:test'
 
 // Resend simulé : chaque test choisit la réponse de l'API.
 type Reponse = { data: { id: string } | null; error: { name: string; statusCode: number; message: string } | null }
@@ -22,6 +22,17 @@ mock.module('resend', () => ({
 	},
 }))
 
+// Réponse simulée de Cloudflare Turnstile (siteverify) : chaque test choisit le verdict.
+let turnstileOk = true
+const appelsTurnstile: string[] = []
+const fetchAvant = globalThis.fetch
+globalThis.fetch = (async (_url: string, init?: { body?: URLSearchParams }) => {
+	appelsTurnstile.push(init?.body?.get('response') ?? '')
+	return new Response(
+		JSON.stringify({ success: turnstileOk, 'error-codes': turnstileOk ? [] : ['invalid-input-response'] })
+	)
+}) as unknown as typeof fetch
+
 const { submitContactForm } = await import('@/actions/contact')
 
 const formulaire = {
@@ -31,17 +42,25 @@ const formulaire = {
 	city: 'Annecy',
 	postalCode: '74000',
 	message: 'Bonjour, je voudrais un devis.',
+	turnstileToken: 'jeton-turnstile',
 }
 
 const MESSAGE_ERREUR = "Une erreur s'est produite lors de l'envoi du message. Veuillez réessayer."
 
 describe('submitContactForm', () => {
 	const cleAvant = process.env.RESEND_TOKEN
+	const secretAvant = process.env.TURNSTILE_SECRET_KEY
+	const envAvant = process.env.NODE_ENV
 	let consoleError: ReturnType<typeof spyOn>
 	let consoleInfo: ReturnType<typeof spyOn>
+	let consoleWarn: ReturnType<typeof spyOn>
 
 	beforeEach(() => {
 		process.env.RESEND_TOKEN = 're_test_factice'
+		process.env.TURNSTILE_SECRET_KEY = 'secret-turnstile-factice'
+		turnstileOk = true
+		appelsTurnstile.length = 0
+		consoleWarn = spyOn(console, 'warn').mockImplementation(() => {})
 		reponse = { data: { id: 'test-id' }, error: null }
 		envois.length = 0
 		clesUtilisees.length = 0
@@ -52,8 +71,60 @@ describe('submitContactForm', () => {
 
 	afterEach(() => {
 		process.env.RESEND_TOKEN = cleAvant
+		process.env.TURNSTILE_SECRET_KEY = secretAvant
+		;(process.env as Record<string, string | undefined>).NODE_ENV = envAvant
 		consoleError.mockRestore()
 		consoleInfo.mockRestore()
+		consoleWarn.mockRestore()
+	})
+
+	test('jeton Turnstile refusé : rien n’est envoyé, CAPTCHA_FAILED', async () => {
+		turnstileOk = false
+		const resultat = await submitContactForm(formulaire)
+		expect(resultat.success).toBe(false)
+		expect(resultat.error).toBe('CAPTCHA_FAILED')
+		expect(envois).toHaveLength(0)
+		expect(appelsTurnstile).toEqual(['jeton-turnstile'])
+	})
+
+	test('jeton Turnstile absent : refusé sans appeler Cloudflare', async () => {
+		const resultat = await submitContactForm({ ...formulaire, turnstileToken: undefined })
+		expect(resultat.error).toBe('CAPTCHA_FAILED')
+		expect(envois).toHaveLength(0)
+		expect(appelsTurnstile).toHaveLength(0)
+	})
+
+	test('secret Turnstile absent en production : refusé (la protection ne se coupe pas en silence)', async () => {
+		delete process.env.TURNSTILE_SECRET_KEY
+		;(process.env as Record<string, string | undefined>).NODE_ENV = 'production'
+		const resultat = await submitContactForm(formulaire)
+		expect(resultat.error).toBe('CAPTCHA_FAILED')
+		expect(envois).toHaveLength(0)
+	})
+
+	test('champ piège rempli : succès affiché, aucun email envoyé', async () => {
+		const resultat = await submitContactForm({ ...formulaire, website: 'http://spam.example' })
+		expect(resultat.success).toBe(true)
+		expect(envois).toHaveLength(0)
+		expect(appelsTurnstile).toHaveLength(0)
+	})
+
+	test('nom et message au hasard (robot observé) : succès affiché, aucun email envoyé', async () => {
+		const resultat = await submitContactForm({
+			...formulaire,
+			name: 'FzEwOOmxoOoDAyMmIDdgBtPG',
+			message: 'DIIcuBUdTijuxupeyQZCu',
+		})
+		expect(resultat.success).toBe(true)
+		expect(envois).toHaveLength(0)
+		// Le journal ne garde aucune donnée du visiteur.
+		expect(JSON.stringify(consoleInfo.mock.calls)).not.toContain('FzEwOOmxoOoDAyMmIDdgBtPG')
+	})
+
+	test('lien dans le message : envoyé, objet signalé', async () => {
+		const resultat = await submitContactForm({ ...formulaire, message: 'Voir : https://unpartage.online/fr/spo/x' })
+		expect(resultat.success).toBe(true)
+		expect(envois[0].subject).toBe('[Lien dans le message] Nouvelle demande de contact de Jeanne Test')
 	})
 
 	test('envoi réussi : même destinataire qu’avant, expéditeur vérifié, réponse au visiteur', async () => {
@@ -120,4 +191,8 @@ describe('submitContactForm', () => {
 		expect(envois).toHaveLength(3)
 		expect(optionsEnvois).toEqual([undefined, undefined, undefined])
 	})
+})
+
+afterAll(() => {
+	globalThis.fetch = fetchAvant
 })

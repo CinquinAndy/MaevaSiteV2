@@ -42,7 +42,7 @@ export async function GET() {
 	if (missingVars.length > 0) {
 		result.checks.environment = {
 			status: 'error',
-			missingVars,
+			// Noms des variables manquantes seulement dans les journaux : la réponse est publique.
 		}
 		result.status = 'unhealthy'
 		console.error(`[${timestamp}] [HEALTH_CHECK] ❌ Missing environment variables: ${missingVars.join(', ')}`)
@@ -81,7 +81,8 @@ export async function GET() {
 		} catch (dbError) {
 			result.checks.database = {
 				status: 'error',
-				message: dbError instanceof Error ? dbError.message : 'Database query failed',
+				// Détail seulement dans les journaux : la réponse est publique.
+				message: 'Database query failed',
 			}
 			result.status = 'degraded'
 			console.error(
@@ -111,7 +112,7 @@ export async function GET() {
 	} catch (payloadError) {
 		result.checks.payload = {
 			status: 'error',
-			message: payloadError instanceof Error ? payloadError.message : 'Payload initialization failed',
+			message: 'Payload initialization failed',
 		}
 		result.status = 'unhealthy'
 		console.error(
