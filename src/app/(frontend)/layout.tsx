@@ -5,6 +5,7 @@ import { Corinthia, Kalam, Libre_Caslon_Display } from 'next/font/google'
 import Script from 'next/script'
 import { Toaster } from 'sonner'
 import { Footer } from '@/components/global/footer'
+import { UmamiAnalytics } from '@/components/global/umami-analytics'
 import GlitterFinal from '@/components/ui/glitter-final'
 import { Gooey } from '@/components/ui/gooey'
 import { ScrollProgress } from '@/components/ui/scroll-progress'
@@ -89,10 +90,6 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 				{/* Adobe Fonts (Typekit) - urw-form font */}
 				<link rel="preconnect" href="https://use.typekit.net" />
 				<link rel="stylesheet" href="https://use.typekit.net/ayg0khv.css" />
-				{/* Preconnect for third-party domains */}
-				<link rel="preconnect" href="https://umami.wadefade.fr" />
-				{/* DNS Prefetch for better performance */}
-				<link rel="dns-prefetch" href="https://umami.wadefade.fr" />
 			</head>
 			<body className={`relative bg-background`}>
 				{/* Google Analytics (GA4) */}
@@ -105,11 +102,8 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 						gtag('config', 'G-R6EEBXR1K8', { anonymize_ip: true });
 					`}
 				</Script>
-				<Script
-					src="https://umami.wadefade.fr/script.js"
-					data-website-id="e8f25e84-b2f1-43c6-b574-5d9d3a65c75b"
-					strategy="afterInteractive"
-				/>
+				{/* Umami servi par le site lui-même (relais /v) : non bloqué par les bloqueurs de pub */}
+				<UmamiAnalytics />
 
 				{/* Vertical Scroll Progress Indicator - Positioned Right Center */}
 				<div className="fixed hidden sm:block left-6 sm:left-auto sm:right-6 top-1/2 -translate-y-1/2 z-200 h-[45vh] w-1 pointer-events-none">
