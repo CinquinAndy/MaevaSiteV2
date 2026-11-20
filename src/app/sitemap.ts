@@ -48,44 +48,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		}),
 	])
 
-	// Pages statiques
+	// Date de dernière modification réelle : celle du contenu le plus récent de la liste, pas la date de
+	// génération du sitemap (qui faisait croire à Google que toutes les pages changeaient à chaque passage).
+	const latest = (docs: { updatedAt?: string | null }[]) => {
+		const times = docs.map(doc => (doc.updatedAt ? Date.parse(doc.updatedAt) : 0)).filter(Boolean)
+		return times.length ? new Date(Math.max(...times)) : undefined
+	}
+	const blogUpdated = latest(blogPosts.docs)
+	const galeryUpdated = latest(galeries.docs)
+	const servicesUpdated = latest(services.docs)
+	const siteUpdated = latest([...blogPosts.docs, ...galeries.docs, ...services.docs])
+
+	// Pages statiques (contact et mentions légales : pas de date, elles ne dépendent pas du CMS)
 	const staticPages: MetadataRoute.Sitemap = [
-		{
-			url: siteUrl,
-			lastModified: new Date(),
-			changeFrequency: 'weekly',
-			priority: 1.0,
-		},
-		{
-			url: `${siteUrl}/blog`,
-			lastModified: new Date(),
-			changeFrequency: 'daily',
-			priority: 0.9,
-		},
-		{
-			url: `${siteUrl}/galerie`,
-			lastModified: new Date(),
-			changeFrequency: 'weekly',
-			priority: 0.9,
-		},
-		{
-			url: `${siteUrl}/prestations`,
-			lastModified: new Date(),
-			changeFrequency: 'weekly',
-			priority: 0.9,
-		},
-		{
-			url: `${siteUrl}/contact`,
-			lastModified: new Date(),
-			changeFrequency: 'monthly',
-			priority: 0.8,
-		},
-		{
-			url: `${siteUrl}/mentions-legales`,
-			lastModified: new Date(),
-			changeFrequency: 'yearly',
-			priority: 0.3,
-		},
+		{ url: siteUrl, lastModified: siteUpdated, changeFrequency: 'weekly', priority: 1.0 },
+		{ url: `${siteUrl}/blog`, lastModified: blogUpdated, changeFrequency: 'weekly', priority: 0.9 },
+		{ url: `${siteUrl}/galerie`, lastModified: galeryUpdated, changeFrequency: 'weekly', priority: 0.9 },
+		{ url: `${siteUrl}/prestations`, lastModified: servicesUpdated, changeFrequency: 'monthly', priority: 0.9 },
+		{ url: `${siteUrl}/contact`, changeFrequency: 'yearly', priority: 0.8 },
+		{ url: `${siteUrl}/mentions-legales`, changeFrequency: 'yearly', priority: 0.3 },
 	]
 
 	// Pages de blog dynamiques

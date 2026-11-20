@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a Next.js 15 portfolio website for Maeva Cinquin, a professional makeup artist and nail art specialist based in Haute-Savoie, France. The site uses Payload CMS 3.x as a headless CMS, with PostgreSQL database and S3 storage. The project uses TypeScript, Biome for linting/formatting, and Tailwind CSS 4.x for styling.
+This is a Next.js 16 portfolio website for Maeva Cinquin, a professional makeup artist and nail art specialist based in Haute-Savoie, France. The site uses Payload CMS 3.x as a headless CMS, with PostgreSQL database and S3 storage. The project uses TypeScript, Biome for linting/formatting, and Tailwind CSS 4.x for styling.
 
 **About Maeva Cinquin:**
 - Professional makeup artist specializing in beauty makeup, artistic makeup, and nail art
@@ -17,41 +17,41 @@ This is a Next.js 15 portfolio website for Maeva Cinquin, a professional makeup 
 - Old website: https://cinquin-maeva.com/
 
 **Tech Stack:**
-- **Framework:** Next.js 15.5.6 (App Router with React 19)
-- **CMS:** Payload CMS 3.60.0 with Lexical rich text editor
+- **Framework:** Next.js 16.4.5 (App Router with React 19)
+- **CMS:** Payload CMS 3.93 with Lexical rich text editor
 - **Database:** PostgreSQL via `@payloadcms/db-postgres`
 - **Storage:** S3 via `@payloadcms/storage-s3`
 - **Styling:** Tailwind CSS 4.x with Radix UI components
 - **Animations:** GSAP, Framer Motion (motion), Three.js/React Three Fiber
 - **Email:** Resend with React Email templates
 - **AI Services:** Google AI SDK (Gemini), Forvoyez (alt text generation)
-- **Package Manager:** pnpm (v9 or v10)
+- **Package Manager:** bun (1.4, `bun.lock`)
 - **Node Version:** ^18.20.2 || >=20.9.0
 
 ## Development Commands
 
 ```bash
 # Development server (Next.js dev mode)
-pnpm dev
+bun dev
 
 # Production build
-pnpm build
+bun build
 
 # Start production server
-pnpm start
+bun start
 
 # Code quality (Biome)
-pnpm check      # Run checks and auto-fix
-pnpm lint       # Lint with auto-fix
-pnpm format     # Format code
+bun check      # Run checks and auto-fix
+bun lint       # Lint with auto-fix
+bun format     # Format code
 
 # Payload CMS commands
-pnpm payload                    # Payload CLI
-pnpm generate:types             # Generate TypeScript types from CMS schema
-pnpm generate:importmap         # Generate import map for admin panel
+bun payload                    # Payload CLI
+bun generate:types             # Generate TypeScript types from CMS schema
+bun generate:importmap         # Generate import map for admin panel
 
 # Email development
-pnpm email      # React Email dev server on port 3001
+bun email      # React Email dev server on port 3001
 ```
 
 ## Site Structure & Content Strategy
@@ -150,8 +150,7 @@ src/
 │       ├── forvoyez/        # Alt text generation endpoints
 │       ├── gemini/          # SEO generation endpoints
 │       └── health/
-├── collections/             # Payload CMS collections (Users, Media)
-├── globals/                 # Payload CMS globals (Homepage)
+├── collections/             # Payload CMS collections (Users, Media, Blog, Galery, Services, Testimonials)
 ├── components/
 │   ├── admin/              # Payload admin UI components
 │   ├── fields/             # Custom Payload fields
@@ -173,15 +172,9 @@ src/
 
 **1. Payload CMS Integration**
 - `payload.config.ts` is the central configuration (aliased as `@payload-config`)
-- **Current Collections:** Users, Media
-- **Current Globals:** Homepage
-- **Planned Collections to Add:**
-  - `Blog` - Blog posts/articles with title, slug, content (Lexical), featured image, excerpt, publish date, SEO fields
-  - `Galery` - Galery collections with title, slug, description, images array, category (wedding/artistic/nail-art), publish date
-  - `Services` - Services/Prestations with title, description, pricing, category
-  - `Legal` - Legal pages (mentions légales, privacy policy) with slug and content
-- Use helper functions like `getHomepageData()` from `src/lib/payload/` to fetch CMS data
-- Generated types are in `src/payload-types.ts` (regenerate with `pnpm generate:types`)
+- **Collections:** Users, Media, Blog, Galery, Services, Testimonials (no globals)
+- CMS helpers live in `src/lib/payload/` (testimonials, admin auth, revalidation hook, legacy slug lookup)
+- Generated types are in `src/payload-types.ts` (regenerate with `bun generate:types`)
 - Path alias: `@payload-config` points to `src/payload.config.ts`
 
 **2. Next.js App Router Structure**
@@ -192,39 +185,46 @@ src/
   - Vertical scroll progress indicator (positioned left on mobile, right on desktop)
   - Umami analytics integration
   - GlitterFinal background effect for visual appeal
-- **Current Pages:**
-  - `/` - Homepage (currently basic, needs full landing page implementation)
-  - `/blog` - Blog listing page (needs implementation)
-  - `/prestations` - Services page (needs implementation)
-  - `/galerie` - Galery page (needs implementation)
-  - `/contact` - Contact form page (needs implementation)
-- **Pages to Add:**
-  - `/blog/[slug]` - Individual blog post pages
-  - `/galerie/[slug]` - Individual galery detail pages
-  - `/mentions-legales` - Legal notice page
-- SEO: Robots currently set to block all indexing (`index: false`, `follow: false`) - update when ready for production
+- **Pages:** `/`, `/blog` + `/blog/[slug]`, `/galerie` + `/galerie/[slug]`, `/prestations` + `/prestations/[slug]`,
+  `/contact`, `/mentions-legales`, `/tuto` (CMS guide, admin session required)
+- `/[slug]` (root): old WordPress URLs → 308 to the blog post, gallery or service with that slug, else 404.
+  Unknown or wrongly-cased slugs in the detail pages are redirected the same way (`src/lib/payload/find-page-by-slug.ts`)
+- SEO: indexing open (`index, follow`). Metadata, JSON-LD (LocalBusiness, Person, BlogPosting, ImageGallery, Service,
+  BreadcrumbList) in `src/lib/seo.ts`; share images go through the Next image optimizer (`optimizedImageUrl`)
+- `/llms.txt` (`src/app/llms.txt/route.ts`): Markdown summary of the site for AI assistants, built from the CMS
+- `robots.txt` blocks `/admin/` and `/api/` except `/api/media/file/` (CMS images must stay crawlable)
 
 **3. Server Actions**
 - Contact form submission in `src/actions/contact.ts`
 - Uses Resend for email with React Email templates
 - Returns typed responses (`ContactFormResponse`)
-- Contact form data includes: name, email, phone, address, city, postalCode, message, gardenSize
-- Emails sent from: contact@andy-cinquin.fr
-- Currently sends to: cinquin.andy@gmail.com (update to Maeva's email when ready)
+- Contact form data includes: name, email, phone, city, postalCode, message, prestation, source (the last two are
+  optional choices from `src/lib/contact-options.ts`)
+- Anti-spam: Cloudflare Turnstile (`TURNSTILE_SECRET_KEY`, fails closed in production), honeypot field `website`,
+  random-letter bot filter (`src/lib/security/`). Bots get a silent success
+- Emails sent from: contact@andy-cinquin.com, to maevacinquin1@gmail.com
 - Reply-to is set to customer's email for easy responses
 
 **4. AI/API Integrations**
-- **Forvoyez:** Alt text generation for images (routes in `src/app/api/forvoyez/`)
-- **Gemini:** SEO content generation (routes in `src/app/api/gemini/`)
+- **Forvoyez:** Alt text generation for images (routes in `src/app/api/forvoyez/`, admin session required)
+- **Gemini:** SEO content generation (routes in `src/app/api/gemini/`, admin session required)
+
+**5. Analytics (Umami)**
+- Umami (umami.wadefade.fr) is served from the site's own domain to get past ad blockers: script `/v/s.js`, events
+  `/v/e`, relayed by `src/app/v/[...path]/route.ts`. The visitor IP is forwarded in `true-client-ip` (Umami's nginx
+  rewrites `x-real-ip`)
+- Event names live in `src/lib/analytics/track.ts` (`UMAMI_EVENTS`); goals and funnels in Umami use them, do not rename
+- Replays are wired but off (`NEXT_PUBLIC_UMAMI_REPLAYS`): they need visitor consent (CNIL)
+- IndexNow (`src/lib/seo/indexnow.ts`) pings Bing when a blog post, gallery or service is published
 - Environment variables required (see `.env.example`)
 
-**5. Styling**
+**6. Styling**
 - Tailwind CSS 4.x with custom design tokens
 - CSS variables for theming
 - Utility function: `cn()` from `src/lib/utils.ts` for conditional classes
 - Biome formatting: tabs (indent width 2), line width 120
 
-**6. TypeScript Configuration**
+**7. TypeScript Configuration**
 - Path aliases: `@/*` → `src/*`, `@payload-config` → `src/payload.config.ts`
 - Strict mode enabled
 - Target: ES2017
@@ -242,6 +242,8 @@ S3_ACCESS_KEY_ID=           # S3 access key
 S3_SECRET_ACCESS_KEY=       # S3 secret key
 S3_ENDPOINT=                # S3 endpoint URL
 S3_REGION=                  # S3 region (default: "auto")
+REVALIDATE_SECRET=          # Shared secret for /api/revalidate (ISR after CMS changes)
+TURNSTILE_SECRET_KEY=       # Cloudflare Turnstile secret (contact form)
 RESEND_TOKEN=               # Resend API token for emails
 FORVOYEZ_TOKEN=             # Forvoyez API token
 GEMINI_API_KEY=             # Google Gemini API key
@@ -259,60 +261,21 @@ GEMINI_API_KEY=             # Google Gemini API key
 - **Special override:** `payload-types.ts` has relaxed type rules
 
 ### Running Code Quality Checks
-Always run `pnpm check` before committing to ensure code quality.
-
-## Implementation Priorities
-
-When building out the website, follow this priority order:
-
-1. **CMS Collections Setup**
-   - Create Blog collection with all necessary fields
-   - Create Galery collection with image arrays
-   - Create Services collection for prestations
-   - Update Homepage global with sections for hero, about, latest blog posts, latest galleries
-   - Run `pnpm generate:types` after each collection creation
-
-2. **Homepage Development**
-   - Hero section with introduction
-   - "About Maeva" section (training, expertise, service areas)
-   - Latest blog articles section (fetch 3-4 recent posts)
-   - Latest galleries section (fetch 3-4 recent galleries)
-   - Footer component with all contact info and legal links
-
-3. **Core Pages**
-   - Blog listing page with attractive card layout
-   - Galery listing page with visual grid
-   - Contact page with form + contact info + map
-   - Individual blog post page (`/blog/[slug]`)
-   - Individual galery page (`/galerie/[slug]`)
-
-4. **Services & Legal**
-   - Prestations page with service details
-   - Legal pages (mentions légales)
-
-5. **Polish & Optimization**
-   - SEO metadata for all pages
-   - Image optimization and alt text
-   - Mobile responsiveness
-   - Performance optimization
-   - Update robots.txt when ready for indexing
+Always run `bun check` before committing to ensure code quality.
 
 ## Important Notes
 
-1. **Payload Types:** After modifying CMS schemas (collections/globals), run `pnpm generate:types` to update TypeScript types
-2. **Import Map:** After adding new admin components, run `pnpm generate:importmap`
-3. **Git Branch:** Main branch is `master` (not `main`)
+1. **Payload Types:** After modifying CMS schemas (collections/globals), run `bun generate:types` to update TypeScript types
+2. **Import Map:** After adding new admin components, run `bun generate:importmap`
+3. **Git Branch:** Main branch is `main`; merging to `main` deploys through Coolify
 4. **Next.js Config:** Uses `withPayload` wrapper for Payload integration
 5. **Security Headers:** Basic security headers configured in `next.config.mjs`
 6. **Server Actions:** Body size limit set to 10MB for file uploads
 7. **Image Optimization:** Configured remote patterns for cinquin-maeva.com and andy-cinquin.fr domains
 8. **Language:** All content should be in French (site targets French-speaking audience in France/Switzerland)
-9. **Contact Form:** Remember to update recipient email to Maeva's email before production deployment
+9. **Data migrations:** `bun run build` runs `src/scripts/migrate.ts` against `DATABASE_URI` before `next build`. Content fixes go in idempotent data migrations in `src/migrations/` (never overwrite a value edited in the admin)
 
 ## Testing Strategy
 
-There are currently no automated tests configured in this project. When adding tests:
-- Consider using Vitest (devDependencies include jsdom and vite-related packages)
-- Test server actions in `src/actions/`
-- Test API routes for AI integrations
-- Test Payload CMS collection/global schemas
+Tests run with `bun test tests` (bun:test). They cover the contact action and anti-spam, the contact draft, the
+Umami relay and events, SEO helpers (JSON-LD escaping, share images, local data, legacy redirects) and IndexNow.

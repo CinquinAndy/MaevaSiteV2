@@ -62,3 +62,34 @@ describe('SEO local', () => {
 		expect(schema.openingHoursSpecification).toBeUndefined()
 	})
 })
+
+describe('pages fixes et données structurées', () => {
+	test('pages de liste : nom du site dans le titre, og:url et image de partage', async () => {
+		const { generateBlogListingMetadata, generateMentionsLegalesMetadata } = await import('@/lib/seo')
+		const blog = generateBlogListingMetadata()
+		expect(String(blog.title)).toEndWith('| Maeva Cinquin')
+		expect(blog.openGraph?.url).toBe('https://cinquin-maeva.com/blog')
+		expect(blog.alternates?.canonical).toBe('https://cinquin-maeva.com/blog')
+		expect(String(generateMentionsLegalesMetadata().title)).toBe('Mentions légales | Maeva Cinquin')
+	})
+
+	test('fil d’Ariane : Accueil puis la section puis la page', async () => {
+		const { generateBreadcrumbJsonLd } = await import('@/lib/seo')
+		const crumbs = generateBreadcrumbJsonLd([
+			{ name: 'Blog', path: '/blog' },
+			{ name: 'Mon article', path: '/blog/mon-article' },
+		])
+		expect(crumbs.itemListElement.map(item => [item.position, item.name, item.item])).toEqual([
+			[1, 'Accueil', 'https://cinquin-maeva.com'],
+			[2, 'Blog', 'https://cinquin-maeva.com/blog'],
+			[3, 'Mon article', 'https://cinquin-maeva.com/blog/mon-article'],
+		])
+	})
+
+	test('prestation : rattachée à l’entreprise de la page d’accueil', async () => {
+		const { generateLocalBusinessSchema, generateServiceJsonLd } = await import('@/lib/seo')
+		const service = generateServiceJsonLd({ title: 'Nail art', slug: 'nail-art' })
+		expect(service.provider['@id']).toBe((generateLocalBusinessSchema() as { '@id': string })['@id'])
+		expect(service.url).toBe('https://cinquin-maeva.com/prestations/nail-art')
+	})
+})

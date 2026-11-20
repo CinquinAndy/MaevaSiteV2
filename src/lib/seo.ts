@@ -80,6 +80,24 @@ function shareMetadata(params: {
 	}
 }
 
+/** Nom ajouté à la fin du titre des pages (le modèle de titre du layout ne s'applique pas à ces pages). */
+const BRAND = 'Maeva Cinquin'
+
+/**
+ * Métadonnées d'une page fixe (liste, contact…) : titre avec le nom du site, URL canonique, et partage
+ * (og:url, nom du site, langue, image par défaut), absents jusqu'ici sur ces pages.
+ */
+function staticPageMetadata(params: { title: string; description: string; path: string }): Metadata {
+	const title = `${params.title} | ${BRAND}`
+	const url = `${SITE_CONFIG.url}${params.path}`
+	return {
+		title,
+		description: params.description,
+		alternates: { canonical: url },
+		...shareMetadata({ title, description: params.description, url, type: 'website' }),
+	}
+}
+
 /**
  * Génère les métadonnées SEO de base pour le site
  */
@@ -120,41 +138,35 @@ export function generatePrestationsSEO(): Metadata {
 	const cities = getCityNamesForSEO()
 	const mainCities = cities.all.slice(0, 6).join(', ')
 
-	return {
-		title: 'Prestations - Maquillage Beauté, Mariages, Artistique & Nail Art',
+	return staticPageMetadata({
+		title: 'Prestations : maquillage mariage, beauté, artistique & nail art',
 		description: `Découvrez mes prestations de maquillage professionnel: beauté, mariages, artistique, body painting et nail art. Interventions à ${mainCities} et toute la Haute-Savoie.`,
-		alternates: {
-			canonical: `${SITE_CONFIG.url}/prestations`,
-		},
-	}
+		path: '/prestations',
+	})
 }
 
 /**
  * Génère les métadonnées SEO pour la page galerie
  */
 export function generateGalerieSEO(): Metadata {
-	return {
-		title: 'Portfolio & Galerie - Mes Réalisations',
+	return staticPageMetadata({
+		title: 'Galerie : mes réalisations maquillage & nail art',
 		description:
 			'Découvrez mon portfolio de maquillage professionnel: mariages, maquillages artistiques, beauty looks, nail art et body painting. Photos de mes réalisations en Haute-Savoie et Genève.',
-		alternates: {
-			canonical: `${SITE_CONFIG.url}/galerie`,
-		},
-	}
+		path: '/galerie',
+	})
 }
 
 /**
  * Génère les métadonnées SEO pour la page blog
  */
 export function generateBlogSEO(): Metadata {
-	return {
-		title: 'Blog - Conseils Maquillage & Actualités Beauté',
+	return staticPageMetadata({
+		title: 'Blog : conseils maquillage & beauté',
 		description:
 			'Retrouvez mes conseils de maquilleuse professionnelle, astuces beauté, tendances maquillage et actualités nail art. Tips et tutoriels pour sublimer votre beauté.',
-		alternates: {
-			canonical: `${SITE_CONFIG.url}/blog`,
-		},
-	}
+		path: '/blog',
+	})
 }
 
 /**
@@ -164,12 +176,50 @@ export function generateContactSEO(): Metadata {
 	const cities = getCityNamesForSEO()
 	const zones = `${cities.french.slice(0, 3).join(', ')} et ${cities.swiss.slice(0, 3).join(', ')}`
 
-	return {
-		title: 'Contact - Demandez un Devis Gratuit',
+	return staticPageMetadata({
+		title: 'Contact : demandez un devis gratuit',
 		description: `Contactez-moi pour vos prestations de maquillage et nail art en Haute-Savoie et Suisse. Déplacement à ${zones}. Devis gratuit et réponse sous 24-48h.`,
-		alternates: {
-			canonical: `${SITE_CONFIG.url}/contact`,
-		},
+		path: '/contact',
+	})
+}
+
+/** Identifiant de l'entreprise dans les données structurées, repris par les prestations (« provider »). */
+const BUSINESS_ID = `${SITE_CONFIG.url}/#business`
+
+/**
+ * Fil d'Ariane (BreadcrumbList) d'une page de détail : Accueil > section > page.
+ */
+export function generateBreadcrumbJsonLd(items: { name: string; path: string }[]) {
+	return {
+		'@context': 'https://schema.org',
+		'@type': 'BreadcrumbList',
+		itemListElement: [{ name: 'Accueil', path: '' }, ...items].map((item, index) => ({
+			'@type': 'ListItem',
+			position: index + 1,
+			name: item.name,
+			item: `${SITE_CONFIG.url}${item.path}`,
+		})),
+	}
+}
+
+/**
+ * Prestation (Service) proposée par l'entreprise, sur sa zone d'intervention.
+ */
+export function generateServiceJsonLd(params: { title: string; description?: string; slug: string; image?: string }) {
+	const cities = getCityNamesForSEO()
+	return {
+		'@context': 'https://schema.org',
+		'@type': 'Service',
+		name: params.title,
+		description: params.description || params.title,
+		url: `${SITE_CONFIG.url}/prestations/${params.slug}`,
+		...(params.image ? { image: optimizedImageUrl(params.image) } : {}),
+		serviceType: params.title,
+		provider: { '@type': 'BeautySalon', '@id': BUSINESS_ID, name: SITE_CONFIG.name, url: SITE_CONFIG.url },
+		areaServed: [
+			...cities.french.map(name => ({ '@type': 'City', name, addressCountry: 'FR' })),
+			...cities.swiss.map(name => ({ '@type': 'City', name, addressCountry: 'CH' })),
+		],
 	}
 }
 
@@ -184,7 +234,7 @@ export function generateLocalBusinessSchema() {
 		'@type': 'BeautySalon',
 		name: 'Maeva Cinquin - Makeup Artist',
 		description: generateSEODescription(),
-		'@id': 'https://cinquin-maeva.com',
+		'@id': BUSINESS_ID,
 		url: 'https://cinquin-maeva.com',
 		telephone: '+33616625137',
 		email: 'maevacinquin1@gmail.com',
@@ -307,12 +357,19 @@ export function generatePersonSchema() {
  */
 export function generateHomeMetadata(): Metadata {
 	const baseSEO = generateBaseSEO()
+	const title = 'Maeva Cinquin - Maquilleuse Professionnelle Haute-Savoie & Genève'
 	return {
 		...baseSEO,
-		title: 'Maeva Cinquin - Maquilleuse Professionnelle Haute-Savoie & Genève',
+		title,
 		alternates: {
 			canonical: 'https://cinquin-maeva.com',
 		},
+		...shareMetadata({
+			title,
+			description: String(baseSEO.description ?? ''),
+			url: SITE_CONFIG.url,
+			type: 'website',
+		}),
 	}
 }
 
@@ -340,18 +397,12 @@ export function generateContactMetadata(): Metadata {
  * Génère les métadonnées SEO pour une page de mentions légales
  */
 export function generateMentionsLegalesMetadata(): Metadata {
-	return {
-		title: 'Mentions Légales',
+	return staticPageMetadata({
+		title: 'Mentions légales',
 		description:
 			'Mentions légales du site Maeva Cinquin - Informations légales, propriété intellectuelle et protection des données personnelles.',
-		robots: {
-			index: true,
-			follow: true,
-		},
-		alternates: {
-			canonical: `${SITE_CONFIG.url}/mentions-legales`,
-		},
-	}
+		path: '/mentions-legales',
+	})
 }
 
 /**

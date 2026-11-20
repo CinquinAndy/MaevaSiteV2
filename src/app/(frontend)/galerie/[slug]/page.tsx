@@ -7,7 +7,7 @@ import { Blob3, Blob5, Blob6, Blob7, Blob8, Blob9 } from '@/components/blobs/blo
 import { Badge } from '@/components/ui/badge'
 import { BentoGalery } from '@/components/ui/bento-galery'
 import { redirectToPageOrNotFound } from '@/lib/payload/find-page-by-slug'
-import { generateGaleryItemMetadata, generateGaleryJsonLd } from '@/lib/seo'
+import { generateBreadcrumbJsonLd, generateGaleryItemMetadata, generateGaleryJsonLd } from '@/lib/seo'
 import { serializeJsonLd } from '@/lib/seo/json-ld'
 import type { Galery, Media } from '@/payload-types'
 
@@ -120,6 +120,17 @@ export default async function GaleryDetailPage({ params }: { params: Promise<{ s
 		<>
 			{/* JSON-LD Schema pour SEO */}
 			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }} />
+			<script
+				type="application/ld+json"
+				dangerouslySetInnerHTML={{
+					__html: serializeJsonLd(
+						generateBreadcrumbJsonLd([
+							{ name: 'Galerie', path: '/galerie' },
+							{ name: galery.title, path: `/galerie/${galery.slug}` },
+						])
+					),
+				}}
+			/>
 
 			{/* Hero Banner */}
 			<FadeIn>

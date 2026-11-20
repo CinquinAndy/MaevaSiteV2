@@ -1,7 +1,9 @@
+import config from '@payload-config'
 import type { Metadata } from 'next'
-import { cookies } from 'next/headers'
+import { headers } from 'next/headers'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
+import { getPayload } from 'payload'
 import type React from 'react'
 import { FadeIn, FadeInWhenVisible, ScaleIn, SlideInFromBottom } from '@/components/animations'
 import { Blob2, Blob3, Blob4, Blob6, Blob8, Blob9 } from '@/components/blobs/blobs'
@@ -16,14 +18,11 @@ export const metadata: Metadata = {
 }
 
 export default async function Page(): Promise<React.JSX.Element> {
-	// Verify Payload auth by checking session cookie
-	const cookieStore = await cookies()
-
-	// Check if Payload session cookie exists
-	const payloadToken = cookieStore.get('payload-token')
-
-	// If no session cookie, redirect to admin (which shows login if not authenticated)
-	if (!payloadToken || !payloadToken.value) {
+	// Session Payload réellement validée (un simple cookie « payload-token » inventé suffisait jusqu'ici).
+	// Sans session valide : vers /admin, qui affiche la connexion.
+	const payload = await getPayload({ config })
+	const { user } = await payload.auth({ headers: await headers() })
+	if (!user) {
 		redirect('/admin')
 	}
 

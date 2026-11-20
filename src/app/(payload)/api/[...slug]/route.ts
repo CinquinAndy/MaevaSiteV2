@@ -15,3 +15,13 @@ export const DELETE = REST_DELETE(config)
 export const PATCH = REST_PATCH(config)
 export const PUT = REST_PUT(config)
 export const OPTIONS = REST_OPTIONS(config)
+
+// Ajout au fichier généré (à reporter si Payload le régénère) : Payload ne répond pas aux requêtes HEAD
+// (404 sur /api/media/file/…, alors que GET répond 200). Certains robots et vérificateurs de liens envoient un
+// HEAD d'abord et concluaient que les images n'existaient pas. On rejoue la requête en GET et on ne renvoie que
+// le statut et les en-têtes.
+export const HEAD = async (...[request, context]: Parameters<typeof GET>) => {
+	const response = await GET(new Request(request, { method: 'GET' }), context)
+	await response.body?.cancel()
+	return new Response(null, { status: response.status, headers: response.headers })
+}

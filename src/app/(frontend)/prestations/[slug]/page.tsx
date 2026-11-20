@@ -11,7 +11,8 @@ import { Container } from '@/components/ui/container'
 import { GradientButton } from '@/components/ui/gradient-button'
 import { Section } from '@/components/ui/section'
 import { redirectToPageOrNotFound } from '@/lib/payload/find-page-by-slug'
-import { generateServiceItemMetadata } from '@/lib/seo'
+import { generateBreadcrumbJsonLd, generateServiceItemMetadata, generateServiceJsonLd } from '@/lib/seo'
+import { serializeJsonLd } from '@/lib/seo/json-ld'
 import type { Media, Service } from '@/payload-types'
 
 const categoryLabels: Record<string, string> = {
@@ -101,9 +102,21 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 	}
 
 	const featuredImage = service.featuredImage as Media | undefined
+	const serviceJsonLd = generateServiceJsonLd({
+		title: service.title,
+		description: service.shortDescription ?? undefined,
+		slug: service.slug,
+		image: featuredImage?.url ?? undefined,
+	})
+	const breadcrumbJsonLd = generateBreadcrumbJsonLd([
+		{ name: 'Prestations', path: '/prestations' },
+		{ name: service.title, path: `/prestations/${service.slug}` },
+	])
 
 	return (
 		<>
+			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(serviceJsonLd) }} />
+			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }} />
 			{/* Hero Banner */}
 			<FadeIn>
 				<div className="relative h-[60vh] lg:h-[70vh] w-full overflow-hidden">
