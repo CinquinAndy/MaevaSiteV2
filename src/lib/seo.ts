@@ -10,9 +10,34 @@ export const SITE_CONFIG = {
 	author: 'Maeva Cinquin',
 } as const
 
-/** Image de partage par défaut (même que celle du layout) */
+/**
+ * Version allégée d'une image du site, servie par l'optimiseur de Next (`/_next/image`).
+ * Les photos du CMS sont les originaux (jusqu'à 15 Mo) : trop lourdes pour Facebook (8 Mo max), X (5 Mo max)
+ * et Google. Largeur 1200 px (taille conseillée pour les partages), qualité 75 : environ 200 Ko.
+ * Les images d'autres domaines sont rendues telles quelles.
+ */
+export function optimizedImageUrl(src: string, width: 1200 | 1920 = 1200): string {
+	let path = src
+	if (/^https?:\/\//.test(src)) {
+		const url = new URL(src)
+		if (url.origin !== SITE_CONFIG.url && url.origin !== 'https://www.cinquin-maeva.com') return src
+		path = `${url.pathname}${url.search}`
+	}
+	if (!path.startsWith('/') || path.startsWith('/_next/image')) return src
+	return `${SITE_CONFIG.url}/_next/image?url=${encodeURIComponent(path)}&w=${width}&q=75`
+}
+
+/** Logo carré pour Google (512 px, au moins 112 px exigés). */
+export const SITE_LOGO = {
+	'@type': 'ImageObject',
+	url: `${SITE_CONFIG.url}/logo-512.png`,
+	width: 512,
+	height: 512,
+} as const
+
+/** Image de partage par défaut (même que celle du layout), en JPEG : mieux lu que le WebP par les réseaux */
 const DEFAULT_SHARE_IMAGE = {
-	url: `${SITE_CONFIG.url}/og-mae.webp`,
+	url: `${SITE_CONFIG.url}/og-mae.jpg`,
 	width: 1200,
 	height: 630,
 	alt: 'Maeva Cinquin - Maquilleuse Professionnelle',
@@ -32,7 +57,9 @@ function shareMetadata(params: {
 	publishedTime?: string
 }): Pick<Metadata, 'openGraph' | 'twitter'> {
 	const { title, description, url, type, image, imageAlt, publishedTime } = params
-	const images = image ? [{ url: image, alt: imageAlt || title }] : [DEFAULT_SHARE_IMAGE]
+	const images = image
+		? [{ url: optimizedImageUrl(image), width: 1200, alt: imageAlt || title }]
+		: [DEFAULT_SHARE_IMAGE]
 
 	return {
 		openGraph: {
@@ -162,17 +189,20 @@ export function generateLocalBusinessSchema() {
 		telephone: '+33616625137',
 		email: 'maevacinquin1@gmail.com',
 		priceRange: '€€',
+		logo: SITE_LOGO,
+		image: optimizedImageUrl('/image00002.jpeg'),
+		// Même adresse que les mentions légales.
 		address: {
 			'@type': 'PostalAddress',
-			addressLocality: 'Thonon-les-Bains',
+			addressLocality: 'Sciez',
 			addressRegion: 'Haute-Savoie',
-			postalCode: '74200',
+			postalCode: '74140',
 			addressCountry: 'FR',
 		},
 		geo: {
 			'@type': 'GeoCoordinates',
-			latitude: 46.3708,
-			longitude: 6.4792,
+			latitude: 46.3333,
+			longitude: 6.3833,
 		},
 		areaServed: [
 			...cities.french.map(city => ({
@@ -191,12 +221,7 @@ export function generateLocalBusinessSchema() {
 			'https://www.facebook.com/Cinquin-maeva',
 			'https://g.page/cinquin-maeva',
 		],
-		openingHoursSpecification: {
-			'@type': 'OpeningHoursSpecification',
-			dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-			opens: '09:00',
-			closes: '19:00',
-		},
+		// Pas d'horaires d'ouverture : Maeva travaille uniquement sur rendez-vous.
 		hasOfferCatalog: {
 			'@type': 'OfferCatalog',
 			name: 'Prestations de maquillage',
@@ -248,7 +273,7 @@ export function generatePersonSchema() {
 		name: 'Maeva Cinquin',
 		jobTitle: 'Maquilleuse Professionnelle',
 		description: 'Maquilleuse professionnelle diplômée de la Make Up For Ever Academy et prothésiste ongulaire',
-		image: 'https://cinquin-maeva.com/image00002.jpeg',
+		image: optimizedImageUrl('/image00002.jpeg'),
 		url: 'https://cinquin-maeva.com',
 		email: 'maevacinquin1@gmail.com',
 		telephone: '+33616625137',
@@ -390,7 +415,7 @@ export function generateBlogPostJsonLd(params: {
 		'@type': 'BlogPosting',
 		headline: title,
 		description: excerpt || title,
-		image: featuredImage || `${SITE_CONFIG.url}/image00002.jpeg`,
+		image: optimizedImageUrl(featuredImage || '/image00002.jpeg'),
 		datePublished: publishedDate || new Date().toISOString(),
 		dateModified: publishedDate || new Date().toISOString(),
 		author: {
@@ -401,10 +426,7 @@ export function generateBlogPostJsonLd(params: {
 		publisher: {
 			'@type': 'Organization',
 			name: SITE_CONFIG.name,
-			logo: {
-				'@type': 'ImageObject',
-				url: `${SITE_CONFIG.url}/image00002.jpeg`,
-			},
+			logo: SITE_LOGO,
 		},
 		mainEntityOfPage: {
 			'@type': 'WebPage',

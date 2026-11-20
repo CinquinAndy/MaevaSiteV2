@@ -61,36 +61,44 @@ async function fetchCitiesFromOverpass(): Promise<City[]> {
 	console.log(`📍 Coordonnées: ${THONON_LAT}, ${THONON_LON}`)
 	console.log(`📏 Rayon: ${SEARCH_RADIUS_KM} km\n`)
 
-	// Requête Overpass QL pour récupérer les villes dans un rayon
-	const query = `
-		[out:json];
-		(
-			node["place"~"city|town"]["name"]["population"](around:${SEARCH_RADIUS_KM * 1000},${THONON_LAT},${THONON_LON});
-		);
-		out body;
-	`
+	// Une requête par pays : la ville est cherchée dans la zone administrative du pays, ce qui donne son pays
+	// réel (l'ancienne version le devinait d'après la longitude et classait Genève en France).
+	const countries = [
+		{ code: 'FR', label: 'France' },
+		{ code: 'CH', label: 'Suisse' },
+		{ code: 'IT', label: 'Italie' },
+	]
 
 	try {
-		const response = await fetch('https://overpass-api.de/api/interpreter', {
-			method: 'POST',
-			body: query,
-		})
+		const elements: any[] = []
+		for (const { code, label } of countries) {
+			const query = `
+				[out:json];
+				area["ISO3166-1"="${code}"][admin_level=2]->.pays;
+				node["place"~"city|town"]["name"]["population"](area.pays)(around:${SEARCH_RADIUS_KM * 1000},${THONON_LAT},${THONON_LON});
+				out body;
+			`
+			const response = await fetch('https://overpass-api.de/api/interpreter', {
+				method: 'POST',
+				body: query,
+			})
 
-		if (!response.ok) {
-			throw new Error(`Erreur API: ${response.status}`)
+			if (!response.ok) {
+				throw new Error(`Erreur API: ${response.status}`)
+			}
+
+			const data = await response.json()
+			for (const element of data.elements) elements.push({ ...element, country: label })
 		}
 
-		const data = await response.json()
+		console.log(`✅ ${elements.length} villes trouvées\n`)
 
-		console.log(`✅ ${data.elements.length} villes trouvées\n`)
-
-		const cities: City[] = data.elements
+		const cities: City[] = elements
 			.map((element: any) => {
 				const population = Number.parseInt(element.tags.population) || 0
 				const distance = calculateDistance(THONON_LAT, THONON_LON, element.lat, element.lon)
 
-				// Déterminer le pays (approximatif basé sur la longitude)
-				const country = element.lon > 6.5 ? 'Suisse' : 'France'
+				const country: string = element.country
 
 				return {
 					name: element.tags.name,

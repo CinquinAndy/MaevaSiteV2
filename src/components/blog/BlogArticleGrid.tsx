@@ -1,7 +1,7 @@
 'use client'
 
-import { RichText } from '@payloadcms/richtext-lexical/react'
 import { useRef } from 'react'
+import { CmsRichText } from '@/components/global/cms-rich-text'
 import type { Blog } from '@/payload-types'
 
 interface BlogArticleGridProps {
@@ -18,7 +18,7 @@ export function BlogArticleGrid({ post }: BlogArticleGridProps) {
 				<article className="prose prose-blog prose-lg max-w-none prose-headings:font-corinthia prose-h2:text-5xl prose-h3:text-4xl prose-h4:text-3xl prose-p:font-kalam prose-img:rounded-xl prose-img:shadow-lg">
 					{/* Render Lexical Content */}
 					{post.content && typeof post.content === 'object' && 'root' in post.content ? (
-						<RichText data={post.content} />
+						<CmsRichText data={post.content} />
 					) : (
 						<div className="text-muted-foreground">
 							<p>Contenu de l'article non disponible.</p>

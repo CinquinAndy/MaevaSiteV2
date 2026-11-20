@@ -36,21 +36,32 @@ export interface CitiesData {
 
 // Import des données générées
 import citiesDataJson from '../../scripts/cities-data.json'
+import { SERVICE_RADIUS_KM } from './service-area'
 
 export const citiesData: CitiesData = citiesDataJson as CitiesData
+
+export { SERVICE_RADIUS_KM }
+
+/**
+ * Villes de la zone d'intervention, par pays. Le fichier contient des villes jusqu'à 150 km (Lyon, Grenoble),
+ * bien au-delà de la zone réelle : seules celles de la zone sont annoncées.
+ */
+function citiesInZone(country: 'France' | 'Suisse'): City[] {
+	return citiesData.topCities.filter(city => city.country === country && city.distance <= SERVICE_RADIUS_KM)
+}
 
 /**
  * Retourne les villes françaises (Haute-Savoie)
  */
 export function getFrenchCities(): City[] {
-	return citiesData.topCities.filter(city => city.country === 'France')
+	return citiesInZone('France')
 }
 
 /**
  * Retourne les villes suisses
  */
 export function getSwissCities(): City[] {
-	return citiesData.topCities.filter(city => city.country === 'Suisse')
+	return citiesInZone('Suisse')
 }
 
 /**
@@ -67,7 +78,9 @@ export function getCityNamesForSEO(): {
 	return {
 		french: frenchCities,
 		swiss: swissCities,
-		all: citiesData.topCities.map(c => c.name),
+		all: citiesData.topCities
+			.filter(c => (c.country === 'France' || c.country === 'Suisse') && c.distance <= SERVICE_RADIUS_KM)
+			.map(c => c.name),
 	}
 }
 
