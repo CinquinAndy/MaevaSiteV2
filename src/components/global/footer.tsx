@@ -92,7 +92,7 @@ export async function Footer() {
 								Sublimez votre beauté naturelle avec une maquilleuse diplômée Make Up For Ever Academy.
 							</p>
 							<div className="space-y-2 text-sm text-muted-foreground">
-								<p className="font-medium">📍 Haute-Savoie, France (74) & Suisse (VD)</p>
+								<p className="font-medium">📍 Haute-Savoie, France (74) & Suisse (GE, VD)</p>
 								<p className="text-xs">Thonon-Les-Bains · Annecy · Genève · Lausanne</p>
 							</div>
 						</div>

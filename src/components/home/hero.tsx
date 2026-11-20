@@ -18,7 +18,8 @@ export default function Hero({
 }: HeroProps) {
 	return (
 		<div className="h-screen w-screen relative overflow-hidden">
-			<Image src={backgroundImage} alt="Hero" fill className="object-cover grayscale brightness-75" />
+			{/* Photo de fond décorative : alt vide, le titre de la page est dans le h1. */}
+			<Image src={backgroundImage} alt="" fill className="object-cover grayscale brightness-75" />
 			<h1
 				className="font-bold absolute top-20 -left-20 z-10 font-corinthia text-foreground hero-title"
 				style={
