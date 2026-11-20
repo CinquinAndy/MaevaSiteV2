@@ -8,9 +8,22 @@ interface ContactFormEmailProps {
 	city?: string
 	postalCode?: string
 	message: string
+	/** Libellés des choix facultatifs du formulaire. */
+	prestation?: string | null
+	source?: string | null
 }
 
-export const ContactFormEmail = ({ name, email, phone, address, city, postalCode, message }: ContactFormEmailProps) => {
+export const ContactFormEmail = ({
+	name,
+	email,
+	phone,
+	address,
+	city,
+	postalCode,
+	message,
+	prestation,
+	source,
+}: ContactFormEmailProps) => {
 	return (
 		<Html>
 			<Head />
@@ -61,6 +74,20 @@ export const ContactFormEmail = ({ name, email, phone, address, city, postalCode
 								<Section style={infoItem}>
 									<Text style={label}>Adresse</Text>
 									<Text style={value}>{address}</Text>
+								</Section>
+							)}
+
+							{prestation && (
+								<Section style={infoItem}>
+									<Text style={label}>Prestation souhaitée</Text>
+									<Text style={value}>{prestation}</Text>
+								</Section>
+							)}
+
+							{source && (
+								<Section style={infoItem}>
+									<Text style={label}>M'a connue par</Text>
+									<Text style={value}>{source}</Text>
 								</Section>
 							)}
 						</Section>

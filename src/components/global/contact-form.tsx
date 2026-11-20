@@ -19,6 +19,7 @@ import {
 	resumeContactDraft,
 	submissionIdFor,
 } from '@/lib/contact-draft'
+import { PRESTATION_OPTIONS, SOURCE_OPTIONS } from '@/lib/contact-options'
 import { HONEYPOT_FIELD } from '@/lib/security/spam'
 
 /**
@@ -51,6 +52,10 @@ declare global {
 	}
 }
 
+/** Même apparence que les champs texte (src/components/ui/input.tsx). */
+const SELECT_CLASS =
+	'border-input h-9 w-full min-w-0 rounded-md border bg-transparent dark:bg-input/30 px-3 py-1 text-base shadow-xs outline-none transition-[color,box-shadow] focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm [&>option]:bg-background [&>option]:text-foreground'
+
 function getSessionStorage(): Storage | null {
 	try {
 		return window.sessionStorage
@@ -63,7 +68,13 @@ function getSessionStorage(): Storage | null {
 function fillForm(form: HTMLFormElement, fields: ContactDraftFields) {
 	for (const name of CONTACT_FIELD_NAMES) {
 		const field = form.elements.namedItem(name)
-		if (field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement) field.value = fields[name]
+		if (
+			field instanceof HTMLInputElement ||
+			field instanceof HTMLTextAreaElement ||
+			field instanceof HTMLSelectElement
+		) {
+			field.value = fields[name]
+		}
 	}
 }
 
@@ -175,7 +186,11 @@ export function ContactForm() {
 			if (result.success) {
 				clearContactDraft(getSessionStorage())
 				submissionRef.current = null
-				trackEvent(UMAMI_EVENTS.contactFormSent)
+				// Ce que la personne a choisi (jamais ses coordonnées) : prestation demandée et source.
+				trackEvent(UMAMI_EVENTS.contactFormSent, {
+					prestation: fields.prestation || 'non précisé',
+					source: fields.source || 'non précisé',
+				})
 				toast.success('Message envoyé !', {
 					description: 'Merci pour votre message ! Je vous répondrai dans les plus brefs délais.',
 				})
@@ -262,6 +277,32 @@ export function ContactForm() {
 				<div className="space-y-2">
 					<Label htmlFor="postalCode">Code postal</Label>
 					<Input id="postalCode" name="postalCode" type="text" placeholder="74000" disabled={isSubmitting} />
+				</div>
+			</div>
+
+			{/* Choix facultatifs : ce que la personne veut, et comment elle a connu Maeva (statistiques Umami). */}
+			<div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+				<div className="space-y-2">
+					<Label htmlFor="prestation">Prestation souhaitée</Label>
+					<select id="prestation" name="prestation" defaultValue="" disabled={isSubmitting} className={SELECT_CLASS}>
+						<option value="">Choisir (facultatif)</option>
+						{PRESTATION_OPTIONS.map(option => (
+							<option key={option.value} value={option.value}>
+								{option.label}
+							</option>
+						))}
+					</select>
+				</div>
+				<div className="space-y-2">
+					<Label htmlFor="source">Comment m'avez-vous connue ?</Label>
+					<select id="source" name="source" defaultValue="" disabled={isSubmitting} className={SELECT_CLASS}>
+						<option value="">Choisir (facultatif)</option>
+						{SOURCE_OPTIONS.map(option => (
+							<option key={option.value} value={option.value}>
+								{option.label}
+							</option>
+						))}
+					</select>
 				</div>
 			</div>
 
