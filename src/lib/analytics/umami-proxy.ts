@@ -87,7 +87,10 @@ export function upstreamHeaders(incoming: Headers): Headers {
 	}
 	const ip = clientIp(incoming)
 	if (ip) {
-		// Sans TRUSTED_PROXIES, Umami lit l'adresse la plus à gauche de X-Forwarded-For.
+		// Umami lit l'IP dans le premier de ces en-têtes présent : true-client-ip, cf-connecting-ip, …, x-real-ip,
+		// x-forwarded-for (src/lib/ip.ts d'Umami). Le nginx devant Umami remplace x-real-ip par l'adresse de notre
+		// serveur : sans true-client-ip, toutes les visites étaient localisées à Vienne (serveur du site).
+		headers.set('true-client-ip', ip)
 		headers.set('x-forwarded-for', ip)
 		headers.set('x-real-ip', ip)
 	}
