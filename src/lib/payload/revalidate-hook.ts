@@ -1,4 +1,5 @@
 import type { CollectionAfterChangeHook, CollectionAfterDeleteHook } from 'payload'
+import { pagePathFor, submitToIndexNow } from '@/lib/seo/indexnow'
 
 /**
  * Hook Payload pour déclencher la revalidation ISR après modification/suppression de contenu
@@ -58,6 +59,10 @@ export const revalidateAfterChange: CollectionAfterChangeHook = async ({ doc, co
 	triggerRevalidation(collection.slug, doc.slug).catch(error => {
 		console.error('[Revalidate Hook] Async error:', error)
 	})
+
+	// Prévenir Bing (IndexNow) que la page et la liste qui la contient ont changé, en arrière-plan.
+	const path = pagePathFor(collection.slug, doc.slug)
+	if (path) void submitToIndexNow([path, path.slice(0, path.lastIndexOf('/'))])
 
 	return doc
 }

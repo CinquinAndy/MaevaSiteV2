@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { X } from 'lucide-react'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
+import { trackEvent, UMAMI_EVENTS } from '@/lib/analytics/track'
 import type { Media } from '@/payload-types'
 
 interface GaleryImage {
@@ -219,7 +220,13 @@ export function BentoGalery({ images }: BentoGaleryProps) {
 							<button
 								type="button"
 								className="group relative w-full cursor-pointer overflow-hidden rounded-xl transition-all duration-300 hover:shadow-2xl border-0 p-0 bg-transparent"
-								onClick={() => setSelectedIndex(index)}
+								onClick={() => {
+									setSelectedIndex(index)
+									trackEvent(UMAMI_EVENTS.photoOpened, {
+										galerie: window.location.pathname,
+										photo: decodeURIComponent(item.image.url?.split('/').pop() ?? '').slice(0, 100),
+									})
+								}}
 								style={{
 									aspectRatio: `${width} / ${height}`,
 								}}

@@ -2,6 +2,7 @@
 
 import { Resend } from 'resend'
 import { ContactFormEmail } from '@/emails/contact-form-email'
+import { normalizeOption, optionLabel, PRESTATION_OPTIONS, SOURCE_OPTIONS } from '@/lib/contact-options'
 import { type ContactFormData, normalizeSubmissionId, validateContactForm } from '@/lib/contact-validation'
 import { containsLink, isHoneypotFilled, looksLikeBotText } from '@/lib/security/spam'
 import { verifyTurnstile } from '@/lib/security/turnstile'
@@ -73,6 +74,8 @@ export async function submitContactForm(formData: ContactFormData): Promise<Cont
 					city: formData.city,
 					postalCode: formData.postalCode,
 					message: formData.message,
+					prestation: optionLabel(PRESTATION_OPTIONS, normalizeOption(PRESTATION_OPTIONS, formData.prestation)),
+					source: optionLabel(SOURCE_OPTIONS, normalizeOption(SOURCE_OPTIONS, formData.source)),
 				}),
 			},
 			sendOptions

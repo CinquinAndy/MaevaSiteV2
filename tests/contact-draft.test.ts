@@ -45,6 +45,8 @@ const champs: ContactDraftFields = {
 	city: 'Annecy',
 	postalCode: '74000',
 	message: 'Bonjour, je voudrais un devis pour un maquillage de mariée.',
+	prestation: 'mariage',
+	source: 'ia',
 }
 
 const ID = '3f2b8c1e-9a4d-4e6f-8b7a-1c2d3e4f5a6b'
@@ -117,7 +119,7 @@ describe('brouillon (sessionStorage)', () => {
 })
 
 describe('fieldsFromFormData', () => {
-	test('lit les six champs du formulaire, et seulement eux', () => {
+	test('lit les huit champs du formulaire, et seulement eux', () => {
 		const donnees = new FormData()
 		for (const [nom, valeur] of Object.entries(champs)) donnees.set(nom, valeur)
 		donnees.set('intrus', 'à ignorer')
@@ -134,6 +136,8 @@ describe('fieldsFromFormData', () => {
 			city: '',
 			postalCode: '',
 			message: '',
+			prestation: '',
+			source: '',
 		})
 	})
 })

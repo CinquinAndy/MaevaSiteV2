@@ -6,6 +6,9 @@ export interface ContactFormData {
 	city?: string
 	postalCode?: string
 	message: string
+	/** Prestation souhaitée et « Comment m'avez-vous connue ? » (facultatifs, voir contact-options.ts). */
+	prestation?: string
+	source?: string
 	gardenSize?: string
 	/**
 	 * Identifiant de l'envoi (UUID créé par le navigateur), repris tel quel quand le formulaire est renvoyé

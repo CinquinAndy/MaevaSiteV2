@@ -23,6 +23,9 @@ export interface ContactDraftFields {
 	city: string
 	postalCode: string
 	message: string
+	/** Choix facultatifs (voir src/lib/contact-options.ts). */
+	prestation: string
+	source: string
 }
 
 export interface ContactDraft {
@@ -45,6 +48,8 @@ export const EMPTY_CONTACT_FIELDS: ContactDraftFields = {
 	city: '',
 	postalCode: '',
 	message: '',
+	prestation: '',
+	source: '',
 }
 
 /** Noms des champs, dans l'ordre (ce sont aussi les attributs `name` des champs du formulaire). */

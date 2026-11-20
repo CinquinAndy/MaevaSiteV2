@@ -12,7 +12,26 @@ export const UMAMI_EVENTS = {
 	contactFormStarted: 'Formulaire contact commencé',
 	contactFormSent: 'Formulaire contact envoyé',
 	contactFormError: 'Formulaire contact erreur',
+	contactLinkClick: 'Clic vers contact',
+	photoOpened: 'Photo ouverte',
+	read50: 'Lecture 50 %',
+	read90: 'Lecture 90 %',
 } as const
+
+/** Pages dont on mesure la lecture : un article, une prestation, une galerie. */
+export const READ_TRACKED_PATH = /^\/(blog|prestations|galerie)\/[^/]+\/?$/
+
+/** true si le lien mène à la page ou au formulaire de contact du site (bouton « Contact », « Prendre rendez-vous »…). */
+export function isContactLink(href: string, siteHost: string): boolean {
+	let url: URL
+	try {
+		url = new URL(href)
+	} catch {
+		return false
+	}
+	if (url.hostname.replace(/^www\./, '') !== siteHost.replace(/^www\./, '')) return false
+	return url.pathname.replace(/\/$/, '') === '/contact' || url.hash === '#contact'
+}
 
 export type UmamiEventName = (typeof UMAMI_EVENTS)[keyof typeof UMAMI_EVENTS]
 type EventData = Record<string, string | number | boolean>
