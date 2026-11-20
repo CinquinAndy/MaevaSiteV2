@@ -30,6 +30,13 @@ const nextConfig = {
 
 		return webpackConfig
 	},
+	async redirects() {
+		await Promise.resolve()
+		return [
+			// Lien d'un article vers une page de l'ancien site, dont la galerie a changé de nom.
+			{ source: '/mi-ange-mi-demon', destination: '/galerie/collection-mi-ange-mi-demon', permanent: true },
+		]
+	},
 	async headers() {
 		await Promise.resolve() // Satisfy async requirement
 		return [

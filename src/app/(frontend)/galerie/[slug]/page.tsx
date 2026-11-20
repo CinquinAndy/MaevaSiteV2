@@ -1,12 +1,12 @@
 import config from '@payload-config'
 import Image from 'next/image'
 import Link from 'next/link'
-import { notFound } from 'next/navigation'
 import { getPayload } from 'payload'
 import { FadeIn, FadeInWhenVisible, ScaleIn, SlideInFromBottom, SlideInFromLeft } from '@/components/animations'
 import { Blob3, Blob5, Blob6, Blob7, Blob8, Blob9 } from '@/components/blobs/blobs'
 import { Badge } from '@/components/ui/badge'
 import { BentoGalery } from '@/components/ui/bento-galery'
+import { redirectToPageOrNotFound } from '@/lib/payload/find-page-by-slug'
 import { generateGaleryItemMetadata, generateGaleryJsonLd } from '@/lib/seo'
 import { serializeJsonLd } from '@/lib/seo/json-ld'
 import type { Galery, Media } from '@/payload-types'
@@ -96,7 +96,8 @@ export default async function GaleryDetailPage({ params }: { params: Promise<{ s
 	const galery = docs[0] as Galery | undefined
 
 	if (!galery) {
-		notFound()
+		// Slug avec une autre casse ou ancienne adresse : redirection vers la bonne page, sinon 404.
+		return redirectToPageOrNotFound(slug, `/galerie/${slug}`, 'galery')
 	}
 
 	const coverImage = galery.coverImage as Media | undefined

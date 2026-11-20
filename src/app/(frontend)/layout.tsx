@@ -39,7 +39,7 @@ export const metadata: Metadata = {
 		locale: 'fr_FR',
 		images: [
 			{
-				url: '/og-mae.webp',
+				url: '/og-mae.jpg',
 				width: 1200,
 				height: 630,
 				alt: 'Maeva Cinquin - Maquilleuse Professionnelle',
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
 	},
 	twitter: {
 		card: 'summary_large_image',
-		images: ['/og-mae.webp'],
+		images: ['/og-mae.jpg'],
 	},
 	// Autoriser l'indexation pour la production
 	robots: {

@@ -138,7 +138,9 @@ export default function ContactPage() {
 									</p>
 									<p className="flex items-center gap-2 pt-2 border-t border-border/50">
 										<MapPin className="w-4 h-4 text-primary" />
-										<span className="text-xs">Zone de couverture : rayon de 50km autour de Thonon-les-Bains</span>
+										<span className="text-xs">
+											Zone de couverture : environ 60 km autour de Thonon-les-Bains (Genève, Lausanne, Annecy)
+										</span>
 									</p>
 								</div>
 							</div>

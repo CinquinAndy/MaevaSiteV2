@@ -1,12 +1,12 @@
 import config from '@payload-config'
 import Image from 'next/image'
 import Link from 'next/link'
-import { notFound } from 'next/navigation'
 import { getPayload } from 'payload'
 import { FadeIn, FadeInWhenVisible, ScaleIn, SlideInFromBottom } from '@/components/animations'
 import { Blob2, Blob3, Blob4, Blob6, Blob8, Blob9 } from '@/components/blobs/blobs'
 import { BlogArticleGrid } from '@/components/blog/BlogArticleGrid'
 import { Badge } from '@/components/ui/badge'
+import { redirectToPageOrNotFound } from '@/lib/payload/find-page-by-slug'
 import { generateBlogPostJsonLd, generateBlogPostMetadata } from '@/lib/seo'
 import { serializeJsonLd } from '@/lib/seo/json-ld'
 import type { Blog, Media } from '@/payload-types'
@@ -96,7 +96,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 	const post = docs[0] as Blog | undefined
 
 	if (!post) {
-		notFound()
+		// Slug avec une autre casse ou ancienne adresse : redirection vers la bonne page, sinon 404.
+		return redirectToPageOrNotFound(slug, `/blog/${slug}`, 'blog')
 	}
 
 	const featuredImage = post.featuredImage as Media | undefined

@@ -11,7 +11,7 @@
 		{
 			"rank": 1,
 			"name": "Genève",
-			"country": "France",
+			"country": "Suisse",
 			"population": 191557,
 			"distance": 31.7,
 			"coordinates": {
@@ -47,7 +47,7 @@
 		{
 			"rank": 4,
 			"name": "Évian-les-Bains",
-			"country": "Suisse",
+			"country": "France",
 			"population": 9214,
 			"distance": 9.1,
 			"coordinates": {
@@ -119,7 +119,7 @@
 		{
 			"rank": 26,
 			"name": "Chêne-Bougeries",
-			"country": "France",
+			"country": "Suisse",
 			"population": 10642,
 			"distance": 29.8,
 			"coordinates": {
@@ -131,7 +131,7 @@
 		{
 			"rank": 27,
 			"name": "Carouge",
-			"country": "France",
+			"country": "Suisse",
 			"population": 20910,
 			"distance": 33.3,
 			"coordinates": {
@@ -155,7 +155,7 @@
 		{
 			"rank": 29,
 			"name": "Le Grand-Saconnex",
-			"country": "France",
+			"country": "Suisse",
 			"population": 11911,
 			"distance": 30.9,
 			"coordinates": {
@@ -179,7 +179,7 @@
 		{
 			"rank": 31,
 			"name": "Meyrin",
-			"country": "France",
+			"country": "Suisse",
 			"population": 21866,
 			"distance": 35.1,
 			"coordinates": {
@@ -215,7 +215,7 @@
 		{
 			"rank": 34,
 			"name": "Cluses",
-			"country": "Suisse",
+			"country": "France",
 			"population": 17164,
 			"distance": 35.4,
 			"coordinates": {
@@ -227,7 +227,7 @@
 		{
 			"rank": 35,
 			"name": "Lancy",
-			"country": "France",
+			"country": "Suisse",
 			"population": 10919,
 			"distance": 34.4,
 			"coordinates": {
@@ -251,7 +251,7 @@
 		{
 			"rank": 37,
 			"name": "Plan-les-Ouates",
-			"country": "France",
+			"country": "Suisse",
 			"population": 10657,
 			"distance": 35.8,
 			"coordinates": {
@@ -311,7 +311,7 @@
 		{
 			"rank": 42,
 			"name": "Bernex",
-			"country": "France",
+			"country": "Suisse",
 			"population": 9866,
 			"distance": 38.1,
 			"coordinates": {
@@ -395,7 +395,7 @@
 		{
 			"rank": 49,
 			"name": "Sallanches",
-			"country": "Suisse",
+			"country": "France",
 			"population": 17133,
 			"distance": 49.7,
 			"coordinates": {
@@ -431,7 +431,7 @@
 		{
 			"rank": 52,
 			"name": "Passy",
-			"country": "Suisse",
+			"country": "France",
 			"population": 11068,
 			"distance": 52.2,
 			"coordinates": {
@@ -539,7 +539,7 @@
 		{
 			"rank": 61,
 			"name": "Chamonix-Mont-Blanc",
-			"country": "Suisse",
+			"country": "France",
 			"population": 8642,
 			"distance": 58.1,
 			"coordinates": {
@@ -755,7 +755,7 @@
 		{
 			"rank": 79,
 			"name": "Morteau",
-			"country": "Suisse",
+			"country": "France",
 			"population": 6867,
 			"distance": 76.9,
 			"coordinates": {
@@ -803,7 +803,7 @@
 		{
 			"rank": 83,
 			"name": "Aosta - Aoste",
-			"country": "Suisse",
+			"country": "Italie",
 			"population": 30000,
 			"distance": 95.8,
 			"coordinates": {
@@ -815,7 +815,7 @@
 		{
 			"rank": 84,
 			"name": "Bourg-Saint-Maurice",
-			"country": "Suisse",
+			"country": "France",
 			"population": 7187,
 			"distance": 86.6,
 			"coordinates": {
@@ -947,7 +947,7 @@
 		{
 			"rank": 95,
 			"name": "Belfort",
-			"country": "Suisse",
+			"country": "France",
 			"population": 45155,
 			"distance": 143.9,
 			"coordinates": {
@@ -1199,7 +1199,7 @@
 		{
 			"rank": 116,
 			"name": "Montbéliard",
-			"country": "Suisse",
+			"country": "France",
 			"population": 25573,
 			"distance": 129,
 			"coordinates": {
@@ -1307,7 +1307,7 @@
 		{
 			"rank": 125,
 			"name": "Ivrea",
-			"country": "Suisse",
+			"country": "Italie",
 			"population": 23536,
 			"distance": 147.5,
 			"coordinates": {
@@ -1379,7 +1379,7 @@
 		{
 			"rank": 131,
 			"name": "Audincourt",
-			"country": "Suisse",
+			"country": "France",
 			"population": 13944,
 			"distance": 126.6,
 			"coordinates": {
@@ -1439,7 +1439,7 @@
 		{
 			"rank": 136,
 			"name": "Domodossola",
-			"country": "Suisse",
+			"country": "Italie",
 			"population": 18466,
 			"distance": 142.3,
 			"coordinates": {
@@ -1451,7 +1451,7 @@
 		{
 			"rank": 137,
 			"name": "Valentigney",
-			"country": "Suisse",
+			"country": "France",
 			"population": 10765,
 			"distance": 124.3,
 			"coordinates": {
@@ -1618,8 +1618,8 @@
 		}
 	],
 	"statistics": {
-		"frenchCities": 86,
-		"swissCities": 64,
+		"frenchCities": 81,
+		"swissCities": 50,
 		"averageDistance": 85.7,
 		"averagePopulation": 28903
 	}

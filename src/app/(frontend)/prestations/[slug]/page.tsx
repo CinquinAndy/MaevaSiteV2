@@ -1,16 +1,16 @@
 import config from '@payload-config'
-import { RichText } from '@payloadcms/richtext-lexical/react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { notFound } from 'next/navigation'
 import { getPayload } from 'payload'
 import { FadeIn, FadeInWhenVisible, ScaleIn, SlideInFromBottom, SlideInFromRight } from '@/components/animations'
 import { Blob2, Blob3, Blob4 } from '@/components/blobs/blobs'
+import { CmsRichText } from '@/components/global/cms-rich-text'
 import { CtaSection } from '@/components/home/cta-section'
 import { Badge } from '@/components/ui/badge'
 import { Container } from '@/components/ui/container'
 import { GradientButton } from '@/components/ui/gradient-button'
 import { Section } from '@/components/ui/section'
+import { redirectToPageOrNotFound } from '@/lib/payload/find-page-by-slug'
 import { generateServiceItemMetadata } from '@/lib/seo'
 import type { Media, Service } from '@/payload-types'
 
@@ -96,7 +96,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 	const service = docs[0] as Service | undefined
 
 	if (!service) {
-		notFound()
+		// Slug avec une autre casse ou ancienne adresse : redirection vers la bonne page, sinon 404.
+		return redirectToPageOrNotFound(slug, `/prestations/${slug}`, 'services')
 	}
 
 	const featuredImage = service.featuredImage as Media | undefined
@@ -188,7 +189,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 							{/* Description - Lexical RichText */}
 							<article className="prose prose-blog prose-lg max-w-none prose-headings:font-corinthia prose-h2:text-5xl prose-h3:text-4xl prose-h4:text-3xl prose-p:font-kalam prose-img:rounded-xl prose-img:shadow-lg">
 								{service.description && typeof service.description === 'object' && 'root' in service.description ? (
-									<RichText data={service.description} />
+									<CmsRichText data={service.description} />
 								) : (
 									<div className="text-muted-foreground">
 										<p>Description du service non disponible.</p>
@@ -233,7 +234,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 											typeof service.pricing.priceDetails === 'object' &&
 											'root' in service.pricing.priceDetails && (
 												<div className="mt-4 pt-4 border-t border-border prose prose-blog prose-sm max-w-none">
-													<RichText data={service.pricing.priceDetails} />
+													<CmsRichText data={service.pricing.priceDetails} />
 												</div>
 											)}
 									</div>
