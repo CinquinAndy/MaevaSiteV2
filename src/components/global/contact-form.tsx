@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
+import { trackEvent, UMAMI_EVENTS } from '@/lib/analytics/track'
 import {
 	CONTACT_FIELD_NAMES,
 	type ContactDraftFields,
@@ -174,12 +175,14 @@ export function ContactForm() {
 			if (result.success) {
 				clearContactDraft(getSessionStorage())
 				submissionRef.current = null
+				trackEvent(UMAMI_EVENTS.contactFormSent)
 				toast.success('Message envoyé !', {
 					description: 'Merci pour votre message ! Je vous répondrai dans les plus brefs délais.',
 				})
 				// Reset form
 				form.reset()
 			} else {
+				trackEvent(UMAMI_EVENTS.contactFormError, { error: result.error ?? 'inconnue' })
 				toast.error('Erreur', {
 					description: result.message || 'Une erreur est survenue. Veuillez réessayer.',
 				})
@@ -198,6 +201,7 @@ export function ContactForm() {
 				window.location.reload()
 				return
 			}
+			trackEvent(UMAMI_EVENTS.contactFormError, { error: 'RESEAU' })
 			toast.error('Erreur', {
 				description: plan.action === 'show-message' ? plan.message : 'Une erreur est survenue. Veuillez réessayer.',
 				...(plan.action === 'show-message' ? { duration: 8000 } : {}),
@@ -208,8 +212,16 @@ export function ContactForm() {
 		}
 	}
 
+	// Premier champ touché : début de l'entonnoir « contact » dans Umami (une seule fois par page).
+	const startedRef = useRef(false)
+	function handleFirstFocus() {
+		if (startedRef.current) return
+		startedRef.current = true
+		trackEvent(UMAMI_EVENTS.contactFormStarted)
+	}
+
 	return (
-		<form ref={formRef} onSubmit={handleSubmit} className="space-y-6" id="contact">
+		<form ref={formRef} onSubmit={handleSubmit} onFocus={handleFirstFocus} className="space-y-6" id="contact">
 			{/* Nom */}
 			<div className="space-y-2">
 				<Label htmlFor="name">
