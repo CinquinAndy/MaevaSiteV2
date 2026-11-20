@@ -65,6 +65,8 @@ describe('IP du visiteur', () => {
 		expect(headers.get('user-agent')).toBe('Mozilla/5.0')
 		expect(headers.get('x-umami-cache')).toBe('abc')
 		expect(headers.get('x-forwarded-for')).toBe('203.0.113.7')
+		// Premier en-tête lu par Umami, que le nginx devant Umami ne réécrit pas.
+		expect(headers.get('true-client-ip')).toBe('203.0.113.7')
 		expect(headers.get('cookie')).toBeNull()
 		expect(headers.get('authorization')).toBeNull()
 	})
