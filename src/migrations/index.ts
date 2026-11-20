@@ -2,6 +2,7 @@ import * as migration_20251021_230905_rename_date_to_published_date from './2025
 import * as migration_20251023_convert_galery_to_hasmany from './20251023_convert_galery_to_hasmany'
 import * as migration_20261013_174858_payload_3_90_columns from './20261013_174858_payload_3_90_columns'
 import * as migration_20261120_020000_content_fixes from './20261120_020000_content_fixes'
+import * as migration_20261120_120000_forvoyez_alts from './20261120_120000_forvoyez_alts'
 
 export const migrations = [
 	{
@@ -23,5 +24,10 @@ export const migrations = [
 		up: migration_20261120_020000_content_fixes.up,
 		down: migration_20261120_020000_content_fixes.down,
 		name: '20261120_020000_content_fixes',
+	},
+	{
+		up: migration_20261120_120000_forvoyez_alts.up,
+		down: migration_20261120_120000_forvoyez_alts.down,
+		name: '20261120_120000_forvoyez_alts',
 	},
 ]
