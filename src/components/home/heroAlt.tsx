@@ -11,6 +11,8 @@ export default function HeroAltSection() {
 				<SlideInFromBottom delay={0.2} duration={0.8}>
 					<h1 className="text-[75px]/20 sm:text-[125px]/30 lg:text-[180px]/40 xl:text-[210px]/45 2xl:text-[285px]/55 3xl:text-[380px]/70 uppercase text-foreground max-w-7xl">
 						Makeup Artist
+						{/* Titre complet pour Google et les lecteurs d'écran ; à l'écran, le sous-titre ci-dessous le donne déjà. */}
+						<span className="sr-only"> : Maeva Cinquin, maquilleuse professionnelle en Haute-Savoie et en Suisse</span>
 					</h1>
 				</SlideInFromBottom>
 				<SlideInFromBottom delay={0.4} duration={0.8}>
@@ -28,7 +30,7 @@ export default function HeroAltSection() {
 			<FadeIn delay={0.3} className="w-full h-full col-span-1 lg:col-start-2 relative z-5">
 				<Image
 					src="/image00001.jpeg"
-					alt="Hero Section"
+					alt="Maquillage artistique tribal : motifs graphiques noirs et dorés sur le visage d'un modèle"
 					width={1920}
 					height={1080}
 					className="w-full h-full object-cover z-5 -scale-x-100 "

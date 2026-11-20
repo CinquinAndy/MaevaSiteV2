@@ -46,7 +46,8 @@ export function ContactCard({
 				<AnimatedBlobs className="absolute inset-0 pointer-events-none opacity-80 hidden lg:block" />
 
 				<div className="relative h-full space-y-4 px-4 py-8 md:p-8 z-10">
-					<h1 className="text-3xl font-bold md:text-4xl lg:text-5xl text-foreground">{title}</h1>
+					{/* h2 : le h1 de la page est le titre « Contact » du bandeau. */}
+					<h2 className="text-3xl font-bold md:text-4xl lg:text-5xl text-foreground">{title}</h2>
 					<p className="text-muted-foreground max-w-xl text-sm md:text-base lg:text-lg">{description}</p>
 					<div className="flex flex-col gap-4 md:grid md:grid-cols-1 lg:grid-cols-3">
 						{contactInfo?.map(info => (
