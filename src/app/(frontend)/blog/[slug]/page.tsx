@@ -7,7 +7,7 @@ import { Blob2, Blob3, Blob4, Blob6, Blob8, Blob9 } from '@/components/blobs/blo
 import { BlogArticleGrid } from '@/components/blog/BlogArticleGrid'
 import { Badge } from '@/components/ui/badge'
 import { redirectToPageOrNotFound } from '@/lib/payload/find-page-by-slug'
-import { generateBlogPostJsonLd, generateBlogPostMetadata } from '@/lib/seo'
+import { generateBlogPostJsonLd, generateBlogPostMetadata, generateBreadcrumbJsonLd } from '@/lib/seo'
 import { serializeJsonLd } from '@/lib/seo/json-ld'
 import type { Blog, Media } from '@/payload-types'
 
@@ -119,6 +119,17 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 		<>
 			{/* JSON-LD Schema pour SEO */}
 			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }} />
+			<script
+				type="application/ld+json"
+				dangerouslySetInnerHTML={{
+					__html: serializeJsonLd(
+						generateBreadcrumbJsonLd([
+							{ name: 'Blog', path: '/blog' },
+							{ name: post.title, path: `/blog/${post.slug}` },
+						])
+					),
+				}}
+			/>
 
 			{/* Hero Banner */}
 			<FadeIn>
